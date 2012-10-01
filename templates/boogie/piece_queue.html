@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ingediende stukjes</h2>
+    
+    {% for piece in pieces %}
+        <h2>Stuk bij {{ piece.topic.title }}</h2>
+        
+        <p>Text: {{ piece.text }}</p>
+        <p>Voorstel nieuw onderwerp: {{ piece.new_topic }}</p>
+        
+        <form method="POST" action="{% url piece_validate piece.id %}">{% csrf_token %}
+            <input type="hidden" name="ok" value="yes">
+            <input type="submit" value="Goedkeuren">
+        </form>
+        
+        <form method="POST" action="{% url piece_validate piece.id %}">{% csrf_token %}
+            <input type="hidden" name="ok" value="no">
+            <label for="reason">Reden</label> <input type="text" name="reason">
+            <input type="submit" value="Afkeuren">
+        </form>
+    {% endfor %}
+    
+{% endblock %}

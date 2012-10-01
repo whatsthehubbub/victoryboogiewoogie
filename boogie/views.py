@@ -75,11 +75,28 @@ def piece_submit(request, piece_id):
             'form': form
     })
     return HttpResponse(t.render(c))
+
+# TODO proper access controls
+def piece_validate(request, piece_id):
+    if request.method == 'POST':
+        piece = Piece.objects.get(id=piece_id)
+        
+        valid = request.POST.get('ok', '')
+        
+        if valid == 'yes':
+            piece.status = 'APPROVED'
+        elif valid == 'no':
+            piece.rejection_reason = request.POST.get('reason', '')
+            piece.status = 'REJECTED'
+    
+        piece.save()
+        
+    return HttpResponseRedirect(reverse('piece_queue'))
     
 def piece_queue(request):
     t = loader.get_template('boogie/piece_queue.html')
 
     c = RequestContext(request, {
-        'submitted': Piece.objects.filter(status='SUBMITTED')
+        'pieces': Piece.objects.filter(status='SUBMITTED').order_by('-datecreated')
     })
     return HttpResponse(t.render(c))

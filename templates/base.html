@@ -3,9 +3,9 @@ User: {{ user }}<br>
 Player: {{ player }}
 
 <p>
-    <a href="/">home</a>
-    <a href="/topics/">onderwerpen</a>
-    {% if player.role == 'WRITER' %}goedkeuren{% endif %}
+    <a href="{% url index %}">home</a>
+    <a href="{% url topic_list %}">onderwerpen</a>
+    {% if player.role == 'WRITER' %}<a href="{% url piece_queue %}">goedkeuren</a>{% endif %}
 </p>
 
 {% block content %}

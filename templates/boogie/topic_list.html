@@ -5,7 +5,7 @@
     <h2>Onderwerpen schrijvers</h2>
     
     {% for topic in writer_topics %}
-        {{ topic }}<br>
+        <a href="{% url topic_detail topic.id topic.title %}">{{ topic }}</a><br>
     {% endfor %}
     
     <h2>Onderwerpen spelers</h2>

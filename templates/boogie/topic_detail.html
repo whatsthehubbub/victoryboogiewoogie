@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h2>{{ topic.title }}</h2>
+    
+    <p>voor {{ topic.pool }}</p>
+    
+
+    {% for piece in topic.approved_pieces %}
+        <div style="border: thin solid black;">
+            {% ifequal piece.writer.role 'WRITER' %}
+                door een schrijver
+            {% else %}
+                door een speler
+            {% endifequal %}
+        
+            <p>stukje door: {{ piece.writer }}<br>
+            Text: {{ piece.text }}</p>
+        </div>
+    {% endfor %}
+    
+{% endblock %}

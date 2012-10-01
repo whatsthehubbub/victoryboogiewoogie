@@ -4,7 +4,7 @@ urlpatterns = patterns('',
     url(r'^$', 'boogie.views.index', name='index'),
     
     url(r'topics/$', 'boogie.views.topic_list', name='topic_list'),
-    url(r'topics/(\d+)/(\w+?)/', 'boogie.views.topic_detail'),
+    url(r'topics/(\d+)/(\w+?)/', 'boogie.views.topic_detail', name="topic_detail"),
 
     url(r'pieces/$', 'boogie.views.piece_list'),
     url(r'pieces/(\d+)/$', 'boogie.views.piece_detail'),

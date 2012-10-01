@@ -5,8 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'victory.views.home', name='home'),
-    # url(r'^victory/', include('victory.foo.urls')),
+    url(r'^', include('boogie.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

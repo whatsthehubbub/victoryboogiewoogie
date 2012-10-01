@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p>instance {{ form.instance.id }}</p>
+
+    <form action="{% url piece_submit form.instance.id %}" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+    
+{% endblock %}

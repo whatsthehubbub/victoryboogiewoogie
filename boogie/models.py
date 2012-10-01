@@ -12,6 +12,10 @@ class Player(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    # @models.permalink
+    # def get_absolute_url(self):
+    #     return ('boogie.views.person_detail')
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=255)

@@ -1,13 +1,58 @@
-
-User: {{ user }}<br>
-Player: {{ player }}
-
-<p>
-    <a href="{% url index %}">home</a>
-    <a href="{% url topic_list %}">onderwerpen</a>
-    {% if player.role == 'WRITER' %}<a href="{% url piece_queue %}">goedkeuren</a>{% endif %}
-</p>
-
-{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
     
-{% endblock %}
+    <style type="text/css" media="screen">
+        BODY {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+  </head>
+  
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="{% url index %}">Victory Boogie Woogie</a>
+              <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                  Logged in as <a href="#" class="navbar-link">{{ player.user.username }}</a>
+                </p>
+                <ul class="nav">
+                  <li class="active"><a href="{% url index %}">Home</a></li>
+                  <li><a href="{% url topic_list %}">Onderwerpen</a></li>
+                  {% if player.role == 'WRITER' %}<li><a href="{% url piece_queue %}">Goedkeuren</a></li>{% endif %}
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+        </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span9 well">
+        {% block content %}
+    
+        {% endblock %}
+        </div>
+    </div>
+<footer>
+    <p>&copy; <a href="http://www.literairtijdschrift-degids.nl/?cat=493">De Gids</a> &amp; <a href="http://hbbb.nl">Hubbub</a> 2012</p>
+</footer>
+
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+</body>
+</html>

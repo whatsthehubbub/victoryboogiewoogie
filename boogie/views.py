@@ -75,3 +75,11 @@ def piece_submit(request, piece_id):
             'form': form
     })
     return HttpResponse(t.render(c))
+    
+def piece_queue(request):
+    t = loader.get_template('boogie/piece_queue.html')
+
+    c = RequestContext(request, {
+        'submitted': Piece.objects.filter(status='SUBMITTED')
+    })
+    return HttpResponse(t.render(c))

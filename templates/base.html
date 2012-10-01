@@ -2,7 +2,11 @@
 User: {{ user }}<br>
 Player: {{ player }}
 
-<p><a href="/">home</a> <a href="/topics/">onderwerpen</a></p>
+<p>
+    <a href="/">home</a>
+    <a href="/topics/">onderwerpen</a>
+    {% if player.role == 'WRITER' %}goedkeuren{% endif %}
+</p>
 
 {% block content %}
     

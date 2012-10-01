@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'pieces/$', 'boogie.views.piece_list'),
     url(r'pieces/(\d+)/$', 'boogie.views.piece_detail'),
     url(r'pieces/(\d+)/submit/', 'boogie.views.piece_submit', name='piece_submit'),
+    url(r'pieces/queue/', 'boogie.views.piece_queue', name='piece_queue'),
 )

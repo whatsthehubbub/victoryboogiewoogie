@@ -12,11 +12,6 @@ class Player(models.Model):
     def __unicode__(self):
         return self.user.username
 
-    # @models.permalink
-    # def get_absolute_url(self):
-    #     return ('boogie.views.person_detail')
-
-
 class Topic(models.Model):
     title = models.CharField(max_length=255)
     
@@ -25,8 +20,15 @@ class Topic(models.Model):
     def __unicode__(self):
         return self.title
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ('boogie.views.topic_detail', [self.id, self.title])
+    
 
 class Piece(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+    
     topic = models.ForeignKey(Topic)
     
     writer = models.ForeignKey(Player)
@@ -42,3 +44,7 @@ class Piece(models.Model):
     
     def __unicode__(self):
         return self.text
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('boogie.views.piece_detail', [self.id])

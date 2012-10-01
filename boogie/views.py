@@ -69,8 +69,6 @@ def piece_submit(request, piece_id):
     else:
         form = PieceSubmitForm(instance=piece)
     
-    print form
-    
     c = RequestContext(request, {
             'form': form
     })

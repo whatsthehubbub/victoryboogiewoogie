@@ -85,6 +85,10 @@ def piece_validate(request, piece_id):
         
         if valid == 'yes':
             piece.status = 'APPROVED'
+            
+            # Assuming that a piece here would always be from the non-writer pool
+            piece.topic.pool = 'WRITER'
+            piece.topic.save()
         elif valid == 'no':
             piece.rejection_reason = request.POST.get('reason', '')
             piece.status = 'REJECTED'

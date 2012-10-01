@@ -9,11 +9,17 @@ class Player(models.Model):
     
     role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')))
     
+    def __unicode__(self):
+        return self.user.username
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=255)
     
     pool = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='WRITER')
+    
+    def __unicode__(self):
+        return self.title
     
 
 class Piece(models.Model):
@@ -30,3 +36,5 @@ class Piece(models.Model):
     
     rating = models.IntegerField(default=0)
     
+    def __unicode__(self):
+        return self.text

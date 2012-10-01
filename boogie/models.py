@@ -27,8 +27,8 @@ class Piece(models.Model):
     
     writer = models.ForeignKey(Player)
     
-    text = models.TextField()
-    new_topic = models.CharField(max_length=255)
+    text = models.TextField(blank=True)
+    new_topic = models.CharField(max_length=255, blank=True)
     
     status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
     

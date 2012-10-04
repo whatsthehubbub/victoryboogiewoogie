@@ -17,6 +17,8 @@ class Topic(models.Model):
     
     pool = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='WRITER')
     
+    archived = models.BooleanField(default=False)
+    
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED').order_by('-datechanged')
     

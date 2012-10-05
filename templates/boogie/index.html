@@ -7,6 +7,12 @@
         Onderwerp: <a href="{% url topic_detail topic.id topic.title %}">{{ topic.title }}</a><br>
     {% endfor %}
     
+    <h1>Bijdragen</h1>
+
+	{% for piece in pieces %}
+	{{ piece.text }}<br>
+	{% endfor %}    
+
     <h1>Opdrachten</h1>
     
     {% for assignment in assignments %}

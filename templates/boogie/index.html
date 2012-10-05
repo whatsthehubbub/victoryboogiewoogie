@@ -4,7 +4,7 @@
     <h1>Frontpage</h1>
 
     {% for topic in topics %}
-        Onderwerp: {{ topic.title }}<br>
+        Onderwerp: <a href="{% url topic_detail topic.id topic.title %}">{{ topic.title }}</a><br>
     {% endfor %}
     
     <h1>Opdrachten</h1>

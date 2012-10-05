@@ -95,10 +95,27 @@ def piece_validate(request, piece_id):
         
     return HttpResponseRedirect(reverse('piece_queue'))
     
+def piece_vote_up(request, piece_id):
+    if request.method == 'POST':
+        piece = Piece.objects.get(id=piece_id)
+    
+    
 def piece_queue(request):
     t = loader.get_template('boogie/piece_queue.html')
 
     c = RequestContext(request, {
         'pieces': Piece.objects.filter(status='SUBMITTED').order_by('-datecreated')
     })
+    return HttpResponse(t.render(c))
+
+
+def writer_profile(request, name):
+    player = Player.objects.get(user__username=name)
+
+    t = loader.get_template('boogie/writer_profile.html')
+
+    c = RequestContext(request, {
+        'player': player
+    })
+
     return HttpResponse(t.render(c))

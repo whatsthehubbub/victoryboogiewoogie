@@ -5,9 +5,21 @@
     <h2>{{ topic.title }}</h2>
     
     <p>voor {{ topic.pool }}</p>
-    
 
-    {% for piece in topic.approved_pieces %}
+    volgorde: 
+    {% ifequal order '-datecreated' %} 
+        <a href="?order=-rating">beste</a>
+    {% else %}
+        <b>beste</b>
+    {% endifequal %}
+
+    {% ifequal order '-rating' %} 
+        <a href="?order=-datecreated">laatste</a>
+    {% else %}
+        <b>laatste</b>
+    {% endifequal %}
+
+    {% for piece in pieces %}
         <div style="border: thin solid black;">
             {% ifequal piece.writer.role 'WRITER' %}
                 door een schrijver

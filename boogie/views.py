@@ -27,8 +27,14 @@ def topic_list(request):
 def topic_detail(request, id, title):
     t = loader.get_template('boogie/topic_detail.html')
     
+    order = request.GET.get('order', '-rating')
+
+    topic = Topic.objects.get(id=id)
+
     c = RequestContext(request, {
-            'topic': Topic.objects.get(id=id)
+            'topic': topic,
+            'pieces': topic.approved_pieces().order_by(order),
+            'order': order
     })
     return HttpResponse(t.render(c))
     

@@ -19,7 +19,7 @@ class Topic(models.Model):
     archived = models.BooleanField(default=False)
     
     def approved_pieces(self):
-        return self.piece_set.filter(status='APPROVED').order_by('-datechanged')
+        return self.piece_set.filter(status='APPROVED')
     
     def __unicode__(self):
         return self.title

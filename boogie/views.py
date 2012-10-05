@@ -11,6 +11,7 @@ def index(request):
     
     c = RequestContext(request, {
             'topics': Topic.objects.all(),
+            'pieces': Piece.objects.exclude(frontpage=False), # TODO check if the piece is approved?
             'assignments': Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
     })
     return HttpResponse(t.render(c))

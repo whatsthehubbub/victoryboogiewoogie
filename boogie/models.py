@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
 
 # Create your models here.
 
@@ -41,7 +40,7 @@ class Piece(models.Model):
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
     
-    status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
+    status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('NEEDSWORK', 'needs work'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
     
     rejection_reason = models.TextField(blank=True)
     

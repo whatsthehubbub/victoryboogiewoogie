@@ -45,6 +45,9 @@ class Piece(models.Model):
     rejection_reason = models.TextField(blank=True)
     
     rating = models.IntegerField(default=0)
+
+    # Visible on the frontpage or not?
+    frontpage = models.BooleanField(default=False)
     
     def __unicode__(self):
         return self.text

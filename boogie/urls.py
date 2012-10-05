@@ -14,5 +14,7 @@ urlpatterns = patterns('',
     url(r'pieces/(\d+)/validate/', 'boogie.views.piece_validate', name='piece_validate'),
     url(r'pieces/(\d+)/vote/up/', 'boogie.views.piece_vote_up', name='piece_vote_up'),
 
+    # TODO for now these two URLs point to the same view
     url(r'writers/(\w+?)/$', 'boogie.views.writer_profile', name='writer_profile'),
+    url(r'players/(\w+?)/$', 'boogie.views.writer_profile', name='player_profile'),
 )

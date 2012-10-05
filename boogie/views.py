@@ -98,6 +98,7 @@ def piece_validate(request, piece_id):
 def piece_vote_up(request, piece_id):
     if request.method == 'POST':
         piece = Piece.objects.get(id=piece_id)
+        # TODO implement a suitable voting algorithm
     
     
 def piece_queue(request):
@@ -119,3 +120,4 @@ def writer_profile(request, name):
     })
 
     return HttpResponse(t.render(c))
+

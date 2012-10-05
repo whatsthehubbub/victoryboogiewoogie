@@ -55,12 +55,13 @@ class Piece(models.Model):
     datechanged = models.DateTimeField(auto_now=True)
     
     topic = models.ForeignKey(Topic)
-    
+    deadline = models.DateTimeField()    
     writer = models.ForeignKey(Player)
     
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
     
+
     status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('NEEDSWORK', 'needs work'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
     
     rejection_reason = models.TextField(blank=True)

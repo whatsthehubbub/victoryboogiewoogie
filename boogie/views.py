@@ -12,7 +12,6 @@ def index(request):
     c = RequestContext(request, {
             'topics': Topic.objects.all(),
             'pieces': Piece.objects.exclude(frontpage=False), # TODO check if the piece is approved?
-            'assignments': Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
     })
     return HttpResponse(t.render(c))
     
@@ -61,20 +60,25 @@ class PieceSubmitForm(ModelForm):
         model = Piece
         fields = ('text', 'new_topic')
 
-def piece_submit(request, piece_id):
+def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')
     
-    piece = Piece.objects.get(id=piece_id)
-    
-    if request.method == 'POST':
-        form = PieceSubmitForm(request.POST, instance=piece)
-        if form.is_valid():
-            form.instance.status = 'SUBMITTED'
-            form.save()
-            
-            return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+    # piece = Piece.objects.get(id=piece_id)
+    assignments = Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
+    if assignments:
+        piece = assignments[0]
+
+        if request.method == 'POST':
+            form = PieceSubmitForm(request.POST, instance=piece)
+            if form.is_valid():
+                form.instance.status = 'SUBMITTED'
+                form.save()
+                
+                return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+        else:
+            form = PieceSubmitForm(instance=piece)
     else:
-        form = PieceSubmitForm(instance=piece)
+        form = None
     
     c = RequestContext(request, {
             'form': form

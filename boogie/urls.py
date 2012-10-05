@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'pieces/queue/', 'boogie.views.piece_queue', name='piece_queue'),
     
     url(r'pieces/(\d+)/$', 'boogie.views.piece_detail'),
-    url(r'pieces/(\d+)/submit/', 'boogie.views.piece_submit', name='piece_submit'),
+    url(r'pieces/submit/', 'boogie.views.piece_submit', name='piece_submit'),
     url(r'pieces/(\d+)/validate/', 'boogie.views.piece_validate', name='piece_validate'),
     url(r'pieces/(\d+)/vote/up/', 'boogie.views.piece_vote_up', name='piece_vote_up'),
 

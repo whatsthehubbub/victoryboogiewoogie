@@ -10,13 +10,7 @@
     <h1>Bijdragen</h1>
 
 	{% for piece in pieces %}
-	{{ piece.text }}<br>
+		{{ piece.text }}<br>
 	{% endfor %}    
-
-    <h1>Opdrachten</h1>
-    
-    {% for assignment in assignments %}
-        <a href="{% url piece_submit assignment.id %}">{{ assignment.topic.title }}</a>
-    {% endfor %}
     
 {% endblock %}

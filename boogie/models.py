@@ -5,11 +5,32 @@ from django.contrib.auth.models import User
 
 class Player(models.Model):
     user = models.OneToOneField(User)
-    
-    role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')))
+
+    # TODO figure out where to store the avatar images
+    # avatar = models.ImageField(blank=True)
+
+    pseudonym = models.CharField(max_length=255, blank=True)
+
+    biography = models.TextField(blank=True)
     
     def __unicode__(self):
         return self.user.username
+
+class Writer(models.Model):
+    datechanged = models.DateTimeField(auto_now=True)
+
+    user = models.OneToOneField(User)
+
+    # Character fields
+
+    onelinebio = models.CharField(max_length=255, blank=True)
+    biography = models.TextField(blank=True)
+
+    # TODO same with the large and small portrait fields here, though they may be in the assets already
+
+    def __unicode__(self):
+        return self.user.username
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=255)

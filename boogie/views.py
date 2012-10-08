@@ -104,6 +104,8 @@ def piece_validate(request, piece_id):
         # Assuming that a piece here would always be from the non-writer pool
         piece.topic.pool = 'WRITER'
         piece.topic.save()
+        # TODO fix this, make the pool switch contingent
+        # Eigenlijk heel eenvoudig: tel het aantal bijdrages op een onderwerp. Als het een threshold bereikt (bijvoorbeeld 10) dan gaat het onderwerp van spelers naar schrijvers, voor een "event". De volgende keer moeten er iets meer bijdrages worden geschreven op dat onderwerp voor een "event". Bijvoorbeeld .1 per eerder geschreven bijdrage. Dus de eerste keer 10, de volgende keer 11, dan 12, enz.
     elif valid == 'no':
         piece.rejection_reason = request.POST.get('reason', '')
         piece.status = 'REJECTED'

@@ -27,13 +27,20 @@
               <div class="nav-collapse collapse">
                 
                 <p class="navbar-text pull-right">
-                  Week {{ week }} | Ingelogd als 
-                  {% ifequal current_player.role 'WRITER' %}
-                    <a href="{% url writer_profile user.username %}" class="navbar-link">{{ user.username }}</a>
-                  {% endifequal %}
-                  {% ifequal current_player.role 'PLAYER' %}
-                    <a href="{% url player_profile user.username %}" class="navbar-link">{{ user.username }}</a>
-                  {% endifequal %}
+                  Week {{ week }} | 
+
+                  {% if current_player %}
+                    Ingelogd als 
+                    {% ifequal current_player.role 'WRITER' %}
+                      <a href="{% url writer_profile user.username %}" class="navbar-link">{{ user.username }}</a>
+                    {% endifequal %}
+                    {% ifequal current_player.role 'PLAYER' %}
+                      <a href="{% url player_profile user.username %}" class="navbar-link">{{ user.username }}</a>
+                    {% endifequal %}
+                    (<a href="{% url logout %}" class="navbar-link">afmelden</a>)
+                  {% else %}
+                    <a href="{% url login %}" class="navbar-link">Inloggen</a>
+                  {% endif %}
                 </p>
 
                 <ul class="nav">

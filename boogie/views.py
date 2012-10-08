@@ -141,6 +141,16 @@ def player_profile(request, name):
         })
         return HttpResponse(t.render(c))
 
+def writers(request):
+    writers = Player.objects.filter(role='WRITER')
+
+    t = loader.get_template('boogie/writers.html')
+    c = RequestContext(request, {
+        'writers': writers
+    })
+
+    return HttpResponse(t.render(c))
+
 def writer_profile(request, name):
     player = Player.objects.get(user__username=name)
 

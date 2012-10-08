@@ -39,7 +39,7 @@
                   <li class="active"><a href="{% url index %}">Home</a></li>
                   <li><a href="{% url topic_list %}">Onderwerpen</a></li>
                   <li><a href="{% url piece_submit %}">Schrijf een bijdrage</a></li>
-                  <li><a href="">Dramatis Personae</a></li>
+                  <li><a href="{% url writers %}">Dramatis Personae</a></li>
 
                   {% ifequal player.role 'WRITER' %} 
                     <li><a href="{% url piece_queue %}">Goedkeuren</a></li>

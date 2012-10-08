@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
 
 {% if form %}
     <p>Schrijf iets voor: {{ form.instance.topic.title }}</p>
 
-    <form action="{% url piece_submit %}" method="post">{% csrf_token %}
+    <form action="{% url 'piece_submit' %}" method="post">{% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit" />
     </form>

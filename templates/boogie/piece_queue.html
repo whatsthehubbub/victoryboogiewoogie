@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
     <h2>Ingediende bijdragen</h2>
@@ -9,12 +10,12 @@
         <p>Text: {{ piece.text }}</p>
         <p>Voorstel nieuw onderwerp: {{ piece.new_topic }}</p>
         
-        <form method="POST" action="{% url piece_validate piece.id %}">{% csrf_token %}
+        <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
             <input type="hidden" name="ok" value="yes">
             <input type="submit" class="btn btn-success" value="Goedkeuren">
         </form>
         
-        <form method="POST" action="{% url piece_validate piece.id %}" class="form-inline">{% csrf_token %}
+        <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
             <input type="hidden" name="ok" value="no">
             <label for="reason">Reden</label> <input type="text" name="reason">
             <input type="submit" class="btn btn-warning" value="Afkeuren">

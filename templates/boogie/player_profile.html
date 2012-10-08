@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
 	{% ifequal user.username player.user.username  %} 
-		<a class="btn btn-info" href="{% url player_profile_edit user.username %}">edit</a>
+		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">edit</a>
 	{% endifequal %}
 
 	<p>Speler: {{ player.user.username }}</p>

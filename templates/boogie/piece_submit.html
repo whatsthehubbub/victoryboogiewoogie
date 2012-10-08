@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if form %}
-    <p>instance {{ form.instance.id }}</p>
+    <p>Schrijf iets voor: {{ form.instance.topic.title }}</p>
 
     <form action="{% url piece_submit %}" method="post">{% csrf_token %}
         {{ form.as_p }}

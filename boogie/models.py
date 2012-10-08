@@ -4,29 +4,28 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Player(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
     user = models.OneToOneField(User)
+    role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='PLAYER')
 
     # TODO figure out where to store the avatar images
     # avatar = models.ImageField(blank=True)
 
-    pseudonym = models.CharField(max_length=255, blank=True)
+    # Player fields
+    pseudonym = models.CharField(max_length=255, blank=True, help_text='Pennaam')
 
-    biography = models.TextField(blank=True)
-    
-    def __unicode__(self):
-        return self.user.username
-
-class Writer(models.Model):
-    datechanged = models.DateTimeField(auto_now=True)
-
-    user = models.OneToOneField(User)
-
-    # Character fields
-
+    # Writer fields
+    character_name = models.CharField(max_length=255, blank=True, help_text='Naam van het personage')
     onelinebio = models.CharField(max_length=255, blank=True)
+    # TODO same with the large and small portrait fields here, though they may be in the assets already
+
+    # Common fields
     biography = models.TextField(blank=True)
 
-    # TODO same with the large and small portrait fields here, though they may be in the assets already
+    def pieces(self):
+        return Piece.objects.filter(writer=self)
 
     def __unicode__(self):
         return self.user.username
@@ -77,3 +76,4 @@ class Piece(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.piece_detail', [self.id])
+

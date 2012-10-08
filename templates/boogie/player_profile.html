@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+	<p>Speler: {{ player.user.username }}</p>
+
+	<p>Naam: {{ player.user.first_name }} {{ player.user.last_name }}</p>
+
+	<p>Pennaam: {{ player.pseudonym }}</p>
+
+	<p>Biografie: {{ player.biography }}</p>
+
+	<h2>Bijdragen</h2>
+
+	{% for piece in pieces %}
+		{{ forloop.counter}} {{ piece.text }}<br>
+	{% endfor %}
+{% endblock content %}

@@ -25,15 +25,25 @@
               </a>
               <a class="brand" href="{% url index %}">Victory Boogie Woogie</a>
               <div class="nav-collapse collapse">
+                
                 <p class="navbar-text pull-right">
-                  Logged in as <a href="{% url player_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
+                  Logged in as 
+                  {% ifequal player.role 'WRITER' %}
+                    <a href="{% url writer_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
+                  {% else %}
+                    <a href="{% url player_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
+                  {% endifequal %}
                 </p>
+
                 <ul class="nav">
                   <li class="active"><a href="{% url index %}">Home</a></li>
                   <li><a href="{% url topic_list %}">Onderwerpen</a></li>
                   <li><a href="{% url piece_submit %}">Schrijf een bijdrage</a></li>
                   <li><a href="">Dramatis Personae</a></li>
-                  {% if player.role == 'WRITER' %}<li><a href="{% url piece_queue %}">Goedkeuren</a></li>{% endif %}
+
+                  {% ifequal player.role 'WRITER' %} 
+                    <li><a href="{% url piece_queue %}">Goedkeuren</a></li>
+                  {% endifequal %}
                 </ul>
               </div><!--/.nav-collapse -->
             </div>

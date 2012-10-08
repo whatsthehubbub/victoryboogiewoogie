@@ -16,5 +16,5 @@ urlpatterns = patterns('',
 
     # TODO for now these two URLs point to the same view
     url(r'writers/(\w+?)/$', 'boogie.views.writer_profile', name='writer_profile'),
-    url(r'players/(\w+?)/$', 'boogie.views.writer_profile', name='player_profile'),
+    url(r'players/(\w+?)/$', 'boogie.views.player_profile', name='player_profile'),
 )

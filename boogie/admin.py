@@ -5,10 +5,6 @@ class PlayerAdmin(admin.ModelAdmin):
     list_display = ('user', 'pseudonym')
 admin.site.register(Player, PlayerAdmin)
 
-class WriterAdmin(admin.ModelAdmin):
-    list_display = ('user', 'onelinebio')
-admin.site.register(Writer, WriterAdmin)
-
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('title', 'pool')
 admin.site.register(Topic, TopicAdmin)

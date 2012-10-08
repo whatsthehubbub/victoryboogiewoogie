@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -57,6 +58,7 @@ class Piece(models.Model):
     deadline = models.DateTimeField()    
     writer = models.ForeignKey(Player)
     
+    genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay')))
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
     

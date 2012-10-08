@@ -58,7 +58,7 @@ def piece_detail(request, id):
 class PieceSubmitForm(ModelForm):
     class Meta:
         model = Piece
-        fields = ('text', 'new_topic')
+        fields = ('genre', 'text', 'new_topic')
 
 def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')

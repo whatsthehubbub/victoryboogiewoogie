@@ -141,6 +141,35 @@ def player_profile(request, name):
         })
         return HttpResponse(t.render(c))
 
+
+class PlayerProfileForm(ModelForm):
+    class Meta:
+        model = Player
+        fields = ('pseudonym', 'biography')
+
+def player_profile_edit(request, name):
+    t = loader.get_template('boogie/player_profile_edit.html')
+
+    # TODO check if you can edit your profile
+    player = Player.objects.get(user__username=name)
+
+    if request.method == 'POST':
+        form = PlayerProfileForm(request.POST, instance=player)
+
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
+    else:
+        form = PlayerProfileForm(instance=player)
+
+    c = RequestContext(request, {
+        'form': form
+    })
+
+    return HttpResponse(t.render(c))
+
+
 def writers(request):
     writers = Player.objects.filter(role='WRITER')
 

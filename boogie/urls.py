@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'writers/(\w+?)/$', 'boogie.views.writer_profile', name='writer_profile'),
 
     url(r'players/(\w+?)/$', 'boogie.views.player_profile', name='player_profile'),
+    url(r'players/(\w+?)/edit/$', 'boogie.views.player_profile_edit', name='player_profile_edit'),
 )

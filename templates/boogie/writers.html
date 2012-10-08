@@ -5,6 +5,5 @@
 	{% for writer in writers %}
 		<a href="{% url writer_profile writer.user.username %}">{{ writer.user.username }}</a><br>
 	{% endfor %}
-
-
+	
 {% endblock content %}

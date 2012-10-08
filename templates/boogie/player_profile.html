@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-	
+	{% ifequal user.username player.user.username  %} 
+		<a href="{% url player_profile_edit user.username %}">edit</a>
+	{% endifequal %}
+
 	<p>Speler: {{ player.user.username }}</p>
 
 	<p>Naam: {{ player.user.first_name }} {{ player.user.last_name }}</p>

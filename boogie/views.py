@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 from boogie.models import *
 
@@ -142,6 +143,11 @@ def player_profile(request, name):
         return HttpResponse(t.render(c))
 
 
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name')
+
 class PlayerProfileForm(ModelForm):
     class Meta:
         model = Player
@@ -154,17 +160,21 @@ def player_profile_edit(request, name):
     player = Player.objects.get(user__username=name)
 
     if request.method == 'POST':
-        form = PlayerProfileForm(request.POST, instance=player)
+        userform = UserProfileForm(request.POST, instance=player.user)
+        profileform = PlayerProfileForm(request.POST, instance=player)
 
-        if form.is_valid():
-            form.save()
+        if userform.is_valid() and profileform.is_valid():
+            userform.save()
+            profileform.save()
 
             return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
     else:
-        form = PlayerProfileForm(instance=player)
+        userform = UserProfileForm(instance=player.user)
+        playerform = PlayerProfileForm(instance=player)
 
     c = RequestContext(request, {
-        'form': form
+        'userform': userform,
+        'playerform': playerform
     })
 
     return HttpResponse(t.render(c))

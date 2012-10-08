@@ -51,7 +51,7 @@
                   {% endif %}
                   <li><a href="{% url writers %}">Dramatis Personae</a></li>
 
-                  {% ifequal player.role 'WRITER' %} 
+                  {% ifequal current_player.role 'WRITER' %} 
                     <li><a href="{% url piece_queue %}">Goedkeuren</a></li>
                   {% endifequal %}
                 </ul>

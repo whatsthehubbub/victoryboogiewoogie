@@ -125,21 +125,23 @@ def piece_queue(request):
 def player_profile(request, name):
     player = Player.objects.get(user__username=name)
 
+    c = RequestContext(request, {
+        'player': player
+    })
+    
     if player.role == 'PLAYER':
         t = loader.get_template('boogie/player_profile.html')
 
-        if request.user.username == name:
-            # This is the player himself, so show all pieces
-            # TODO this also shows the pieces that still need to be written
-            pieces = player.pieces()
-        else:
-            # Otherwise only show the approved pieces
-            pieces = player.pieces().filter(status="APPROVED")
+        # Show the approved pieces in any case
+        c['approved_pieces'] = player.pieces().filter(status="APPROVED")
 
-        c = RequestContext(request, {
-            'player': player,
-            'pieces': pieces
-        })
+        if request.user.username == name:
+            c['assigned_pieces'] = player.pieces().filter(status="ASSIGNED")
+            c['submitted_pieces'] = player.pieces().filter(status="SUBMITTED")
+
+            c['needswork_pieces'] = player.pieces().filter(status="NEEDSWORK")
+            c['rejected_pieces'] = player.pieces().filter(status="REJECTED")
+        
         return HttpResponse(t.render(c))
 
 

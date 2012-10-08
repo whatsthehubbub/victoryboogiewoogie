@@ -2,7 +2,7 @@
 
 {% block content %}
 	{% ifequal user.username player.user.username  %} 
-		<a href="{% url player_profile_edit user.username %}">edit</a>
+		<a class="btn btn-info" href="{% url player_profile_edit user.username %}">edit</a>
 	{% endifequal %}
 
 	<p>Speler: {{ player.user.username }}</p>
@@ -15,7 +15,40 @@
 
 	<h2>Bijdragen</h2>
 
-	{% for piece in pieces %}
+	{% for piece in approved_pieces %}
 		{{ forloop.counter}} {{ piece.text }}<br>
 	{% endfor %}
+
+	{% if assigned_pieces %}
+		<h3>Toegekend</h3>
+
+		{% for piece in assigned_pieces %}
+			{{ forloop.counter}} {{ piece.text }}<br>
+		{% endfor %}
+	{% endif %}
+
+	{% if needswork_pieces %}
+		<h3>Moet beter</h3>
+
+		{% for piece in needswork_pieces %}
+			{{ forloop.counter}} {{ piece.text }}<br>
+		{% endfor %}
+	{% endif %}
+
+	{% if submitted_pieces %}
+		<h3>Ingediend</h3>
+
+		{% for piece in submitted_pieces %}
+			{{ forloop.counter}} {{ piece.text }}<br>
+		{% endfor %}
+	{% endif %}
+
+	{% if rejected_pieces %}
+		<h3>Afgewezen</h3>
+
+		{% for piece in rejected_pieces %}
+			{{ forloop.counter}} {{ piece.text }}<br>
+		{% endfor %}
+	{% endif %}
+
 {% endblock content %}

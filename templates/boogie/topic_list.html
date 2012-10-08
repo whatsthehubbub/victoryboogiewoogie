@@ -5,13 +5,13 @@
     <h2>Onderwerpen schrijvers</h2>
     
     {% for topic in writer_topics %}
-        <a href="{% url topic_detail topic.id topic.title %}">{{ topic }}</a><br>
+        <a href="{% url topic_detail topic.id topic.title %}">{{ topic }}</a> ({{ topic.approved_pieces.count }} / )<br>
     {% endfor %}
     
     <h2>Onderwerpen spelers</h2>
     
     {% for topic in player_topics %}
-        <a href="{% url topic_detail topic.id topic.title %}">{{ topic }}</a><br>
+        <a href="{% url topic_detail topic.id topic.title %}">{{ topic }}</a> ({{ topic.approved_pieces.count }} / )<br>
     {% endfor %}
     
 {% endblock %}

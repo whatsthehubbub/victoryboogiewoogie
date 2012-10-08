@@ -34,6 +34,7 @@ class Player(models.Model):
 
 class Topic(models.Model):
     title = models.CharField(max_length=255)
+    slug = models.SlugField()
     
     pool = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='WRITER')
     
@@ -47,7 +48,7 @@ class Topic(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('boogie.views.topic_detail', [self.id, self.title])
+        return ('boogie.views.topic_detail', [self.id, self.slug])
     
 
 class Piece(models.Model):

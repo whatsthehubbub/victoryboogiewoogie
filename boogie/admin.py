@@ -6,7 +6,8 @@ class PlayerAdmin(admin.ModelAdmin):
 admin.site.register(Player, PlayerAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pool')
+    list_display = ('title', 'pool', 'slug')
+    prepopulated_fields = {"slug": ("title",)}
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):

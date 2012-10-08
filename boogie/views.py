@@ -1,9 +1,12 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
+
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from boogie.models import *
 
@@ -61,6 +64,7 @@ class PieceSubmitForm(ModelForm):
         model = Piece
         fields = ('genre', 'text', 'new_topic')
 
+@login_required
 def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')
     
@@ -87,30 +91,31 @@ def piece_submit(request):
     return HttpResponse(t.render(c))
 
 # TODO proper access controls
+@require_POST
+@login_required
 def piece_validate(request, piece_id):
-    if request.method == 'POST':
-        piece = Piece.objects.get(id=piece_id)
-        
-        valid = request.POST.get('ok', '')
-        
-        if valid == 'yes':
-            piece.status = 'APPROVED'
-            
-            # Assuming that a piece here would always be from the non-writer pool
-            piece.topic.pool = 'WRITER'
-            piece.topic.save()
-        elif valid == 'no':
-            piece.rejection_reason = request.POST.get('reason', '')
-            piece.status = 'REJECTED'
+    piece = Piece.objects.get(id=piece_id)
     
-        piece.save()
+    valid = request.POST.get('ok', '')
+    
+    if valid == 'yes':
+        piece.status = 'APPROVED'
+        
+        # Assuming that a piece here would always be from the non-writer pool
+        piece.topic.pool = 'WRITER'
+        piece.topic.save()
+    elif valid == 'no':
+        piece.rejection_reason = request.POST.get('reason', '')
+        piece.status = 'REJECTED'
+
+    piece.save()
         
     return HttpResponseRedirect(reverse('piece_queue'))
-    
+ 
+@require_POST
 def piece_vote_up(request, piece_id):
-    if request.method == 'POST':
-        piece = Piece.objects.get(id=piece_id)
-        # TODO implement a suitable voting algorithm
+    piece = Piece.objects.get(id=piece_id)
+    # TODO implement a suitable voting algorithm
     
     
 def piece_queue(request):

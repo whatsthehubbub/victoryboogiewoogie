@@ -8,10 +8,12 @@ def player(request):
     returnDict = {}
 
     # TODO to remove the query per request, maybe it's better to store this in the request session
-    try:
-        returnDict['player'] = Player.objects.get(user=request.user)
-    except ObjectDoesNotExist:
-        pass
+    
+    if request.user.is_authenticated():
+        try:
+            returnDict['current_player'] = Player.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            pass
 
     startDate = datetime.date(2012, 9, 20)
     delta = datetime.date.today() - startDate

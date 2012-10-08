@@ -28,10 +28,11 @@
                 
                 <p class="navbar-text pull-right">
                   Week {{ week }} | Ingelogd als 
-                  {% ifequal player.role 'WRITER' %}
-                    <a href="{% url writer_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
-                  {% else %}
-                    <a href="{% url player_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
+                  {% ifequal current_player.role 'WRITER' %}
+                    <a href="{% url writer_profile user.username %}" class="navbar-link">{{ user.username }}</a>
+                  {% endifequal %}
+                  {% ifequal current_player.role 'PLAYER' %}
+                    <a href="{% url player_profile user.username %}" class="navbar-link">{{ user.username }}</a>
                   {% endifequal %}
                 </p>
 

@@ -27,7 +27,7 @@
               <div class="nav-collapse collapse">
                 
                 <p class="navbar-text pull-right">
-                  Logged in as 
+                  Week {{ week }} | Logged in as 
                   {% ifequal player.role 'WRITER' %}
                     <a href="{% url writer_profile player.user.username %}" class="navbar-link">{{ player.user.username }}</a>
                   {% else %}

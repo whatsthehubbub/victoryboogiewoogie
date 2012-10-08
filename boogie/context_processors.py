@@ -1,5 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
+import datetime
+
 from boogie.models import Player
 
 def player(request):
@@ -10,5 +12,10 @@ def player(request):
         returnDict['player'] = Player.objects.get(user=request.user)
     except ObjectDoesNotExist:
         pass
+
+    startDate = datetime.date(2012, 9, 20)
+    delta = datetime.date.today() - startDate
+
+    returnDict['week'] = delta.days / 7
 
     return returnDict

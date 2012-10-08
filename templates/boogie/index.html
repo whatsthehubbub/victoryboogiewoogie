@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
     <h1>Frontpage</h1>
 
     {% for topic in topics %}
-        Onderwerp: <a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a><br>
+        Onderwerp: <a href="{% url 'topic_detail' topic.id topic.title %}">{{ topic.title }}</a><br>
     {% endfor %}
     
     <h1>Bijdragen</h1>

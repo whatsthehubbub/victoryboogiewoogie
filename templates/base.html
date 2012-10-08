@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
-              <a class="brand" href="{% url index %}">Victory Boogie Woogie</a>
+              <a class="brand" href="{% url 'index' %}">Victory Boogie Woogie</a>
               <div class="nav-collapse collapse">
                 
                 <p class="navbar-text pull-right">
@@ -32,27 +33,27 @@
                   {% if current_player %}
                     Ingelogd als 
                     {% ifequal current_player.role 'WRITER' %}
-                      <a href="{% url writer_profile user.username %}" class="navbar-link">{{ user.username }}</a>
+                      <a href="{% url 'writer_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
                     {% endifequal %}
                     {% ifequal current_player.role 'PLAYER' %}
-                      <a href="{% url player_profile user.username %}" class="navbar-link">{{ user.username }}</a>
+                      <a href="{% url 'player_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
                     {% endifequal %}
-                    (<a href="{% url logout %}" class="navbar-link">afmelden</a>)
+                    (<a href="{% url 'logout' %}" class="navbar-link">afmelden</a>)
                   {% else %}
-                    <a href="{% url login %}" class="navbar-link">Inloggen</a>
+                    <a href="{% url 'login' %}" class="navbar-link">Inloggen</a>
                   {% endif %}
                 </p>
 
                 <ul class="nav">
-                  <li class="active"><a href="{% url index %}">Home</a></li>
-                  <li><a href="{% url topic_list %}">Onderwerpen</a></li>
+                  <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
                   {% if current_player %}
-                    <li><a href="{% url piece_submit %}">Schrijf een bijdrage</a></li>
+                    <li><a href="{% url 'piece_submit' %}">Schrijf een bijdrage</a></li>
                   {% endif %}
-                  <li><a href="{% url writers %}">Dramatis Personae</a></li>
+                  <li><a href="{% url 'writers' %}">Dramatis Personae</a></li>
 
                   {% ifequal current_player.role 'WRITER' %} 
-                    <li><a href="{% url piece_queue %}">Goedkeuren</a></li>
+                    <li><a href="{% url 'piece_queue' %}">Goedkeuren</a></li>
                   {% endifequal %}
                 </ul>
               </div><!--/.nav-collapse -->

@@ -39,7 +39,9 @@
                 <ul class="nav">
                   <li class="active"><a href="{% url index %}">Home</a></li>
                   <li><a href="{% url topic_list %}">Onderwerpen</a></li>
-                  <li><a href="{% url piece_submit %}">Schrijf een bijdrage</a></li>
+                  {% if current_player %}
+                    <li><a href="{% url piece_submit %}">Schrijf een bijdrage</a></li>
+                  {% endif %}
                   <li><a href="{% url writers %}">Dramatis Personae</a></li>
 
                   {% ifequal player.role 'WRITER' %} 

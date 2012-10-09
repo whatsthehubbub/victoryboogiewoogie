@@ -55,8 +55,8 @@ class Topic(models.Model):
     archived = models.BooleanField(default=False)
 
     # Counts of pieces written and pieces needed for a pool change
-    # piece_count = models.IntegerField(default=0)
-    # piece_threshold = models.IntegerField(default=2)
+    piece_count = models.IntegerField(default=0)
+    piece_threshold = models.IntegerField(default=2)
     
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')

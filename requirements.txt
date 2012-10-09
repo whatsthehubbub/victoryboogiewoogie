@@ -11,4 +11,5 @@ django-celery==3.0.10
 kombu==2.4.7
 psycopg2==2.4.5
 python-dateutil==1.5
+pytz==2012f
 wsgiref==0.1.2

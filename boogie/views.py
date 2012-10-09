@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from boogie.models import *
 
+from boogie import tasks
+
 def index(request):
     t = loader.get_template('boogie/index.html')
     
@@ -79,6 +81,9 @@ def piece_submit(request):
                 form.instance.status = 'SUBMITTED'
                 form.save()
                 
+                # Give this person a new assignment
+                tasks.get_new_assignment.delay(form.instance.writer)
+
                 return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
         else:
             form = PieceSubmitForm(instance=piece)
@@ -101,9 +106,11 @@ def piece_validate(request, piece_id):
     if valid == 'yes':
         piece.status = 'APPROVED'
         
+        
         # Assuming that a piece here would always be from the non-writer pool
         piece.topic.pool = 'WRITER'
         piece.topic.save()
+
         # TODO fix this, make the pool switch contingent
         # Eigenlijk heel eenvoudig: tel het aantal bijdrages op een onderwerp. Als het een threshold bereikt (bijvoorbeeld 10) dan gaat het onderwerp van spelers naar schrijvers, voor een "event". De volgende keer moeten er iets meer bijdrages worden geschreven op dat onderwerp voor een "event". Bijvoorbeeld .1 per eerder geschreven bijdrage. Dus de eerste keer 10, de volgende keer 11, dan 12, enz.
     elif valid == 'no':

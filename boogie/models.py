@@ -2,7 +2,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+import datetime
+
 
 class Player(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)
@@ -25,6 +26,17 @@ class Player(models.Model):
     # Common fields
     biography = models.TextField(blank=True)
 
+    def get_new_assignment(self):
+        empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).order_by('?')
+
+        if empty_topics:
+            new_topic = empty_topics[0]
+
+            deadline = datetime.date.today() + datetime.timedelta(days=7)
+            Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+        else:
+            pass # TODO what to do if somebody has written a piece for all topics? FIX LATER
+
     def pieces(self):
         return Piece.objects.filter(writer=self)
 
@@ -46,6 +58,9 @@ class Topic(models.Model):
     def __unicode__(self):
         return self.title
     
+    def check_pool(self):
+        pass
+
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.topic_detail', [self.id, self.slug])

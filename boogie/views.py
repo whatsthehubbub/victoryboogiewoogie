@@ -28,12 +28,12 @@ def topic_list(request):
     })
     return HttpResponse(t.render(c))
     
-def topic_detail(request, id, title):
+def topic_detail(request, topicid, slug):
     t = loader.get_template('boogie/topic_detail.html')
     
     order = request.GET.get('order', '-rating')
 
-    topic = Topic.objects.get(id=id)
+    topic = Topic.objects.get(id=topicid)
 
     c = RequestContext(request, {
             'topic': topic,

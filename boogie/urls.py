@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
 
     url(r'topics/$', 'boogie.views.topic_list', name='topic_list'),
-    url(r'topics/(\d+)/(\w+?)/', 'boogie.views.topic_detail', name="topic_detail"),
+    url(r'topics/(\d+)/(\w+?)/$', 'boogie.views.topic_detail', name="topic_detail"),
 
     url(r'pieces/$', 'boogie.views.piece_list'),
     url(r'pieces/queue/', 'boogie.views.piece_queue', name='piece_queue'),

@@ -10,8 +10,9 @@ from django.contrib.auth.decorators import login_required
 
 from boogie.models import *
 
-from boogie import tasks
+from boogie impor
 
+@login_required
 def index(request):
     t = loader.get_template('boogie/index.html')
     
@@ -21,6 +22,7 @@ def index(request):
     })
     return HttpResponse(t.render(c))
     
+@login_required
 def topic_list(request):
     t = loader.get_template('boogie/topic_list.html')
     
@@ -30,6 +32,7 @@ def topic_list(request):
     })
     return HttpResponse(t.render(c))
     
+@login_required
 def topic_detail(request, topicid, slug):
     t = loader.get_template('boogie/topic_detail.html')
     
@@ -44,7 +47,7 @@ def topic_detail(request, topicid, slug):
     })
     return HttpResponse(t.render(c))
     
-
+@login_required
 def piece_list(request):
     t = loader.get_template('boogie/piece_list.html')
     
@@ -53,6 +56,7 @@ def piece_list(request):
     })
     return HttpResponse(t.render(c))
 
+@login_required
 def piece_detail(request, id):
     t = loader.get_template('boogie/piece_detail.html')
 
@@ -129,12 +133,14 @@ def pieces_assign(request):
 
     return HttpResponse('1')
 
+@login_required
 @require_POST
 def piece_vote_up(request, piece_id):
     piece = Piece.objects.get(id=piece_id)
     # TODO implement a suitable voting algorithm
     
-    
+
+@login_required    
 def piece_queue(request):
     t = loader.get_template('boogie/piece_queue.html')
 
@@ -143,7 +149,7 @@ def piece_queue(request):
     })
     return HttpResponse(t.render(c))
 
-
+@login_required
 def player_profile(request, name):
     player = Player.objects.get(user__username=name)
 
@@ -177,6 +183,7 @@ class PlayerProfileForm(ModelForm):
         model = Player
         fields = ('pseudonym', 'biography')
 
+@login_required
 def player_profile_edit(request, name):
     t = loader.get_template('boogie/player_profile_edit.html')
 
@@ -203,7 +210,7 @@ def player_profile_edit(request, name):
 
     return HttpResponse(t.render(c))
 
-
+@login_required
 def writers(request):
     writers = Player.objects.filter(role='WRITER')
 
@@ -214,6 +221,7 @@ def writers(request):
 
     return HttpResponse(t.render(c))
 
+@login_required
 def writer_profile(request, name):
     player = Player.objects.get(user__username=name)
 

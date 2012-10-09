@@ -67,8 +67,7 @@ class Topic(models.Model):
     
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
-            self.piece_count = 0
-            self.piece_threshold += 1
+            self.piece_threshold += 3 # TODO increment the increment
             self.pool = 'WRITER'
             self.save()
 

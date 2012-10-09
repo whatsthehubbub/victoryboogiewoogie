@@ -6,13 +6,13 @@
     <h2>Onderwerpen schrijvers</h2>
     
     {% for topic in writer_topics %}
-        <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.approved_pieces.count }} / )<br>
+        <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.piece_count }} / {{ topic.piece_threshold }})<br>
     {% endfor %}
     
     <h2>Onderwerpen spelers</h2>
     
     {% for topic in player_topics %}
-        <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.approved_pieces.count }} / )<br>
+        <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.piece_count }} / {{ topic.piece_threshold }})<br>
     {% endfor %}
     
 {% endblock %}

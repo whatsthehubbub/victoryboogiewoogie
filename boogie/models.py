@@ -27,15 +27,17 @@ class Player(models.Model):
     biography = models.TextField(blank=True)
 
     def get_new_assignment(self):
-        empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).order_by('?')
+        empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).exclude(piece__status='APPROVED').order_by('?')
 
         if empty_topics:
             new_topic = empty_topics[0]
-
-            deadline = datetime.date.today() + datetime.timedelta(days=7)
-            Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
         else:
-            pass # TODO what to do if somebody has written a piece for all topics? FIX LATER
+            topics_with_piece_count = Topic.objects.filter(piece__status='APPROVED').annotate(num_pieces=Count('piece')).order_by('num_pieces')
+
+            newtopic = topics_with_piece_count[0]
+
+        deadline = datetime.datetime.now() + datetime.timedelta(days=7)
+        Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
     def pieces(self):
         return Piece.objects.filter(writer=self)
@@ -51,6 +53,10 @@ class Topic(models.Model):
     pool = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='WRITER')
     
     archived = models.BooleanField(default=False)
+
+    # Counts of pieces written and pieces needed for a pool change
+    # piece_count = models.IntegerField(default=0)
+    # piece_threshold = models.IntegerField(default=2)
     
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')
@@ -59,7 +65,11 @@ class Topic(models.Model):
         return self.title
     
     def check_pool(self):
-        pass
+        if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
+            self.piece_count = 0
+            self.piece_threshold += 1
+            self.pool = 'WRITER'
+            self.save()
 
     @models.permalink
     def get_absolute_url(self):

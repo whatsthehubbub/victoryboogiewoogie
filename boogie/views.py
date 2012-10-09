@@ -119,7 +119,16 @@ def piece_validate(request, piece_id):
     piece.save()
         
     return HttpResponseRedirect(reverse('piece_queue'))
- 
+
+@login_required
+def pieces_assign(request):
+    players_without = Player.objects.exclude(piece__status='ASSIGNED')
+
+    for player in players_without:
+        player.get_new_assignment()
+
+    return HttpResponse('1')
+
 @require_POST
 def piece_vote_up(request, piece_id):
     piece = Piece.objects.get(id=piece_id)

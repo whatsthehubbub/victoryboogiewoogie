@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from boogie.models import *
 
-from boogie impor
+from boogie import tasks
 
 @login_required
 def index(request):

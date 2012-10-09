@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.db.models import Count
 from django.contrib.auth.models import User
 
 import datetime
@@ -32,12 +33,12 @@ class Player(models.Model):
         if empty_topics:
             new_topic = empty_topics[0]
         else:
-            topics_with_piece_count = Topic.objects.filter(piece__status='APPROVED').annotate(num_pieces=Count('piece')).order_by('num_pieces')
+            topics_with_piece_count = Topic.objects.exclude(pool='WRITER').filter(piece__status='APPROVED').annotate(num_pieces=Count('piece')).order_by('num_pieces')
 
-            newtopic = topics_with_piece_count[0]
+            new_topic = topics_with_piece_count[0]
 
         deadline = datetime.datetime.now() + datetime.timedelta(days=7)
-        Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+        return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
     def pieces(self):
         return Piece.objects.filter(writer=self)
@@ -71,6 +72,9 @@ class Topic(models.Model):
             self.pool = 'WRITER'
             self.save()
 
+            return True
+        return False
+
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.topic_detail', [self.id, self.slug])
@@ -81,7 +85,7 @@ class Piece(models.Model):
     datechanged = models.DateTimeField(auto_now=True)
     
     topic = models.ForeignKey(Topic)
-    deadline = models.DateTimeField()    
+    deadline = models.DateTimeField()
     writer = models.ForeignKey(Player)
     
     genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay')))
@@ -99,7 +103,7 @@ class Piece(models.Model):
     frontpage = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return self.text
+        return '%s by %s' % (str(self.topic), str(self.writer))
         
     @models.permalink
     def get_absolute_url(self):

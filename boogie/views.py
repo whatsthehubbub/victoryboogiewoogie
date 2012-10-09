@@ -106,6 +106,9 @@ def piece_validate(request, piece_id):
     if valid == 'yes':
         piece.status = 'APPROVED'
         
+        piece.topic.piece_count += 1
+        piece.topic.save()
+
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
 

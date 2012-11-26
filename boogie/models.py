@@ -108,3 +108,12 @@ class Piece(models.Model):
     def get_absolute_url(self):
         return ('boogie.views.piece_detail', [self.id])
 
+
+class Summary(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    content = models.TextField()
+
+    def __unicode__(self):
+        return self.content

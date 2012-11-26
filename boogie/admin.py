@@ -2,7 +2,7 @@ from django.contrib import admin
 from boogie.models import *
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'pseudonym')
+    list_display = ('user', 'pseudonym', 'role', 'character_name',)
 admin.site.register(Player, PlayerAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
@@ -13,3 +13,7 @@ admin.site.register(Topic, TopicAdmin)
 class PieceAdmin(admin.ModelAdmin):
     list_display = ('topic', 'frontpage', 'writer', 'genre', 'text', 'new_topic', 'status', 'rejection_reason', 'rating')
 admin.site.register(Piece, PieceAdmin)
+
+class SummaryAdmin(admin.ModelAdmin):
+	list_display = ('datecreated', 'content')
+admin.site.register(Summary, SummaryAdmin)

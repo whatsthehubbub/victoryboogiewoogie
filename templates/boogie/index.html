@@ -15,3 +15,12 @@
 	{% endfor %}    
     
 {% endblock %}
+
+{% block sidebar %}
+	<h1>Tot nu toe</h1>
+
+	{% for piece in summary %}
+		<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>
+	{% endfor %}
+
+{% endblock sidebar %}

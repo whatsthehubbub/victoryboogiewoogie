@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from boogie.models import *
 
+# TODO spin up Celery before testing on live site
+# https://devcenter.heroku.com/articles/django#hellodjangosettingspy
 from boogie import tasks
 
 @login_required

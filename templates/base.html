@@ -1,87 +1,104 @@
 {% load url from future %}
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Victory Boogie Woogie</title>
-    <!-- Bootstrap -->
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-    
-    <style type="text/css" media="screen">
-        BODY {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-    </style>
-  </head>
-  
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Victory Boogie Woogie</title>
+	
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+	
+	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+	
 <body>
-    
-    <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container-fluid">
-              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </a>
-              <a class="brand" href="{% url 'index' %}">Victory Boogie Woogie</a>
-              <div class="nav-collapse collapse">
-                
-                <p class="navbar-text pull-right">
-                  Week {{ week }} | 
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
 
-                  {% if current_player %}
-                    Ingelogd als 
-                    {% ifequal current_player.role 'WRITER' %}
-                      <a href="{% url 'writer_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
-                    {% endifequal %}
-                    {% ifequal current_player.role 'PLAYER' %}
-                      <a href="{% url 'player_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
-                    {% endifequal %}
-                    (<a href="{% url 'logout' %}" class="navbar-link">afmelden</a>)
-                  {% else %}
-                    <a href="{% url 'login' %}" class="navbar-link">Inloggen</a> of 
-                    <a href="{% url 'registration_register' %}" class="navbar-link">aanmelden</a>
-                  {% endif %}
-                </p>
-
-                <ul class="nav">
-                  <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                  <li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-                  {% if current_player %}
-                    <li><a href="{% url 'piece_submit' %}">Schrijf een bijdrage</a></li>
-                  {% endif %}
-                  <li><a href="{% url 'writers' %}">Dramatis Personae</a></li>
-
-                  {% ifequal current_player.role 'WRITER' %} 
-                    <li><a href="{% url 'piece_queue' %}">Goedkeuren</a></li>
-                  {% endifequal %}
-                </ul>
-              </div><!--/.nav-collapse -->
-            </div>
-          </div>
-        </div>
-
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span9 well">
-        {% block content %}
-    
-        {% endblock %}
-        </div>
-
-        <div class="span3 well">
-          {% block sidebar %}
-          {% endblock %}
-        </div>
-    </div>
-<footer>
-    <p>&copy; <a href="http://www.literairtijdschrift-degids.nl/?cat=493">De Gids</a> &amp; <a href="http://hbbb.nl">Hubbub</a> 2012/3</p>
-</footer>
-
+<div id="document">
+	<!-- HEADER -->
+	<header role="banner">
+		<nav role="navigation">
+			<ul>
+				<li class="active"><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+				{% if current_player %}
+					<li><a href="{% url 'piece_submit' %}">Schrijf een bijdrage</a></li>
+				{% endif %}
+				<li><a href="{% url 'writers' %}">Dramatis Personae</a></li>
+				{% ifequal current_player.role 'WRITER' %} 
+					<li><a href="{% url 'piece_queue' %}">Goedkeuren</a></li>
+				{% endifequal %}
+			</ul>
+		</nav>
+		<div id="logo-degids">
+			<img src="" alt="De Gids">
+		</div>
+		<p class="navbar-text pull-right">Week {{ week }} | 
+			{% if current_player %}
+				Ingelogd als 
+				{% ifequal current_player.role 'WRITER' %}
+					<a href="{% url 'writer_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
+				{% endifequal %}
+				{% ifequal current_player.role 'PLAYER' %}
+					<a href="{% url 'player_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
+				{% endifequal %}
+				(<a href="{% url 'logout' %}" class="navbar-link">afmelden</a>)
+			{% else %}
+				<a href="{% url 'login' %}" class="navbar-link">Inloggen</a> of 
+				<a href="{% url 'registration_register' %}" class="navbar-link">aanmelden</a>
+			{% endif %}
+		</p>
+	</header>
+	<!-- END HEADER -->
+	
+	<!-- MAIN -->
+	<div id="main" role="main">
+		<div class="logo-vbw">
+			<img src="" alt="Victory Boogie Woogie">
+		</div>
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<div class="sidebar">
+			{% block sidebar %}
+			{% endblock %}
+		</div>
+	</div>
+	<!-- END MAIN -->
+	
+	<!-- FOOTER -->
+	<footer role="contentinfo">
+		<p>Copyright © 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a></p>
+	</footer>
+	<!-- END FOOTER -->
+	
 </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<!-- JAVASCRIPT -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+<script src="{{ STATIC_URL }}js/plugins.js"></script>
+<script src="{{ STATIC_URL }}js/main.js"></script>
+
+<!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
+<script>
+	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
 </body>
 </html>

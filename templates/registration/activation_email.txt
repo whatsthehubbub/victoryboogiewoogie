@@ -1,0 +1,1 @@
+Ga hierheen om je account op te activeren: http://127.0.0.1:8000/activate/{{ activation_key }}/

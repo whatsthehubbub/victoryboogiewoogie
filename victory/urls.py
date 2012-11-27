@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^', include('boogie.urls')),
 
+    url(r'^', include('registration.backends.default.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

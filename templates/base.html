@@ -18,6 +18,9 @@
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
 	
 	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
+	
+	<script type="text/javascript" src="//use.typekit.net/nhp4ozy.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 	
 <body>
@@ -25,47 +28,55 @@
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="document">
+<div id="document" role="document">
 	<!-- HEADER -->
-	<header role="banner">
-		<nav role="navigation">
+	<header role="banner" class="clearfix">
+		<nav role="navigation" id="navigation">
 			<ul>
 				<li class="active"><a href="{% url 'index' %}">Home</a></li>
 				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-				{% if current_player %}
-					<li><a href="{% url 'piece_submit' %}">Schrijf een bijdrage</a></li>
-				{% endif %}
-				<li><a href="{% url 'writers' %}">Dramatis Personae</a></li>
+				<li><a href="{% url 'writers' %}">Personages</a></li>
 				{% ifequal current_player.role 'WRITER' %} 
 					<li><a href="{% url 'piece_queue' %}">Goedkeuren</a></li>
 				{% endifequal %}
+				{% if current_player %}
+					<li><a href="{% url 'piece_submit' %}" class="button">Bijdrage schrijven</a></li>
+				{% endif %}
 			</ul>
 		</nav>
-		<div id="logo-degids">
-			<img src="" alt="De Gids">
-		</div>
-		<p class="navbar-text pull-right">Week {{ week }} | 
+		<div id="dashboard">
 			{% if current_player %}
-				Ingelogd als 
 				{% ifequal current_player.role 'WRITER' %}
-					<a href="{% url 'writer_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
+					<a href="{% url 'writer_profile' user.username %}" class="user player">{{ user.username }}</a>
 				{% endifequal %}
 				{% ifequal current_player.role 'PLAYER' %}
-					<a href="{% url 'player_profile' user.username %}" class="navbar-link">{{ user.username }}</a>
+					<a href="{% url 'player_profile' user.username %}" class="user writer">{{ user.username }}</a>
 				{% endifequal %}
-				(<a href="{% url 'logout' %}" class="navbar-link">afmelden</a>)
+				(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
 			{% else %}
-				<a href="{% url 'login' %}" class="navbar-link">Inloggen</a> of 
-				<a href="{% url 'registration_register' %}" class="navbar-link">aanmelden</a>
+				<a href="{% url 'login' %}" class="login button">Inloggen</a>
+				<a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
 			{% endif %}
-		</p>
+		</div>
 	</header>
 	<!-- END HEADER -->
 	
 	<!-- MAIN -->
-	<div id="main" role="main">
-		<div class="logo-vbw">
-			<img src="" alt="Victory Boogie Woogie">
+	<div id="main" role="main" class="clearfix">
+		<ul class="calendar">
+			<li><a href="">week 1</a></li>
+			<li><a href="">week 2</a></li>
+			<li class="active"><a href="">week 3</a></li>
+			<li>week 4</li>
+			<li>week 5</li>
+			<li>week 6</li>
+			<li>week 7</li>
+			<li>week 8</li>
+			<li>week 9</li>
+			<li>week 10</li>
+		</ul>
+		<div class="logo">
+			<h1><span class="date">10 mei 2013</span>Victory Boogie Woogie<span class="week">Week {{ week }} van 10</span></h1>
 		</div>
 		<div class="content">
 			{% block content %}
@@ -79,7 +90,7 @@
 	<!-- END MAIN -->
 	
 	<!-- FOOTER -->
-	<footer role="contentinfo">
+	<footer role="contentinfo" class="clearfix">
 		<p>Copyright © 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a></p>
 	</footer>
 	<!-- END FOOTER -->

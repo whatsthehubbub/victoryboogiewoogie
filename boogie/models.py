@@ -47,6 +47,15 @@ class Player(models.Model):
         return self.user.username
 
 
+# Code to create new player classes after registration
+from registration.signals import user_registered
+
+def create_player(sender, user, request, **kwarg):
+    Player.objects.create(user=user)
+user_registered.connect(create_player)
+
+
+
 class Topic(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()

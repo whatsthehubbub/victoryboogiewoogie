@@ -40,7 +40,8 @@
                     {% endifequal %}
                     (<a href="{% url 'logout' %}" class="navbar-link">afmelden</a>)
                   {% else %}
-                    <a href="{% url 'login' %}" class="navbar-link">Inloggen</a>
+                    <a href="{% url 'login' %}" class="navbar-link">Inloggen</a> of 
+                    <a href="{% url 'registration_register' %}" class="navbar-link">aanmelden</a>
                   {% endif %}
                 </p>
 
@@ -75,7 +76,7 @@
         </div>
     </div>
 <footer>
-    <p>&copy; <a href="http://www.literairtijdschrift-degids.nl/?cat=493">De Gids</a> &amp; <a href="http://hbbb.nl">Hubbub</a> 2012</p>
+    <p>&copy; <a href="http://www.literairtijdschrift-degids.nl/?cat=493">De Gids</a> &amp; <a href="http://hbbb.nl">Hubbub</a> 2012/3</p>
 </footer>
 
 </div>

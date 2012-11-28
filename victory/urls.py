@@ -8,8 +8,8 @@ urlpatterns = patterns('',
     url(r'^', include('boogie.urls')),
 
     # TODO doing registration with confirmation
-    # url(r'^', include('registration.backends.default.urls')),
-    url(r'^', include('registration.backends.simple.urls')),
+    url(r'^', include('registration.backends.default.urls')),
+    # url(r'^', include('registration.backends.simple.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

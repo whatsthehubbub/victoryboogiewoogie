@@ -73,29 +73,55 @@ class PieceSubmitForm(ModelForm):
         model = Piece
         fields = ('genre', 'text', 'new_topic')
 
+class WriterPieceSubmitForm(ModelForm):
+    class Meta:
+        model = Piece
+        fields = ('topic', 'genre', 'text', 'new_topic')
+
 @login_required
 def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')
     
-    # piece = Piece.objects.get(id=piece_id)
-    assignments = Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
-    if assignments:
-        piece = assignments[0]
+    player = Player.objects.get(user=request.user)
 
+    if player.role == 'WRITER':
         if request.method == 'POST':
-            form = PieceSubmitForm(request.POST, instance=piece)
+            form = WriterPieceSubmitForm(request.POST)
             if form.is_valid():
-                form.instance.status = 'SUBMITTED'
+                form.instance.status = 'APPROVED'
+                form.instance.writer = player
+                form.instance.deadline = datetime.datetime.now()
                 form.save()
-                
-                # Give this person a new assignment
-                tasks.get_new_assignment.delay(form.instance.writer)
 
-                return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+                form.instance.topic.pool = 'PLAYER'
+                form.instance.topic.save()
+                # TODO switch topic to the player pool
+
+                return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[form.instance.id]))
         else:
-            form = PieceSubmitForm(instance=piece)
+            form = WriterPieceSubmitForm()
+
+        form.fields['topic'].queryset = Topic.objects.all().filter(pool='WRITER')
     else:
-        form = None
+        # piece = Piece.objects.get(id=piece_id)
+        assignments = Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
+        if assignments:
+            piece = assignments[0]
+
+            if request.method == 'POST':
+                form = PieceSubmitForm(request.POST, instance=piece)
+                if form.is_valid():
+                    form.instance.status = 'SUBMITTED'
+                    form.save()
+                    
+                    # Give this person a new assignment
+                    tasks.get_new_assignment.delay(form.instance.writer)
+
+                    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+            else:
+                form = PieceSubmitForm(instance=piece)
+        else:
+            form = None
     
     c = RequestContext(request, {
             'form': form

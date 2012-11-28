@@ -28,6 +28,9 @@ class Player(models.Model):
     biography = models.TextField(blank=True)
 
     def get_new_assignment(self):
+        if self.role == 'WRITER':
+            return # Writers don't get new assignments this way
+
         empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).exclude(piece__status='APPROVED').order_by('?')
 
         if empty_topics:
@@ -52,6 +55,7 @@ from registration.signals import user_registered
 
 def create_player(sender, user, request, **kwarg):
     Player.objects.create(user=user)
+    player.get_new_assignment()
 user_registered.connect(create_player)
 
 
@@ -100,7 +104,7 @@ class Piece(models.Model):
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
     
-
+    # TODO add special status for WRITER submitted pieces?
     status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('NEEDSWORK', 'needs work'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
     
     rejection_reason = models.TextField(blank=True)

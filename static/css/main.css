@@ -1,0 +1,425 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+	color: #222;
+}
+
+body {
+	font-size: 1em;
+	line-height: 1.4;
+	font-family: "minion-pro", "Times New Roman", Times, serif;
+}
+
+a:link, a:visited {
+	color: black;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:link.button, a:visited.button {
+	background-image: -webkit-linear-gradient(bottom, rgba(240,200,15,1) 0%, rgba(252,214,0,1) 100%);
+	padding: 4px 10px;
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 0px rgba(255,255,255,0.6);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+	color: rgb(80,80,80);
+	text-shadow: 0px 1px 0px rgba(255,255,255,0.6);
+	text-decoration: none;
+}
+
+a:hover.button {
+	color: rgb(0,0,0);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+	vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+	resize: vertical;
+}
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+
+body {
+	background-color: rgba(230,230,230,1);
+	background-image: url(/static/img/bg-paper.png);
+	background-repeat: repeat;
+	background-size: 128px 116px;
+}
+
+[role="document"] {
+	position: relative;
+	display: block;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+header[role="banner"] {
+	height: 4em;
+}
+
+#navigation {
+	float: left;
+	padding-top: 1.25em;
+}
+
+#navigation ul {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li {
+	display: inline;
+	margin-left: 1em;
+}
+
+#navigation ul li:first-child {
+	margin-left: 0;
+}
+
+#dashboard {
+	float: right;
+	padding-top: 1em;
+}
+
+[role="main"] {
+	background-color: rgba(255,255,255,1);
+}
+
+.calendar {
+	width: 100%;
+	display: block;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	border-bottom: 1px dotted rgb(200,200,200);
+	color: rgb(160,160,160);
+}
+
+.calendar li {
+	display: inline-block;
+	width: 9.5%;
+	padding: 0.6em 0;
+	border-right: 1px dotted rgb(200,200,200);
+}
+
+.calendar li:last-child {
+	border-right: none;
+}
+
+.logo {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+.logo li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+
+.logo h1 {
+	font-family: "futura-pt-condensed";
+	font-size: 2.5em;
+	font-weight: 800;
+	margin: 0.25em 0;
+}
+
+.logo .date {
+	font-family: "minion-pro", "Times New Roman", Times, serif;
+	font-size: 0.4em;
+	vertical-align: 0.5em;
+	margin-right: 1em;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.logo .week {
+	font-family: "minion-pro", "Times New Roman", Times, serif;
+	font-size: 0.4em;
+	vertical-align: 0.5em;
+	margin-left: 1em;
+	font-weight: 100;
+	text-transform: none;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	/* IE 6/7 fallback */
+	*text-indent: -9999px;
+}
+
+.ir:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 100%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *	  `contenteditable` attribute is included anywhere else in the document.
+ *	  Otherwise it causes space to appear at the top and bottom of elements
+ *	  that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *	  `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+	*zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media screen and (max-width: 62em) {
+	
+}
+
+@media screen and (max-width: 48em) {
+	
+}
+
+@media screen and (max-width: 32em) {
+	
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min-resolution: 144dpi) {
+	/* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+	* {
+		background: transparent !important;
+		color: #000 !important; /* Black prints faster: h5bp.com/s */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	/*
+	 * Don't show links for images, or javascript/internal links
+	 */
+
+	.ir a:after,
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after {
+		content: "";
+	}
+
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+
+	thead {
+		display: table-header-group; /* h5bp.com/t */
+	}
+
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}

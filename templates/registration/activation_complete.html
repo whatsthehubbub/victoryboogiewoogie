@@ -1,5 +1,6 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
-	Je account is geactiveerd. Je kunt nu hier beginnen met schrijven.
+	Je account is geactiveerd. Je kunt nu <a href="{% url 'login' %}">inloggen</a>.
 {% endblock content %}

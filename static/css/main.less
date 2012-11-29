@@ -15,6 +15,10 @@
 @lgrey: rgb(200,200,200);
 @mgrey: rgb(160,160,160);
 
+@serif: "minion-pro", "Times New Roman", Times, serif;
+@sans: "futura-pt-condensed", helvetica, arial, sans-serif;
+
+
 .rounded-corners (@radius: 4px) {
 	-webkit-border-radius: @radius;
 	-moz-border-radius: @radius;
@@ -38,11 +42,11 @@ textarea {
 body {
 	font-size: 1em;
 	line-height: 1.4;
-	font-family: "minion-pro", "Times New Roman", Times, serif;
+	font-family: @serif;
 }
 
 h1, h2, h3, h4, h5 {
-	font-family: "futura-pt-condensed", helvetica, arial, sans-serif;
+	font-family: @sans;
 }
 
 a:link, a:visited {
@@ -204,7 +208,7 @@ header[role="banner"] {
 
 #masthead {
 	text-align: center;
-	padding: 1em 0;
+	padding: 0.5em 0 1em 0;
 	ul {
 		margin: 0 auto;
 		padding: 0;
@@ -239,26 +243,48 @@ header[role="banner"] {
 }
 
 .sidebar {
+	position: relative;
 	display: block;
-	background-color: green;
+	background-color: @white;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+	width: 98%;
+	.fold {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: yellow;
+		margin-left: -10px;
+		margin-top: -10px;
+	}
 	.summary {
 		display: block;
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		margin-left: -10px;
 		.title {
-			background-color: yellow;
-			float: left;
+			text-align: left;
+			vertical-align: top;
+			background-color: @black;
+			color: @white;
+			width: 20%;
 			h1 {
-				display: inline;
-				background-color: aqua;
+				font-size: 1.5em;
+				line-height: 1em;
+				margin-left: 0.5em;
+				margin-top: 0.4em;
+				font-family: @serif;
+				display: block;
 			}
 		}
 		.copy {
-			background-color: green;
-			float: left;
+			text-align: left;
+			vertical-align: top;
+			width: 80%;
 			p {
-				display: inline;
+				font-weight: 400;
+				margin: 0.75em;
+				display: block;
 			}
 		}
 	}

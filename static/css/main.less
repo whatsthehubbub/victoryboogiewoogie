@@ -7,6 +7,23 @@
  */
 
 /* ==========================================================================
+   LESS
+   ========================================================================== */
+
+@black: rgb(0,0,0);
+@white: rgb(255,255,255);
+@lgrey: rgb(200,200,200);
+@mgrey: rgb(160,160,160);
+
+.rounded-corners (@radius: 4px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+/* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
 
@@ -24,6 +41,10 @@ body {
 	font-family: "minion-pro", "Times New Roman", Times, serif;
 }
 
+h1, h2, h3, h4, h5 {
+	font-family: "futura-pt-condensed", helvetica, arial, sans-serif;
+}
+
 a:link, a:visited {
 	color: black;
 	text-decoration: underline;
@@ -36,7 +57,7 @@ a:hover {
 a:link.button, a:visited.button {
 	background-image: -webkit-linear-gradient(bottom, rgba(240,200,15,1) 0%, rgba(252,214,0,1) 100%);
 	padding: 4px 10px;
-	border-radius: 4px;
+	.rounded-corners;
 	box-shadow: inset 0px 1px 0px rgba(255,255,255,0.6);
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
 	color: rgb(80,80,80);
@@ -45,7 +66,7 @@ a:link.button, a:visited.button {
 }
 
 a:hover.button {
-	color: rgb(0,0,0);
+	color: @black;
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
 }
 
@@ -73,7 +94,7 @@ hr {
 	display: block;
 	height: 1px;
 	border: 0;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid @lgrey;
 	margin: 1em 0;
 	padding: 0;
 }
@@ -110,8 +131,8 @@ textarea {
 
 .chromeframe {
 	margin: 0.2em 0;
-	background: #ccc;
-	color: #000;
+	background: @lgrey;
+	color: @black;
 	padding: 0.2em 0;
 }
 
@@ -120,7 +141,7 @@ textarea {
    ========================================================================== */
 
 body {
-	background-color: rgba(230,230,230,1);
+	background-color: rgb(230,230,230);
 	background-image: url(/static/img/bg-paper.png);
 	background-repeat: repeat;
 	background-size: 128px 116px;
@@ -135,97 +156,112 @@ body {
 }
 
 header[role="banner"] {
-	height: 4em;
+	padding: 1em 0;
 }
 
 #navigation {
 	float: left;
-	padding-top: 1.25em;
-}
-
-#navigation ul {
-	display: block;
-	margin: 0;
-	padding: 0;
-}
-
-#navigation ul li {
-	display: inline;
-	margin-left: 1em;
-}
-
-#navigation ul li:first-child {
-	margin-left: 0;
+	ul {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: inline;
+		margin-left: 1em;
+	}
+	ul li:first-child {
+		margin-left: 0;
+	}
 }
 
 #dashboard {
 	float: right;
-	padding-top: 1em;
 }
 
 [role="main"] {
-	background-color: rgba(255,255,255,1);
+	background-color: @white;
 }
 
-.calendar {
+#calendar {
 	width: 100%;
 	display: block;
 	padding: 0;
 	margin: 0;
 	text-align: center;
-	border-bottom: 1px dotted rgb(200,200,200);
-	color: rgb(160,160,160);
+	border-bottom: 1px dotted @lgrey;
+	color: @mgrey;
+	li {
+		display: inline-block;
+		width: 9.5%;
+		padding: 0.6em 0;
+		border-right: 1px dotted @lgrey;
+	}
+	li:last-child {
+		border-right: none;
+	}
 }
 
-.calendar li {
-	display: inline-block;
-	width: 9.5%;
-	padding: 0.6em 0;
-	border-right: 1px dotted rgb(200,200,200);
-}
-
-.calendar li:last-child {
-	border-right: none;
-}
-
-.logo {
-	display: block;
+#masthead {
 	text-align: center;
-	text-transform: uppercase;
-	margin: 0;
-	padding: 0;
+	padding: 1em 0;
+	ul {
+		margin: 0 auto;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+	.logo {
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.logo h1 {
+		display: inline;
+		font-size: 2.5em;
+		font-weight: 800;
+	}
+	.logo h1 span {
+		vertical-align: 0.25em;
+		margin: 0 0.25em;
+	}
+	.date {
+		text-align: right;
+		vertical-align: 0.5em;
+	}
+	.week {
+		text-align: left;
+		vertical-align: 0.5em;
+	}
 }
 
-.logo li {
-	display: inline;
-	margin: 0;
-	padding: 0;
-	width: auto;
-}
-
-.logo h1 {
-	font-family: "futura-pt-condensed";
-	font-size: 2.5em;
-	font-weight: 800;
-	margin: 0.25em 0;
-}
-
-.logo .date {
-	font-family: "minion-pro", "Times New Roman", Times, serif;
-	font-size: 0.4em;
-	vertical-align: 0.5em;
-	margin-right: 1em;
-	font-weight: 400;
-	text-transform: none;
-}
-
-.logo .week {
-	font-family: "minion-pro", "Times New Roman", Times, serif;
-	font-size: 0.4em;
-	vertical-align: 0.5em;
-	margin-left: 1em;
-	font-weight: 100;
-	text-transform: none;
+.sidebar {
+	display: block;
+	background-color: green;
+	.summary {
+		display: block;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		.title {
+			background-color: yellow;
+			float: left;
+			h1 {
+				display: inline;
+				background-color: aqua;
+			}
+		}
+		.copy {
+			background-color: green;
+			float: left;
+			p {
+				display: inline;
+			}
+		}
+	}
 }
 
 /* ==========================================================================

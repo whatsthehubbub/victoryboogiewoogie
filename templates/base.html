@@ -63,7 +63,8 @@
 	
 	<!-- MAIN -->
 	<div id="main" role="main" class="clearfix">
-		<ul class="calendar">
+		
+		<ul id="calendar">
 			<li><a href="">week 1</a></li>
 			<li><a href="">week 2</a></li>
 			<li class="active"><a href="">week 3</a></li>
@@ -75,17 +76,25 @@
 			<li>week 9</li>
 			<li>week 10</li>
 		</ul>
-		<div class="logo">
-			<h1><span class="date">10 mei 2013</span>Victory Boogie Woogie<span class="week">Week {{ week }} van 10</span></h1>
+		
+		<div id="masthead">
+		<ul>
+			<li class="date">10 mei 2013</li>
+			<li class="logo"><h1><span>.</span>Victory Boogie Woogie<span>.</span></h1></li>
+			<li class="week">Week {{ week }} van 10</li>
+		</ul>
 		</div>
-		<div class="content">
-			{% block content %}
-			{% endblock %}
-		</div>
-		<div class="sidebar">
+		
+		<aside class="sidebar clearfix">
 			{% block sidebar %}
 			{% endblock %}
-		</div>
+		</aside>
+		
+		<section class="content">
+			{% block content %}
+			{% endblock %}
+		</section>
+		
 	</div>
 	<!-- END MAIN -->
 	

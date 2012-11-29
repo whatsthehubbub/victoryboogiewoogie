@@ -17,10 +17,13 @@
 {% endblock %}
 
 {% block sidebar %}
-	<h1>Tot nu toe</h1>
-
-	{% for piece in summary %}
+	<ul class="summary">
+		<li class="title"><h1>Tot nu toe</h1></li>
+		<li class="copy">
+		<p>hello lorem ipsum dolor este lauda</p>
+		{% for piece in summary %}
 		<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>
 	{% endfor %}
-
+		</li>
+	</ul>
 {% endblock sidebar %}

@@ -24,7 +24,8 @@ def index(request):
             'summary': Summary.objects.all().order_by('-datecreated')
     })
     return HttpResponse(t.render(c))
-    
+
+
 @login_required
 def topic_list(request):
     t = loader.get_template('boogie/topic_list.html')

@@ -37,6 +37,7 @@
 				<li class="active"><a href="{% url 'index' %}">Home</a></li>
 				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 				<li><a href="{% url 'writers' %}">Personages</a></li>
+				<li><a href="{% url 'editors' %}">Redactie</a></li>
 				{% ifequal current_player.role 'WRITER' %} 
 					<li><a href="{% url 'piece_queue' %}">Goedkeuren</a></li>
 				{% endifequal %}

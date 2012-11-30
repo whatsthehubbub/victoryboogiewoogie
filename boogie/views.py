@@ -89,14 +89,15 @@ def piece_submit(request):
             form = WriterPieceSubmitForm(request.POST)
             if form.is_valid():
                 form.instance.status = 'APPROVED'
+                # This would already be filled in with a Piece stub for a player
                 form.instance.writer = player
-                form.instance.deadline = datetime.datetime.now()
+                form.instance.deadline = datetime.datetime.now() # We don't actually use this
                 form.save()
 
                 form.instance.topic.pool = 'PLAYER'
                 form.instance.topic.save()
-                # TODO switch topic to the player pool
 
+                # TODO figure out where the piece of the writer would be going to 
                 return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[form.instance.id]))
         else:
             form = WriterPieceSubmitForm()
@@ -111,6 +112,7 @@ def piece_submit(request):
             if request.method == 'POST':
                 form = PieceSubmitForm(request.POST, instance=piece)
                 if form.is_valid():
+                    # The piece has been submitted into the bowels of the system
                     form.instance.status = 'SUBMITTED'
                     form.save()
                     

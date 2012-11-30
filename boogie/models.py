@@ -34,6 +34,9 @@ class Player(models.Model):
         empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).exclude(piece__status='APPROVED').order_by('?')
 
         if empty_topics:
+            # If there are topics that don't have an assignee, get one of those
+            # TODO remove this query because at large numbers this is bound not to happen anyway
+            # TODO figure out a more generic query to catch both cases
             new_topic = empty_topics[0]
         else:
             topics_with_piece_count = Topic.objects.exclude(pool='WRITER').filter(piece__status='APPROVED').annotate(num_pieces=Count('piece')).order_by('num_pieces')
@@ -55,6 +58,8 @@ from registration.signals import user_registered
 
 def create_player(sender, user, request, **kwarg):
     Player.objects.create(user=user)
+    # new players get an assignment directly
+    # TODO figure out what to do about created writers
     player.get_new_assignment()
 user_registered.connect(create_player)
 
@@ -80,7 +85,12 @@ class Topic(models.Model):
     
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
-            self.piece_threshold += 3 # TODO increment the increment
+            
+            # After a polo swap back to writers, inspect the total number of players and update the threshold accordingly
+            number_of_players = Player.objects.filter(role='PLAYER').count()
+            # TODO check if this is right, but it should do something
+            self.piece_threshold += number_of_players / 3
+
             self.pool = 'WRITER'
             self.save()
 

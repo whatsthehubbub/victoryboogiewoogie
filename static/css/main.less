@@ -10,10 +10,15 @@
    LESS
    ========================================================================== */
 
-@black: rgb(0,0,0);
 @white: rgb(255,255,255);
-@lgrey: rgb(200,200,200);
-@mgrey: rgb(160,160,160);
+@wgrey: rgb(240,240,240);
+@lgrey: rgb(180,180,180);
+@mgrey: rgb(130,130,130);
+@dgrey: rgb(80,80,80);
+@bgrey: rgb(40,40,40);
+@black: rgb(0,0,0);
+
+@yellow: rgb(252,214,0);
 
 @serif: "minion-pro", "Times New Roman", Times, serif;
 @sans: "futura-pt-condensed", helvetica, arial, sans-serif;
@@ -25,6 +30,14 @@
 	-ms-border-radius: @radius;
 	-o-border-radius: @radius;
 	border-radius: @radius;
+}
+
+.rotated-object (@degrees: 90deg) {
+	-webkit-transform: rotate(@degrees);
+	-moz-transform: rotate(@degrees);
+	-ms-transform: rotate(@degrees);
+	-o-transform: rotate(@degrees);
+	transform: rotate(@degrees)
 }
 
 /* ==========================================================================
@@ -146,7 +159,7 @@ textarea {
 
 body {
 	background-color: rgb(230,230,230);
-	background-image: url(/static/img/bg-paper.png);
+	background-image: url(/static/img/bg.png);
 	background-repeat: repeat;
 	background-size: 128px 116px;
 }
@@ -171,12 +184,24 @@ body {
 	background-size: 1020px 1340px;
 }
 
+.papertop {
+	position: relative;
+	background-image: url(/static/img/bg-paper-top.png);
+	background-repeat: repeat-x;
+	background-position: center bottom;
+	background-size: 960px 4px;
+	width: 100%;
+	height: 5px;
+}
+
 header[role="banner"] {
 	padding: 1.25em 0;
 	background-image: url(/static/img/logo-de_gids.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 190px 40px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 #navigation {
@@ -190,8 +215,18 @@ header[role="banner"] {
 		display: inline;
 		margin-left: 1em;
 	}
+	li.active a {
+		color: @black;
+	}
 	ul li:first-child {
 		margin-left: 0;
+	}
+	a:link, a:visited {
+		color: @dgrey;
+		text-decoration: none;
+	}
+	a:hover {
+		color: @black;
 	}
 }
 
@@ -201,31 +236,46 @@ header[role="banner"] {
 
 [role="main"] {
 	background-color: @white;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+	background-image: url(/static/img/bg-paper.png);
+	background-repeat: repeat;
+	background-size: 120px 120px;
+	box-shadow: 0px -2px 4px fade(@black, 25%);
+	min-height: 600px;
 }
 
 #calendar {
-	width: 100%;
-	display: block;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-	border-bottom: 1px dotted @lgrey;
-	color: @mgrey;
-	li {
-		display: inline-block;
-		width: 9.5%;
-		padding: 0.6em 0;
-		border-right: 1px dotted @lgrey;
+	table {
+		width: 100%;
+		text-align: center;
+		border-bottom: 1px dotted fade(@lgrey, 50%);
+		color: fade(@lgrey, 50%);
 	}
-	li:last-child {
+	a:link, a:visited {
+		display: block;
+		color: @mgrey;
+		text-decoration: none;
+		height: 100%;
+		width: 100%;
+		padding: 0.5em 0;
+	}
+	a:hover {
+		color: @black;
+		text-decoration: underline;
+	}
+	td {
+		border-right: 1px dotted fade(@lgrey, 50%)
+	}
+	td:last-child {
 		border-right: none;
+	}
+	td.active a:link, td.active a:visited {
+		color: @black;
 	}
 }
 
 #masthead {
 	text-align: center;
-	padding: 0.5em 0 1em 0;
+	padding: 0.75em 0;
 	ul {
 		margin: 0 auto;
 		padding: 0;
@@ -245,9 +295,10 @@ header[role="banner"] {
 		font-size: 2.5em;
 		font-weight: 800;
 	}
-	.logo h1 span {
-		vertical-align: 0.25em;
-		margin: 0 0.25em;
+	.logo h1 img {
+		width: 12px;
+		height: 12px;
+		margin: -0.25em 0.25em 0;
 	}
 	.date {
 		text-align: right;
@@ -266,12 +317,21 @@ header[role="banner"] {
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
 	width: 98%;
 	.fold {
+		overflow: hidden;
 		position: absolute;
 		width: 10px;
 		height: 10px;
-		background-color: yellow;
 		margin-left: -10px;
 		margin-top: -10px;
+		bottom: -10px;
+		div {
+			position: absolute;
+			bottom: 4px;
+			width: 20px;
+			height: 20px;
+			.rotated-object(45deg);
+			background-color: @lgrey;
+		}
 	}
 	.summary {
 		display: block;
@@ -304,6 +364,23 @@ header[role="banner"] {
 				display: block;
 			}
 		}
+	}
+}
+
+footer {
+	border-top: 1px dashed @lgrey;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-left: -30px;
+	margin-right: -30px;
+	p {
+		color: fade(@mgrey, 70%);
+	}
+	a:link, a:visited {
+		color: fade(@dgrey, 70%);
+	}
+	a:hover {
+		color: @black;
 	}
 }
 
@@ -431,6 +508,10 @@ header[role="banner"] {
 	
 	.paper {
 		background-image: url(/static/img/bg-pages@2x.png);
+	}
+	
+	.papertop {
+		background-image: url(/static/img/bg-paper-top@2x.png);
 	}
 	
 }

@@ -64,25 +64,30 @@
 	
 	<!-- MAIN -->
 	<div class="paper">
+	<div class="papertop"></div>
 	<div id="main" role="main" class="clearfix">
 		
-		<ul id="calendar">
-			<li><a href="">week 1</a></li>
-			<li><a href="">week 2</a></li>
-			<li class="active"><a href="">week 3</a></li>
-			<li>week 4</li>
-			<li>week 5</li>
-			<li>week 6</li>
-			<li>week 7</li>
-			<li>week 8</li>
-			<li>week 9</li>
-			<li>week 10</li>
-		</ul>
+		<div id="calendar">
+			<table>
+				<tr>
+					<td><a href="">week 1</a></td>
+					<td><a href="">week 2</a></td>
+					<td class="active"><a href="">week 3</a></td>
+					<td>week 4</td>
+					<td>week 5</td>
+					<td>week 6</td>
+					<td>week 7</td>
+					<td>week 8</td>
+					<td>week 9</td>
+					<td>week 10</td>
+				</tr>
+			</table>
+		</div>
 		
 		<div id="masthead">
 		<ul>
 			<li class="date">10 mei 2013</li>
-			<li class="logo"><h1><span>.</span>Victory Boogie Woogie<span>.</span></h1></li>
+			<li class="logo"><h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span>Victory Boogie Woogie<span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1></li>
 			<li class="week">Week {{ week }} van 10</li>
 		</ul>
 		</div>

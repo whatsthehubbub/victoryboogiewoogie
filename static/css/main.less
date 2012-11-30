@@ -153,14 +153,30 @@ body {
 
 [role="document"] {
 	position: relative;
+	overflow: visible;
 	display: block;
 	width: 960px;
 	margin: 0 auto;
 	padding: 0;
 }
 
+.paper {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	background-image: url(/static/img/bg-pages.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 1020px 1340px;
+}
+
 header[role="banner"] {
-	padding: 1em 0;
+	padding: 1.25em 0;
+	background-image: url(/static/img/logo-de_gids.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 190px 40px;
 }
 
 #navigation {
@@ -185,6 +201,7 @@ header[role="banner"] {
 
 [role="main"] {
 	background-color: @white;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
 }
 
 #calendar {
@@ -411,7 +428,11 @@ header[role="banner"] {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 	   only screen and (min-resolution: 144dpi) {
-	/* Style adjustments for high resolution devices */
+	
+	.paper {
+		background-image: url(/static/img/bg-pages@2x.png);
+	}
+	
 }
 
 /* ==========================================================================

@@ -17,6 +17,7 @@
 @dgrey: rgb(80,80,80);
 @bgrey: rgb(40,40,40);
 @black: rgb(0,0,0);
+@red:	rgb(255,0,0);
 
 @yellow: rgb(252,214,0);
 
@@ -383,6 +384,93 @@ footer {
 		color: @black;
 	}
 }
+
+#login {
+	position: relative;
+	display: block;
+	width: 20em;
+	padding: 2em 3em;
+	margin: 0 auto;
+	background-color: @white;
+	background-image: url(/static/img/bg-paper.png);
+	background-repeat: repeat;
+	background-size: 120px 120px;
+	margin-top: 4em;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+	text-align: center;
+	margin-bottom: 4em;
+	.rounded-corners();
+	.logo {
+		text-align: center;
+		text-transform: uppercase;
+		padding-bottom: 1em;
+	}
+	.logo h1 {
+		display: inline;
+		font-size: 1.5em;
+		font-weight: 800;
+	}
+	.logo h1 img {
+		width: 8px;
+		height: 8px;
+		margin: -0.25em 0.25em 0;
+	}
+	.error {
+		color: @red;
+		text-shadow: 0 1px 0 @white;
+		background-color: fade(@red, 10%);
+		padding: 0.5em;
+		.rounded-corners(12px);
+	}
+	.errorlist {
+		list-style: none;
+		padding: 0;
+	}
+	.errorlist {
+		
+	}
+	.loginform {
+		list-style: none;
+		padding: 0;
+		li {
+			margin-bottom: 0.5em;
+		}
+		input {
+			font-size: 1.5em;
+			padding: 0.25em;
+			font-family: @serif;
+			text-align: center;
+		}
+	}
+	input[type="submit"] {
+		font-family: @serif;
+		font-size: 1.5em;
+		background-color: @yellow;
+		padding: 0.25em 1em;
+		.rounded-corners();
+		box-shadow: inset 0px 1px 0px rgba(255,255,255,0.6);
+		box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+		color: rgb(80,80,80);
+		text-shadow: 0px 1px 0px rgba(255,255,255,0.6);
+		text-decoration: none;
+		border: 0;
+	}
+	input[type="submit"]:hover {
+		color: @black;
+		box-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+	}
+	.newpassword {
+		padding-top: 1em;
+		a:link, a:visited {
+			color: @mgrey;
+		}
+		a:hover {
+			color: @dgrey;
+		}
+	}
+}
+
+
 
 /* ==========================================================================
    Helper classes

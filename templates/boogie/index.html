@@ -21,11 +21,11 @@
 	<table class="summary">
 		<tr>
 			<th class="title"><h1>Tot nu toe...</h1></th>
-			<th class="copy"><p>hello lorem ipsum dolor este lauda, hello lorem ipsum dolor este lauda, hello lorem ipsum dolor este lauda, hello lorem ipsum dolor este lauda, hello lorem ipsum dolor este lauda.</p>
-		{% for piece in summary %}
-		<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>
-	{% endfor %}
-</th>
+			<th class="copy">
+				{% for piece in summary %}
+					<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>
+				{% endfor %}
+			</th>
         </tr>
 	</table>
 {% endblock sidebar %}

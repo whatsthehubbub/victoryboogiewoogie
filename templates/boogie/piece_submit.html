@@ -3,17 +3,23 @@
 
 {% block content %}
 
-<!-- TODO: Show progress towards event for selected topic.  -->
+<!-- TODO: Show progress towards event for selected topic. Not sure how we're going to turn a numbers into a progress bar, I'll leave that up to Simon.  -->
 <!-- TODO: Show deadline for submission. -->
-
+<!-- TODO: Include character count. -->
 
 {% if form %}
-    <p>Schrijf iets over: {{ form.instance.topic.title }}</p>
+    <h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
+    <p>Deadline</p>
+    <p>14 mei 2013</p>
+    
+    <p>Voortgang tot gebeurtenis</p>
+    <img src="progress-bar.png" alt="1 / 2" title="1 / 2" />
 
     <form action="{% url 'piece_submit' %}" method="post">{% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit" />
     </form>
+    <p>Nog 256 karakters beschikbaar.</p>
 {% else %}
 	<p>Je mag op dit moment niks schrijven.</p>	
 {% endif %}

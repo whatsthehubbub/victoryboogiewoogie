@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -58,6 +59,21 @@ def piece_list(request):
     c = RequestContext(request, {
             'pieces': Piece.objects.all()
     })
+    return HttpResponse(t.render(c))
+
+@login_required
+def pieces_per_week(request, week):
+    week = int(week)
+    weekStart = settings.GAME_START + datetime.timedelta(week * 7)
+    weekEnd = settings.GAME_START + datetime.timedelta((week + 1) * 7)
+
+    t = loader.get_template('boogie/pieces_per_week.html')
+
+    c = RequestContext(request, {
+        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd),
+        'week': week
+    })
+
     return HttpResponse(t.render(c))
 
 @login_required

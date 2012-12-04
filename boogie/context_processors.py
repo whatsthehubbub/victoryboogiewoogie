@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 import datetime
 
@@ -15,9 +16,10 @@ def player(request):
         except ObjectDoesNotExist:
             pass
 
-    startDate = datetime.date(2012, 9, 20)
+    # TODO figure out when the game starts
+    startDate = settings.GAME_START
     delta = datetime.date.today() - startDate
 
-    returnDict['week'] = delta.days / 7
+    returnDict['gameWeek'] = delta.days / 7
 
     return returnDict

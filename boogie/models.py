@@ -116,6 +116,8 @@ class Piece(models.Model):
     
     # TODO add special status for WRITER submitted pieces?
     status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('NEEDSWORK', 'needs work'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
+
+    datepublished = models.DateTimeField(blank=True, null=True)
     
     rejection_reason = models.TextField(blank=True)
     

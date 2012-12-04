@@ -3,8 +3,12 @@
 
 {% block content %}
 
+<!-- TODO: Show progress towards event for selected topic.  -->
+<!-- TODO: Show deadline for submission. -->
+
+
 {% if form %}
-    <p>Schrijf iets voor: {{ form.instance.topic.title }}</p>
+    <p>Schrijf iets over: {{ form.instance.topic.title }}</p>
 
     <form action="{% url 'piece_submit' %}" method="post">{% csrf_token %}
         {{ form.as_p }}

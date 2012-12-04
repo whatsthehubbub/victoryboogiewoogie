@@ -13,13 +13,13 @@
     <img src="writer-profile-pic.png" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
 	<p>Gespeeld door</p>
 	<p>{{ writer.user.first_name }} {{ writer.user.last_name }} alias {{ writer.pseudonym }}</p>
-	<p>{{ writer.onelinebio }}</p>
 
 	<h3>Bijdragen</h3>
 
     <ol>
     {% for piece in writer.pieces %}
         <li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
-	{% endfor %}</ol>
+	{% endfor %}
+	</ol>
 
 {% endblock content %}

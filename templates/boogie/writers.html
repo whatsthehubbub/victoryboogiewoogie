@@ -2,9 +2,9 @@
 {% load url from future %}
 
 {% block content %}
-	
-	{% for writer in writers %}
-		<a href="{% url 'writer_profile' writer.user.username %}">{{ writer.user.username }}</a><br>
-	{% endfor %}
-	
+<ul>	
+    {% for writer in writers %}
+    <li><a href="{% url 'writer_profile' writer.user.username %}">{{ writer.user.username }}</a></li>
+    {% endfor %}
+</ul>	
 {% endblock content %}

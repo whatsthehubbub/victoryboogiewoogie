@@ -49,10 +49,10 @@
 		<div id="dashboard">
 			{% if current_player %}
 				{% ifequal current_player.role 'WRITER' %}
-					<a href="{% url 'writer_profile' user.username %}" class="user player">{{ user.username }}</a>
+					<a href="{% url 'writer_profile' user.username %}" class="user player">{{ current_player.pseudonym }}</a>
 				{% endifequal %}
 				{% ifequal current_player.role 'PLAYER' %}
-					<a href="{% url 'player_profile' user.username %}" class="user writer">{{ user.username }}</a>
+					<a href="{% url 'player_profile' user.username %}" class="user writer">{{ current_player.pseudonym }}</a>
 				{% endifequal %}
 				(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
 			{% else %}
@@ -88,7 +88,7 @@
 		<div id="masthead">
 		<ul>
 			<li class="date">10 mei 2013</li>
-			<li class="logo"><h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span><a href="/">Victory Boogie Woogie</a><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1></li>
+			<li class="logo"><h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span><a href="{% url 'index' %}">Victory Boogie Woogie</a><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1></li>
 			<li class="week">Week {{ week }} van 10</li>
 		</ul>
 		</div>

@@ -3,53 +3,60 @@
 
 {% block content %}
 	{% ifequal user.username player.user.username  %} 
-		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">edit</a>
+		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
 	{% endifequal %}
 
-	<p>Speler: {{ player.user.username }}</p>
+    <!-- <h2>Speler: {{ player.user.username }}</h2> -->
 
-	<p>Naam: {{ player.user.first_name }} {{ player.user.last_name }}</p>
+	<h2>{{ player.user.first_name }} {{ player.user.last_name }} alias {{ player.pseudonym }}</h2>
 
-	<p>Pennaam: {{ player.pseudonym }}</p>
+	<h3>Biografie</h3> 
+	<p>{{ player.biography }}</p>
 
-	<p>Biografie: {{ player.biography }}</p>
+	<h3>Bijdragen</h3>
+	
+    <!-- {% if assigned_pieces %}
+        <h4>Toegekend</h4>
 
-	<h2>Bijdragen</h2>
+        <ol>
+        {% for piece in assigned_pieces %}
+        <li><a href="{% url 'piece_submit' %}">Schrijf iets over {{ piece.topic }}</a>.</li>
+        {% endfor %}
+        </ol>
+    {% endif %} -->
 
-	{% for piece in approved_pieces %}
-		{{ forloop.counter}} {{ piece.text }}<br>
-	{% endfor %}
-
-	{% if assigned_pieces %}
-		<h3>Toegekend</h3>
-
-		{% for piece in assigned_pieces %}
-			{{ forloop.counter}} {{ piece.text }}<br>
-		{% endfor %}
-	{% endif %}
-
-	{% if needswork_pieces %}
-		<h3>Moet beter</h3>
-
-		{% for piece in needswork_pieces %}
-			{{ forloop.counter}} {{ piece.text }}<br>
-		{% endfor %}
-	{% endif %}
-
+	<h4>Ingediend</h4>
 	{% if submitted_pieces %}
-		<h3>Ingediend</h3>
-
+		<ol>
 		{% for piece in submitted_pieces %}
-			{{ forloop.counter}} {{ piece.text }}<br>
+		    <li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
 		{% endfor %}
+		</ol>
 	{% endif %}
 
-	{% if rejected_pieces %}
-		<h3>Afgewezen</h3>
+	<h4>Kan beter</h4>
+	{% if needswork_pieces %}
 
-		{% for piece in rejected_pieces %}
-			{{ forloop.counter}} {{ piece.text }}<br>
+		<ol>
+		{% for piece in needswork_pieces %}
+		    <li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)<p>Suggesties: {{ piece.rejection_reason }}</p></li>
 		{% endfor %}
+		</ol>
+	{% endif %}
+	
+	<h4>Gepubliceerd</h4>    
+    <ol>
+	{% for piece in approved_pieces %}
+		<li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
+	{% endfor %}
+	</ol>
+
+	<h4>Afgewezen</h4>
+	{% if rejected_pieces %}
+
+		<ol>{% for piece in rejected_pieces %}
+		<li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)<p>Rede: {{ piece.rejection_reason }}</p></li>
+		{% endfor %}</ol>
 	{% endif %}
 
 {% endblock content %}

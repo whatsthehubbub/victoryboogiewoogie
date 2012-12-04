@@ -6,7 +6,7 @@
 <h2>{{ topic.title }}</h2>
 
 <p>Een onderwerp voor
-    {% ifequal piece.writer.role 'WRITER' %}
+    {% ifequal topic.pool 'WRITER' %}
         schrijvers.
     {% else %}
         spelers.
@@ -29,6 +29,7 @@
     {% for piece in pieces %}
     <div>
         <p>{{ piece.text }}</p>
+        <!-- TODO: Link author name to profile -->
         <p>Door <a href="">{{ piece.writer.character_name }}</a> op {{ piece.datecreated }}.</p> 
     </div>
     {% endfor %}

@@ -6,26 +6,23 @@
     <!-- Just show a number of pieces as selected by the admins in the backend, latest piece first. KA -->
     <div class="piece">
         <h2>[piece title]</h2>
-        <img src="piece-author-profile-pic.png" alt="[piece author name]" title="[piece author name]" />
-        <p>door [piece author name] op [piece publish date]</p>
-        <p>[piece subject]</p>
+        <a href=""><img src="piece-author-profile-pic.png" alt="[piece author name]" title="[piece author name]" /></a>
+        <p>door <a href="">[piece author name]</a> op [piece publish date]</p>
+        <p><a href="">[piece subject]</a></p>
         <img src="optional-piece-illustration.png" alt="" title="" />
-        <p>[piece content]</p>
+        <p>[piece text]</p>
     </div>
-
-    <!-- All of the stuff commented out below can be discarded as far as I'm concerned. KA -->
-    <!-- <h1>Frontpage</h1>
-
-    {% for topic in topics %}
-        Onderwerp: <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic.title }}</a><br>
-    {% endfor %}
     
-    <h1>Bijdragen</h1>
+    <div id="personages">
+        <h2>De personages</h2>
+	    <div class="character">
+	       <a href=""><img src="character-profile-pic.png" alt="Character Name" title="Character Name" />
+	       <h3>Character Name</h3>
+	       <p>One line character bio.</p></a>
+	    </div>
+	</div>
+	
 
-    {% for piece in pieces %}
-        {{ piece.text }}<br>
-    {% endfor %}     -->
-    
 {% endblock %}
 
 {% block sidebar %}

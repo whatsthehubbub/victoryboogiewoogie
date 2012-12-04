@@ -2,21 +2,24 @@
 {% load url from future %}
 
 {% block content %}
+    <img src="character-profile-pic.png" alt="{{ writer.character_name }}" title="{{ writer.character_name}}" />
+
+	<p>Personage</p>
+	<h2>{{ writer.character_name }}</h2>
 	
-	<p>Schrijver: {{ writer.user.username }}</p>
+	<p>Biografie</p>
+    <p>{{ writer.biography }}</p>	
 
-	<p>Naam: {{ writer.user.first_name }} {{ writer.user.last_name }}</p>
+    <img src="writer-profile-pic.png" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
+	<p>Gespeeld door</p>
+	<p>{{ writer.user.first_name }} {{ writer.user.last_name }} alias {{ writer.pseudonym }}</p>
+	<p>{{ writer.onelinebio }}</p>
 
-	<p>Pennaam: {{ writer.character_name }}</p>
+	<h3>Bijdragen</h3>
 
-	<p>Korte biografie: {{ writer.onelinebio }}</p>
-
-	<p>Biografie: {{ writer.biography }}</p>
-
-	<h2>Bijdragen</h2>
-
-	{% for piece in writer.pieces %}
-		{{ forloop.counter}} {{ piece.text }}<br>
-	{% endfor %}
+    <ol>
+    {% for piece in writer.pieces %}
+        <li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
+	{% endfor %}</ol>
 
 {% endblock content %}

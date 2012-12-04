@@ -33,7 +33,9 @@
 			<th class="title"><h1>Het verhaal tot nu toe&hellip;</h1></th>
 			<th class="copy">
 				{% for piece in summary %}
-					<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>
+                <!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
+					<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">Meer&hellip;
+</a></p>
 				{% endfor %}
 			</th>
         </tr>

@@ -4,11 +4,12 @@
 {% block content %}
     <h2>Ingediende bijdragen</h2>
     
+    <ol>
     {% for piece in pieces %}
-        <h2>Stuk bij {{ piece.topic.title }}</h2>
+        <li><p>Bijdrage over: {{ piece.topic.title }}</p>
         
-        <p>Text: {{ piece.text }}</p>
-        <p>Voorstel nieuw onderwerp: {{ piece.new_topic }}</p>
+        <p>Tekst: {{ piece.text }}</p>
+        <p>Nieuw onderwerp: {{ piece.new_topic }}</p>
         
         <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
             <input type="hidden" name="ok" value="yes">
@@ -19,7 +20,8 @@
             <input type="hidden" name="ok" value="no">
             <label for="reason">Reden</label> <input type="text" name="reason">
             <input type="submit" class="btn btn-warning" value="Afkeuren">
-        </form>
+        </form></li>
     {% endfor %}
+    </ol>
     
 {% endblock %}

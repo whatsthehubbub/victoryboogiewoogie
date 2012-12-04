@@ -18,7 +18,7 @@
 
     <ol>
     {% for piece in writer.pieces %}
-        <li>{{ piece.text }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
+        <li>{{ piece.text|linebreaks }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)</li>
 	{% endfor %}
 	</ol>
 

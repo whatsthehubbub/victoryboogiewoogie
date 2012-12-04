@@ -8,7 +8,7 @@
     {% for piece in pieces %}
         <li><p>Bijdrage over: {{ piece.topic.title }}</p>
         
-        <p>Tekst: {{ piece.text }}</p>
+        <p>Tekst: {{ piece.text|linebreaks }}</p>
         <p>Nieuw onderwerp: {{ piece.new_topic }}</p>
         
         <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}

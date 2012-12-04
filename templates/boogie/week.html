@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<h2>Week N</h2>
+
+<p>Sorteren: 
+    {% ifequal order '-datecreated' %} 
+        <a href="?order=-rating">Beste</a>
+    {% else %}
+        <strong>Beste</strong>
+    {% endifequal %}
+    |
+    {% ifequal order '-rating' %} 
+        <a href="?order=-datecreated">Nieuwste</a>
+    {% else %}
+        <strong>Nieuwste</strong>
+    {% endifequal %}</p>
+
+    {% for piece in pieces %}
+    <div>
+        <p>{{ piece.text }}</p>
+        <p>Door <a href="">{{ piece.writer.character_name }}</a> op {{ piece.datecreated }}.</p> 
+    </div>
+    {% endfor %}
+
+{% endblock %}

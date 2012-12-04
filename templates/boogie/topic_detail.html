@@ -2,35 +2,35 @@
 {% load url from future %}
 
 {% block content %}
-    
-    <h2>{{ topic.title }}</h2>
-    
-    <p>voor {{ topic.pool }}</p>
 
-    volgorde: 
+<h2>{{ topic.title }}</h2>
+
+<p>Een onderwerp voor
+    {% ifequal piece.writer.role 'WRITER' %}
+        schrijvers.
+    {% else %}
+        spelers.
+    {% endifequal%}
+</p>
+
+<p>Sorteren: 
     {% ifequal order '-datecreated' %} 
-        <a href="?order=-rating">beste</a>
+        <a href="?order=-rating">Beste</a>
     {% else %}
-        <b>beste</b>
+        <strong>Beste</strong>
     {% endifequal %}
-
+    |
     {% ifequal order '-rating' %} 
-        <a href="?order=-datecreated">laatste</a>
+        <a href="?order=-datecreated">Nieuwste</a>
     {% else %}
-        <b>laatste</b>
-    {% endifequal %}
+        <strong>Nieuwste</strong>
+    {% endifequal %}</p>
 
     {% for piece in pieces %}
-        <div style="border: thin solid black;">
-            {% ifequal piece.writer.role 'WRITER' %}
-                door een schrijver
-            {% else %}
-                door een speler
-            {% endifequal %}
-        
-            <p>bijdrage van: {{ piece.writer }}<br>
-            Text: {{ piece.text }}</p>
-        </div>
+    <div>
+        <p>{{ piece.text }}</p>
+        <p>Door <a href="">{{ piece.writer.character_name }}</a> op {{ piece.datecreated }}.</p> 
+    </div>
     {% endfor %}
-    
+
 {% endblock %}

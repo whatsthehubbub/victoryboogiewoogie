@@ -2,7 +2,19 @@
 {% load url from future %}
 
 {% block content %}
-    <h1>Frontpage</h1>
+
+    <!-- Just show a number of pieces as selected by the admins in the backend, latest piece first. KA -->
+    <div class="piece">
+        <h2>[piece title]</h2>
+        <img src="piece-author-profile-pic.png" alt="[piece author name]" title="[piece author name]" />
+        <p>door [piece author name] op [piece publish date]</p>
+        <p>[piece subject]</p>
+        <img src="optional-piece-illustration.png" alt="" title="" />
+        <p>[piece content]</p>
+    </div>
+
+    <!-- All of the stuff commented out below can be discarded as far as I'm concerned. KA -->
+    <!-- <h1>Frontpage</h1>
 
     {% for topic in topics %}
         Onderwerp: <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic.title }}</a><br>
@@ -10,9 +22,9 @@
     
     <h1>Bijdragen</h1>
 
-	{% for piece in pieces %}
-		{{ piece.text }}<br>
-	{% endfor %}    
+    {% for piece in pieces %}
+        {{ piece.text }}<br>
+    {% endfor %}     -->
     
 {% endblock %}
 
@@ -20,7 +32,7 @@
 	<div class="fold"><div></div></div>
 	<table class="summary">
 		<tr>
-			<th class="title"><h1>Wat vooraf ging:</h1></th>
+			<th class="title"><h1>Het verhaal tot nu toe&hellip;</h1></th>
 			<th class="copy">
 				{% for piece in summary %}
 					<p>{{ piece.datecreated }}: {{ piece.content|safe }}</p>

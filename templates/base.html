@@ -91,20 +91,22 @@
 		<ul>
 			<li class="date">10 mei 2013</li>
 			<li class="logo">
-				<h1>
-					<a href="{% url 'index' %}" title="Home"><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span>Victory Boogie Woogie<span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></a>
-				</h1>
+				<a href="{% url 'index' %}" title="Home">
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+					<h1>Victory Boogie Woogie</h1>
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				</a>
 			</li>
 			<li class="week">Week {{ gameWeek }} van 10</li>
 		</ul>
 		</div>
 		
-		<aside class="sidebar clearfix">
+		<aside id="sidebar" class="clearfix">
 			{% block sidebar %}
 			{% endblock %}
 		</aside>
 		
-		<section class="content">
+		<section id="content" class="clearfix">
 			{% block content %}
 			{% endblock %}
 		</section>

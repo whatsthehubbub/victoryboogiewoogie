@@ -65,6 +65,8 @@ body {
 
 h1, h2, h3, h4, h5 {
 	font-family: @serif;
+	font-weight: 400;
+	text-align: center;
 }
 
 h1 {
@@ -88,20 +90,21 @@ h5 {
 }
 
 a:link, a:visited {
-	color: black;
+	color: @black;
 	text-decoration: underline;
 }
 
 a:hover {
+	color: @lblue;
 	text-decoration: none;
 }
 
 a:link.button, a:visited.button {
 	background-color: @lblue;
 	padding: 5px 10px 1px;
-	color: @lgrey;
+	color: @wgrey;
 	text-decoration: none;
-	.rounded-corners;
+	//.rounded-corners;
 }
 
 a:hover.button {
@@ -234,7 +237,8 @@ header[role="banner"] {
 		display: inline;
 		margin-left: 1em;
 	}
-	li.active a {
+	li.active a:link, li.active a:visited {
+		font-weight: 700;
 		color: @black;
 	}
 	ul li:first-child {
@@ -245,7 +249,7 @@ header[role="banner"] {
 		text-decoration: none;
 	}
 	a:hover {
-		color: @black;
+		color: @lblue;
 	}
 }
 
@@ -254,20 +258,21 @@ header[role="banner"] {
 	line-height: 0.8em;
 }
 
-[role="main"] {
+#main {
 	background-color: @white;
 	background-image: url(/static/img/bg-paper.png);
 	background-repeat: repeat;
 	background-size: 120px 120px;
 	box-shadow: 0px -2px 4px fade(@black, 25%);
 	min-height: 600px;
+	padding-bottom: 4em;
 }
 
 #calendar {
 	table {
 		width: 100%;
 		text-align: center;
-		border-bottom: 1px dotted fade(@lgrey, 50%);
+		border-bottom: 1px solid @wgrey;
 		color: fade(@lgrey, 50%);
 	}
 	a:link, a:visited {
@@ -279,11 +284,10 @@ header[role="banner"] {
 		padding: 0.5em 0;
 	}
 	a:hover {
-		color: @black;
-		text-decoration: underline;
+		color: @lblue;
 	}
 	td {
-		border-right: 1px dotted fade(@lgrey, 50%)
+		border-right: 1px solid @wgrey;
 	}
 	td:last-child {
 		border-right: none;
@@ -296,6 +300,8 @@ header[role="banner"] {
 #masthead {
 	text-align: center;
 	padding: 1.5em 0 0.75em 0;
+	border-bottom: 1px solid @black;
+	margin-bottom: 1px;
 	ul {
 		margin: 0 auto;
 		padding: 0;
@@ -308,93 +314,115 @@ header[role="banner"] {
 	}
 	a:link, a:visited {
 		text-decoration: none;
+		color: @black;
+	}
+	a:hover {
+		.char1 {
+			color: @yellow;
+		}
+		.char2 {
+			color: @lblue;
+		}
+		.char3 {
+			color: @black;
+		}
+		.char4 {
+			color: @red;
+		}
+		.char5 {
+			color: @yellow;
+		}
+		.char6 {
+			color: @lblue;
+		}
+		.char7 {
+			color: @black;
+		}
+		.char9 {
+			color: @red;
+		}
+		.char10 {
+			color: @black;
+		}
+		.char11 {
+			color: @yellow;
+		}
+		.char12 {
+			color: @lblue;
+		}
+		.char13 {
+			color: @yellow;
+		}
+		.char14 {
+			color: @black;
+		}
+		.char16 {
+			color: @lblue;
+		}
+		.char17 {
+			color: @yellow;
+		}
+		.char18 {
+			color: @red;
+		}
+		.char19 {
+			color: @black;
+		}
+		.char20 {
+			color: @lblue;
+		}
+		.char21 {
+			color: @black;
+		}
 	}
 	.logo {
 		text-align: center;
 		//text-transform: uppercase;
+		.char17 {
+			margin-left: -0.12em;
+		}
 	}
 	.logo h1 {
 		font-family: @serif;
 		display: inline;
-		font-size: 2em;
+		font-size: 2.5em;
 		font-weight: 700;
 	}
-	.logo h1 img {
-		width: 12px;
-		height: 12px;
-		margin: -0.35em 0.3em 0;
+	.logo img {
+		width: 8px;
+		height: 8px;
+		margin: -1em 0.5em 0;
 	}
 	.date {
 		text-align: right;
-		vertical-align: 0.35em;
+		vertical-align: 0.4em;
 	}
 	.week {
 		text-align: left;
-		vertical-align: 0.35em;
+		vertical-align: 0.4em;
 	}
 }
 
-.sidebar {
+#sidebar {
 	position: relative;
 	display: block;
 	background-color: @white;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
-	width: 98%;
-	.fold {
-		overflow: hidden;
-		position: absolute;
-		width: 10px;
-		height: 10px;
-		margin-left: -10px;
-		margin-top: -10px;
-		bottom: -10px;
-		div {
-			position: absolute;
-			bottom: 4px;
-			width: 20px;
-			height: 20px;
-			.rotated-object(45deg);
-			background-color: @lgrey;
-		}
-	}
+	width: 100%;
+	
 	.summary {
 		display: block;
 		list-style: none;
-		padding: 0;
+		padding: 0 40px;
 		margin: 0;
-		margin-left: -10px;
-		.title {
-			text-align: left;
-			vertical-align: top;
-			background-color: @wgrey;
-			color: @mgrey;
-			width: 20%;
-			h1 {
-				font-size: 1.25em;
-				line-height: 1em;
-				margin-left: 0.5em;
-				margin-top: 0.4em;
-				font-family: @serif;
-				display: block;
-				text-transform: none;
-			}
-		}
-		.copy {
-			text-align: left;
-			vertical-align: top;
-			width: 80%;
-			p {
-				font-weight: 400;
-				margin: 0.75em;
-				display: block;
-			}
-		}
+		border-top: 2px solid @black;
+		background-color: @white;
 	}
 }
 
-.content {
-	margin-left: 40px;
-	margin-right: 40px;
+#content {
+	padding-left: 40px;
+	padding-right: 40px;
+	border-top: 1px solid @black;
 }
 
 article {
@@ -403,12 +431,12 @@ article {
 		text-align: center;
 		margin-bottom: 0.5em;
 		text-transform: capitalize;
+		font-weight: 400;
 	}
 	img.poster {
 		display: block;
 		width: 880px;
 		height: 320px;
-		border-bottom: 1px solid @wgrey;
 		padding-bottom: 1.5em;
 		margin-bottom: 1em;
 	}
@@ -444,42 +472,51 @@ article {
 		float: left;
 		overflow: hidden;
 		width: 20%;
+		margin-left: 5%;
+		text-align: center;
 		a:link, a:visited {
 			display: block;
 			text-decoration: none;
 		}
-		a:hover {
-			color: @lblue;
-		}
-		h3 {
-			text-transform: uppercase;
-			margin-top: 0.5em;
-			font-size: 1.25em;
-			line-height: 1.1em;
-			text-align: center;
-			border-bottom: 1px solid @lgrey;
-		}
 		img {
 			width: 100%;
 			height: auto;
+			.rounded-corners(100px);
 		}
+		h3 {
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-top: 1em;
+			font-size: 1em;
+			line-height: 1.1em;
+			margin-bottom: 0.5em;
+		}
+		p {
+			margin-top: 0;
+			margin-bottom: 2em;
+		}
+	}
+	li:nth-child(4n+1) {
+		margin-left: 0;
 	}
 }
 
-footer {
+#footer {
 	border-top: 1px dashed @lgrey;
 	padding-left: 30px;
 	padding-right: 30px;
 	margin-left: -30px;
 	margin-right: -30px;
 	p {
-		color: fade(@mgrey, 70%);
+		color: @mgrey;
 	}
 	a:link, a:visited {
-		color: fade(@dgrey, 70%);
+		color: @dgrey;
+		text-decoration: none;
 	}
 	a:hover {
 		color: @black;
+		text-decoration: underline;
 	}
 }
 

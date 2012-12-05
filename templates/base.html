@@ -23,7 +23,11 @@
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 	
+<<<<<<< HEAD
 <body id="{% block bodyid %}{% endblock %}">
+=======
+<body id="{{ body_id }}">
+>>>>>>> CSS Update
 <!--[if lt IE 7]>
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
@@ -82,19 +86,6 @@
 							{% endif %}
 						</td>
 					{% endfor %}
-					{% comment %}
-					<td {% ifequal week 3 %}class="active"{% endifequal %}>{% if gameWeek >= 1 %}<a href="{% url 'pieces_per_week' gameWeek %}">week 1</a>{% else %}week 1{% endif %}</td>
-
-					<td>{% if gameWeek >= 2 %}<a href="">week 2</a>{% else %}week 2{% endif %}</td>
-					<td {% ifequal week 3 %}class="active"{% endifequal %}>{% if gameWeek >= 3 %}<a href="">week 3</a>{% else %}week 3{% endif %}</td>
-					<td>{% if gameWeek >= 4 %}<a href="">week 4</a>{% else %}week 4{% endif %}</td>
-					<td>{% if gameWeek >= 5 %}<a href="">week 5</a>{% else %}week 5{% endif %}</td>
-					<td>{% if gameWeek >= 6 %}<a href="">week 6</a>{% else %}week 6{% endif %}</td>
-					<td>{% if gameWeek >= 7 %}<a href="">week 7</a>{% else %}week 7{% endif %}</td>
-					<td>{% if gameWeek >= 8 %}<a href="">week 8</a>{% else %}week 8{% endif %}</td>
-					<td>{% if gameWeek >= 9 %}<a href="">week 9</a>{% else %}week 9{% endif %}</td>
-					<td>{% if gameWeek >= 10 %}<a href="">week 10</a>{% else %}week 10{% endif %}</td>
-					{% endcomment %}
 				</tr>
 			</table>
 		</div>
@@ -102,7 +93,11 @@
 		<div id="masthead">
 		<ul>
 			<li class="date">10 mei 2013</li>
-			<li class="logo"><h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span><a href="{% url 'index' %}">Victory Boogie Woogie</a><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1></li>
+			<li class="logo">
+				<h1>
+					<a href="{% url 'index' %}" title="Home"><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span>Victory Boogie Woogie<span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></a>
+				</h1>
+			</li>
 			<li class="week">Week {{ gameWeek }} van 10</li>
 		</ul>
 		</div>

@@ -1,43 +1,47 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block bodyid %}
+home
+{% endblock %}
+
 {% block content %}
-
-    <!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
-    <div class="piece">
-        <h2>[piece title]</h2>
-        <a href=""><img src="piece-author-profile-pic.png" alt="[piece author name]" title="[piece author name]" /></a>
-        <p>door <a href="">[piece author name]</a> op [piece publish date]</p>
-        <p><a href="">[piece subject]</a></p>
-        <img src="optional-piece-illustration.png" alt="" title="" />
-        <p>[piece text]</p>
-    </div>
-    
-    <!-- TODO: Hook this up to characters played by writers. -->
-    <div id="personages">
-        <h2>De personages</h2>
-	    <div class="character">
-	       <a href=""><img src="character-profile-pic.png" alt="Character Name" title="Character Name" />       		
-	       <h3>Character Name</h3>
-	       <p>One line character bio.</p></a>
-	    </div>
-	</div>
+	<!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
+	<article>
+		<h2>[piece title]</h2>
+		<a href="" title="[piece author name]">
+			<img src="piece-author-profile-pic.png" alt="[piece author name]">
+		</a>
+		<p class="author">door <a href="">[piece author name]</a> op [piece publish date]</p>
+		<p class="subject"><a href="">[piece subject]</a></p>
+		<img src="optional-piece-illustration.png" alt="">
+		<p>[piece text]</p>
+	</article>
 	
-
+	<!-- TODO: Hook this up to characters played by writers. -->
+	<h2>De personages</h2>
+	<ul id="characters">
+		<li>
+			<a href="" title="Character Name">
+				<img src="{{ STATIC_URL }}avatar/placeholder.jpg" alt="Character Name">
+				<h3>Character Name</h3>
+				<p>One line character bio.</p>
+			</a>
+		</li>
+	</ul>
 {% endblock %}
 
 {% block sidebar %}
 	<div class="fold"><div></div></div>
 	<table class="summary">
 		<tr>
-			<th class="title"><h1>Het verhaal tot nu toe&hellip;</h1></th>
+			<th class="title"><h1>Het verhaal tot nu toe...</h1></th>
 			<th class="copy">
 				{% for piece in summary %}
-                <!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
-					<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">Meer&hellip;
-</a></p>
+				<!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
+					<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">meer</a></p>
 				{% endfor %}
 			</th>
-        </tr>
+		</tr>
 	</table>
 {% endblock sidebar %}

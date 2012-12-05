@@ -61,6 +61,27 @@ body {
 
 h1, h2, h3, h4, h5 {
 	font-family: @sans;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.5em;
+}
+
+h3 {
+	font-size: 2em;
+}
+
+h4 {
+	font-size: 1.75em;
+}
+
+h5 {
+	font-size: 1.5em;
 }
 
 a:link, a:visited {
@@ -200,9 +221,7 @@ header[role="banner"] {
 	background-image: url(/static/img/logo-de_gids.png);
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-size: 190px 40px;
-	margin-left: 10px;
-	margin-right: 10px;
+	background-size: 40px 40px;
 }
 
 #navigation {
@@ -287,6 +306,9 @@ header[role="banner"] {
 		margin: 0;
 		padding: 0;
 	}
+	a:link, a:visited {
+		text-decoration: none;
+	}
 	.logo {
 		text-align: center;
 		text-transform: uppercase;
@@ -353,6 +375,7 @@ header[role="banner"] {
 				margin-top: 0.4em;
 				font-family: @serif;
 				display: block;
+				text-transform: none;
 			}
 		}
 		.copy {
@@ -366,6 +389,11 @@ header[role="banner"] {
 			}
 		}
 	}
+}
+
+.content {
+	margin-left: 2em;
+	margin-right: 2em;
 }
 
 footer {
@@ -382,6 +410,19 @@ footer {
 	}
 	a:hover {
 		color: @black;
+	}
+}
+
+#characters {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		
+	}
+	img {
+		width: 200px;
+		height: 200px;
 	}
 }
 

@@ -115,7 +115,13 @@ class Piece(models.Model):
     new_topic = models.CharField(max_length=255, blank=True)
     
     # TODO add special status for WRITER submitted pieces?
-    status = models.CharField(max_length=255, choices=(('ASSIGNED', 'toegekend'), ('SUBMITTED', 'ingediend'), ('APPROVED', 'goedgekeurd'), ('NEEDSWORK', 'needs work'), ('REJECTED', 'afgekeurd')), default='ASSIGNED')
+    status = models.CharField(max_length=255, choices=(
+                    ('ASSIGNED', 'toegekend'), 
+                    ('SUBMITTED', 'ingediend'), 
+                    ('APPROVED', 'goedgekeurd'), 
+                    ('NEEDSWORK', 'needs work'), 
+                    ('REJECTED', 'afgekeurd'),
+                    ('EDITORIAL', 'door schrijver')), default='ASSIGNED')
 
     datepublished = models.DateTimeField(blank=True, null=True)
     

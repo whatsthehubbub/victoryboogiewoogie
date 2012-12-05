@@ -2,6 +2,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
+from django.template.defaultfilters import slugify
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -166,6 +167,12 @@ def piece_validate(request, piece_id):
 
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
+
+        # Also we need to create a new topic based on this piece
+        if piece.new_topic:
+            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
+            t.piece_threshold = t.get_piece_threshold()
+            t.save()
     elif valid == 'retry':
         # The piece needs more work
         piece.rejection_reason = request.POST.get('reason', '')

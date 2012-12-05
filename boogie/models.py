@@ -86,16 +86,20 @@ class Topic(models.Model):
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
             
-            # After a polo swap back to writers, inspect the total number of players and update the threshold accordingly
-            number_of_players = Player.objects.filter(role='PLAYER').count()
-            # TODO check if this is right, but it should do something
-            self.piece_threshold += number_of_players / 3
+            self.piece_threshold = self.get_piece_threshold()
 
             self.pool = 'WRITER'
             self.save()
 
             return True
         return False
+
+    # TODO make this a classmethod
+    def get_piece_threshold(self):
+        # After a polo swap back to writers, inspect the total number of players and update the threshold accordingly
+        number_of_players = Player.objects.filter(role='PLAYER').count()
+        # TODO check if this is right, but it should do something
+        return number_of_players / 3
 
     @models.permalink
     def get_absolute_url(self):

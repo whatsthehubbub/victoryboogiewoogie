@@ -5,28 +5,41 @@
 
 {% block content %}
 	<!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
-	<article>
+	<article id="cover">
 		<h2>[piece title]</h2>
-		<a href="" title="[piece author name]">
-			<img src="piece-author-profile-pic.png" alt="[piece author name]">
-		</a>
+		<img src="optional-piece-illustration.png" class="poster" alt="">
 		<p class="author">door <a href="">[piece author name]</a> op [piece publish date]</p>
 		<p class="subject"><a href="">[piece subject]</a></p>
-		<img src="optional-piece-illustration.png" alt="">
-		<p>[piece text]</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis diam ut urna pretium quis vestibulum elit gravida. Integer convallis aliquam leo vel molestie. Quisque nec risus eget ante elementum mattis in ut sem. Praesent fermentum varius libero eget rhoncus. Fusce at porta quam. Aliquam congue est ac nulla malesuada vitae facilisis leo hendrerit. Pellentesque scelerisque velit in massa suscipit a bibendum lacus volutpat. Nunc sed tortor quam, eu mollis odio. Vestibulum tincidunt ullamcorper est, at mollis elit convallis eu. Vivamus ipsum quam, accumsan eu placerat ac, egestas a odio. Fusce blandit augue sed arcu bibendum suscipit</p>
 	</article>
 	
 	<!-- TODO: Hook this up to characters played by writers. -->
-	<h2>De personages</h2>
-	<ul id="characters">
-		<li>
-			<a href="" title="Character Name">
-				<img src="{{ STATIC_URL }}avatar/placeholder.jpg" alt="Character Name">
-				<h3>Character Name</h3>
-				<p>One line character bio.</p>
-			</a>
-		</li>
-	</ul>
+	<section id="characters">
+		<h2>De personages</h2>
+		<ul>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatar/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatar/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatar/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio.</p>
+				</a>
+			</li>
+		</ul>
+	</section>
 {% endblock %}
 
 {% block sidebar %}

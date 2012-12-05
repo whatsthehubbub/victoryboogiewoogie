@@ -159,16 +159,18 @@ def piece_validate(request, piece_id):
     
     if valid == 'yes':
         piece.status = 'APPROVED'
-        piece.status.datepublished = datetime.datetime.now()
+        piece.datepublished = datetime.datetime.now()
         
         piece.topic.piece_count += 1
         piece.topic.save()
 
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
-
-    elif valid == 'no':
+    elif valid == 'retry':
+        # The piece needs more work
         piece.rejection_reason = request.POST.get('reason', '')
+        piece.status = 'NEEDSWORK'
+    elif valid == 'no':
         piece.status = 'REJECTED'
 
     piece.save()

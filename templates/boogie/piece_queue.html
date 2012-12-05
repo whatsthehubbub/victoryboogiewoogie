@@ -17,10 +17,17 @@
         </form>
         
         <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
-            <input type="hidden" name="ok" value="no">
+            <input type="hidden" name="ok" value="retry">
             <label for="reason">Reden</label> <input type="text" name="reason">
+            <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
+        </form>
+
+        <form method="POST" action=""> {% csrf_token %}
+            <input type="hidden" name="ok" value="no">
             <input type="submit" class="btn btn-warning" value="Afkeuren">
-        </form></li>
+        </form>
+
+        </li>
     {% endfor %}
     </ol>
     

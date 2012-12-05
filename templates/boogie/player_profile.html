@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block bodyid %}player_profile{% endblock %}
+
 {% block content %}
 	{% ifequal user.username player.user.username  %} 
 		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>

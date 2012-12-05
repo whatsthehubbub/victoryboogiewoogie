@@ -120,8 +120,7 @@ class Piece(models.Model):
                     ('SUBMITTED', 'ingediend'), 
                     ('APPROVED', 'goedgekeurd'), 
                     ('NEEDSWORK', 'needs work'), 
-                    ('REJECTED', 'afgekeurd'),
-                    ('EDITORIAL', 'door schrijver')), default='ASSIGNED')
+                    ('REJECTED', 'afgekeurd')), default='ASSIGNED')
 
     datepublished = models.DateTimeField(blank=True, null=True)
     

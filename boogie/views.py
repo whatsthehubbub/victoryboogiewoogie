@@ -105,8 +105,10 @@ def piece_submit(request):
         if request.method == 'POST':
             form = WriterPieceSubmitForm(request.POST)
             if form.is_valid():
-                form.instance.status = 'EDITORIAL'
-                # This would already be filled in with a Piece stub for a player
+                # We can figure out if a piece was written by a writer by querying JOIN on the author
+                form.instance.status = 'APPROVED'
+                
+                # These fields already be filled in with a Piece stub for a player
                 form.instance.writer = player
                 form.instance.deadline = datetime.datetime.now() # We don't actually use this
                 form.save()

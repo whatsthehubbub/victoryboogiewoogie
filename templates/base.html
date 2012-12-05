@@ -82,19 +82,6 @@
 							{% endif %}
 						</td>
 					{% endfor %}
-					{% comment %}
-					<td {% ifequal week 3 %}class="active"{% endifequal %}>{% if gameWeek >= 1 %}<a href="{% url 'pieces_per_week' gameWeek %}">week 1</a>{% else %}week 1{% endif %}</td>
-
-					<td>{% if gameWeek >= 2 %}<a href="">week 2</a>{% else %}week 2{% endif %}</td>
-					<td {% ifequal week 3 %}class="active"{% endifequal %}>{% if gameWeek >= 3 %}<a href="">week 3</a>{% else %}week 3{% endif %}</td>
-					<td>{% if gameWeek >= 4 %}<a href="">week 4</a>{% else %}week 4{% endif %}</td>
-					<td>{% if gameWeek >= 5 %}<a href="">week 5</a>{% else %}week 5{% endif %}</td>
-					<td>{% if gameWeek >= 6 %}<a href="">week 6</a>{% else %}week 6{% endif %}</td>
-					<td>{% if gameWeek >= 7 %}<a href="">week 7</a>{% else %}week 7{% endif %}</td>
-					<td>{% if gameWeek >= 8 %}<a href="">week 8</a>{% else %}week 8{% endif %}</td>
-					<td>{% if gameWeek >= 9 %}<a href="">week 9</a>{% else %}week 9{% endif %}</td>
-					<td>{% if gameWeek >= 10 %}<a href="">week 10</a>{% else %}week 10{% endif %}</td>
-					{% endcomment %}
 				</tr>
 			</table>
 		</div>

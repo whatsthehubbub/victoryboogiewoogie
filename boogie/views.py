@@ -170,8 +170,7 @@ def piece_validate(request, piece_id):
 
         # Also we need to create a new topic based on this piece
         if piece.new_topic:
-            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
-            t.piece_threshold = t.get_piece_threshold()
+            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic), piece_threshold=Topic.get_piece_threshold())
             t.save()
     elif valid == 'retry':
         # The piece needs more work

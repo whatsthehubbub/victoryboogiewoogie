@@ -188,9 +188,9 @@ def piece_validate(request, piece_id):
     return HttpResponseRedirect(reverse('piece_queue'))
 
 @login_required
+# TODO this url requires superuser
 def pieces_assign(request):
-    players_without = Player.objects.exclude(piece__status='ASSIGNED')
-    # TODO exclude people with a NEEDSWORK piece too
+    players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='NEEDSWORK')
 
     for player in players_without:
         player.get_new_assignment()

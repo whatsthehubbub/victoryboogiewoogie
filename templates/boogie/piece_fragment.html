@@ -1,7 +1,7 @@
 <article id="cover">
 	<h2>[piece title]</h2>
     <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
-	<p class="author">door <a href="">{{ piece.writer.get_name }}</a> op {{ piece.dateublished|date }}</p>
+	<p class="author">door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> op {{ piece.dateublished|date }}</p>
 	<p class="subject">over <a href="">{{ piece.topic.title }}</a></p>
 	<p>{{ piece.text|linebreaks }}</p>
 </article>

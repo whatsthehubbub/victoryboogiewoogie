@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block bodyid %}summary{% endblock %}
+
+{% block content %}
+
+	{% for piece in summary %}
+		<p id="summary_{{ piece.id }}">{{ piece.datecreated }}: {{ piece.content|safe }}</p>
+	{% endfor %}
+
+{% endblock content %}

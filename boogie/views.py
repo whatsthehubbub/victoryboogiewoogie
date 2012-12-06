@@ -24,10 +24,20 @@ def index(request):
     c = RequestContext(request, {
             'topics': Topic.objects.all(),
             'pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
-            'summary': Summary.objects.all().order_by('-datecreated')
+            'summary': Summary.objects.all().order_by('-datecreated')[:3]
     })
     return HttpResponse(t.render(c))
 
+
+@login_required
+def summary(request):
+    t = loader.get_template('boogie/summary.html')
+
+    c = RequestContext(request, {
+        'summary': Summary.objects.all().order_by('-datecreated')
+    })
+
+    return HttpResponse(t.render(c))
 
 @login_required
 def topic_list(request):

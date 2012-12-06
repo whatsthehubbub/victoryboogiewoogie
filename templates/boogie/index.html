@@ -76,8 +76,7 @@
 	<div class="summary">
 		<p><strong>Het verhaal tot nu toe... </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis diam ut urna pretium quis vestibulum elit gravida. Integer convallis aliquam leo vel molestie. Lorem ipsum dolor este lauda... <a href="">lees meer</a></p>
 		{% for piece in summary %}
-		<!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
-		<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">meer</a></p>
+			<p>{{ piece.datecreated }}: {{ piece.content|safe|truncatewords_html:10 }} <a href="{{ piece.get_absolute_url }}">meer</a></p>
 		{% endfor %}
 	</div>
 {% endblock sidebar %}

@@ -2,6 +2,7 @@
 from django.db import models
 from django.db.models import Count
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 import datetime
 
@@ -154,3 +155,6 @@ class Summary(models.Model):
 
     def __unicode__(self):
         return self.content
+
+    def get_absolute_url(self):
+        return reverse('summary') + '#summary_' + str(self.id)

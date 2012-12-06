@@ -50,6 +50,13 @@ class Player(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    @models.permalink
+    def get_absolute_url(self):
+        if self.role == 'WRITER':
+            return ('writer_profile', [self.user.username])
+        else:
+            return ('player_profile', [self.user.username])
+
 
 # Code to create new player classes after registration
 from registration.signals import user_registered

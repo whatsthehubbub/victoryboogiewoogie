@@ -51,7 +51,13 @@
 					<a href="{% url 'writer_profile' user.username %}" class="user player">{{ current_player.pseudonym }}</a>
 				{% endifequal %}
 				{% ifequal current_player.role 'PLAYER' %}
-					<a href="{% url 'player_profile' user.username %}" class="user writer">{{ current_player.pseudonym }}</a>
+					<a href="{% url 'player_profile' user.username %}" class="user writer">
+					{% if current_player.pseudonym %}
+						{{ current_player.pseudonym }}
+					{% else %}
+						{{ current_player.user.username }}
+					{% endif %}
+					</a>
 				{% endifequal %}
 				(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
 			{% else %}

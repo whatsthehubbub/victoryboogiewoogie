@@ -106,7 +106,7 @@ def piece_submit(request):
         if request.method == 'POST':
             form = WriterPieceSubmitForm(request.POST)
             if form.is_valid():
-                # We can figure out if a piece was written by a writer by querying JOIN on the author
+                # We don't need a special status, we can figure out if a piece was written by a writer by querying JOIN on the author
                 form.instance.status = 'APPROVED'
                 
                 # These fields already be filled in with a Piece stub for a player
@@ -115,6 +115,7 @@ def piece_submit(request):
                 form.save()
 
                 form.instance.topic.pool = 'PLAYER'
+                form.instance.topic.piece_threshold += 1
                 form.instance.topic.save()
 
                 # TODO figure out where the piece of the writer would be going to 
@@ -167,7 +168,7 @@ def piece_validate(request, piece_id):
 
         # Also we need to create a new topic based on this piece
         if piece.new_topic:
-            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic), piece_threshold=Topic.get_piece_threshold())
+            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
             t.save()
     elif valid == 'retry':
         # The piece needs more work

@@ -82,7 +82,10 @@ class Topic(models.Model):
 
     # Counts of pieces written and pieces needed for a pool change
     piece_count = models.IntegerField(default=0)
-    piece_threshold = models.IntegerField(default=2)
+
+    # TODO has to be a function of number of writers
+    # and how much work those writers have to do right now
+    piece_threshold = models.IntegerField(default=3)
     
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')
@@ -92,28 +95,11 @@ class Topic(models.Model):
     
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
-
-            # TODO set threshold on switch to PLAYER pool            
-            self.piece_threshold = Topic.get_piece_threshold()
-
             self.pool = 'WRITER'
             self.save()
 
             return True
         return False
-
-    @staticmethod
-    def get_piece_threshold():
-        # After a polo swap back to writers, inspect the total number of players and update the threshold accordingly
-        number_of_players = Player.objects.filter(role='PLAYER').count()
-        # TODO check if this is right, but it should do something
-        if number_of_players > 9:
-            return number_of_players / 3
-        else:
-            return 2
-
-        # TODO has to be a function of number of writers
-        # and how much work those writers have to do right now
 
     @models.permalink
     def get_absolute_url(self):

@@ -44,7 +44,7 @@
 			{% include "boogie/piece_fragment.html" %}
 
 		    <p>Suggesties: {{ piece.rejection_reason }}</p>
-		    <p><a href="">Bewerken</a></p>
+		    <p><a href="{% url 'piece_submit' %}">Bewerken</a></p>
 		{% endfor %}
 	{% endif %}
 	

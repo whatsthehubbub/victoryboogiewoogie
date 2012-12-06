@@ -11,7 +11,7 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('topic', 'frontpage', 'writer', 'genre', 'text', 'new_topic', 'status', 'rejection_reason', 'rating')
+    list_display = ('topic', 'frontpage', 'writer', 'genre', 'title', 'text', 'new_topic', 'status', 'rejection_reason', 'rating')
 admin.site.register(Piece, PieceAdmin)
 
 class SummaryAdmin(admin.ModelAdmin):

@@ -1,6 +1,6 @@
 {% load url from future %}
 <article id="cover">
-	<h2>[piece title]</h2>
+	<h2>{{ piece.title }}</h2>
     <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
 	<p class="author">door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> op {{ piece.dateublished|date }}</p>
     {% ifequal bodyid 'topic_detail' %}

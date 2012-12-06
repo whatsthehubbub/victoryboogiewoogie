@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Piece.title'
         db.add_column('boogie_piece', 'title',
-                      self.gf('django.db.models.fields.TextField')(default='', max_length=255, blank=True),
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True),
                       keep_default=False)
 
 
@@ -63,7 +63,7 @@ class Migration(SchemaMigration):
             'rejection_reason': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'status': ('django.db.models.fields.CharField', [], {'default': "'ASSIGNED'", 'max_length': '255'}),
             'text': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'title': ('django.db.models.fields.TextField', [], {'max_length': '255', 'blank': 'True'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'topic': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['boogie.Topic']"}),
             'writer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['boogie.Player']"})
         },

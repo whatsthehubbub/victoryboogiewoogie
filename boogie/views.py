@@ -89,12 +89,12 @@ def piece_detail(request, id):
 class PieceSubmitForm(ModelForm):
     class Meta:
         model = Piece
-        fields = ('genre', 'text', 'new_topic')
+        fields = ('genre', 'title', 'text', 'new_topic')
 
 class WriterPieceSubmitForm(ModelForm):
     class Meta:
         model = Piece
-        fields = ('topic', 'genre', 'text', 'new_topic')
+        fields = ('topic', 'title', 'genre', 'text')
 
 @login_required
 def piece_submit(request):

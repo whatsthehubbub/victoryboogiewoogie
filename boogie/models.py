@@ -39,7 +39,7 @@ class Player(models.Model):
             return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
     def pieces(self):
-        return Piece.objects.filter(writer=self)
+        return Piece.objects.filter(writer=self).order_by('-datepublished')
 
     def get_name(self):
         if self.role == 'PLAYER':
@@ -117,7 +117,7 @@ class Piece(models.Model):
     writer = models.ForeignKey(Player)
     
     genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay')))
-    title = models.TextField(blank=True, max_length=255)
+    title = models.CharField(blank=True, max_length=255)
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
     

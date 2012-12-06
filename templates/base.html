@@ -35,16 +35,11 @@
 	<header role="banner" class="clearfix">
 		<nav role="navigation" id="navigation">
 			<ul>
-				<li class="active"><a href="{% url 'index' %}">Home</a></li>
-				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-				<li><a href="{% url 'writers' %}">Personages</a></li>
-				<li><a href="{% url 'editors' %}">Spelregels</a></li>
-				{% ifequal current_player.role 'WRITER' %} 
-					<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
-				{% endifequal %}
 				{% if current_player %}
-					<li><a href="{% url 'piece_submit' %}" class="button">Bijdrage schrijven</a></li>
+				<li><a href="{% url 'piece_submit' %}" class="button">Bijdrage schrijven</a></li>
+				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 				{% endif %}
+				<li><a href="{% url 'editors' %}">Spelregels</a></li>
 			</ul>
 		</nav>
 		<div id="dashboard">
@@ -117,7 +112,7 @@
 	
 	<!-- FOOTER -->
 	<footer role="contentinfo" class="clearfix">
-		<p>Copyright © 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a></p>
+		<p>Copyright &copy; 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a> &middot; <a href="{% url 'writers' %}">Personages</a> &middot; <a href="{% url 'topic_list' %}">Onderwerpen</a></p>
 	</footer>
 	<!-- END FOOTER -->
 	

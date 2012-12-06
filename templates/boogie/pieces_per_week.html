@@ -22,11 +22,8 @@
         <strong>Nieuwste</strong>
     {% endifequal %}</p>
 
-    {% for piece in pieces %}
-    <div>
-        <p>{{ piece.text|linebreaks }}</p>
-        <p>Door <a href="">{{ piece.writer.character_name }}</a> op {{ piece.datecreated }}.</p> 
-    </div>
-    {% endfor %}
+	{% for piece in pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% endfor %}
 
 {% endblock %}

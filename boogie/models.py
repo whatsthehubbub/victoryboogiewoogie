@@ -49,6 +49,12 @@ class Player(models.Model):
     def pieces(self):
         return Piece.objects.filter(writer=self)
 
+    def get_name(self):
+        if self.role == 'PLAYER':
+            return self.pseudonym
+        else:
+            return self.character_name
+
     def __unicode__(self):
         return self.user.username
 
@@ -136,7 +142,8 @@ class Piece(models.Model):
     
     def __unicode__(self):
         return '%s by %s' % (str(self.topic), str(self.writer))
-        
+
+
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.piece_detail', [self.id])

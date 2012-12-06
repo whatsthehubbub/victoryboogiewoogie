@@ -36,7 +36,7 @@ header[role="banner"]{padding:1.5em 0 1em;background-image:url(/static/img/logo-
 #calendar td{border-right:1px solid #e6e6e6;}
 #calendar td:last-child{border-right:none;}
 #calendar td.active a:link,#calendar td.active a:visited{color:#000000;}
-#masthead{text-align:center;padding:1.5em 0 0.75em 0;border-bottom:1px solid #000000;margin-bottom:1px;}#masthead ul{margin:0 auto;padding:0;list-style:none;}
+#masthead{text-align:center;padding:1em 0;border-bottom:1px solid #000000;margin-bottom:1px;}#masthead ul{margin:0 auto;padding:0;list-style:none;}
 #masthead li{display:inline;margin:0;padding:0;}
 #masthead a:link,#masthead a:visited{text-decoration:none;color:#000000;}
 #masthead a:hover .char1{color:#fcd600;}
@@ -58,11 +58,11 @@ header[role="banner"]{padding:1.5em 0 1em;background-image:url(/static/img/logo-
 #masthead a:hover .char19{color:#000000;}
 #masthead a:hover .char20{color:#001ef0;}
 #masthead a:hover .char21{color:#000000;}
-#masthead .logo{text-align:center;}#masthead .logo .char17{margin-left:-0.12em;}
-#masthead .logo h1{font-family:"adobe-caslon-pro",georgia,'times new roman',times,serif;display:inline;font-size:2.5em;font-weight:700;}
-#masthead .logo img{width:8px;height:8px;margin:-1em 0.5em 0;}
-#masthead .date{text-align:right;vertical-align:0.4em;}
-#masthead .week{text-align:left;vertical-align:0.4em;}
+#masthead .logo{text-align:center;}
+#masthead .logo h1{font-family:"ff-brokenscript-bc-web",helvetica,arial,sans-serif;display:inline;font-size:2.5em;font-weight:700;}
+#masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;}
+#masthead .date{text-align:right;vertical-align:0.6em;}
+#masthead .week{text-align:left;vertical-align:0.6em;}
 #sidebar{position:relative;display:block;background-color:#ffffff;width:100%;}#sidebar .summary{display:block;list-style:none;padding:0 40px;margin:0;border-top:2px solid #000000;border-bottom:1px solid #000000;margin-bottom:1px;background-color:#ffffff;}
 #content{padding-left:40px;padding-right:40px;border-top:2px solid #000000;border-bottom:2px solid #000000;}
 article{margin-bottom:6em;}article h2{text-align:center;margin-bottom:0.5em;text-transform:capitalize;font-weight:400;}

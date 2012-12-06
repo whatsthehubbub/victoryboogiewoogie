@@ -43,6 +43,7 @@ class Player(models.Model):
 
             new_topic = topics_with_piece_count[0]
 
+        # TODO figure out what to do with the deadline later
         deadline = datetime.datetime.now() + datetime.timedelta(days=7)
         return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
@@ -91,7 +92,8 @@ class Topic(models.Model):
     
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
-            
+
+            # TODO set threshold on switch to PLAYER pool            
             self.piece_threshold = Topic.get_piece_threshold()
 
             self.pool = 'WRITER'
@@ -105,7 +107,13 @@ class Topic(models.Model):
         # After a polo swap back to writers, inspect the total number of players and update the threshold accordingly
         number_of_players = Player.objects.filter(role='PLAYER').count()
         # TODO check if this is right, but it should do something
-        return number_of_players / 3
+        if number_of_players > 9:
+            return number_of_players / 3
+        else:
+            return 2
+
+        # TODO has to be a function of number of writers
+        # and how much work those writers have to do right now
 
     @models.permalink
     def get_absolute_url(self):

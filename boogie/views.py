@@ -135,9 +135,6 @@ def piece_submit(request):
                     # The piece has been submitted into the bowels of the system
                     form.instance.status = 'SUBMITTED'
                     form.save()
-                    
-                    # Give this person a new assignment
-                    tasks.get_new_assignment.delay(form.instance.writer)
 
                     return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
             else:
@@ -179,13 +176,21 @@ def piece_validate(request, piece_id):
     elif valid == 'no':
         piece.status = 'REJECTED'
 
+        # TODO get new assignment
+
     piece.save()
+
+
+    # 
+    # Give this person a new assignment
+    tasks.get_new_assignment.delay(form.instance.writer)
         
     return HttpResponseRedirect(reverse('piece_queue'))
 
 @login_required
 def pieces_assign(request):
     players_without = Player.objects.exclude(piece__status='ASSIGNED')
+    # TODO exclude people with a NEEDSWORK piece too
 
     for player in players_without:
         player.get_new_assignment()

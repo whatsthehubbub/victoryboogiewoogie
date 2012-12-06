@@ -5,8 +5,7 @@
 {% block content %}
     
     {% for piece in pieces %}
-        <h2>Stuk bij {{ piece.topic.title }}</h2>
-        {{ piece.text }}
+	    {% include "boogie/piece_fragment.html" %}
     {% endfor %}
     
 {% endblock %}

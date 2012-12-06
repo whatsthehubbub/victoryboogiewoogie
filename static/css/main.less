@@ -265,7 +265,6 @@ header[role="banner"] {
 	background-size: 120px 120px;
 	box-shadow: 0px -2px 4px fade(@black, 25%);
 	min-height: 600px;
-	padding-bottom: 4em;
 }
 
 #calendar {
@@ -408,13 +407,14 @@ header[role="banner"] {
 	display: block;
 	background-color: @white;
 	width: 100%;
-	
 	.summary {
 		display: block;
 		list-style: none;
 		padding: 0 40px;
 		margin: 0;
 		border-top: 2px solid @black;
+		border-bottom: 1px solid @black;
+		margin-bottom: 1px;
 		background-color: @white;
 	}
 }
@@ -422,7 +422,8 @@ header[role="banner"] {
 #content {
 	padding-left: 40px;
 	padding-right: 40px;
-	border-top: 1px solid @black;
+	border-top: 2px solid @black;
+	border-bottom: 2px solid @black;
 }
 
 article {
@@ -502,11 +503,10 @@ article {
 }
 
 #footer {
-	border-top: 1px dashed @lgrey;
-	padding-left: 30px;
-	padding-right: 30px;
-	margin-left: -30px;
-	margin-right: -30px;
+	text-align: center;
+	margin-top: 1px;
+	border-top: 1px solid @black;
+	padding-top: 0.25em;
 	p {
 		color: @mgrey;
 	}

@@ -1,43 +1,88 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block bodyid %}home{% endblock %}
+
 {% block content %}
-
-    <!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
-    <div class="piece">
-        <h2>[piece title]</h2>
-        <a href=""><img src="piece-author-profile-pic.png" alt="[piece author name]" title="[piece author name]" /></a>
-        <p>door <a href="">[piece author name]</a> op [piece publish date]</p>
-        <p><a href="">[piece subject]</a></p>
-        <img src="optional-piece-illustration.png" alt="" title="" />
-        <p>[piece text]</p>
-    </div>
-    
-    <!-- TODO: Hook this up to characters played by writers. -->
-    <div id="personages">
-        <h2>De personages</h2>
-	    <div class="character">
-	       <a href=""><img src="character-profile-pic.png" alt="Character Name" title="Character Name" />       		
-	       <h3>Character Name</h3>
-	       <p>One line character bio.</p></a>
-	    </div>
-	</div>
+	<!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
+	<article id="cover">
+		<h2>[piece title]</h2>
+		<img src="optional-piece-illustration.png" class="poster" alt="">
+		<p class="author">door <a href="">[piece author name]</a> op [piece publish date]</p>
+		<p class="subject"><a href="">[piece subject]</a></p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis diam ut urna pretium quis vestibulum elit gravida. Integer convallis aliquam leo vel molestie. Quisque nec risus eget ante elementum mattis in ut sem. Praesent fermentum varius libero eget rhoncus. Fusce at porta quam. Aliquam congue est ac nulla malesuada vitae facilisis leo hendrerit. Pellentesque scelerisque velit in massa suscipit a bibendum lacus volutpat. Nunc sed tortor quam, eu mollis odio. Vestibulum tincidunt ullamcorper est, at mollis elit convallis eu. Vivamus ipsum quam, accumsan eu placerat ac, egestas a odio. Fusce blandit augue sed arcu bibendum suscipit</p>
+	</article>
 	
-
+	<!-- TODO: Hook this up to characters played by writers. -->
+	<section id="characters">
+		<h2>De personages</h2>
+		<ul>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio lorem ipsum dolor.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio este lauda.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio durum es lorem.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio sit amet.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio sit amet.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio sit amet.</p>
+				</a>
+			</li>
+			<li>
+				<a href="" title="Character Name">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
+					<h3>Character name</h3>
+					<p>One line character bio sit amet.</p>
+				</a>
+			</li>
+		</ul>
+	</section>	
 {% endblock %}
 
 {% block sidebar %}
-	<div class="fold"><div></div></div>
-	<table class="summary">
-		<tr>
-			<th class="title"><h1>Het verhaal tot nu toe&hellip;</h1></th>
-			<th class="copy">
-				{% for piece in summary %}
-                <!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
-					<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">Meer&hellip;
-</a></p>
-				{% endfor %}
-			</th>
-        </tr>
-	</table>
+	<div class="summary">
+		<p><strong>Het verhaal tot nu toe... </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis diam ut urna pretium quis vestibulum elit gravida. Integer convallis aliquam leo vel molestie. Lorem ipsum dolor este lauda... <a href="">lees meer</a></p>
+		{% for piece in summary %}
+		<!-- TODO: Only show the latest summary and limit it to a few lines, more link points to summaries page. -->
+		<p>{{ piece.datecreated }}: {{ piece.content|safe }} <a href="">meer</a></p>
+		{% endfor %}
+	</div>
 {% endblock sidebar %}

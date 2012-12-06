@@ -16,5 +16,8 @@ $(document).ready(function(){
 		})
 		.blur().addClass("active");
 	});
+	
+	// fancify logo
+	$(".logo h1").lettering();
 
 });

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block bodyid %}writer_profile{% endblock %}
+
 {% block content %}
     <img src="character-profile-pic.png" alt="{{ writer.character_name }}" title="{{ writer.character_name}}" />
 

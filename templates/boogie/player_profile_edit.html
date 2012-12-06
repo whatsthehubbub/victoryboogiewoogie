@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block bodyid %}player_profile_ed{% endblock %}
+
 {% block content %}
 	
 	<form method="POST" action="{% url 'player_profile_edit' user.username %}">

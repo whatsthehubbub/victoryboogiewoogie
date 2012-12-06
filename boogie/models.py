@@ -55,7 +55,7 @@ class Player(models.Model):
 from registration.signals import user_registered
 
 def create_player(sender, user, request, **kwarg):
-    Player.objects.create(user=user)
+    Player.objects.create(user=user) # Default role is player
     # new players get an assignment directly
     # TODO figure out what to do about created writers
     player.get_new_assignment()

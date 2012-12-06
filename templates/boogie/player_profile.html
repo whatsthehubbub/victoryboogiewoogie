@@ -41,7 +41,7 @@
 
 		<ol>
 		{% for piece in needswork_pieces %}
-		    <li>{{ piece.text|linebreaks }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)<p>Suggesties: {{ piece.rejection_reason }}</p></li>
+		    <li>{{ piece.text|linebreaks }} (Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a>.)<p>Suggesties: {{ piece.rejection_reason }}</p><p><a href="">Bewerken</a></p></li>
 		{% endfor %}
 		</ol>
 	{% endif %}

@@ -38,12 +38,19 @@
 		<nav role="navigation" id="navigation">
 			<ul>
 				<li><a href="{% url 'index' %}">Home</a></li>
+
 				{% if current_player %}
-				<li><a href="{% url 'piece_submit' %}" class="button">{{ current_status }}</a></li>
+					<li>
+						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}
+							{{ current_status }}
+						{% if current_url %}</a>{% endif %}
+					</li>
 				{% endif %}
+
 				{% ifequal current_player.role 'WRITER' %}
-				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
+					<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 				{% endifequal %}
+				
 				<li><a href="{% url 'editors' %}">Spelregels</a></li>
 			</ul>
 		</nav>

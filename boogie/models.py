@@ -43,9 +43,12 @@ class Player(models.Model):
 
     def get_name(self):
         if self.role == 'PLAYER':
-            return self.pseudonym
+            if self.pseudonym:
+                return self.pseudonym
         else:
-            return self.character_name
+            if self.character_name:
+                return self.character_name
+        return self.user.username
 
     def __unicode__(self):
         return self.user.username

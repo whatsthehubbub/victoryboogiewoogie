@@ -49,18 +49,8 @@
 		</nav>
 		<div id="dashboard">
 			{% if current_player %}
-				{% ifequal current_player.role 'WRITER' %}
-					<a href="{% url 'writer_profile' user.username %}" class="user player">{{ current_player.pseudonym }}</a>
-				{% endifequal %}
-				{% ifequal current_player.role 'PLAYER' %}
-					<a href="{% url 'player_profile' user.username %}" class="user writer">
-					{% if current_player.pseudonym %}
-						{{ current_player.pseudonym }}
-					{% else %}
-						{{ current_player.user.username }}
-					{% endif %}
-					</a>
-				{% endifequal %}
+				<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a>
+
 				(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
 			{% else %}
 				<a href="{% url 'login' %}" class="login button">Inloggen</a>

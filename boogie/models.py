@@ -30,22 +30,13 @@ class Player(models.Model):
     def get_new_assignment(self):
         if self.role == 'WRITER':
             return # Writers don't get new assignments this way
-
-        empty_topics = Topic.objects.exclude(pool='WRITER').exclude(piece__writer=self).exclude(piece__status='APPROVED').order_by('?')
-
-        if empty_topics:
-            # If there are topics that don't have an assignee, get one of those
-            # TODO remove this query because at large numbers this is bound not to happen anyway
-            # TODO figure out a more generic query to catch both cases
-            new_topic = empty_topics[0]
         else:
-            topics_with_piece_count = Topic.objects.exclude(pool='WRITER').filter(piece__status='APPROVED').annotate(num_pieces=Count('piece')).order_by('num_pieces')
+            # TODO Check if you can get a new topic for which you are already writing
+            new_topic = Topic.objects.exclude(pool='WRITER').order_by('?')[0]
 
-            new_topic = topics_with_piece_count[0]
-
-        # TODO figure out what to do with the deadline later
-        deadline = datetime.datetime.now() + datetime.timedelta(days=7)
-        return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+            # TODO figure out what to do with the deadline later
+            deadline = datetime.datetime.now() + datetime.timedelta(days=7)
+            return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
     def pieces(self):
         return Piece.objects.filter(writer=self)

@@ -58,7 +58,7 @@ def piece_list(request):
     t = loader.get_template('boogie/piece_list.html')
     
     c = RequestContext(request, {
-            'pieces': Piece.objects.all()
+            'pieces': Piece.objects.filter(status='APPROVED')
     })
     return HttpResponse(t.render(c))
 

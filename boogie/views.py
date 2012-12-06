@@ -166,7 +166,10 @@ def piece_validate(request, piece_id):
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
 
-        # Also we need to create a new topic based on this piece
+        # Give this player a new assignment
+        tasks.get_new_assignment.delay(piece.writer)
+
+        # Also we need to create a new topic based on this approved piece
         if piece.new_topic:
             t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
             t.save()
@@ -177,14 +180,10 @@ def piece_validate(request, piece_id):
     elif valid == 'no':
         piece.status = 'REJECTED'
 
-        # TODO get new assignment
+        # Give this player a new assignment
+        tasks.get_new_assignment.delay(piece.writer)
 
     piece.save()
-
-
-    # 
-    # Give this person a new assignment
-    tasks.get_new_assignment.delay(form.instance.writer)
         
     return HttpResponseRedirect(reverse('piece_queue'))
 

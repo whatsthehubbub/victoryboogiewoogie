@@ -40,8 +40,10 @@
 				<li><a href="{% url 'index' %}">Home</a></li>
 				{% if current_player %}
 				<li><a href="{% url 'piece_submit' %}" class="button">Bijdrage schrijven</a></li>
-				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 				{% endif %}
+				{% ifequal current_player.role 'WRITER' %}
+				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
+				{% endifequal %}
 				<li><a href="{% url 'editors' %}">Spelregels</a></li>
 			</ul>
 		</nav>
@@ -99,11 +101,11 @@
 				<ul>
 					<li class="date">10 mei 2013</li>
 					<li class="logo">
+						<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 						<a href="{% url 'index' %}" title="Home">
-							<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 							<h1>Victory Boogie Woogie</h1>
-							<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 						</a>
+						<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 					</li>
 					<li class="week">Week {{ gameWeek }} van 10</li>
 				</ul>
@@ -126,7 +128,11 @@
 			
 			<!-- FOOTER -->
 			<footer id="footer" role="contentinfo" class="clearfix">
-				<p>Copyright © 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a> | <a href="{% url 'writers' %}">Personages</a> | <a href="{% url 'topic_list' %}">Onderwerpen</a></p>
+				<p>Copyright © 2012-2013 <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://whatsthehubbub.nl/" title="Hubbub">Hubbub</a></p>
+				<ul>
+					<li><a href="{% url 'writers' %}">Personages</a></li>
+					<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+				</ul>
 			</footer>
 			<!-- END FOOTER -->
 			

@@ -3,8 +3,11 @@
 	<h2>{{ piece.title }}</h2>
     <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
 	<p class="author">door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> op {{ piece.dateublished|date }}</p>
-    {% ifequal bodyid 'topic_detail' %}
-	<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
-	{% endifequal %}
+    
+    {{ bodyid }}
+    {% comment %}{% ifequal bodyid 'topic_detail' %}{% endcomment %}
+		<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
+	{% comment %}{% endifequal %}{% endcomment %}
+	
 	<p>{{ piece.text|linebreaks }}</p>
 </article>

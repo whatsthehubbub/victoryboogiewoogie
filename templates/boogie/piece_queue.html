@@ -8,25 +8,24 @@
     
     <ol>
     {% for piece in pieces %}
-        <li><p>Bijdrage over: {{ piece.topic.title }}</p>
+        {% include "boogie/piece_fragment.html" %}
         
-        <p>Tekst: {{ piece.text|linebreaks }}</p>
         <p>Nieuw onderwerp: {{ piece.new_topic }}</p>
-        
+
         <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
             <input type="hidden" name="ok" value="yes">
             <input type="submit" class="btn btn-success" value="Goedkeuren">
-        </form>
-        
-        <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
-            <input type="hidden" name="ok" value="retry">
-            <label for="reason">Reden</label> <input type="text" name="reason">
-            <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
         </form>
 
         <form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
             <input type="hidden" name="ok" value="no">
             <input type="submit" class="btn btn-warning" value="Afkeuren">
+        </form>
+        
+        <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
+            <input type="hidden" name="ok" value="retry">
+            <label for="reason">Motivatie</label> <input type="text" name="reason">
+            <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
         </form>
 
         </li>

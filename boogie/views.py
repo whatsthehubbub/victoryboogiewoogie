@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from boogie.models import *
 
@@ -187,15 +187,16 @@ def piece_validate(request, piece_id):
         
     return HttpResponseRedirect(reverse('piece_queue'))
 
-@login_required
-# TODO this url requires superuser
+@user_passes_test(lambda u: u.is_superuser)
 def pieces_assign(request):
     players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='NEEDSWORK')
 
+    counter = 0
     for player in players_without:
         player.get_new_assignment()
+        counter += 1
 
-    return HttpResponse('1')
+    return HttpResponse('Spelers met een nieuwe opdracht: %d' % counter)
 
 @login_required
 @require_POST

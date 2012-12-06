@@ -4,14 +4,15 @@
 {% block bodyid %}home{% endblock %}
 
 {% block content %}
-	<!-- TODO: Just show a number of pieces as selected by the admins in the backend, latest piece first. -->
-	<article id="cover">
-		<h2>[piece title]</h2>
-		<img src="optional-piece-illustration.png" class="poster" alt="">
-		<p class="author">door <a href="">[piece author name]</a> op [piece publish date]</p>
-		<p class="subject"><a href="">[piece subject]</a></p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis diam ut urna pretium quis vestibulum elit gravida. Integer convallis aliquam leo vel molestie. Quisque nec risus eget ante elementum mattis in ut sem. Praesent fermentum varius libero eget rhoncus. Fusce at porta quam. Aliquam congue est ac nulla malesuada vitae facilisis leo hendrerit. Pellentesque scelerisque velit in massa suscipit a bibendum lacus volutpat. Nunc sed tortor quam, eu mollis odio. Vestibulum tincidunt ullamcorper est, at mollis elit convallis eu. Vivamus ipsum quam, accumsan eu placerat ac, egestas a odio. Fusce blandit augue sed arcu bibendum suscipit</p>
-	</article>
+	{% for piece in pieces %}
+		<article id="cover">
+			<h2>[piece title]</h2>
+			<img src="optional-piece-illustration.png" class="poster" alt="">
+			<p class="author">door <a href="">{{ piece.writer.pseudonym }}</a> op {{ piece.dateublished|date }}</p>
+			<p class="subject"><a href="">{{ piece.topic.title }}</a></p>
+			<p>{{ piece.text|linebreaks }}</p>
+		</article>		
+	{% endfor %}
 	
 	<!-- TODO: Hook this up to characters played by writers. -->
 	<section id="characters">

@@ -24,7 +24,7 @@
             <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
         </form>
 
-        <form method="POST" action=""> {% csrf_token %}
+        <form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
             <input type="hidden" name="ok" value="no">
             <input type="submit" class="btn btn-warning" value="Afkeuren">
         </form>

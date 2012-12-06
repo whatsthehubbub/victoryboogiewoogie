@@ -5,13 +5,7 @@
 
 {% block content %}
 	{% for piece in pieces %}
-		<article id="cover">
-			<h2>[piece title]</h2>
-			<img src="optional-piece-illustration.png" class="poster" alt="">
-			<p class="author">door <a href="">{{ piece.writer.pseudonym }}</a> op {{ piece.dateublished|date }}</p>
-			<p class="subject"><a href="">{{ piece.topic.title }}</a></p>
-			<p>{{ piece.text|linebreaks }}</p>
-		</article>		
+		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
 	
 	<!-- TODO: Hook this up to characters played by writers. -->

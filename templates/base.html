@@ -39,7 +39,7 @@
 			<ul>
 				<li><a href="{% url 'index' %}">Home</a></li>
 				{% if current_player %}
-				<li><a href="{% url 'piece_submit' %}" class="button">Bijdrage schrijven</a></li>
+				<li><a href="{% url 'piece_submit' %}" class="button">{{ current_status }}</a></li>
 				{% endif %}
 				{% ifequal current_player.role 'WRITER' %}
 				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>

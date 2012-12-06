@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.db.models import Q
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -125,9 +126,10 @@ def piece_submit(request):
 
         form.fields['topic'].queryset = Topic.objects.all().filter(pool='WRITER')
     else:
-        # piece = Piece.objects.get(id=piece_id)
-        assignments = Piece.objects.filter(status='ASSIGNED').filter(writer__user=request.user)
+        assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
         if assignments:
+            # TODO this doesn't go too well if we have more than one assignment
+            # TODO make sure that never happens
             piece = assignments[0]
 
             if request.method == 'POST':
@@ -166,8 +168,8 @@ def piece_validate(request, piece_id):
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
 
-        # Give this player a new assignment
-        tasks.get_new_assignment.delay(piece.writer)
+        # Don't give this player a new assignment
+        # tasks.get_new_assignment.delay(piece.writer)
 
         # Also we need to create a new topic based on this approved piece
         if piece.new_topic:
@@ -180,8 +182,8 @@ def piece_validate(request, piece_id):
     elif valid == 'no':
         piece.status = 'REJECTED'
 
-        # Give this player a new assignment
-        tasks.get_new_assignment.delay(piece.writer)
+        # Don't give this player a new assignment
+        # tasks.get_new_assignment.delay(piece.writer)
 
     piece.save()
         

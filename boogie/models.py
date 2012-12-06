@@ -96,6 +96,7 @@ class Topic(models.Model):
     
     def check_pool(self):
         if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
+            self.piece_count = 0
             self.pool = 'WRITER'
             self.save()
 

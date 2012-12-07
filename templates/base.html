@@ -37,13 +37,11 @@
 	<header role="banner" class="clearfix">
 		<nav role="navigation" id="navigation">
 			<ul>
-				<li><a href="{% url 'index' %}">Home</a></li>
+				<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
 
 				{% if current_player %}
 					<li>
-						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}
-							{{ current_status }}
-						{% if current_url %}</a>{% endif %}
+						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
 					</li>
 				{% endif %}
 

@@ -102,13 +102,19 @@ a:hover {
 a:link.button, a:visited.button {
 	background-color: @lblue;
 	padding: 5px 10px 1px;
-	color: @wgrey;
+	color: @white;
 	text-decoration: none;
-	//.rounded-corners;
+	.rounded-corners;
 }
 
 a:hover.button {
 	color: @white;
+	box-shadow: 0px 1px 2px fade(@black, 50%);
+}
+
+a:active.button {
+	box-shadow: inset 0px 1px 2px fade(@black, 50%);
+	background-color: @mblue;
 }
 
 /*
@@ -224,6 +230,9 @@ header[role="banner"] {
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 40px 40px;
+	a:link, a:visited {
+		text-decoration: none;
+	}
 }
 
 #navigation {
@@ -237,19 +246,15 @@ header[role="banner"] {
 		display: inline;
 		margin-left: 1em;
 	}
+	li.ss-icon {
+		vertical-align: -0.1em;
+	}
 	li.active a:link, li.active a:visited {
 		font-weight: 700;
 		color: @black;
 	}
 	ul li:first-child {
 		margin-left: 0;
-	}
-	a:link, a:visited {
-		color: @dgrey;
-		text-decoration: none;
-	}
-	a:hover {
-		color: @lblue;
 	}
 }
 

@@ -24,7 +24,7 @@ def index(request):
     c = RequestContext(request, {
             'topics': Topic.objects.all(),
             'pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
-            'summary': Summary.objects.all().order_by('-datecreated')[:3]
+            'summary': Summary.objects.all().order_by('-datecreated')[0]
     })
     return HttpResponse(t.render(c))
 

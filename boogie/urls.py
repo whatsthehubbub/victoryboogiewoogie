@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)/(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', name='password_reset_confirm'),
     url(r'^password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
 
-    url(r'editors/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/editors.html'}, name='editors'),
-    url(r'summary/$', 'boogie.views.summary', name='summary'),
+    url(r'^editors/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/editors.html'}, name='editors'),
+    url(r'^summary/$', 'boogie.views.summary', name='summary'),
 
     url(r'topics/$', 'boogie.views.topic_list', name='topic_list'),
     url(r'topics/(\d+)/(\S+?)/$', 'boogie.views.topic_detail', name="topic_detail"),

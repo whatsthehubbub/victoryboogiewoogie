@@ -6,7 +6,7 @@
 {% block content %}
 <ul>	
     {% for writer in writers %}
-    <li><a href="{% url 'writer_profile' writer.user.username %}">{{ writer.user.username }}</a></li>
+    <li><a href="{% url 'writer_profile' writer.user.username %}">{{ writer.character_name }}</a></li>
     {% endfor %}
 </ul>	
 {% endblock content %}

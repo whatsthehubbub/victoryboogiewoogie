@@ -11,64 +11,17 @@
 	<!-- TODO: Hook this up to characters played by writers. -->
 	<section id="characters">
 		<h2>De personages</h2>
-		<ul>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio.</p>
+        <ul>	
+            {% for writer in writers %}
+            <li>
+				<a href="{% url 'writer_profile' writer.user.username %}" title="{{ writer.character_name }}">
+					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="{{ writer.character_name }}">
+					<h3>{{ writer.character_name }}</h3>
+					<p>{{ writer.onelinebio }}</p>
 				</a>
 			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio lorem ipsum dolor.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio este lauda.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio durum es lorem.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-		</ul>
+            {% endfor %}
+        </ul>
 	</section>	
 {% endblock %}
 

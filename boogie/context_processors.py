@@ -16,7 +16,7 @@ def player(request):
         try:
             returnDict['current_player'] = Player.objects.get(user=request.user)
         except ObjectDoesNotExist:
-            pass
+            returnDict['current_player'] = Player.objects.create(user=request.user, role="PLAYER")
 
         # TODO figure out a way to make this performant
 

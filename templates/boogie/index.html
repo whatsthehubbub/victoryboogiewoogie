@@ -75,7 +75,7 @@
 {% block sidebar %}
 	{% if summary %}
 	<div class="summary">
-		<p><strong>Het verhaal tot nu toe... </strong> {{ summary.0.content|safe|truncatewords_html:10 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a></p>
+		<p><strong>Het verhaal tot nu toe... </strong> {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a></p>
 	</div>
 	{% endif %}
 {% endblock sidebar %}

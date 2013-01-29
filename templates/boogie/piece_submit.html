@@ -19,6 +19,7 @@
         <p>Deadline</p>
         <p>{{ form.instance.deadline|date }}</p>
         <p>Voortgang tot gebeurtenis</p>
+        <p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
         <img src="progress-bar.png" alt="{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}" title="{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}" />
 	{% endifequal %}    
 

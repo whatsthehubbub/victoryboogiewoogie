@@ -2,6 +2,8 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
     url(r'^$', 'boogie.views.index', name='index'),
+
+    url(r'^pre/launch/$', 'boogie.views.pre_launch', name='pre_launch'),
     
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),

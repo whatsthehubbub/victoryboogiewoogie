@@ -17,17 +17,28 @@ from boogie.models import *
 # https://devcenter.heroku.com/articles/django#hellodjangosettingspy
 from boogie import tasks
 
-@login_required
-def index(request):
-    t = loader.get_template('boogie/index.html')
-    
-    c = RequestContext(request, {
-            'topics': Topic.objects.all(),
-            'pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
-            'summary': Summary.objects.all().order_by('-datecreated')
-    })
-    return HttpResponse(t.render(c))
 
+def index(request):
+    if request.user.is_authenticated():
+        t = loader.get_template('boogie/index.html')
+        
+        c = RequestContext(request, {
+                'topics': Topic.objects.all(),
+                'pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+                'summary': Summary.objects.all().order_by('-datecreated')
+        })
+
+        return HttpResponse(t.render(c))
+    else:
+        return HttpResponseRedirect(reverse('boogie.views.pre_launch'))
+
+def pre_launch(request):
+    t = loader.get_template('boogie/pre_launch.html')
+        
+    c = RequestContext(request, {
+    })
+
+    return HttpResponse(t.render(c))
 
 @login_required
 def summary(request):

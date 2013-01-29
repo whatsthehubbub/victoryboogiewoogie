@@ -6,5 +6,5 @@
 
 	<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
 
-	<p>{{ piece.text|linebreaks }}</p>
+	<p>{{ piece.text|safe|linebreaks }}</p>
 </article>

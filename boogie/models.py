@@ -3,9 +3,10 @@ from django.db import models
 from django.db.models import Count
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.utils.timezone import utc
 
 import datetime
-
+import math
 
 class Player(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)
@@ -36,7 +37,7 @@ class Player(models.Model):
             new_topic = Topic.objects.exclude(pool='WRITER').order_by('?')[0]
 
             # TODO figure out what to do with the deadline later
-            deadline = datetime.datetime.now() + datetime.timedelta(days=7)
+            deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
             return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
     def pieces(self):
@@ -66,7 +67,7 @@ class Player(models.Model):
 from registration.signals import user_registered
 
 def create_player(sender, user, request, **kwarg):
-    Player.objects.create(user=user) # Default role is player
+    player = Player.objects.create(user=user) # Default role is player
     # new players get an assignment directly
     # TODO figure out what to do about created writers
     player.get_new_assignment()
@@ -145,6 +146,39 @@ class Piece(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.piece_detail', [self.id])
+
+    def vote_up(self, player):
+        if not PieceVote.vote_exists(player, self):
+            PieceVote.objects.create(player=player, piece=self)
+
+            # TODO do updating of metrics
+
+    def score(self):
+        # TODO change this into
+        # (likes - 1) / (hours_since_publication + 2) ^ 1.5
+
+        # TODO probably denormalize this into a database field
+        if self.status == 'APPROVED':
+            timedelta = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
+            hours = timedelta.days * 24 + timedelta.seconds / 3600
+            likes = PieceVote.objects.filter(piece=self).count()
+
+            return (likes - 1) / math.pow(hours+2, 1.5)
+        else:
+            return 0
+
+class PieceVote(models.Model):
+    # This counts votes up
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    player = models.ForeignKey(Player)
+    piece = models.ForeignKey(Piece)
+
+    @staticmethod
+    def vote_exists(player, piece):
+        return PieceVote.objects.filter(player=player, piece=piece).count() > 0
+
 
 
 class Summary(models.Model):

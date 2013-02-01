@@ -225,7 +225,12 @@ def pieces_assign(request):
 @require_POST
 def piece_vote_up(request, piece_id):
     piece = Piece.objects.get(id=piece_id)
-    # TODO implement a suitable voting algorithm
+
+    player = Player.objects.get(user=request.user)
+
+    piece.vote_up(player)
+
+    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
     
 
 @login_required    

@@ -14,6 +14,10 @@ class PieceAdmin(admin.ModelAdmin):
     list_display = ('topic', 'frontpage', 'writer', 'genre', 'title', 'text', 'new_topic', 'status', 'rejection_reason', 'rating')
 admin.site.register(Piece, PieceAdmin)
 
+class PieceVoteAdmin(admin.ModelAdmin):
+    list_display = ('player', 'piece')
+admin.site.register(PieceVote, PieceVoteAdmin)
+
 class SummaryAdmin(admin.ModelAdmin):
-	list_display = ('datecreated', 'content')
+    list_display = ('datecreated', 'content')
 admin.site.register(Summary, SummaryAdmin)

@@ -1,4 +1,6 @@
 {% load url from future %}
+{% load piece_extras %}
+
 <article id="cover">
 	<h2>{{ piece.title }}</h2>
     <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
@@ -7,4 +9,17 @@
 	<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
 
 	<p>{{ piece.text|linebreaks }}</p>
+
+	<p>Score: {{ piece.score }}</p>
+
+	{% if current_player|likes:piece %}
+		You already like this piece.
+	{% else %}
+		
+		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
+			{% csrf_token %}
+			<input type="submit" value="Like">
+		</form>
+	{% endif %}
+
 </article>

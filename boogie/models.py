@@ -74,6 +74,12 @@ def create_player(sender, user, request, **kwarg):
 user_registered.connect(create_player)
 
 
+class PreLaunchEmail(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    email = models.EmailField()
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=255)
@@ -172,7 +178,7 @@ class Piece(models.Model):
     def update_score_cache(self):
         self.score_cache = self.score()
         self.save()
-        
+
 
 class PieceVote(models.Model):
     # This counts votes up

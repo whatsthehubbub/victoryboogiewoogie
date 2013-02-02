@@ -32,12 +32,27 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse('boogie.views.pre_launch'))
 
+
+class PreLaunchEmailForm(ModelForm):
+    class Meta:
+        model = PreLaunchEmail
+        fields = ('email', )
+
 def pre_launch(request):
     t = loader.get_template('boogie/pre_launch.html')
-        
-    c = RequestContext(request, {
-    })
+    
+    if request.method == 'POST':
+        form = PreLaunchEmailForm(request.POST)
 
+        if form.is_valid():
+            new_email = form.save()
+            return HttpResponseRedirect(reverse('pre_launch_thanks'))
+    else:
+        form = PreLaunchEmailForm()
+
+    c = RequestContext(request, {
+        'form': form
+    })
     return HttpResponse(t.render(c))
 
 @login_required

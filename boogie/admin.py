@@ -21,3 +21,7 @@ admin.site.register(PieceVote, PieceVoteAdmin)
 class SummaryAdmin(admin.ModelAdmin):
     list_display = ('datecreated', 'content')
 admin.site.register(Summary, SummaryAdmin)
+
+class PreLaunchEmailAdmin(admin.ModelAdmin):
+	list_display = ('email', )
+admin.site.register(PreLaunchEmail, PreLaunchEmailAdmin)

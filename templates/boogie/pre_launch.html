@@ -2,4 +2,11 @@
 
 {% block content %}
 	<p>Schrijf je in hier om op de hoogte gehouden te worden als het spel live gaat.</p>
+
+	<form method="POST" action="">
+		{% csrf_token %}
+		{{ form.as_p }}
+
+		<input type="submit" value="Stuur op">
+	</form>
 {% endblock content %}

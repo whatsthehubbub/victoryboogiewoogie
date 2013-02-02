@@ -4,6 +4,7 @@ urlpatterns = patterns('',
     url(r'^$', 'boogie.views.index', name='index'),
 
     url(r'^pre/launch/$', 'boogie.views.pre_launch', name='pre_launch'),
+    url(r'^pre/launch/thanks/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/pre_launch_thanks.html'}, name='pre_launch_thanks'),
     
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),

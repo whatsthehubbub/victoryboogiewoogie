@@ -11,12 +11,12 @@
 
 <p>Sorteren: 
     {% ifequal order '-datecreated' %} 
-        <a href="?order=-rating">Beste</a>
+        <a href="?order=-score_cache">Beste</a>
     {% else %}
         <strong>Beste</strong>
     {% endifequal %}
     |
-    {% ifequal order '-rating' %} 
+    {% ifequal order '-score_cache' %} 
         <a href="?order=-datecreated">Nieuwste</a>
     {% else %}
         <strong>Nieuwste</strong>

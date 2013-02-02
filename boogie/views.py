@@ -105,11 +105,14 @@ def pieces_per_week(request, week):
     weekStart = settings.GAME_START + datetime.timedelta(week * 7)
     weekEnd = settings.GAME_START + datetime.timedelta((week + 1) * 7)
 
+    order_crit = request.GET.get('order', '-score_cache')
+
     t = loader.get_template('boogie/pieces_per_week.html')
 
     c = RequestContext(request, {
-        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd).order_by('-score_cache'),
-        'week': week
+        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd).order_by(order_crit),
+        'week': week,
+        'order': order_crit
     })
 
     return HttpResponse(t.render(c))

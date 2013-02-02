@@ -153,6 +153,8 @@ class Piece(models.Model):
 
             # TODO do updating of metrics
 
+    score_cache = models.FloatField(default=0.0)
+
     def score(self):
         # TODO change this into
         # (likes - 1) / (hours_since_publication + 2) ^ 1.5
@@ -166,6 +168,11 @@ class Piece(models.Model):
             return (likes - 1) / math.pow(hours+2, 1.5)
         else:
             return 0
+
+    def update_score_cache(self):
+        self.score_cache = self.score()
+        self.save()
+        
 
 class PieceVote(models.Model):
     # This counts votes up

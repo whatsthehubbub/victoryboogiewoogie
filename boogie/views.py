@@ -80,7 +80,7 @@ def piece_list(request):
     t = loader.get_template('boogie/piece_list.html')
     
     c = RequestContext(request, {
-            'pieces': Piece.objects.filter(status='APPROVED')
+            'pieces': Piece.objects.filter(status='APPROVED').order_by('-score_cache')
     })
     return HttpResponse(t.render(c))
 
@@ -93,7 +93,7 @@ def pieces_per_week(request, week):
     t = loader.get_template('boogie/pieces_per_week.html')
 
     c = RequestContext(request, {
-        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd),
+        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd).order_by('-score_cache'),
         'week': week
     })
 
@@ -229,6 +229,7 @@ def piece_vote_up(request, piece_id):
     player = Player.objects.get(user=request.user)
 
     piece.vote_up(player)
+    piece.update_score_cache()
 
     return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
     

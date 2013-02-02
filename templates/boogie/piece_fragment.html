@@ -15,7 +15,6 @@
 	{% if current_player|likes:piece %}
 		You already like this piece.
 	{% else %}
-		
 		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
 			{% csrf_token %}
 			<input type="submit" value="Like">

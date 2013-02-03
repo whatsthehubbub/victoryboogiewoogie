@@ -15,8 +15,9 @@ class Player(models.Model):
     user = models.OneToOneField(User)
     role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='PLAYER')
 
-    # TODO figure out where to store the avatar images
-    # avatar = models.ImageField(blank=True)
+    
+    avatar = models.ImageField(blank=True, upload_to='avatars')
+
 
     # Player fields
     pseudonym = models.CharField(max_length=255, blank=True, help_text='Pennaam')

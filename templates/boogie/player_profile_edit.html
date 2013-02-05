@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block pagetitle %}Profiel bewerken{% endblock pagetitle %}
+
 {% block bodyid %}player_profile_ed{% endblock %}
 
 {% block content %}
+
+	<h2>Profiel bewerken</h2>
 	
 	<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}">
 		{% csrf_token %}

@@ -20,7 +20,7 @@ textarea{resize:vertical;}
 .chromeframe{margin:0.2em 0;background:#b4b4b4;color:#000000;padding:0.2em 0;}
 body{background-image:url(/static/img/bg.png);background-size:128px 116px;background-repeat:repeat;}
 .wrapper{position:relative;overflow:visible;display:block;margin:0 auto;width:940px;min-width:960px;padding:0 10px;}
-header[role="banner"]{position:fixed;z-index:9999;width:100%;border-top:5px solid #ffd41a;padding:1.2em 0 2em;background-image:url(/static/img/bg-header.png);background-repeat:repeat;background-size:400px 100px;background-position:center bottom;}header[role="banner"] a:link,header[role="banner"] a:visited{text-decoration:none;}
+header[role="banner"]{position:fixed;z-index:9999;width:100%;border-top:6px solid #ffd41a;padding:1.2em 0 2em;background-image:url(/static/img/bg-header.png);background-repeat:repeat;background-size:400px 100px;background-position:center bottom;}header[role="banner"] a:link,header[role="banner"] a:visited{text-decoration:none;}
 header[role="banner"] .navigation{float:left;}header[role="banner"] .navigation ul{display:block;margin:0;padding:0;}
 header[role="banner"] .navigation li{display:inline;margin-left:1em;}
 header[role="banner"] .navigation li.ss-icon{vertical-align:-0.1em;}

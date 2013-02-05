@@ -55,44 +55,43 @@
 	
 	<!-- HEADER -->
 	<header role="banner" class="clearfix">
-		<nav role="navigation" id="navigation">
-			<ul>
-				<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
-
-				{% if current_player %}
+		<div class="wrapper">
+			<nav role="navigation" id="navigation">
+				<ul>
+					<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
+					{% if current_player %}
 					<li>
 						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
 					</li>
-				{% endif %}
-
-				{% ifequal current_player.role 'WRITER' %}
+					{% endif %}
+					{% ifequal current_player.role 'WRITER' %}
 					<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
-				{% endifequal %}
-				
-				<li><a href="{% url 'editors' %}">Spelregels</a></li>
-			</ul>
-		</nav>
-		<div id="dashboard">
-			{% if current_player %}
-				<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a>
-
-				(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
-			{% else %}
-				<a href="{% url 'login' %}" class="login button">Inloggen</a>
-				<a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
-			{% endif %}
+					{% endifequal %}
+					<li><a href="{% url 'editors' %}">Spelregels</a></li>
+					<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+				</ul>
+			</nav>
+			<div id="dashboard">
+				{% if current_player %}
+					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a>
+					(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
+				{% else %}
+					<a href="{% url 'login' %}" class="login button">Inloggen</a>
+					<a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
+				{% endif %}
+			</div>
 		</div>
 	</header>
 	<!-- END HEADER -->
 	
-	<div class="paper">
+	<!-- MAIN -->
+	<div id="main" role="main" class="clearfix">
+		
 		<div class="papertop"></div>
 		
-		<!-- MAIN -->
-		<div id="main" role="main" class="clearfix">
-			
-			<!-- CALENDAR -->
-			<div id="calendar">
+		<!-- CALENDAR -->
+		<div id="calendar">
+			<div class="wrapper">
 				<table>
 					<tr>
 						{% for _ in '1234567890'|make_list %}
@@ -109,51 +108,49 @@
 					</tr>
 				</table>
 			</div>
-			<!-- END CALENDAR -->
-			
-			<!-- MASTHEAD -->
-			<div id="masthead">
-				<ul>
-					<li class="date">10 mei 2013</li>
-					<li class="logo">
-						<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-						<a href="{% url 'index' %}" title="Home">
-							<h1>Victory Boogie Woogie</h1>
-						</a>
-						<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-					</li>
-					<li class="week">Week {{ gameWeek }} van 10</li>
-				</ul>
-			</div>
-			<!-- END MASTHEAD -->
-			
-			<!-- SIDEBAR -->
-			<aside id="sidebar" class="clearfix">
-				{% block sidebar %}
-				{% endblock %}
-			</aside>
-			<!-- END SIDEBAR -->
-			
-			<!-- CONTENT -->
-			<section id="content" class="clearfix">
-				{% block content %}
-				{% endblock %}
-			</section>
-			<!-- END CONTENT -->
-			
-			<!-- FOOTER -->
-			<footer id="footer" role="contentinfo" class="clearfix">
-				<p>Victory Boogie Woogie is een experimentele literarire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>. Copyright &copy; 2012-2013. <a href="">Colofon</a>.</p>
-				<ul>
-					<li><a href="{% url 'writers' %}">Personages</a></li>
-					<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-				</ul>
-			</footer>
-			<!-- END FOOTER -->
-			
 		</div>
-		<!-- END MAIN -->
+		<!-- END CALENDAR -->
+			
+		<!-- MASTHEAD -->
+		<div id="masthead" class="wrapper">
+			<ul>
+				<li class="date">10 mei 2013</li>
+				<li class="logo">
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+					<a href="{% url 'index' %}" title="Home">
+						<h1>Victory Boogie Woogie</h1>
+					</a>
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				</li>
+				<li class="week">Week {{ gameWeek }} van 10</li>
+			</ul>
+		</div>
+		<!-- END MASTHEAD -->
+			
+		<!-- SIDEBAR -->
+		<aside id="sidebar" class="wrapper clearfix">
+			{% block sidebar %}
+			{% endblock %}
+		</aside>
+		<!-- END SIDEBAR -->
+			
+		<!-- CONTENT -->
+		<section id="content" class="wrapper clearfix">
+			{% block content %}
+			{% endblock %}
+		</section>
+		<!-- END CONTENT -->
+			
+
+		<!-- FOOTER -->
+		<footer id="footer" role="contentinfo" class="wrapper clearfix">
+			<p>Victory Boogie Woogie is een experimentele literarire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>. Copyright &copy; 2012-2013. <a href="">Colofon</a>.</p>
+		</footer>
+		<!-- END FOOTER -->
+		
 	</div>
+	<!-- END MAIN -->
+	
 </div>
 <!-- END DOCUMENT -->
 

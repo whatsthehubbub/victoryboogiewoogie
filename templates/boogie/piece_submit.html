@@ -16,6 +16,7 @@
 
 	{% ifequal current_player.role 'PLAYER' %}
         <h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
+        <p>Speler, dit is je kans! Schrijf een kek stukje over het onderwerp <strong>{{ form.instance.topic.title }}</strong>. Je kan kiezen uit verschillende genres, <em>anything goes</em>. Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
         <p>Deadline</p>
         <p>{{ form.instance.deadline|date }}</p>
         <p>Voortgang tot gebeurtenis</p>

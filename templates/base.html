@@ -57,8 +57,9 @@
 	<!-- HEADER -->
 	<header role="banner">
 		<div class="wrapper clearfix">
-			<nav role="navigation" id="navigation">
+			<nav role="navigation" class="navigation">
 				<ul>
+					<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
 					{% if current_player %}
 					<li>
 						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
@@ -71,7 +72,7 @@
 					<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 				</ul>
 			</nav>
-			<div id="dashboard">
+			<div class="dashboard">
 				{% if current_player %}
 					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
 				{% else %}
@@ -79,12 +80,12 @@
 				{% endif %}
 			</div>
 		</div>
+		<div class="mask"></div>
 	</header>
 	<!-- END HEADER -->
 	
 	<!-- MASTHEAD -->
 	<div id="masthead" class="clearfix">
-		<div class="papertop"></div>
 		<ul class="wrapper">
 			<li class="date">10 mei 2013</li>
 			<li class="logo">

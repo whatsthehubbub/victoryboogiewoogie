@@ -18,17 +18,16 @@ img{vertical-align:middle;}
 fieldset{border:0;margin:0;padding:0;}
 textarea{resize:vertical;}
 .chromeframe{margin:0.2em 0;background:#b4b4b4;color:#000000;padding:0.2em 0;}
-body{background-image:url(/static/img/bg-paper.png);background-repeat:repeat;}
+body{background-image:url(/static/img/bg.png);background-size:128px 116px;background-repeat:repeat;}
 .wrapper{position:relative;overflow:visible;display:block;margin:0 auto;width:940px;min-width:960px;padding:0 10px;}
-header[role="banner"]{padding-top:0.4em;background-image:url(/static/img/bg.png);background-repeat:repeat;background-size:128px 116px;}header[role="banner"] a:link,header[role="banner"] a:visited{text-decoration:none;}
-#navigation{float:left;margin:0.8em 0;}#navigation ul{display:block;margin:0;padding:0;}
-#navigation li{display:inline;margin-left:1em;}
-#navigation li.ss-icon{vertical-align:-0.1em;}
-#navigation li.active a:link,#navigation li.active a:visited{font-weight:700;color:#000000;}
-#navigation ul li:first-child{margin-left:0;}
-#dashboard{float:right;margin:0.8em 0;}
-#masthead{text-align:center;}#masthead .papertop{position:relative;background-image:url(/static/img/bg-paper-top.png);background-repeat:repeat-x;background-position:left bottom;background-size:42px 10px;height:10px;}
-#masthead ul{margin:1em auto 1.2em;padding:0;list-style:none;}
+header[role="banner"]{position:fixed;z-index:9999;width:100%;border-top:5px solid #ffd41a;padding:1.2em 0 2em;background-image:url(/static/img/bg-header.png);background-repeat:repeat;background-size:400px 100px;background-position:center bottom;}header[role="banner"] a:link,header[role="banner"] a:visited{text-decoration:none;}
+header[role="banner"] .navigation{float:left;}header[role="banner"] .navigation ul{display:block;margin:0;padding:0;}
+header[role="banner"] .navigation li{display:inline;margin-left:1em;}
+header[role="banner"] .navigation li.ss-icon{vertical-align:-0.1em;}
+header[role="banner"] .navigation li.active a:link,header[role="banner"] .navigation li.active a:visited{font-weight:700;color:#000000;}
+header[role="banner"] .navigation ul li:first-child{margin-left:0;}
+header[role="banner"] .dashboard{float:right;}
+#masthead{margin-top:5em;text-align:center;}#masthead ul{margin:1em auto 1.2em;padding:0;list-style:none;}
 #masthead li{display:inline;margin:0;padding:0;}
 #masthead a:link,#masthead a:visited{text-decoration:none;color:#000000;}
 #masthead a:hover .char1{color:#ffd41a;}
@@ -55,11 +54,11 @@ header[role="banner"]{padding-top:0.4em;background-image:url(/static/img/bg.png)
 #masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;}
 #masthead .date{text-align:right;vertical-align:0.6em;}
 #masthead .week{text-align:left;vertical-align:0.6em;}
-#masthead .calendar{position:relative;z-index:1;}#masthead .calendar table{width:100%;text-align:center;margin-bottom:-1px;}
+#masthead .calendar{position:relative;z-index:2;}#masthead .calendar table{width:100%;text-align:center;margin-bottom:-1px;}
 #masthead .calendar a:link,#masthead .calendar a:visited{display:block;color:#828282;text-decoration:none;height:100%;width:100%;padding:0.8em 0;}
 #masthead .calendar a:hover{color:#001ef0;}
 #masthead .calendar td.active a:link,#masthead .calendar td.active a:visited{color:#000000;background-image:url(/static/img/calendar-arrow.png);background-repeat:no-repeat;background-size:20px 15px;background-position:center bottom;}
-#sidebar{position:relative;z-index:2;display:block;background-color:#ffffff;width:100%;}#sidebar .summary{display:block;list-style:none;padding:0 40px;margin:0;border-top:2px solid #000000;border-bottom:1px solid #000000;margin-bottom:1px;background-color:#ffffff;}
+#sidebar{position:relative;z-index:3;display:block;background-color:#ffffff;width:100%;}#sidebar .summary{display:block;list-style:none;padding:0 40px;margin:0;border-top:2px solid #000000;border-bottom:1px solid #000000;margin-bottom:1px;background-color:#ffffff;}
 #content{position:relative;padding-bottom:4em;background-color:#ffffff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;box-shadow:0px 1px 2px #b4b4b4;}
 article{margin-bottom:6em;}article h2{text-align:center;margin-bottom:0.5em;text-transform:capitalize;font-weight:400;}
 article img.poster{display:block;width:880px;height:320px;padding-bottom:1.5em;margin-bottom:1em;}

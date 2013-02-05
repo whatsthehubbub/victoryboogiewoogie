@@ -188,7 +188,8 @@ textarea {
    ========================================================================== */
 
 body {
-	background-image: url(/static/img/bg-paper.png);
+	background-image: url(/static/img/bg.png);
+	background-size: 128px 116px;
 	background-repeat: repeat;
 }
 
@@ -207,57 +208,51 @@ body {
 }
 
 header[role="banner"] {
-	padding-top: 0.4em;
-	background-image: url(/static/img/bg.png);
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	border-top: 5px solid @yellow;
+	padding: 1.2em 0 2em;
+	background-image: url(/static/img/bg-header.png);
 	background-repeat: repeat;
-	background-size: 128px 116px;
+	background-size: 400px 100px;
+	background-position: center bottom;
 	a:link, a:visited {
 		text-decoration: none;
 	}
-}
-
-#navigation {
-	float: left;
-	margin: 0.8em 0;
-	ul {
-		display: block;
-		margin: 0;
-		padding: 0;
+	.navigation {
+		float: left;
+		ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			display: inline;
+			margin-left: 1em;
+		}
+		li.ss-icon {
+			vertical-align: -0.1em;
+		}
+		li.active a:link, li.active a:visited {
+			font-weight: 700;
+			color: @black;
+		}
+		ul li:first-child {
+			margin-left: 0;
+		}
 	}
-	li {
-		display: inline;
-		margin-left: 1em;
-	}
-	li.ss-icon {
-		vertical-align: -0.1em;
-	}
-	li.active a:link, li.active a:visited {
-		font-weight: 700;
-		color: @black;
-	}
-	ul li:first-child {
-		margin-left: 0;
-	}
-}
-
-#dashboard {
-	float: right;
-	margin: 0.8em 0;
-	.logout {
-		
+	.dashboard {
+		float: right;
+		.logout {
+			
+		}
 	}
 }
 
 #masthead {
+	margin-top: 5em;
 	text-align: center;
-	.papertop {
-		position: relative;
-		background-image: url(/static/img/bg-paper-top.png);
-		background-repeat: repeat-x;
-		background-position: left bottom;
-		background-size: 42px 10px;
-		height: 10px;
-	}
 	ul {
 		margin: 1em auto 1.2em;
 		padding: 0;
@@ -355,7 +350,7 @@ header[role="banner"] {
 	}
 	.calendar {
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 		table {
 			width: 100%;
 			text-align: center;
@@ -388,7 +383,7 @@ header[role="banner"] {
 
 #sidebar {
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 	display: block;
 	background-color: @white;
 	width: 100%;

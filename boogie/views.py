@@ -309,7 +309,7 @@ def player_profile_edit(request, name):
 
         if userform.is_valid() and profileform.is_valid():
             userform.save()
-            profileform.save()
+            profile = profileform.save()
 
             return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
     else:

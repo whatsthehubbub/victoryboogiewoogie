@@ -15,6 +15,10 @@
 	<h3>Biografie</h3> 
 	<p>{{ player.biography }}</p>
 
+	{% if player.avatar %}
+		<img src="{{ player.avatar.url }}">
+	{% endif %}
+
 	<h3>Bijdragen</h3>
 	
     <!-- {% if assigned_pieces %}

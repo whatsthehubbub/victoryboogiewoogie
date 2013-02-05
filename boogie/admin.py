@@ -29,3 +29,7 @@ admin.site.register(PreLaunchEmail, PreLaunchEmailAdmin)
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ('datecreated', 'identifier', 'for_player', 'message')
 admin.site.register(Notification, NotificationAdmin)
+
+class GameAdmin(admin.ModelAdmin):
+    list_display = ('start_date', 'days_between_reassign')
+admin.site.register(Game, GameAdmin)

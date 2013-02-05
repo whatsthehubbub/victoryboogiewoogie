@@ -1,11 +1,10 @@
 # -*- coding: utf-8
 from django.core.exceptions import ObjectDoesNotExist
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 import datetime
 
-from boogie.models import Player, Piece
+from boogie.models import Player, Piece, Game
 
 def player(request):
     returnDict = {}
@@ -37,10 +36,17 @@ def player(request):
             returnDict['current_status'] = 'Bijdrage schrijven'
             returnDict['current_url'] = reverse('piece_submit')
 
-    # TODO figure out when the game starts
-    startDate = settings.GAME_START
-    delta = datetime.date.today() - startDate
+    try:
+        startDate = Game.objects.get_latest_game().start_date
+        today = datetime.date.today()
 
-    returnDict['gameWeek'] = delta.days / 7
+        delta = today - startDate
+
+        if today >= startDate:
+            returnDict['gameWeek'] = (delta.days / 7) + 1
+        else:
+            returnDict['gameWeek'] = 0
+    except IndexError:
+        pass
 
     return returnDict

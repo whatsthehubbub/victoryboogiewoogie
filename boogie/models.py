@@ -272,3 +272,29 @@ class Summary(models.Model):
 
     def get_absolute_url(self):
         return reverse('summary') + '#summary_' + str(self.id)
+
+
+class GameManager(models.Manager):
+    def get_latest_game(self):
+        # TODO cache this call
+
+        games = Game.objects.all().order_by('-start_date')
+
+        if games:
+            return games[0]
+        else:
+            return Game.objects.create(start_date=datetime.date.today())
+
+
+class Game(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    start_date = models.DateField()
+
+    days_between_reassign = models.IntegerField(default=1)
+
+    objects = GameManager()
+
+    def __unicode__(self):
+        return "Game with start: %s" % str(self.start_date)

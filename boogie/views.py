@@ -5,7 +5,6 @@ from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
-from django.conf import settings
 from django.db.models import Q
 
 from django.contrib.auth.models import User
@@ -13,8 +12,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from boogie.models import *
 
-# TODO spin up Celery before testing on live site
-# https://devcenter.heroku.com/articles/django#hellodjangosettingspy
 from boogie import tasks
 
 
@@ -104,8 +101,10 @@ def piece_list(request):
 @login_required
 def pieces_per_week(request, week):
     week = int(week)
-    weekStart = settings.GAME_START + datetime.timedelta(week * 7)
-    weekEnd = settings.GAME_START + datetime.timedelta((week + 1) * 7)
+    datestart = Game.objects.get_latest_game().start_date
+
+    weekStart = datestart + datetime.timedelta(week * 7)
+    weekEnd = datestart + datetime.timedelta((week + 1) * 7)
 
     order_crit = request.GET.get('order', '-score_cache')
 

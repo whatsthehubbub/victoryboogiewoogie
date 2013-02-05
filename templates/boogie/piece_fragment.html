@@ -12,7 +12,7 @@
 
 	<p>Score: {{ piece.score }}.</p>
 
-	<p><a href="http://www.gidsgame.nl{{ piece.get_absolute_url }}">Permalink</a>.</p>
+	<p><a href="{{ piece.get_absolute_url }}">Permalink</a>.</p>
 
 	{% if current_player|likes:piece %}
 		Je vindt dit een goed stuk. (<a href="">Toch niet</a>?)

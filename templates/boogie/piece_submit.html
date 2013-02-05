@@ -17,12 +17,13 @@
 	{% ifequal current_player.role 'PLAYER' %}
         <h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
         <p>Speler, dit is je kans! Schrijf een kek stukje over het onderwerp <strong>{{ form.instance.topic.title }}</strong>. Je kan kiezen uit verschillende genres, <em>anything goes</em>. Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
+        <!-- TODO: Hook the links below up to the corresponding pages. -->
+        <p>Lees het <a href="">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="">alle stukjes</a> over dit onderwerp.</p>
         <p>Deadline</p>
         <p>{{ form.instance.deadline|date }}</p>
         <p>Voortgang tot gebeurtenis</p>
         <p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
-        <img src="progress-bar.png" alt="{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}" title="{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}" />
-	{% endifequal %}    
+	{% endifequal %}
 
     <form action="{% url 'piece_submit' %}" method="post">
         {% csrf_token %}

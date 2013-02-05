@@ -2,7 +2,7 @@ from django.contrib import admin
 from boogie.models import *
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'pseudonym', 'role', 'character_name',)
+    list_display = ('user', 'pseudonym', 'role', 'character_name', 'send_emails')
 admin.site.register(Player, PlayerAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
@@ -23,5 +23,9 @@ class SummaryAdmin(admin.ModelAdmin):
 admin.site.register(Summary, SummaryAdmin)
 
 class PreLaunchEmailAdmin(admin.ModelAdmin):
-	list_display = ('email', )
+    list_display = ('email', )
 admin.site.register(PreLaunchEmail, PreLaunchEmailAdmin)
+
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ('datecreated', 'identifier', 'for_player', 'message')
+admin.site.register(Notification, NotificationAdmin)

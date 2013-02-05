@@ -30,6 +30,9 @@ class Player(models.Model):
     # Common fields
     biography = models.TextField(blank=True)
 
+    # E-mail notifications
+    send_emails = models.BooleanField(default=True)
+
     def get_new_assignment(self):
         if self.role == 'WRITER':
             return # Writers don't get new assignments this way
@@ -39,7 +42,11 @@ class Player(models.Model):
 
             # TODO figure out what to do with the deadline later
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
-            return Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+
+            Notification.objects.create_new_assignment_notification(self, piece)
+
+            return piece
 
     def pieces(self):
         return Piece.objects.filter(writer=self).order_by('-datepublished')
@@ -80,6 +87,54 @@ class PreLaunchEmail(models.Model):
     datechanged = models.DateTimeField(auto_now=True)
 
     email = models.EmailField()
+
+
+from django.core.mail import EmailMessage
+
+class NotificationManager(models.Manager):
+    def create_new_assignment_notification(self, player, piece):
+        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuw stukje schrijven. Ga naar <a href="http://www.gidsgame.nl/pieces/submit/">de schrijfafdeling</a>.''')
+
+    def create_new_summary_notification(self, player, summary):
+        return Notification.objects.create(identifier='new-summary', for_player=player, message='''Er is een nieuwe samenvatting geplaatst. Lees hem direct <a href="http://www.gidsgame.nl%s">hier</a>.''' % summary.get_absolute_url())
+
+class Notification(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    identifier = models.CharField(max_length=255)
+
+    for_player = models.ForeignKey(Player)
+    message = models.TextField()
+
+    objects = NotificationManager()
+
+    def save(self, *args, **kwargs):
+        # Do e-mail sending here only if this is a new object
+        if self.pk is None:
+            self.send_email()
+
+        super(Notification, self).save(*args, **kwargs)
+
+
+    def send_email(self):
+        if self.for_player.send_emails:
+            subject = self.get_subject()
+            from_email = 'Mailman@gidsgame.nl'
+            to_email = self.for_player.user.email
+
+            content = self.message
+
+            msg = EmailMessage(subject, content, from_email, [to_email])
+            msg.content_subtype = 'html'
+            msg.send()
+
+
+    def get_subject(self):
+        if self.identifier == 'bla':
+            return ''
+        else:
+            return 'Nieuw bericht van de Gids'
 
 
 class Topic(models.Model):
@@ -203,6 +258,16 @@ class Summary(models.Model):
 
     def __unicode__(self):
         return self.content
+
+    def save(self, *args, **kwargs):
+        # Create a notification of this summary for all players only if this summary is new
+        # This enables us to update
+        if self.pk is None:
+            # TODO defer this to the celery queue
+            for player in Player.objects.all():
+                Notification.objects.create_new_summary_notification(player, self)
+
+        super(Summary, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('summary') + '#summary_' + str(self.id)

@@ -83,8 +83,8 @@
 	
 	<!-- MASTHEAD -->
 	<div id="masthead" class="clearfix">
-	<div class="papertop"></div>
-		<ul>
+		<div class="papertop"></div>
+		<ul class="wrapper">
 			<li class="date">10 mei 2013</li>
 			<li class="logo">
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
@@ -95,23 +95,23 @@
 			</li>
 			<li class="week">Week {{ gameWeek }} van 10</li>
 		</ul>
-			
+		
 		<div class="calendar wrapper">
-		<table>
-			<tr>
-				{% for _ in '1234567890'|make_list %}
-					<td{% if week == forloop.counter %} class="active"{% endif %}>
-						{% if gameWeek >= forloop.counter %}
-							<a href="{% url 'pieces_per_week' forloop.counter %}">
-						{% endif %}
-							week {{ forloop.counter }}
-						{% if gameWeek >= forloop.counter %}
-							</a>
-						{% endif %}
-					</td>
-				{% endfor %}
-			</tr>
-		</table>
+			<table>
+				<tr>
+					{% for _ in '1234567890'|make_list %}
+						<td{% if week == forloop.counter %} class="active"{% endif %}>
+							{% if gameWeek >= forloop.counter %}
+								<a href="{% url 'pieces_per_week' forloop.counter %}">
+							{% endif %}
+								week {{ forloop.counter }}
+							{% if gameWeek >= forloop.counter %}
+								</a>
+							{% endif %}
+						</td>
+					{% endfor %}
+				</tr>
+			</table>
 		</div>	
 	</div>
 	<!-- END MASTHEAD -->

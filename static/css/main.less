@@ -18,8 +18,8 @@
 @bgrey: 	rgb(40,40,40);
 @black: 	rgb(0,0,0);
 
-@red:		rgb(255,0,0);
-@yellow:	rgb(250,210,0);
+@red:		rgb(241,4,14);
+@yellow:	rgb(255,212,26);
 
 @lblue:		rgb(0,30,240);
 @mblue:		rgb(0,50,190);
@@ -100,7 +100,7 @@ a:hover {
 }
 
 a:link.button, a:visited.button {
-	background-color: @mblue;
+	background-color: @lblue;
 	padding: 5px 10px 1px;
 	color: @white;
 	text-decoration: none;
@@ -110,11 +110,10 @@ a:link.button, a:visited.button {
 
 a:hover.button {
 	color: @white;
-	background-color: @lblue;
+	background-color: @mblue;
 }
 
 a:active.button {
-	background-color: @mblue;
 	box-shadow: inset 0px 3px 0px @dblue;
 }
 
@@ -189,11 +188,12 @@ textarea {
    ========================================================================== */
 
 body {
-	background-color: @white;
+	background-image: url(/static/img/bg-paper.png);
+	background-repeat: repeat;
 }
 
 [role="document"] {
-	border-top: 5px solid @yellow;
+	
 }
 
 .wrapper {
@@ -218,7 +218,7 @@ header[role="banner"] {
 
 #navigation {
 	float: left;
-	margin: 1.4em 0;
+	margin: 0.8em 0;
 	ul {
 		display: block;
 		margin: 0;
@@ -242,15 +242,13 @@ header[role="banner"] {
 
 #dashboard {
 	float: right;
-	margin: 1.4em 0;
+	margin: 0.8em 0;
 	.logout {
 		
 	}
 }
 
 #masthead {
-	background-image: url(/static/img/bg-paper.png);
-	background-repeat: repeat;
 	text-align: center;
 	.papertop {
 		position: relative;
@@ -261,7 +259,7 @@ header[role="banner"] {
 		height: 10px;
 	}
 	ul {
-		margin: 0.8em auto;
+		margin: 1em auto 1.2em;
 		padding: 0;
 		list-style: none;
 	}
@@ -356,6 +354,8 @@ header[role="banner"] {
 		vertical-align: 0.6em;
 	}
 	.calendar {
+		position: relative;
+		z-index: 1;
 		table {
 			width: 100%;
 			text-align: center;
@@ -374,20 +374,21 @@ header[role="banner"] {
 		}
 		td.active a:link, td.active a:visited {
 			color: @black;
-			background-color: @white;
-			box-shadow: 0px -1px 0px @wgrey;
+			background-image: url(/static/img/calendar-arrow.png);
+			background-repeat: no-repeat;
+			background-size: 20px 15px;
+			background-position: center bottom;
 		}
 	}
 }
 
 #main {
-	margin-top: -1px;
-	border-top: 1px solid @wgrey;
 	
 }
 
 #sidebar {
 	position: relative;
+	z-index: 2;
 	display: block;
 	background-color: @white;
 	width: 100%;
@@ -404,7 +405,11 @@ header[role="banner"] {
 }
 
 #content {
-	
+	position: relative;
+	padding-bottom: 4em;
+	background-color: @white;
+	.rounded-corners;
+	box-shadow: 0px 1px 2px @lgrey;
 }
 
 article {
@@ -487,7 +492,6 @@ article {
 	text-align: center;
 	margin-top: 1px;
 	padding: 0.55em 0 0.2em;
-	border-top: 1px solid @wgrey;
 	p {
 		display: block;
 		width: 100%;

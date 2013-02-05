@@ -54,11 +54,10 @@
 <div id="document" role="document" class="clearfix">
 	
 	<!-- HEADER -->
-	<header role="banner" class="clearfix">
-		<div class="wrapper">
+	<header role="banner">
+		<div class="wrapper clearfix">
 			<nav role="navigation" id="navigation">
 				<ul>
-					<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
 					{% if current_player %}
 					<li>
 						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
@@ -73,46 +72,22 @@
 			</nav>
 			<div id="dashboard">
 				{% if current_player %}
-					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a>
-					(<a href="{% url 'logout' %}" class="logout">afmelden</a>)
+					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
 				{% else %}
-					<a href="{% url 'login' %}" class="login button">Inloggen</a>
-					<a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
+					<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
 				{% endif %}
 			</div>
 		</div>
+		<div class="papertop"></div>
 	</header>
 	<!-- END HEADER -->
-	
 	<!-- MAIN -->
 	<div id="main" role="main" class="clearfix">
 		
-		<div class="papertop"></div>
 		
-		<!-- CALENDAR -->
-		<div id="calendar">
-			<div class="wrapper">
-				<table>
-					<tr>
-						{% for _ in '1234567890'|make_list %}
-							<td{% if week == forloop.counter %} class="active"{% endif %}>
-								{% if gameWeek >= forloop.counter %}
-									<a href="{% url 'pieces_per_week' forloop.counter %}">
-								{% endif %}
-									week {{ forloop.counter }}
-								{% if gameWeek >= forloop.counter %}
-									</a>
-								{% endif %}
-							</td>
-						{% endfor %}
-					</tr>
-				</table>
-			</div>
-		</div>
-		<!-- END CALENDAR -->
 			
 		<!-- MASTHEAD -->
-		<div id="masthead" class="wrapper">
+		<div id="masthead" class="wrapper clearfix">
 			<ul>
 				<li class="date">10 mei 2013</li>
 				<li class="logo">
@@ -126,7 +101,27 @@
 			</ul>
 		</div>
 		<!-- END MASTHEAD -->
-			
+		
+		<!-- CALENDAR -->
+		<div id="calendar" class="wrapper clearfix">
+			<table>
+				<tr>
+					{% for _ in '1234567890'|make_list %}
+						<td{% if week == forloop.counter %} class="active"{% endif %}>
+							{% if gameWeek >= forloop.counter %}
+								<a href="{% url 'pieces_per_week' forloop.counter %}">
+							{% endif %}
+								week {{ forloop.counter }}
+							{% if gameWeek >= forloop.counter %}
+								</a>
+							{% endif %}
+						</td>
+					{% endfor %}
+				</tr>
+			</table>
+		</div>
+		<!-- END CALENDAR -->
+		
 		<!-- SIDEBAR -->
 		<aside id="sidebar" class="wrapper clearfix">
 			{% block sidebar %}
@@ -143,8 +138,10 @@
 			
 
 		<!-- FOOTER -->
-		<footer id="footer" role="contentinfo" class="wrapper clearfix">
-			<p>Victory Boogie Woogie is een experimentele literarire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>. Copyright &copy; 2012-2013. <a href="">Colofon</a>.</p>
+		<footer id="footer" role="contentinfo" class="clearfix">
+			<div class="wrapper">
+				<p>Victory Boogie Woogie is een experimentele literarire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="">Colofon</a>.</p>
+			</div>
 		</footer>
 		<!-- END FOOTER -->
 		

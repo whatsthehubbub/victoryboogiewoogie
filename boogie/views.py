@@ -24,7 +24,8 @@ def index(request):
         
         c = RequestContext(request, {
                 'topics': Topic.objects.all(),
-                'pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+                'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+                'newest_pieces': Piece.objects.filter(status='APPROVED').order_by('-datepublished')[:5],
                 'summary': Summary.objects.all().order_by('-datecreated'),
                 'writers': Player.objects.filter(role='WRITER')
         })

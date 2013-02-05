@@ -6,21 +6,18 @@
 {% block bodyid %}home{% endblock %}
 
 {% block content %}
-	{% for piece in pieces %}
+	{% for piece in frontpage_pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
-	
-	<!-- TODO: Hook this up to the latest pieces, let's say the latest five. -->
+
 	<h2>De nieuwste bijdrages</h2>
+
 	<ul>
-		<li><a href="">Titel van bijdrage</a> over <a href="">Onderwerp</a> door <a href="">Auteur</a> x uur geleden.</li>
-		<li><a href="">Titel van bijdrage</a> over <a href="">Onderwerp</a> door <a href="">Auteur</a> x uur geleden.</li>
-		<li><a href="">Titel van bijdrage</a> over <a href="">Onderwerp</a> door <a href="">Auteur</a> x uur geleden.</li>
-		<li><a href="">Titel van bijdrage</a> over <a href="">Onderwerp</a> door <a href="">Auteur</a> x uur geleden.</li>
-		<li><a href="">Titel van bijdrage</a> over <a href="">Onderwerp</a> door <a href="">Auteur</a> x uur geleden.</li>
+	{% for piece in newest_pieces %}
+		<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> over <a href="{{ piece.topic.get_absolute_url }}">{{ piece.topic }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</li>
+	{% endfor %}
 	</ul>
 
-	<!-- TODO: Hook this up to characters played by writers. -->
 	<section id="characters">
 		<h2>De personages</h2>
         <ul>	

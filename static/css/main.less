@@ -189,9 +189,8 @@ textarea {
    ========================================================================== */
 
 body {
-	background-image: url(/static/img/bg.png);
+	background-image: url(/static/img/bg-paper.png);
 	background-repeat: repeat;
-	background-size: 128px 116px;
 }
 
 [role="document"] {
@@ -209,25 +208,18 @@ body {
 }
 
 header[role="banner"] {
-	background-image: url(/static/img/bg-paper.png);
+	padding-top: 0.4em;
+	background-image: url(/static/img/bg.png);
 	background-repeat: repeat;
+	background-size: 128px 116px;
 	a:link, a:visited {
 		text-decoration: none;
-	}
-	.papertop {
-		position: relative;
-		background-image: url(/static/img/bg-paper-top.png);
-		background-repeat: repeat-x;
-		background-position: left bottom;
-		background-size: 42px 10px;
-		height: 10px;
-		margin-top: -10px;
 	}
 }
 
 #navigation {
 	float: left;
-	margin: 1.4em 0 1.8em;
+	margin: 1.4em 0;
 	ul {
 		display: block;
 		margin: 0;
@@ -251,48 +243,24 @@ header[role="banner"] {
 
 #dashboard {
 	float: right;
-	margin: 1.4em 0 1.8em;
+	margin: 1.4em 0;
 	.logout {
 		
 	}
 }
 
-#main {
-	
-}
-
-#calendar {
-	table {
-		width: 100%;
-		text-align: center;
-		margin-bottom: -1px;
-	}
-	a:link, a:visited {
-		display: block;
-		color: @mgrey;
-		text-decoration: none;
-		height: 100%;
-		width: 100%;
-		padding: 0.8em 0;
-	}
-	a:hover {
-		color: @lblue;
-	}
-	td.active a:link, td.active a:visited {
-		color: @black;
-		background-image: url(/static/img/calendar-arrow.png);
-		background-repeat: no-repeat;
-		background-size: 20px 10px;
-		background-position: center bottom;
-	}
-}
-
 #masthead {
 	text-align: center;
-	padding: 1em 0;
-	margin-bottom: 1px;
+	.papertop {
+		position: relative;
+		background-image: url(/static/img/bg-paper-top.png);
+		background-repeat: repeat-x;
+		background-position: left bottom;
+		background-size: 42px 10px;
+		height: 10px;
+	}
 	ul {
-		margin: 0 auto;
+		margin: 0.8em auto;
 		padding: 0;
 		list-style: none;
 	}
@@ -386,6 +354,35 @@ header[role="banner"] {
 		text-align: left;
 		vertical-align: 0.6em;
 	}
+	.calendar {
+		table {
+			width: 100%;
+			text-align: center;
+			margin-bottom: -1px;
+		}
+		a:link, a:visited {
+			display: block;
+			color: @mgrey;
+			text-decoration: none;
+			height: 100%;
+			width: 100%;
+			padding: 0.8em 0;
+		}
+		a:hover {
+			color: @lblue;
+		}
+		td.active a:link, td.active a:visited {
+			color: @black;
+			background-image: url(/static/img/calendar-arrow.png);
+			background-repeat: no-repeat;
+			background-size: 20px 10px;
+			background-position: center bottom;
+		}
+	}
+}
+
+#main {
+	
 }
 
 #sidebar {

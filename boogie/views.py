@@ -46,7 +46,7 @@ def pre_launch(request):
         form = PreLaunchEmailForm(request.POST)
 
         if form.is_valid():
-            new_email = form.save()
+            form.save()
             return HttpResponseRedirect(reverse('pre_launch_thanks'))
     else:
         form = PreLaunchEmailForm()
@@ -309,7 +309,7 @@ def player_profile_edit(request, name):
 
         if userform.is_valid() and profileform.is_valid():
             userform.save()
-            profile = profileform.save()
+            profileform.save()
 
             return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
     else:

@@ -196,6 +196,7 @@ class Piece(models.Model):
     
     rejection_reason = models.TextField(blank=True)
     
+    # TODO remove this field, rating is not used anymore?
     rating = models.IntegerField(default=0)
 
     # Visible on the frontpage or not?

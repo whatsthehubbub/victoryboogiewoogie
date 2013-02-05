@@ -22,7 +22,7 @@
         <!-- TODO: Hook the links below up to the corresponding pages. -->
         <p>Lees het <a href="">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="">alle stukjes</a> over dit onderwerp.</p>
         <p>Deadline</p>
-        <p>{{ form.instance.deadline|date }}</p>
+        <p>in {{ form.instance.deadline|timeuntil }}</p>
         <p>Voortgang tot gebeurtenis</p>
         <p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
 	{% endifequal %}

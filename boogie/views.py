@@ -294,7 +294,7 @@ class UserProfileForm(ModelForm):
 class PlayerProfileForm(ModelForm):
     class Meta:
         model = Player
-        fields = ('pseudonym', 'biography')
+        fields = ('pseudonym', 'biography', 'avatar')
 
 @login_required
 def player_profile_edit(request, name):
@@ -305,7 +305,7 @@ def player_profile_edit(request, name):
 
     if request.method == 'POST':
         userform = UserProfileForm(request.POST, instance=player.user)
-        profileform = PlayerProfileForm(request.POST, instance=player)
+        profileform = PlayerProfileForm(request.POST, request.FILES, instance=player)
 
         if userform.is_valid() and profileform.is_valid():
             userform.save()

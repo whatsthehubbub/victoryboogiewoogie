@@ -5,7 +5,7 @@
 
 {% block content %}
 	
-	<form method="POST" action="{% url 'player_profile_edit' user.username %}">
+	<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}">
 		{% csrf_token %}
 
 		{{ userform.as_p }}

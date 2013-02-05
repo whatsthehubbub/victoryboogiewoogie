@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
+{% block pagetitle %}Het verhaal tot nu toe&hellip;{% endblock pagetitle %}
+
 {% block bodyid %}summary{% endblock %}
 
 {% block content %}
+    <h2>Het verhaal tot nu toe&hellip;</h2>
 
 	{% for piece in summary %}
 		<p id="summary_{{ piece.id }}">{{ piece.datecreated }}: {{ piece.content|safe }}</p>

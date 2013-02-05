@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block pagetitle %}Beoordelen{% endblock pagetitle %}
+
 {% block bodyid %}piece_queue{% endblock %}
 
 {% block content %}
-    <h2>Ingediende bijdragen</h2>
+    <h2>Ingediende bijdragen beoordelen</h2>
     
     <ol>
     {% for piece in pieces %}

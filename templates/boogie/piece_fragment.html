@@ -15,7 +15,7 @@
 	<p><a href="http://www.gidsgame.nl{{ piece.get_absolute_url }}">Permalink</a>.</p>
 
 	{% if current_player|likes:piece %}
-		Je vindt dit een goed stuk. (<a href="">Toch niet</a>.)
+		Je vindt dit een goed stuk. (<a href="">Toch niet</a>?)
 	{% else %}
 		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
 			{% csrf_token %}

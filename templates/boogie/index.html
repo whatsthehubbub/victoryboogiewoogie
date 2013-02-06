@@ -24,7 +24,7 @@
             {% for writer in writers %}
             <li>
 				<a href="{% url 'writer_profile' writer.user.username %}" title="{{ writer.character_name }}">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="{{ writer.character_name }}">
+					<img src="{{ STATIC_URL }}avatars/placeholder-01.jpg" alt="{{ writer.character_name }}">
 					<h3>{{ writer.character_name }}</h3>
 					<p>{{ writer.onelinebio }}</p>
 				</a>

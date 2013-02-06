@@ -177,10 +177,13 @@ textarea {
    ========================================================================== */
 
 .chromeframe {
-	margin: 0.2em 0;
+	margin: 0;
 	background: @lgrey;
 	color: @black;
-	padding: 0.2em 0;
+	padding: 0.5em 0;
+	text-align: center;
+	background-color: @yellow;
+	border-bottom: 1px solid @lgrey;
 }
 
 /* ==========================================================================
@@ -357,6 +360,7 @@ header[role="banner"] {
 		vertical-align: 0.6em;
 	}
 	.calendar {
+		color: @lgrey;
 		position: relative;
 		z-index: 2;
 		table {
@@ -366,7 +370,7 @@ header[role="banner"] {
 		}
 		a:link, a:visited {
 			display: block;
-			color: @mgrey;
+			color: @dgrey;
 			text-decoration: none;
 			height: 100%;
 			width: 100%;

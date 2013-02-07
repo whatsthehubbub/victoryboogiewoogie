@@ -8,11 +8,14 @@
 {% block content %}
 	<div class="wrapper box clearfix">
 		<h2>Ingediende bijdragen beoordelen</h2>
+	</div>
+	
+	
+	{% for piece in pieces %}
+	
+		{% include "boogie/piece_fragment.html" %}
 		
-		<ol>
-		{% for piece in pieces %}
-			{% include "boogie/piece_fragment.html" %}
-			
+		<div class="wrapper">
 			<p>Nieuw onderwerp: {{ piece.new_topic }}</p>
 			
 			<form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
@@ -30,10 +33,10 @@
 				<label for="reason">Motivatie</label> <input type="text" name="reason">
 				<input type="submit" class="btn btn-warning" value="Opnieuw proberen">
 			</form>
-			
-			{% empty %}
-			<p>Geen bijdragen om te beoordelen.</p>
-			{% endfor %}
-		</ol>
-	</div>
+		</div>
+		
+		{% empty %}
+		<p>Geen bijdragen om te beoordelen.</p>
+	{% endfor %}
+
 {% endblock %}

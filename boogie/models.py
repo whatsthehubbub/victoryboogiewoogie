@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models import Count
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
+
+import logging
+
+logger = logging.getLogger('sake')
 
 import datetime
 import math
@@ -125,9 +128,13 @@ class Notification(models.Model):
 
             content = self.message
 
-            msg = EmailMessage(subject, content, from_email, [to_email])
-            msg.content_subtype = 'html'
-            msg.send()
+            try:
+                msg = EmailMessage(subject, content, from_email, [to_email])
+                msg.content_subtype = 'html'
+                msg.send()
+                logger.info('Sent e-mail to %s', to_email)
+            except:
+                logger.error('Could not send e-mail to %s', to_email)
 
 
     def get_subject(self):

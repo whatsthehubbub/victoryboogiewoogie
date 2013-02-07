@@ -19,5 +19,18 @@ $(document).ready(function(){
 	
 	// fancify logo
 	$(".logo h1").lettering();
-
+	
+	// start counting
+	
+	$("#id_text").charCount({
+		allowed: 256,
+		warning: 50,
+		counterElement: 'div',
+		css: 'counter',
+		cssWarning: 'warning',
+		cssExceeded: 'exceeded',
+		counterPreText: 'Nog ',
+		counterPostText: ' karakters beschikbaar.'
+	});
+	
 });

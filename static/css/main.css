@@ -17,7 +17,7 @@ hr{display:block;height:1px;border:0;border-top:1px solid #b4b4b4;margin:1em 0;p
 img{vertical-align:middle;}
 fieldset{border:0;margin:0;padding:0;}
 textarea{resize:vertical;}
-.chromeframe{margin:0.2em 0;background:#b4b4b4;color:#000000;padding:0.2em 0;}
+.chromeframe{margin:0;background:#b4b4b4;color:#000000;padding:0.5em 0;text-align:center;background-color:#ffd41a;border-bottom:1px solid #b4b4b4;}
 body{background-image:url(/static/img/bg.png);background-size:128px 116px;background-repeat:repeat;}
 .wrapper{position:relative;overflow:visible;display:block;margin:0 auto;width:940px;min-width:960px;padding:0 10px;}
 header[role="banner"]{position:fixed;z-index:9999;width:100%;padding:0 0 2em;background-image:url(/static/img/bg-header.png);background-repeat:repeat;background-size:400px 100px;background-position:center bottom;}header[role="banner"] a:link,header[role="banner"] a:visited{text-decoration:none;}
@@ -55,8 +55,8 @@ header[role="banner"] .dashboard{float:right;}
 #masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;}
 #masthead .date{text-align:right;vertical-align:0.6em;}
 #masthead .week{text-align:left;vertical-align:0.6em;}
-#masthead .calendar{position:relative;z-index:2;}#masthead .calendar table{width:100%;text-align:center;margin-bottom:-1px;}
-#masthead .calendar a:link,#masthead .calendar a:visited{display:block;color:#828282;text-decoration:none;height:100%;width:100%;padding:0.8em 0;}
+#masthead .calendar{color:#b4b4b4;position:relative;z-index:2;}#masthead .calendar table{width:100%;text-align:center;margin-bottom:-1px;}
+#masthead .calendar a:link,#masthead .calendar a:visited{display:block;color:#505050;text-decoration:none;height:100%;width:100%;padding:0.8em 0;}
 #masthead .calendar a:hover{color:#001ef0;}
 #masthead .calendar td.active a:link,#masthead .calendar td.active a:visited{color:#000000;background-image:url(/static/img/calendar-arrow.png);background-repeat:no-repeat;background-size:20px 15px;background-position:center bottom;}
 #sidebar{position:relative;z-index:3;display:block;background-color:#ffffff;width:100%;}#sidebar .summary{display:block;list-style:none;padding:0 40px;margin:0;border-top:2px solid #000000;border-bottom:1px solid #000000;margin-bottom:1px;background-color:#ffffff;}

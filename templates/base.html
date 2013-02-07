@@ -116,34 +116,27 @@
 	</div>
 	<!-- END MASTHEAD -->
 	
-	<!-- MAIN -->
-	<div id="main" role="main" class="clearfix">
-		
-		<!-- SIDEBAR -->
-		<aside id="sidebar" class="wrapper clearfix">
-			{% block sidebar %}
-			{% endblock %}
-		</aside>
-		<!-- END SIDEBAR -->
-			
-		<!-- CONTENT -->
-		<section id="content" class="wrapper clearfix">
-			{% block content %}
-			{% endblock %}
-		</section>
-		<!-- END CONTENT -->
-			
-
-		<!-- FOOTER -->
-		<footer id="footer" role="contentinfo" class="clearfix">
-			<div class="wrapper">
-				<p>Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>.</p>
-			</div>
-		</footer>
-		<!-- END FOOTER -->
-		
-	</div>
-	<!-- END MAIN -->
+	<!-- SIDEBAR -->
+	<aside id="sidebar" class="clearfix">
+		{% block sidebar %}
+		{% endblock %}
+	</aside>
+	<!-- END SIDEBAR -->
+	
+	<!-- CONTENT -->
+	<section id="content" class="clearfix">
+		{% block content %}
+		{% endblock %}
+	</section>
+	<!-- END CONTENT -->
+	
+	<!-- FOOTER -->
+	<footer id="footer" role="contentinfo" class="clearfix">
+		<div class="wrapper">
+			<p>Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>.</p>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
 	
 </div>
 <!-- END DOCUMENT -->

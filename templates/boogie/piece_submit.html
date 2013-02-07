@@ -6,36 +6,37 @@
 {% block bodyid %}piece_submit{% endblock %}
 
 {% block content %}
-
-<!-- TODO: Show progress towards event for selected topic. Not sure how we're going to turn a numbers into a progress bar, I'll leave that up to Simon.  -->
-<!-- TODO: Show deadline for submission. -->
-<!-- TODO: Include character count. -->
-
-{% if form %}
-	{% ifequal current_player.role 'WRITER' %}
-        <h2>Schrijf een gebeurtenis</h2>
-	{% endifequal %}
-
-	{% ifequal current_player.role 'PLAYER' %}
-        <h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
-        <p>Speler, dit is je kans! Schrijf een kek stukje over het onderwerp <strong>{{ form.instance.topic.title }}</strong>. Je kan kiezen uit verschillende genres, <em>anything goes</em>. Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
-        <!-- TODO: Hook the links below up to the corresponding pages. -->
-        <p>Lees het <a href="">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="">alle stukjes</a> over dit onderwerp.</p>
-        <p>Deadline</p>
-        <p>in {{ form.instance.deadline|timeuntil }}</p>
-        <p>Voortgang tot gebeurtenis</p>
-        <p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
-	{% endifequal %}
-
-    <form action="{% url 'piece_submit' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-    </form>
-    <p>Nog 256 karakters beschikbaar.</p>
-{% else %}
-	<p>Je mag op dit moment niks schrijven.</p>	
-{% endif %}
-
-    
+	<div class="wrapper box clearfix">
+	
+	<!-- TODO: Show progress towards event for selected topic. Not sure how we're going to turn a numbers into a progress bar, I'll leave that up to Simon.  -->
+	<!-- TODO: Show deadline for submission. -->
+	<!-- TODO: Include character count. -->
+	
+	{% if form %}
+		{% ifequal current_player.role 'WRITER' %}
+			<h2>Schrijf een gebeurtenis</h2>
+		{% endifequal %}
+		
+		{% ifequal current_player.role 'PLAYER' %}
+			<h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
+			<p>Speler, dit is je kans! Schrijf een kek stukje over het onderwerp <strong>{{ form.instance.topic.title }}</strong>. Je kan kiezen uit verschillende genres, <em>anything goes</em>. Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
+			<!-- TODO: Hook the links below up to the corresponding pages. -->
+			<p>Lees het <a href="">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="">alle stukjes</a> over dit onderwerp.</p>
+			<p>Deadline</p>
+			<p>in {{ form.instance.deadline|timeuntil }}</p>
+			<p>Voortgang tot gebeurtenis</p>
+			<p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
+		{% endifequal %}
+		
+		<form action="{% url 'piece_submit' %}" method="post">
+			{% csrf_token %}
+			{{ form.as_ul }}
+			<input type="submit" value="Submit">
+		</form>
+		<p id="char_counter"></p>
+	{% else %}
+		<p>Je mag op dit moment niks schrijven.</p>
+	{% endif %}
+	
+	</div>
 {% endblock %}

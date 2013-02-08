@@ -20,8 +20,7 @@ $(document).ready(function(){
 	// fancify logo
 	$(".logo h1").lettering();
 	
-	// start counting
-	
+	// character counter for input field
 	$("#id_text").charCount({
 		allowed: 256,
 		warning: 50,

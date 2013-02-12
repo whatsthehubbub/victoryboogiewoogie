@@ -231,12 +231,9 @@ def piece_validate(request, piece_id):
 
 @user_passes_test(lambda u: u.is_superuser)
 def pieces_assign(request):
-    players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='NEEDSWORK')
+    from boogie.tasks import pieces_assign
 
-    counter = 0
-    for player in players_without:
-        player.get_new_assignment()
-        counter += 1
+    counter = pieces_assign()
 
     return HttpResponse('Spelers met een nieuwe opdracht: %d' % counter)
 

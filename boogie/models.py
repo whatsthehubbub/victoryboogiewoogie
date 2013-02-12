@@ -305,3 +305,24 @@ class Game(models.Model):
 
     def __unicode__(self):
         return "Game with start: %s" % str(self.start_date)
+
+
+    def save(self, *args, **kwargs):
+        super(Game, self).save(*args, **kwargs)
+
+        # TODO this updates the task on every game updated and should only do so on the current one
+        try:
+            from djcelery.models import PeriodicTask
+            task = PeriodicTask.objects.get(name='new-assignments')
+
+            task.enabled = False
+            task.save()
+
+            task.interval.every = self.days_between_reassign * 24 * 60 * 60
+            task.interval.period = 'seconds'
+            task.interval.save()
+
+            task.enabled = True
+            task.save()
+        except:
+            logger.error("Failed to update PeriodicTask after Game save")

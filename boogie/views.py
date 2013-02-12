@@ -1,4 +1,3 @@
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
@@ -83,6 +82,7 @@ def topic_detail(request, topicid, slug):
     topic = Topic.objects.get(id=topicid)
 
     c = RequestContext(request, {
+            'hide_topic': True,
             'topic': topic,
             'pieces': topic.approved_pieces().order_by(order),
             'order': order

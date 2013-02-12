@@ -6,34 +6,37 @@
 {% block bodyid %}piece_queue{% endblock %}
 
 {% block content %}
-    <h2>Ingediende bijdragen beoordelen</h2>
-    
-    <ol>
-    {% for piece in pieces %}
-        {% include "boogie/piece_fragment.html" %}
-        
-        <p>Nieuw onderwerp: {{ piece.new_topic }}</p>
+	<div class="wrapper box clearfix">
+		<h2>Ingediende bijdragen beoordelen</h2>
+	</div>
+	
+	
+	{% for piece in pieces %}
+	
+		{% include "boogie/piece_fragment.html" %}
+		
+		<div class="wrapper">
+			<p>Nieuw onderwerp: {{ piece.new_topic }}</p>
+			
+			<form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
+				<input type="hidden" name="ok" value="yes">
+				<input type="submit" class="btn btn-success" value="Goedkeuren">
+			</form>
+			
+			<form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
+				<input type="hidden" name="ok" value="no">
+				<input type="submit" class="btn btn-warning" value="Afkeuren">
+			</form>
+			
+			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
+				<input type="hidden" name="ok" value="retry">
+				<label for="reason">Motivatie</label> <input type="text" name="reason">
+				<input type="submit" class="btn btn-warning" value="Opnieuw proberen">
+			</form>
+		</div>
+		
+		{% empty %}
+		<p>Geen bijdragen om te beoordelen.</p>
+	{% endfor %}
 
-        <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
-            <input type="hidden" name="ok" value="yes">
-            <input type="submit" class="btn btn-success" value="Goedkeuren">
-        </form>
-
-        <form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
-            <input type="hidden" name="ok" value="no">
-            <input type="submit" class="btn btn-warning" value="Afkeuren">
-        </form>
-        
-        <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
-            <input type="hidden" name="ok" value="retry">
-            <label for="reason">Motivatie</label> <input type="text" name="reason">
-            <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
-        </form>
-
-        </li>
-    {% empty %}
-        <p>Geen bijdragen om te beoordelen.</p>
-    {% endfor %}
-    </ol>
-    
 {% endblock %}

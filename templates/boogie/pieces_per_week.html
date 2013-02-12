@@ -6,27 +6,26 @@
 {% block bodyid %}pieces_per_week{% endblock %}
 
 {% block content %}
-
-<!-- TODO: Hook this up to week navigation in the header. -->
-
-<h2>Week {{ week }}</h2>
-<p>Dit zijn alle stukjes die zijn verschenen in week {{ week }}.</p>
-
-<p>Sorteren: 
-    {% ifequal order '-datecreated' %} 
-        <a href="?order=-score_cache">Beste</a>
-    {% else %}
-        <strong>Beste</strong>
-    {% endifequal %}
-    |
-    {% ifequal order '-score_cache' %} 
-        <a href="?order=-datecreated">Nieuwste</a>
-    {% else %}
-        <strong>Nieuwste</strong>
-    {% endifequal %}</p>
-
-	{% for piece in pieces %}
-		{% include "boogie/piece_fragment.html" %}
-	{% endfor %}
-
+	<div class="wrapper box clearfix">
+		<h2>Week {{ week }}</h2>
+		<p>Dit zijn alle stukjes die zijn verschenen in week {{ week }}.</p>
+		
+		<p>Sorteren: 
+		
+		{% ifequal order '-datecreated' %}
+			<a href="?order=-score_cache">Beste</a>
+		{% else %}
+			<strong>Beste</strong>
+		{% endifequal %} | 
+		
+		{% ifequal order '-score_cache' %}
+			<a href="?order=-datecreated">Nieuwste</a>
+		{% else %}
+			<strong>Nieuwste</strong>
+		{% endifequal %}</p>
+		
+		{% for piece in pieces %}
+			{% include "boogie/piece_fragment.html" %}
+		{% endfor %}
+	</div>
 {% endblock %}

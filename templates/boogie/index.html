@@ -5,20 +5,29 @@
 
 {% block bodyid %}home{% endblock %}
 
+{% block sidebar %}
+	{% if summary %}
+	<div id="summary" class="wrapper box clearfix">
+		<p><strong>Het verhaal tot nu toe... </strong> {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a></p>
+	</div>
+	{% endif %}
+{% endblock sidebar %}
+
 {% block content %}
 	{% for piece in frontpage_pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
-
-	<h2>De nieuwste bijdrages</h2>
-
-	<ul>
-	{% for piece in newest_pieces %}
-		<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> over <a href="{{ piece.topic.get_absolute_url }}">{{ piece.topic }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</li>
-	{% endfor %}
-	</ul>
-
-	<section id="characters">
+	
+	<section id="latest" class="wrapper box clearfix">
+		<h2>De nieuwste bijdrages</h2>
+		<ul>
+			{% for piece in newest_pieces %}
+			<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> over <a href="{{ piece.topic.get_absolute_url }}">{{ piece.topic }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</li>
+			{% endfor %}
+		</ul>
+	</section>
+	
+	<section id="characters" class="wrapper box clearfix">
 		<h2>De personages</h2>
         <ul>	
             {% for writer in writers %}
@@ -31,13 +40,5 @@
 			</li>
             {% endfor %}
         </ul>
-	</section>	
+	</section>
 {% endblock %}
-
-{% block sidebar %}
-	{% if summary %}
-	<div class="summary">
-		<p><strong>Het verhaal tot nu toe... </strong> {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a></p>
-	</div>
-	{% endif %}
-{% endblock sidebar %}

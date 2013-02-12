@@ -8,22 +8,24 @@
 {% block bodyid %}writer_profile{% endblock %}
 
 {% block content %}
-    <img src="character-profile-pic.png" alt="{{ writer.character_name }}" title="{{ writer.character_name}}" />
-
-	<p>Personage</p>
-	<h2>{{ writer.character_name }}</h2>
+	<div class="wrapper box clearfix">
+		<img src="character-profile-pic.png" alt="{{ writer.character_name }}" title="{{ writer.character_name}}" />
+		
+		<p>Personage</p>
+		<h2>{{ writer.character_name }}</h2>
+		
+		<p>Biografie</p>
+		<p>{{ writer.biography }}</p>
+		
+		<img src="writer-profile-pic.png" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
+		<p>Gespeeld door</p>
+		<p>{{ writer.pseudonym }}</p>
+	</div>
 	
-	<p>Biografie</p>
-    <p>{{ writer.biography }}</p>	
-
-    <img src="writer-profile-pic.png" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
-	<p>Gespeeld door</p>
-	<p>{{ writer.pseudonym }}</p>
-
 	<h3>Bijdragen</h3>
 
     {% for piece in writer.pieces %}
     	{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
-
+	
 {% endblock content %}

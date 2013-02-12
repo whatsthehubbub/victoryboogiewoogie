@@ -210,6 +210,14 @@ body {
 	padding: 0 10px;
 }
 
+.box {
+	position: relative;
+	background-color: @white;
+	.rounded-corners;
+	box-shadow: 0px 1px 2px @lgrey;
+	margin-bottom: 2em;
+}
+
 header[role="banner"] {
 	position: fixed;
 	z-index: 9999;
@@ -389,34 +397,12 @@ header[role="banner"] {
 	}
 }
 
-#main {
-	
-}
-
 #sidebar {
-	position: relative;
-	z-index: 3;
-	display: block;
-	background-color: @white;
-	width: 100%;
-	.summary {
-		display: block;
-		list-style: none;
-		padding: 0 40px;
-		margin: 0;
-		border-top: 2px solid @black;
-		border-bottom: 1px solid @black;
-		margin-bottom: 1px;
-		background-color: @white;
-	}
+	
 }
 
 #content {
 	position: relative;
-	padding-bottom: 4em;
-	background-color: @white;
-	.rounded-corners;
-	box-shadow: 0px 1px 2px @lgrey;
 }
 
 article {
@@ -497,7 +483,7 @@ article {
 
 #footer {
 	text-align: center;
-	margin-top: 1px;
+	margin: -1em 0 1em;
 	padding: 0.55em 0 0.2em;
 	p {
 		display: block;

@@ -224,7 +224,6 @@ class Piece(models.Model):
     def vote_up_undo(self, player):
         try:
             vote = PieceVote.objects.get(player=player, piece=self)
-            print vote
             vote.delete()
         except:
             print 'fail'

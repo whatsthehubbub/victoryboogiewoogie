@@ -30,8 +30,9 @@ urlpatterns = patterns('',
     url(r'^pieces/(\d+)/$', 'boogie.views.piece_detail'),
     url(r'^pieces/submit/$', 'boogie.views.piece_submit', name='piece_submit'),
     url(r'^pieces/assign/$', 'boogie.views.pieces_assign', name='pieces_assign'),
-    url(r'^pieces/(\d+)/validate/', 'boogie.views.piece_validate', name='piece_validate'),
-    url(r'^pieces/(\d+)/vote/up/', 'boogie.views.piece_vote_up', name='piece_vote_up'),
+    url(r'^pieces/(\d+)/validate/$', 'boogie.views.piece_validate', name='piece_validate'),
+    url(r'^pieces/(\d+)/vote/up/$', 'boogie.views.piece_vote_up', name='piece_vote_up'),
+    url(r'^pieces/(\d+)/vote/up/undo/$', 'boogie.views.piece_vote_up_undo', name='piece_vote_up_undo'),
 
     # TODO for now these two URLs point to the same view
     url(r'^users/(?P<name>\w+?)/$', 'django.views.generic.simple.redirect_to', {'url': '/players/%(name)s/'}),

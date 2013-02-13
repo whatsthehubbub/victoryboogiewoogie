@@ -248,7 +248,18 @@ def piece_vote_up(request, piece_id):
     piece.update_score_cache()
 
     return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
-    
+
+@login_required
+@require_POST
+def piece_vote_up_undo(request, piece_id):
+    piece = Piece.objects.get(id=piece_id)
+    player = Player.objects.get(user=request.user)
+
+    piece.vote_up_undo(player)
+    piece.update_score_cache()
+
+    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+
 
 @login_required    
 def piece_queue(request):

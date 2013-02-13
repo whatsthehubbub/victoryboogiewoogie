@@ -221,7 +221,15 @@ class Piece(models.Model):
         if not PieceVote.vote_exists(player, self):
             PieceVote.objects.create(player=player, piece=self)
 
-            # TODO do updating of metrics
+    def vote_up_undo(self, player):
+        try:
+            vote = PieceVote.objects.get(player=player, piece=self)
+            print vote
+            vote.delete()
+        except:
+            print 'fail'
+            logger.info('Tried to undo non-existent vote')
+
 
     score_cache = models.FloatField(default=0.0)
 
@@ -252,6 +260,7 @@ class PieceVote(models.Model):
     player = models.ForeignKey(Player)
     piece = models.ForeignKey(Piece)
 
+    # TODO rewrite this to a get()
     @staticmethod
     def vote_exists(player, piece):
         return PieceVote.objects.filter(player=player, piece=piece).count() > 0

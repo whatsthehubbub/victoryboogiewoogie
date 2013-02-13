@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     url(r'^colofon/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/colofon.html'}, name='colofon'),
     url(r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/faq.html'}, name='faq'),
     url(r'^help/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/help.html'}, name='help'),
+    url(r'^contact/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/contact.html'}, name='contact'),
 
     url(r'^pre/launch/$', 'boogie.views.pre_launch', name='pre_launch'),
     url(r'^pre/launch/thanks/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/pre_launch_thanks.html'}, name='pre_launch_thanks'),

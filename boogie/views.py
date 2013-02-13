@@ -64,6 +64,19 @@ def summary(request):
     return HttpResponse(t.render(c))
 
 @login_required
+def notifications(request):
+    player = Player.objects.get(user=request.user)
+
+    t = loader.get_template('boogie/notifications.html')
+
+    c = RequestContext(request, {
+        'notifications': Notification.objects.filter(for_player=player).order_by('-datecreated')
+    })
+
+    return HttpResponse(t.render(c))
+    
+
+@login_required
 def topic_list(request):
     t = loader.get_template('boogie/topic_list.html')
     

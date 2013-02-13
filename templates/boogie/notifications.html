@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Berichten{% endblock pagetitle %}
+
+{% block bodyid %}notifications{% endblock %}
+
+{% block content %}
+    
+    {% for notification in notifications %}
+    	<p>{{ notification.datecreated }}: {{ notification.message|safe }}</p>
+    {% endfor %}
+    
+{% endblock %}

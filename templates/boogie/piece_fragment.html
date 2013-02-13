@@ -17,10 +17,11 @@
 	<p><a href="{{ piece.get_absolute_url }}">Permalink</a>.</p>
 
 	{% if current_player|likes:piece %}
-		Je vindt dit een goed stuk. (<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">{% csrf_token %} <input type="submit" value="Toch niet?"></form>)
+		Je vindt dit een goed stuk. (<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">{% csrf_token %} <input type="hidden" name="return_url" value="{{ request.get_full_path }}"> <input type="submit" value="Toch niet?"></form>)
 	{% else %}
 		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
 			{% csrf_token %}
+			<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
 			<input type="submit" value="Goed stuk!">
 		</form>
 	{% endif %}

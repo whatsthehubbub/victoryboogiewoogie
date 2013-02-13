@@ -247,7 +247,11 @@ def piece_vote_up(request, piece_id):
     piece.vote_up(player)
     piece.update_score_cache()
 
-    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+    return_url = request.POST.get('return_url', '')
+    if return_url:
+        return HttpResponseRedirect(return_url)
+    else:
+        return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
 
 @login_required
 @require_POST
@@ -258,7 +262,11 @@ def piece_vote_up_undo(request, piece_id):
     piece.vote_up_undo(player)
     piece.update_score_cache()
 
-    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+    return_url = request.POST.get('return_url', '')
+    if return_url:
+        return HttpResponseRedirect(return_url)
+    else:
+        return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
 
 
 @login_required    

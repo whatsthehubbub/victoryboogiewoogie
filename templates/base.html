@@ -22,8 +22,7 @@
     <meta property="og:site_name" content="Victory Boogie Woogie" />
     <meta property="fb:admins" content="1284304749" />
 	
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
 	
 	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
@@ -48,93 +47,84 @@
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- DOCUMENT -->
-<div id="document" role="document" class="clearfix">
-	
-	<!-- HEADER -->
-	<header role="banner">
-		<div class="stripes"></div>
-		<div class="wrapper clearfix">
-			<nav role="navigation" class="navigation">
-				<ul>
-					<li class="ss-icon"><a href="{% url 'index' %}">Home</a></li>
-					{% if current_player %}
-					<li>
-						{% if current_url %}<a href="{% url 'piece_submit' %}" class="button">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
-					</li>
-					{% endif %}
-					{% ifequal current_player.role 'WRITER' %}
-					<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
-					{% endifequal %}
-					<li><a href="{% url 'editors' %}">Spelregels</a></li>
-					<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-				</ul>
-			</nav>
-			<div class="dashboard">
+<!-- HEADER -->
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<ul class="nav">
+				<li><a href="{% url 'index' %}">Home</a></li>
+				{% if current_player %}
+				<li>
+					{% if current_url %}<a href="{% url 'piece_submit' %}">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
+				</li>
+				{% endif %}
+				{% ifequal current_player.role 'WRITER' %}
+				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
+				{% endifequal %}
+				<li><a href="{% url 'editors' %}">Spelregels</a></li>
+				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+			</ul>
+			<p class="navbar-text pull-right">
 				{% if current_player %}
 					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
 				{% else %}
 					<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
 				{% endif %}
-			</div>
+			</p>
 		</div>
-		<div class="mask"></div>
-	</header>
-	<!-- END HEADER -->
+	</div>
+</header>
+<!-- END HEADER -->
+	
+<!-- DOCUMENT -->
+<div class="container">
 	
 	<!-- MASTHEAD -->
-	<div id="masthead" class="clearfix">
-		<ul class="wrapper">
-			<li class="date">10 mei 2013</li>
-			<li class="logo">
-				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-				<a href="{% url 'index' %}" title="Home">
-					<h1>Victory Boogie Woogie</h1>
-				</a>
-				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-			</li>
-			<li class="week">Week {{ gameWeek }} van 10</li>
-		</ul>
-		
-		<div class="calendar wrapper">
-			<table>
-				<tr>
-					{% for _ in '1234567890'|make_list %}
-						<td{% if week == forloop.counter %} class="active"{% endif %}>
-							{% if gameWeek >= forloop.counter %}
-								<a href="{% url 'pieces_per_week' forloop.counter %}">
-							{% endif %}
-								week {{ forloop.counter }}
-							{% if gameWeek >= forloop.counter %}
-								</a>
-							{% endif %}
-						</td>
-					{% endfor %}
-				</tr>
-			</table>
-		</div>	
-	</div>
+	<ul id="masthead">
+		<li class="date">10 mei 2013</li>
+		<li class="logo">
+			<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+			<a href="{% url 'index' %}" title="Home">
+				<h1>Victory Boogie Woogie</h1>
+			</a>
+			<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+		</li>
+		<li class="week">Week {{ gameWeek }} van 10</li>
+	</ul>
+	<table id="calendar">
+		<tr>
+			{% for _ in '1234567890'|make_list %}
+				<td{% if week == forloop.counter %} class="active"{% endif %}>
+					{% if gameWeek >= forloop.counter %}
+						<a href="{% url 'pieces_per_week' forloop.counter %}">
+					{% endif %}
+						week {{ forloop.counter }}
+					{% if gameWeek >= forloop.counter %}
+						</a>
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+	</table>
 	<!-- END MASTHEAD -->
 	
 	<!-- SIDEBAR -->
-	<aside id="sidebar" class="clearfix">
+	<aside id="sidebar">
 		{% block sidebar %}
 		{% endblock %}
 	</aside>
 	<!-- END SIDEBAR -->
 	
 	<!-- CONTENT -->
-	<section id="content" class="clearfix">
+	<section id="content">
 		{% block content %}
 		{% endblock %}
 	</section>
 	<!-- END CONTENT -->
 	
 	<!-- FOOTER -->
-	<footer id="footer" role="contentinfo" class="clearfix">
-		<div class="wrapper">
-			<p>Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
-		</div>
+	<footer id="footer" role="contentinfo">
+		<p>Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
 	</footer>
 	<!-- END FOOTER -->
 	
@@ -144,8 +134,7 @@
 <!-- JAVASCRIPT -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-<script src="{{ STATIC_URL }}js/plugins.min.js"></script>
-<script src="{{ STATIC_URL }}js/main.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
 <!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
 <script>

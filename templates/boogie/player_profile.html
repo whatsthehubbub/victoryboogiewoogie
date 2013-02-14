@@ -21,7 +21,9 @@
 	<h3>Bijdragen</h3>
 
 	<ul>
-		<li></li>
+    {% for piece in player.pieces %}
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
+	{% endfor %}
 	</ul>
 	
     <!-- {% if assigned_pieces %}

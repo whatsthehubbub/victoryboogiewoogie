@@ -34,6 +34,33 @@
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
 	
+<!-- ILLUSTRATION EXAMPLE -->
+<article class="span4 illustratie clearfix">
+	
+	<a href="{{ piece.get_absolute_url }}">
+		<div class="box">
+			<div class="overlay"></div>
+			
+			<div class="meta clearfix">
+				<p class="genre pull-left">Onderwerp</p>
+				<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
+			</div>
+			
+			<img src="/static/img/placeholder.jpg" alt="">
+			
+			<p class="score"><span class="label">{{ piece.score }}</span></p>
+		</div>
+	</a>
+	
+	<div class="info">
+		<p class="author pull-left">
+			<a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a>
+		</p>
+		<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
+	</div>
+	
+</article>
+	
 </div>
 
 {% endblock %}

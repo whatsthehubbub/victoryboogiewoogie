@@ -36,6 +36,15 @@ class PreLaunchEmailForm(ModelForm):
         model = PreLaunchEmail
         fields = ('email', )
 
+def colofon(request):
+    t = loader.get_template('boogie/colofon.html')
+    
+    c = RequestContext(request, {
+        'writers': Player.objects.filter(role='WRITER')
+    })
+
+    return HttpResponse(t.render(c))
+
 def pre_launch(request):
     t = loader.get_template('boogie/pre_launch.html')
     

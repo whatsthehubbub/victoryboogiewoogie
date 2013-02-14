@@ -14,14 +14,9 @@
 			<h3>De Schrijvers</h3>
 			<!-- TODO: Hook this up to the registered writers. -->
 			<ul>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
-				<li><a href=""><img src="" alt="[Pseudonym]" title="[Pseudonym]"></img> [Pseudonym]</a></li>
+				{% for writer in writers %}
+					<li><a href="{{ writer.get_absolute_url }}"><img src="" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym }}"></img> {{ writer.pseudonym }}</a></li>	
+				{% endfor %}
 			</ul>
 		</div>
 	</div>

@@ -90,7 +90,7 @@ def topic_list(request):
 def topic_detail(request, topicid, slug):
     t = loader.get_template('boogie/topic_detail.html')
     
-    order = request.GET.get('order', '-rating')
+    order = request.GET.get('order', '-score_cache')
 
     topic = Topic.objects.get(id=topicid)
 

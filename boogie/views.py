@@ -147,41 +147,13 @@ class PieceSubmitForm(ModelForm):
         model = Piece
         fields = ('genre', 'title', 'text', 'new_topic')
 
-class WriterPieceSubmitForm(ModelForm):
-    class Meta:
-        model = Piece
-        fields = ('topic', 'title', 'genre', 'text')
-
 @login_required
 def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')
     
     player = Player.objects.get(user=request.user)
 
-    # TODO remove this entire branch of the if/else?
-    if player.role == 'WRITER':
-        if request.method == 'POST':
-            form = WriterPieceSubmitForm(request.POST)
-            if form.is_valid():
-                # We don't need a special status, we can figure out if a piece was written by a writer by querying JOIN on the author
-                form.instance.status = 'APPROVED'
-                
-                # These fields already be filled in with a Piece stub for a player
-                form.instance.writer = player
-                form.instance.deadline = datetime.datetime.now() # We don't actually use this
-                form.save()
-
-                form.instance.topic.pool = 'PLAYER'
-                form.instance.topic.piece_threshold += 1
-                form.instance.topic.save()
-
-                # TODO figure out where the piece of the writer would be going to 
-                return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[form.instance.id]))
-        else:
-            form = WriterPieceSubmitForm()
-
-        form.fields['topic'].queryset = Topic.objects.all().filter(pool='WRITER')
-    else:
+    if player.role == 'PLAYER':
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
         if assignments:
             # If we have more than one assignment, we just get the first
@@ -197,8 +169,6 @@ def piece_submit(request):
                     return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
             else:
                 form = PieceSubmitForm(instance=piece, initial={'genre': 'Proza'})
-        else:
-            form = None
     
     c = RequestContext(request, {
             'form': form

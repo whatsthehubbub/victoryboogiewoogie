@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^bijdrages/week/(\d+)/$', 'boogie.views.pieces_per_week', name='pieces_per_week'),
     url(r'^bijdrages/queue/', 'boogie.views.piece_queue', name='piece_queue'),
     
-    url(r'^bijdrages/(\d+)/$', 'boogie.views.piece_detail'),
+    url(r'^bijdrages/(\d+)/$', 'boogie.views.piece_detail', name='piece_detail'),
     url(r'^bijdrages/submit/$', 'boogie.views.piece_submit', name='piece_submit'),
     url(r'^bijdrages/assign/$', 'boogie.views.pieces_assign', name='pieces_assign'),
     url(r'^bijdrages/(\d+)/validate/$', 'boogie.views.piece_validate', name='piece_validate'),

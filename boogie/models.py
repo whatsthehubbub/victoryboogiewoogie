@@ -185,6 +185,9 @@ class Topic(models.Model):
             return True
         return False
 
+    def get_latest_piece(self):
+        return self.approved_pieces()[0]
+
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.topic_detail', [self.id, self.slug])

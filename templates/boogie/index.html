@@ -91,7 +91,7 @@
 		<h2 class="text-center">De nieuwste bijdragen</h2>
 		<ul>
 			{% for piece in newest_pieces %}
-			<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> over <a href="{{ piece.topic.get_absolute_url }}">{{ piece.topic }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</li>
+			<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> over <a href="{{ piece.topic.get_absolute_url }}">{{ piece.topic }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a> {{ piece.datepublished|timesince }} geleden</li>
 			{% endfor %}
 		</ul>
 	</section>

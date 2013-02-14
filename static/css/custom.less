@@ -3,9 +3,16 @@
 // --------------------------------------------------
 
 body {
-	background-image: url(/static/img/bg.png);
-	background-size: 128px 116px;
+	background-image: url(/static/img/bg-grain.png);
+	background-size: 50px 50px;
+	background-color: @grayLighter;
 	background-repeat: repeat;
+	background-position-x: 50%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: @condFontFamily;
+	text-transform: uppercase;
 }
 
 #chromeframe {
@@ -33,10 +40,14 @@ body {
 }
 
 #masthead {
-	margin: 5em 0 0 0;
+	padding: 5em 0 5em 0;
 	text-align: center;
+	background-image: url(/static/img/bg-grain.png);
+	background-size: 50px 50px;
+	background-repeat: repeat;
+	background-color: @grayLight;
 	ul {
-		margin: 1em auto 1.2em;
+		margin: 0.5em auto 1.2em;
 		padding: 0;
 		list-style: none;
 	}
@@ -56,7 +67,6 @@ body {
 		text-align: center;
 	}
 	.logo h1 {
-		font-family: @blackFontFamily;
 		display: inline;
 		font-size: 2.5em;
 		font-weight: 700;
@@ -79,10 +89,6 @@ body {
 #calendar {
 	margin: 0.8em 0 1em 0;
 	padding: 0 0 1px 0;
-	border-bottom: 1px solid @grayDark;
-	.container {
-		border-bottom: 2px solid @grayDark;
-	}
 	.nav {
 		margin: 0;
 		display: table;
@@ -115,6 +121,17 @@ body {
 	.nav li.disabled a, .nav li.disabled a:hover {
 		color: @grayLight;
 	}
+}
+
+#main {
+	width: 980px;
+	margin: -5em auto 0;
+	background-image: url(/static/img/bg-grain.png);
+	background-size: 50px 50px;
+	background-color: @grayLighter;
+	background-repeat: repeat;
+	padding: 0.25em 0 0;
+	.border-radius(@baseBorderRadius);
 }
 
 #content {

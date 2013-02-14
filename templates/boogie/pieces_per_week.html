@@ -6,26 +6,35 @@
 {% block bodyid %}pieces_per_week{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<h2>Week {{ week }}</h2>
-		<p>Dit zijn alle stukjes die zijn verschenen in week {{ week }}.</p>
-		
-		<p>Sorteren: 
-		
+<div class="box box-small">
+	<div class="row">
+		<div class="span8 offset2">
+			<h2 class="text-center">Week {{ week }}</h2>
+			<p class="text-center">Dit zijn alle stukjes die zijn verschenen in week {{ week }}.</p>
+		</div>
+	</div>
+</div>
+
+<div class="filter">
+	<div class="btn-group"> 
 		{% ifequal order '-datecreated' %}
-			<a href="?order=-score_cache">Beste</a>
+			<a href="?order=-score_cache" class="btn">Beste</a>
 		{% else %}
-			<strong>Beste</strong>
-		{% endifequal %} | 
+			<a href="?order=-score_cache" class="btn active">Beste</a>
+		{% endifequal %}
 		
 		{% ifequal order '-score_cache' %}
-			<a href="?order=-datecreated">Nieuwste</a>
+			<a href="?order=-datecreated" class="btn">Nieuwste</a>
 		{% else %}
-			<strong>Nieuwste</strong>
-		{% endifequal %}</p>
-		
-		{% for piece in pieces %}
-			{% include "boogie/piece_fragment.html" %}
-		{% endfor %}
+			<a href="?order=-datecreated" class="btn active">Nieuwste</a>
+		{% endifequal %}
 	</div>
+</div>
+
+<div class="row clearfix">
+	{% for piece in pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% endfor %}
+</div>
+
 {% endblock %}

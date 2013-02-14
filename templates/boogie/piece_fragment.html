@@ -1,7 +1,7 @@
 {% load url from future %}
 {% load piece_extras %}
 
-<article class="wrapper box clearfix">
+<article class="span3 box">
 	<h2>{{ piece.title }}</h2>
     <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
 	<p class="author"><a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</p>

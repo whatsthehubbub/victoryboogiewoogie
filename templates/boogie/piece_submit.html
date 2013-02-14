@@ -16,12 +16,17 @@
 			
 			{% if form %}
 				{% ifequal current_player.role 'WRITER' %}
-					<h2>Schrijf een gebeurtenis</h2>
+					<h2 class="text-center">Schrijf een gebeurtenis</h2>
 				{% endifequal %}
 				
 				{% ifequal current_player.role 'PLAYER' %}
-					<h2>Schrijf iets nieuws over: {{ form.instance.topic.title }}</h2>
-					<p>Speler, dit is je kans! Schrijf een kek stukje over het onderwerp <strong>{{ form.instance.topic.title }}</strong>. Je kan kiezen uit verschillende genres, <em>anything goes</em>. Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
+					<h2 class="text-center">Schrijf iets nieuws over {{ form.instance.topic.title }}</h2>
+					
+					<p class="lead">Dit is je kans! Schrijf een kek stukje over het onderwerp {{ form.instance.topic.title }}. Je kan kiezen uit verschillende genres, <em>anything goes</em>.</p>
+					<p>Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
+					
+					<hr>
+					
 					<!-- TODO: Hook the links below up to the corresponding pages. -->
 					<p>Lees het <a href="">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="">alle stukjes</a> over dit onderwerp.</p>
 					<p>Deadline</p>

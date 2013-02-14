@@ -873,5 +873,6 @@ body{background-image:url(/static/img/bg.png);background-size:128px 116px;backgr
 #calendar .nav li a:hover{color:#333333;}
 #calendar .nav li.active a{color:#000000;}
 #content{margin:1em 0;}#content .box{background-color:#ffffff;padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}
+#content .box-small{padding:1em 0 0.5em 0;}
 #footer{color:#999999;padding:1em 0;}#footer a{color:#666666;}
 #footer a:hover{color:#333333;}

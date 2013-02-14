@@ -44,13 +44,10 @@ class Player(models.Model):
         return Piece.objects.filter(writer=self).order_by('-datepublished')
 
     def get_name(self):
-        if self.role == 'PLAYER':
-            if self.pseudonym:
-                return self.pseudonym
+        if self.pseudonym:
+            return self.pseudonym
         else:
-            if self.character_name:
-                return self.character_name
-        return self.user.username
+            return self.user.username
 
     def __unicode__(self):
         return self.user.username

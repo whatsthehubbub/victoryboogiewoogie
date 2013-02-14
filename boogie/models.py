@@ -33,7 +33,6 @@ class Player(models.Model):
             # TODO Check if you can get a new topic for which you are already writing
             new_topic = Topic.objects.exclude(pool='WRITER').order_by('?')[0]
 
-            # TODO figure out what to do with the deadline later
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
             piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
 
@@ -209,10 +208,10 @@ class Piece(models.Model):
     new_topic = models.CharField(max_length=255, blank=True)
     
     status = models.CharField(max_length=255, choices=(
-                    ('ASSIGNED', 'toegekend'), 
-                    ('SUBMITTED', 'ingediend'), 
-                    ('APPROVED', 'goedgekeurd'), 
-                    ('NEEDSWORK', 'needs work'), 
+                    ('ASSIGNED', 'toegekend'),
+                    ('SUBMITTED', 'ingediend'),
+                    ('APPROVED', 'goedgekeurd'),
+                    ('NEEDSWORK', 'needs work'),
                     ('REJECTED', 'afgekeurd')), default='ASSIGNED')
 
     datepublished = models.DateTimeField(blank=True, null=True)

@@ -897,5 +897,10 @@ h1,h2,h3,h4,h5,h6{color:#000000;}
 #itemdetail .box{padding-top:0;}
 #itemdetail .meta{color:#999999;border-bottom:1px solid #eeeeee;}
 #itemdetail .meta .character{width:40px;height:40px;}
+#itemdetail .score .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#fed700;}
+#itemdetail .like ul{margin:0;}
+#itemdetail .like form{margin:0;}
+#itemdetail .twitter{margin:0.25em 0 0;}
+#itemdetail .facebook{margin:0;}
 #footer{color:#999999;margin:1em 0 0 0;padding:2.5em 0 1.5em;border-top:1px solid #eeeeee;}#footer a{color:#666666;}
 #footer a:hover{color:#333333;}

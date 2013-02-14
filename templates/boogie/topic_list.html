@@ -6,24 +6,31 @@
 {% block bodyid %}topic_list{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<h2>De Onderwerpen</h2>
-		
-		<h3>Onderwerpen voor spelers</h3>
-		<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. De getallen achter elk onderwerp geven aan hoeveel bijdragen er zijn geschreven en hoeveel er nog te gaan zijn tot een &lsquo;gebeurtenis&rsquo;.</p>
-		<ul>
-			{% for topic in player_topics %}
-				<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.piece_count }} / {{ topic.piece_threshold }})</li>
-			{% endfor %}
-    	</ul>
-    	
-    	<h3>Onderwerpen voor schrijvers</h3>
-    	<p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
-    	<ul>
-    		{% for topic in writer_topics %}
-    			<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission -->
-    			<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
-    		{% endfor %}
-    	</ul>
+
+<div class="box">
+	<div class="row">
+		<div class="span8 offset2">
+			
+			<h2 class="text-center">De Onderwerpen</h2>
+			
+			<h3>Onderwerpen voor spelers</h3>
+			<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. De getallen achter elk onderwerp geven aan hoeveel bijdragen er zijn geschreven en hoeveel er nog te gaan zijn tot een &lsquo;gebeurtenis&rsquo;.</p>
+			<ul>
+				{% for topic in player_topics %}
+					<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.piece_count }} / {{ topic.piece_threshold }})</li>
+				{% endfor %}
+			</ul>
+			<hr>
+			<h3>Onderwerpen voor schrijvers</h3>
+			<p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
+			<ul>
+				{% for topic in writer_topics %}
+					<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission -->
+					<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
+				{% endfor %}
+			</ul>
+			
+		</div>
 	</div>
+</div>
 {% endblock %}

@@ -18,6 +18,20 @@ body {
 	border-bottom: 1px solid @grayLighter;
 }
 
+#header {
+	background-color: @white;
+	.box-shadow(0 1px 4px rgba(0,0,0,.1));
+	.stripes {
+		height: 5px;
+		background-image: url(/static/img/bg-header-stripes.png);
+		background-size: 400px 5px;
+		background-repeat: repeat-x;
+	}
+	.container {
+		padding: 0.5em 0 0.25em 0;
+	}
+}
+
 #masthead {
 	margin: 5em 0 1em 0;
 	text-align: center;
@@ -84,5 +98,26 @@ body {
 	}
 	.nav li.active a {
 		color: @black;
+	}
+}
+
+#content {
+	margin: 1em 0;
+	.box {
+		background-color: @white;
+		padding: 3em 0 4em 0;
+		.border-radius(@baseBorderRadius);
+		.box-shadow(0 1px 4px rgba(0,0,0,.1));
+	}
+}
+
+#footer {
+	color: @grayLight;
+	padding: 1em 0;
+	a {
+		color: @gray;
+	}
+	a:hover {
+		color: @grayDark;
 	}
 }

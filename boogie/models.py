@@ -148,7 +148,7 @@ class Notification(models.Model):
             from_email = 'Mailman@gidsgame.nl'
             to_email = self.for_player.user.email
 
-            content = self.message
+            content = self.message + '<br><br>' + self.get_email_footer()
 
             try:
                 msg = EmailMessage(subject, content, from_email, [to_email])
@@ -158,6 +158,8 @@ class Notification(models.Model):
             except:
                 logger.error('Could not send e-mail to %s', to_email)
 
+    def get_email_footer(self):
+        return '''Deze e-mail is verstuurd door http://www.gidsgame.nl. Om u direct af te melden van verder e-mails kan je je <a href="http://www.gidsgame.nl%s">met een klik</a> uitschrijven.''' % reverse('player_unsubscribe', self.for_player.emails_unsubscribe_hash)
 
     def get_subject(self):
         if self.identifier == 'bla':

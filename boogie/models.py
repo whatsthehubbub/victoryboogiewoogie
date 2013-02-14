@@ -68,8 +68,9 @@ from registration.signals import user_registered
 
 def create_player(sender, user, request, **kwarg):
     player = Player.objects.create(user=user) # Default role is player
-    # new players get an assignment directly
-    # TODO figure out what to do about created writers
+    
+    # TODO Also fill in unsubscribe hash
+
     player.get_new_assignment()
 user_registered.connect(create_player)
 
@@ -175,7 +176,7 @@ class Topic(models.Model):
     # Counts of pieces written and pieces needed for a pool change
     piece_count = models.IntegerField(default=0)
 
-    # TODO has to be a function of number of writers
+    # A function of the number of writers
     # and how much work those writers have to do right now
     piece_threshold = models.IntegerField(default=3)
     
@@ -245,7 +246,11 @@ class Piece(models.Model):
         return ('boogie.views.piece_detail', [self.id])
 
     def vote_up(self, player):
-        if not PieceVote.vote_exists(player, self):
+        try:
+            vote = PieceVote.objects.get(player=player, piece=self)
+            # Vote exists already so we don't do anything
+        except:
+            # If the vote does not exist, we create one
             PieceVote.objects.create(player=player, piece=self)
 
     def vote_up_undo(self, player):
@@ -260,10 +265,8 @@ class Piece(models.Model):
     score_cache = models.FloatField(default=0.0)
 
     def score(self):
-        # TODO change this into
         # (likes - 1) / (hours_since_publication + 2) ^ 1.5
 
-        # TODO probably denormalize this into a database field
         if self.status == 'APPROVED':
             timedelta = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
             hours = timedelta.days * 24 + timedelta.seconds / 3600

@@ -6,8 +6,6 @@
 {% block bodyid %}home{% endblock %}
 
 {% block sidebar %}
-<div class="well">Welkom nieuwe speler! Victory Boogie Woogie is een gezamenlijk schrijfspel. Het verhaal mede bepalen? <a href="" class="btn">Aanmelden</a></div>
-
 	{% if summary %}
 	<div id="summary" class="well">
 		Het verhaal tot nu toe... {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a>

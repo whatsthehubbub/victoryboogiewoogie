@@ -6,6 +6,8 @@
 {% block bodyid %}home{% endblock %}
 
 {% block sidebar %}
+<div class="well">Welkom nieuwe speler! Victory Boogie Woogie is een gezamenlijk schrijfspel. Het verhaal mede bepalen? <a href="" class="btn">Aanmelden</a></div>
+
 	{% if summary %}
 	<div id="summary" class="well">
 		Het verhaal tot nu toe... {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a>
@@ -14,9 +16,10 @@
 {% endblock sidebar %}
 
 {% block content %}
-
 <div class="row">
-	<div class="span9">
+	<div class="span12 text-center"><h2>De nieuwste bijdrages</h2></div>
+	<!-- Stukken over personages -->
+	<div class="span8">
 		<div>
 			<!-- Nieuwste stuk over een personage -->
 			<h3>[Titel]</h3>
@@ -25,44 +28,16 @@
 			<p>door <a href="">[Pseudonym]</a> [timestamp] geleden</p>
 		</div>
 		<div>
-			<!-- De drie personage stukken daarvoor -->
+			<!-- De drie personage-stukken daarvoor -->
 			<ul>
 				<li><a href="">[Titel]</a> over <a href="">[Naam Personage]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 				<li><a href="">[Titel]</a> over <a href="">[Naam Personage]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 				<li><a href="">[Titel]</a> over <a href="">[Naam Personage]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 			</ul>
 		</div>
-		<div>
-			<h2>De personages</h2>
-			<div class="row">				
-				<div class="span3">
-					<a href="">
-						<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
-						<p>[Naam Personage]</p>
-					</a>
-				</div>
-				<div class="span3">
-					<a href="">
-						<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
-						<p>[Naam Personage]</p>
-					</a>
-				</div>
-				<div class="span3">
-					<a href="">
-						<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
-						<p>[Naam Personage]</p>
-					</a>
-				</div>
-				<div class="span3">
-					<a href="">
-						<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
-						<p>[Naam Personage]</p>
-					</a>
-				</div>
-			</div>
-		</div>
 	</div>
-	<div class="span3">
+	<!-- Stukken over onderwerpen, niet over personages -->
+	<div class="span4">
 		<div>
 			<!-- Nieuwste stuk over een onderwerp, niet over een personage -->
 			<h3>[Titel]</h3>
@@ -71,36 +46,46 @@
 			<p>door <a href="">[Pseudonym]</a> [timestamp] geleden</p>
 		</div>
 		<div>
-			Drie onderwerp-stukken daarvoor
+			<!-- De drie onderwerp-stukken daarvoor -->
 			<ul>
 				<li><a href="">[Titel]</a> over <a href="">[Onderwerp]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 				<li><a href="">[Titel]</a> over <a href="">[Onderwerp]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 				<li><a href="">[Titel]</a> over <a href="">[Onderwerp]</a> door <a href="">[Peudonym]</a> [timestamp] geleden</li>
 			</ul>
 		</div>
-		<div>
-			<h2>Onderwerpen</h2>
-			<h3>Voor spelers</h3>
-			<ul>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-			</ul>
-			<h3>Voor schrijvers</h3>
-			<ul>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-				<li>Onderwerp</li>
-			</ul>
-		</div>
+		<div><a href="">Bekijk alle onderwerpen <i class="icon-arrow-right"></i></a></div>
 	</div>
+	<!-- Personage-lijst, misschien moet dit gewoon naar z'n eigen pagina -->
+	<div class="row">
+		<div class="span12 text-center"><h2>De personages</h2></div>
+		<div class="span4">
+			<a href="">
+				<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
+				<p>[Naam Personage]</p>
+			</a>
+		</div>
+		<div class="span4">
+			<a href="">
+				<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
+				<p>[Naam Personage]</p>
+			</a>
+		</div>
+		<div class="span4">
+			<a href="">
+				<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
+				<p>[Naam Personage]</p>
+			</a>
+		</div>
+		<div class="span4">
+			<a href="">
+				<img src="" alt="[Naam Personage]" title="[Naam Personage]"></img>
+				<p>[Naam Personage]</p>
+			</a>
+		</div>
+	</div>		
 </div>
 
-	{% for piece in frontpage_pieces %}
+<!-- 	{% for piece in frontpage_pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
 	
@@ -127,4 +112,4 @@
             {% endfor %}
         </ul>
 	</section>
-{% endblock %}
+ -->{% endblock %}

@@ -208,6 +208,7 @@ def piece_validate(request, piece_id):
         piece.status = 'REJECTED'
 
         # Don't give this player a new assignment
+        # TODO Why not?
         # tasks.get_new_assignment.delay(piece.writer)
 
     piece.save()

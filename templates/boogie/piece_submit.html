@@ -46,13 +46,19 @@
 					<hr>
 					
 					<!-- TODO: Hook the links below up to the corresponding pages. -->
-					<p>Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id form.instance.topic.get_latest_piece.slug %}">laatste stukje</a> over dit onderwerp. Of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.</p>
-					<p>Deadline</p>
-					<p>in {{ form.instance.deadline|timeuntil }}</p>
+					
+					{% if form.instance.topic.get_latest_piece %}
+						<p>Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp.
+					{% endif %}
+
+					Of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.</p>
+					
+					<p>Deadline in {{ form.instance.deadline|timeuntil }}</p>
+
 					<p>Voortgang tot gebeurtenis</p>
 					<p>{{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}</p>
 				{% endifequal %}
-				
+
 				<form action="{% url 'piece_submit' %}" method="post">
 					{% csrf_token %}
 					{{ form.as_ul }}

@@ -26,6 +26,7 @@ class Player(models.Model):
 
     # E-mail notifications
     send_emails = models.BooleanField(default=True)
+    emails_unsubscribe_hash = models.CharField(max_length=255, blank=True)
 
     def get_new_assignment(self):
         if self.role == 'WRITER':
@@ -67,7 +68,9 @@ from registration.signals import user_registered
 def create_player(sender, user, request, **kwarg):
     player = Player.objects.create(user=user) # Default role is player
     
-    # TODO Also fill in unsubscribe hash
+    import uuid
+    player.emails_unsubscribe_hash = uuid.uuid4().hex
+    player.save()
 
     player.get_new_assignment()
 user_registered.connect(create_player)

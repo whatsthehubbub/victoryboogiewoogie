@@ -44,4 +44,5 @@ urlpatterns = patterns('',
 
     url(r'^spelers/(\w+?)/$', 'boogie.views.player_profile', name='player_profile'),
     url(r'^spelers/(\w+?)/edit/$', 'boogie.views.player_profile_edit', name='player_profile_edit'),
+    url(r'^spelers/(\S+?)/unsubscribe/$', 'boogie.views.player_unsubscribe', name='player_unsubscribe'),
 )

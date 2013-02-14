@@ -349,6 +349,16 @@ def player_profile_edit(request, name):
 
     return HttpResponse(t.render(c))
 
+def player_unsubscribe(request, h):
+    try:
+        player = Player.objects.get(emails_unsubscribe_hash=h)
+        player.send_emails = False
+        player.save()
+    except:
+        logging.error("Tried to unsubscribe player with hash %s", h)
+
+    return HttpResponseRedirect(reverse('index'))
+
 @login_required
 def writer_profile(request, name):
     player = Player.objects.get(user__username=name)

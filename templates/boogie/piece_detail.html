@@ -1,6 +1,8 @@
 {% extends "base.html" %}
-<!-- TODO: Figure out how to add the piece's title into this thingamajig. -->
-{% block pagetitle %}Piece Title Goes Here{% endblock pagetitle %}
+{% load piece_extras %}
+{% load url from future %}
+
+{% block pagetitle %}{{ piece.title }}{% endblock pagetitle %}
 
 {% block bodyid %}piece_detail{% endblock %}
 
@@ -28,7 +30,7 @@
 			
 			<div class="social">
 				{% if current_player|likes:piece %}
-		Je vindt dit een goed stuk. (<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">{% csrf_token %} <input type="hidden" name="return_url" value="{{ request.get_full_path }}"> <input type="submit" value="Toch niet?"></form>)
+					Je vindt dit een goed stuk. (<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">{% csrf_token %} <input type="hidden" name="return_url" value="{{ request.get_full_path }}"> <input type="submit" value="Toch niet?"></form>)
 	{% else %}
 		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
 			{% csrf_token %}

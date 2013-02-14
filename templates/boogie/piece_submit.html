@@ -3,6 +3,24 @@
 
 {% block pagetitle %}Schrijven{% endblock pagetitle %}
 
+{% block extrahead %}
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#id_genre').change(function() {
+
+			if ($('#id_genre').val() === 'Headline') {
+				$('#id_text').parent().slideUp();
+			} else {
+				$('#id_text').parent().slideDown();
+			}
+		});
+	});
+
+	</script>
+{% endblock extrahead %}
+
+
 {% block bodyid %}piece_submit{% endblock %}
 
 {% block content %}

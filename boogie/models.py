@@ -190,6 +190,8 @@ class Topic(models.Model):
         return ('boogie.views.topic_detail', [self.id, self.slug])
     
 
+PIECE_GENRE_CHOICES = (('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
+
 class Piece(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
@@ -202,7 +204,7 @@ class Piece(models.Model):
 
     image = models.ImageField(blank=True, upload_to='piece_images')
     
-    genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie')))
+    genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(blank=True, max_length=255)
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)

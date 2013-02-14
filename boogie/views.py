@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm
+from django.forms import ModelForm, widgets, ChoiceField
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
@@ -141,6 +141,8 @@ def piece_detail(request, id):
     return HttpResponse(t.render(c))
 
 class PieceSubmitForm(ModelForm):
+    genre = ChoiceField(choices=PIECE_GENRE_CHOICES[:-1])
+
     class Meta:
         model = Piece
         fields = ('genre', 'title', 'text', 'new_topic')
@@ -156,6 +158,7 @@ def piece_submit(request):
     
     player = Player.objects.get(user=request.user)
 
+    # TODO remove this entire branch of the if/else?
     if player.role == 'WRITER':
         if request.method == 'POST':
             form = WriterPieceSubmitForm(request.POST)
@@ -181,8 +184,7 @@ def piece_submit(request):
     else:
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
         if assignments:
-            # TODO this doesn't go too well if we have more than one assignment
-            # TODO make sure that never happens
+            # If we have more than one assignment, we just get the first
             piece = assignments[0]
 
             if request.method == 'POST':
@@ -194,7 +196,7 @@ def piece_submit(request):
 
                     return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
             else:
-                form = PieceSubmitForm(instance=piece)
+                form = PieceSubmitForm(instance=piece, initial={'genre': 'Proza'})
         else:
             form = None
     

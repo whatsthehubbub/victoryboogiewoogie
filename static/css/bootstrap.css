@@ -859,7 +859,7 @@ body{background-image:url(/static/img/bg.png);background-size:128px 116px;backgr
 .chromeframe{margin:0;background:#999999;color:#000000;padding:0.5em 0;text-align:center;background-color:#fed700;border-bottom:1px solid #eeeeee;}
 #header{background-color:#ffffff;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}#header .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #header .container{padding:0.5em 0 0.25em 0;}
-#masthead{margin:5em 0 1em 0;text-align:center;}#masthead ul{margin:1em auto 1.2em;padding:0;list-style:none;}
+#masthead{margin:5em 0 0 0;text-align:center;}#masthead ul{margin:1em auto 1.2em;padding:0;list-style:none;}
 #masthead li{display:inline;margin:0;padding:0;}
 #masthead a:link,#masthead a:visited{text-decoration:none;color:#000000;}
 #masthead .logo{text-align:center;}
@@ -867,11 +867,14 @@ body{background-image:url(/static/img/bg.png);background-size:128px 116px;backgr
 #masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;}
 #masthead .date{text-align:right;vertical-align:0.6em;}
 #masthead .week{text-align:left;vertical-align:0.6em;}
-#calendar{margin:1em 0;}#calendar .nav{margin:0;display:table;width:100%;}
+#calendar{margin:0.8em 0 1em 0;padding:0 0 1px 0;border-bottom:1px solid #333333;}#calendar .container{border-bottom:2px solid #333333;}
+#calendar .nav{margin:0;display:table;width:100%;}
 #calendar .nav li{display:table-cell;width:1%;float:none;text-align:center;}
+#calendar .nav li.active a{background-color:transparent;box-shadow:none;background-image:url(/static/img/calendar-arrow.png);background-size:20px 15px;background-repeat:no-repeat;background-position:center bottom;}
 #calendar .nav li a{color:#666666;text-align:center;}
 #calendar .nav li a:hover{color:#333333;}
 #calendar .nav li.active a{color:#000000;}
+#calendar .nav li.disabled a,#calendar .nav li.disabled a:hover{color:#999999;}
 #content{margin:1em 0;}#content .box{background-color:#ffffff;padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}
 #content .box-small{padding:1em 0 0.5em 0;}
 #content .filter{margin:0.5em 0 1.5em;}

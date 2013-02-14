@@ -134,12 +134,13 @@ def pieces_per_week(request, week):
 @login_required
 def piece_detail(request, id):
     player = Player.objects.get(user=request.user)
+    piece = Piece.objects.get(id=id)
 
-    if request.user.is_superuser or player.role == 'WRITER':
+    if request.user.is_superuser or player.role == 'WRITER' or player==piece.writer:
         t = loader.get_template('boogie/piece_detail.html')
 
         c = RequestContext(request, {
-                'piece': Piece.objects.get(id=id)
+                'piece': piece
         })
         return HttpResponse(t.render(c))
     else:

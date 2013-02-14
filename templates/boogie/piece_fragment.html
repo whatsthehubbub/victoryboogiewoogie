@@ -10,6 +10,8 @@
 		<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
 	{% endif %}
 
+	<p>Type: {{ piece.genre }}</p>
+
 	<p>{{ piece.text|linebreaks }}</p>
 
 	<p>Score: {{ piece.score }}.</p>

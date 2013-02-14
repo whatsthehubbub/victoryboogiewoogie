@@ -12,7 +12,7 @@
 
 	<h2>{{ player.pseudonym }}&rsquo;s profiel</h2>
 
-	<p>[Short bio goes here]</p>
+	<p>{{ player.onelinebio }}</p>
 
 	{% if player.avatar %}
 		<img src="{{ player.avatar.url }}" alt="{{ player.pseudonym }}" title="{{ player.pseudonym }}">

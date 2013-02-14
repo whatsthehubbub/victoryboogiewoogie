@@ -15,12 +15,14 @@
 		
 		<div class="span8 offset2">
 			<h3 class="text-center">De Schrijvers</h3>
-			<!-- TODO: Hook this up to the registered writers. -->
-			<ul class="unstyled">
+			<div class="span2 text-center">
 				{% for writer in writers %}
-					<li><a href="{{ writer.get_absolute_url }}"><img src="" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym }}"></img> {{ writer.pseudonym }}</a></li>
+					<a href="{{ writer.get_absolute_url }}">
+						<img class="img-polaroid" src="{{ writer.avatar.url }}" alt="{{ writer.pseudonym }}"></img> 
+						<h4>{{ writer.pseudonym }}</h4>
+					</a>
 				{% endfor %}
-			</ul>
+			</div>
 		</div>
 
 				

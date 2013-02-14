@@ -10,11 +10,6 @@ body {
 	background-position-x: 50%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: @condFontFamily;
-	text-transform: uppercase;
-}
-
 #chromeframe {
 	margin: 0;
 	background: @grayLight;
@@ -69,7 +64,9 @@ h1, h2, h3, h4, h5, h6 {
 	.logo h1 {
 		display: inline;
 		font-size: 2.5em;
-		font-weight: 700;
+		font-family: @condFontFamily;
+		text-transform: uppercase;
+		font-weight: 900;
 	}
 	.logo img {
 		width: 8px;
@@ -130,12 +127,11 @@ h1, h2, h3, h4, h5, h6 {
 	background-size: 50px 50px;
 	background-color: @grayLighter;
 	background-repeat: repeat;
-	padding: 0.25em 0 0;
+	padding: 1em 0 0;
 	.border-radius(@baseBorderRadius);
 }
 
 #content {
-	margin: 1em 0;
 	.box {
 		background-color: @white;
 		padding: 3em 0 4em 0;

@@ -172,7 +172,7 @@ def piece_submit(request):
                     form.instance.status = 'SUBMITTED'
                     form.save()
 
-                    return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
+                    return HttpResponseRedirect(reverse('piece_submit_thanks'))
             else:
                 form = PieceSubmitForm(instance=piece, initial={'genre': 'Proza'})
     

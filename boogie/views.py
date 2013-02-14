@@ -167,6 +167,7 @@ def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')
     
     player = Player.objects.get(user=request.user)
+    form = None
 
     if player.role == 'PLAYER':
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)

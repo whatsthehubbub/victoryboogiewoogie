@@ -13,7 +13,7 @@
 		{% ifequal topic.pool 'WRITER' %}
 			schrijvers.
 		{% else %}
-			spelers. Voortgang tot gebeurtenis: ({{ topic.piece_count }}/{{ topic.piece_threshold }}).
+			spelers. Voortgang tot gebeurtenis: ({{ topic.progress }}% {{ topic.piece_count }}/{{ topic.piece_threshold }}).
 		{% endifequal%}
 		</p>
 		

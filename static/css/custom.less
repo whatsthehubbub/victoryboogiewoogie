@@ -14,6 +14,10 @@ h1, h2, h3, h4, h5, h6 {
 	color: @black;
 }
 
+h3 {
+	margin-top: 2em;
+}
+
 #chromeframe {
 	margin: 0;
 	background: @grayLight;
@@ -241,12 +245,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #itemdetail {
+	.pager a {
+		background-color: transparent;
+	}
+	.pager-top {
+		margin-top: 0;
+	}
+	.pager-bottom {
+		margin-bottom: 0;
+	}
 	.box {
 		padding-top: 0;
 	}
 	.meta {
 		color: @grayLight;
 		border-bottom: 1px solid @grayLighter;
+		margin-bottom: 4em;
 		.genre {
 			
 		}
@@ -274,6 +288,13 @@ h1, h2, h3, h4, h5, h6 {
 		margin: 0.25em 0 0;
 	}
 	.facebook {
+		margin: 0;
+	}
+}
+
+#topiclist {
+	.progress {
+		width: 14em;
 		margin: 0;
 	}
 }

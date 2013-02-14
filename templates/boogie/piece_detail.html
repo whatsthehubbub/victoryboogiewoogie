@@ -9,6 +9,7 @@
 {% block content %}
 
 <div id="itemdetail">
+	
 	<div class="box">
 		<div class="row">
 		
@@ -48,18 +49,27 @@
 				</div>
 				
 				<div class="facebook pull-right">
-						<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
-						<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-					</div>
-					<div class="twitter pull-right">
-						<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
-						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-				
+					<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
+					<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+				</div>
+				<div class="twitter pull-right">
+					<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
 			</div>
 			
 		</div>
 	</div>
+	
+	<ul class="pager pager-bottom">
+		<li class="previous">
+			<a href="#">Older</a>
+		</li>
+		<li class="next">
+			<a href="#">Newer</a>
+		</li>
+	</ul>
+	
 </div>
     
 {% endblock %}

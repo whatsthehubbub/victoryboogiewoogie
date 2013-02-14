@@ -45,8 +45,6 @@
 					
 					<hr>
 					
-					<!-- TODO: Hook the links below up to the corresponding pages. -->
-					
 					{% if form.instance.topic.get_latest_piece %}
 					<p>Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.</p>
 					{% else %}

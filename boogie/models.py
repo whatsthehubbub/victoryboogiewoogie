@@ -22,6 +22,7 @@ class Player(models.Model):
 
     # Player fields
     pseudonym = models.CharField(max_length=255, blank=True, help_text='Pennaam')
+    onelinebio = models.CharField(max_length=255, blank=True)
 
     # E-mail notifications
     send_emails = models.BooleanField(default=True)

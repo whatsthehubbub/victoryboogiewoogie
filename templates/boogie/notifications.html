@@ -7,7 +7,9 @@
 {% block content %}
     
     {% for notification in notifications %}
-    	<p>{{ notification.datecreated }}: {{ notification.message|safe }}</p>
+    	<p>
+    		{% if notification.datecreated > user.last_login %}NIEUW!{% endif %}
+    		{{ notification.datecreated }}: {{ notification.message|safe }}</p>
     {% endfor %}
     
 {% endblock %}

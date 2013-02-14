@@ -18,20 +18,10 @@ class Player(models.Model):
     user = models.OneToOneField(User)
     role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='PLAYER')
 
-    
     avatar = models.ImageField(blank=True, upload_to='avatars')
-
 
     # Player fields
     pseudonym = models.CharField(max_length=255, blank=True, help_text='Pennaam')
-
-    # Writer fields
-    character_name = models.CharField(max_length=255, blank=True, help_text='Naam van het personage')
-    onelinebio = models.CharField(max_length=255, blank=True)
-    # TODO same with the large and small portrait fields here, though they may be in the assets already
-
-    # Common fields
-    biography = models.TextField(blank=True)
 
     # E-mail notifications
     send_emails = models.BooleanField(default=True)
@@ -83,6 +73,28 @@ def create_player(sender, user, request, **kwarg):
     # TODO figure out what to do about created writers
     player.get_new_assignment()
 user_registered.connect(create_player)
+
+
+class Character(models.Model):
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    name = models.CharField(max_length=255, help_text='Naam van het personage')
+    onelinebio = models.CharField(max_length=255, blank=True)
+    # TODO same with the large and small portrait fields here, though they may be in the assets already
+
+    # Common fields
+    biography = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        if self.role == 'WRITER':
+            return ('writer_profile', [self.user.username])
+        else:
+            return ('player_profile', [self.user.username])
 
 
 class PreLaunchEmail(models.Model):

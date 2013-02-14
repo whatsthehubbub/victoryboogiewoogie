@@ -2,8 +2,12 @@ from django.contrib import admin
 from boogie.models import *
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'pseudonym', 'role', 'character_name', 'send_emails')
+    list_display = ('user', 'pseudonym', 'role', 'send_emails')
 admin.site.register(Player, PlayerAdmin)
+
+class CharacterAdmin(admin.ModelAdmin):
+	list_display = ('name', 'onelinebio')
+admin.site.register(Character, CharacterAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('title', 'pool', 'slug', 'piece_count', 'piece_threshold')

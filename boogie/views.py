@@ -191,6 +191,8 @@ def piece_validate(request, piece_id):
     
     if valid == 'yes':
         piece.status = 'APPROVED'
+
+        # TODO change this
         piece.datepublished = datetime.datetime.now()
         
         piece.topic.piece_count += 1

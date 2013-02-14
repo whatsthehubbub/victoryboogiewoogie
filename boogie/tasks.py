@@ -1,6 +1,9 @@
 from celery import task
 from boogie.models import Player
 
+from django.utils.timezone import utc
+import datetime
+
 import logging
 logger = logging.getLogger('sake')
 
@@ -28,9 +31,20 @@ def pieces_assign():
 
     return counter
 
-# class PeriodicAssignment(PeriodicTask):
-#     def run(self, **kwargs):
-#         logger.info("Running PeriodicAssignment")
+@task()
+def piece_cleanup():
+    # Pieces whose deadline has passed, will be set to PASTDUE
 
-#     def is_due(self, last_run_at):
-#         return (True, 60)
+    now = datetime.datetime.utcnow().replace(tzinfo=utc)
+
+    for piece in Piece.objects.filter(status='ASSIGNED', deadline__lt=now):
+        piece.status = "PASTDUE"
+        piece.save()
+
+    for piece in Piece.objecst.filter(status='NEEDSWORK', deadline__lt=now):
+        piece.status = "PASTDUE"
+        piece.save()
+
+
+    # Pieces that need to be published will be published
+    # TODO

@@ -199,7 +199,10 @@ class Topic(models.Model):
         return False
 
     def progress(self):
-        return int(min(1.0, float(self.piece_count) / float(self.piece_threshold)) * 100)
+        try:
+           return int(min(1.0, float(self.piece_count) / float(self.piece_threshold)) * 100)
+        except ZeroDivisionError:
+            return 100
 
     def get_latest_piece(self):
         try:

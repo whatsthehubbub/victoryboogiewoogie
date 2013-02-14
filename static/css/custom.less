@@ -7,3 +7,82 @@ body {
 	background-size: 128px 116px;
 	background-repeat: repeat;
 }
+
+.chromeframe {
+	margin: 0;
+	background: @grayLight;
+	color: @black;
+	padding: 0.5em 0;
+	text-align: center;
+	background-color: @yellow;
+	border-bottom: 1px solid @grayLighter;
+}
+
+#masthead {
+	margin: 5em 0 1em 0;
+	text-align: center;
+	ul {
+		margin: 1em auto 1.2em;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+	a:link, a:visited {
+		text-decoration: none;
+		color: @black;
+	}
+	a:hover {
+		
+	}
+	.logo {
+		text-align: center;
+	}
+	.logo h1 {
+		font-family: @blackFontFamily;
+		display: inline;
+		font-size: 2.5em;
+		font-weight: 700;
+	}
+	.logo img {
+		width: 8px;
+		height: 8px;
+		margin: -1.4em 0.5em 0;
+	}
+	.date {
+		text-align: right;
+		vertical-align: 0.6em;
+	}
+	.week {
+		text-align: left;
+		vertical-align: 0.6em;
+	}
+}
+
+#calendar {
+	margin: 1em 0;
+	.nav {
+		margin: 0;
+		display: table;
+		width: 100%;
+	}
+	.nav li {
+		display: table-cell;
+		width: 1%;
+		float: none;
+		text-align: center;
+	}
+	.nav li a {
+		color: @gray;
+		text-align: center;
+	}
+	.nav li a:hover {
+		color: @grayDark;
+	}
+	.nav li.active a {
+		color: @black;
+	}
+}

@@ -38,8 +38,8 @@
 
 // Links
 // -------------------------
-@linkColor:             #08c;
-@linkColorHover:        darken(@linkColor, 15%);
+@linkColor:             @black;
+@linkColorHover:        inherit;
 
 
 // Typography
@@ -47,10 +47,11 @@
 @sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       "adobe-caslon-pro", georgia, 'times new roman', times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
+@blackFontFamily:		"ff-brokenscript-bc-web", helvetica, arial, sans-serif;
 
-@baseFontSize:          14px;
+@baseFontSize:          16px;
 @baseFontFamily:        @serifFontFamily;
-@baseLineHeight:        20px;
+@baseLineHeight:        22px;
 @altFontFamily:         @sansFontFamily;
 
 @headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
@@ -172,7 +173,7 @@
 
 // Wells
 // -------------------------
-@wellBackground:                  #f5f5f5;
+@wellBackground:                  @grayLighter;
 
 
 // Navbar

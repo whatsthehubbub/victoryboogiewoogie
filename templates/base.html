@@ -91,21 +91,23 @@
 		</li>
 		<li class="week">Week {{ gameWeek }} van 10</li>
 	</ul>
-	<table id="calendar">
-		<tr>
+	<div id="calendar" class="navbar">
+		<div class="container">
+		<ul class="nav">
 			{% for _ in '1234567890'|make_list %}
-				<td{% if week == forloop.counter %} class="active"{% endif %}>
+				<li{% if week == forloop.counter %} class="active"{% endif %}{% if gameWeek < forloop.counter %} class="disabled"{% endif %}>
 					{% if gameWeek >= forloop.counter %}
-						<a href="{% url 'pieces_per_week' forloop.counter %}">
+						<a href="{% url 'pieces_per_week' forloop.counter %}">week {{ forloop.counter }}</a>
+					{% else %}
+						<a>week {{ forloop.counter }}</a>
 					{% endif %}
-						week {{ forloop.counter }}
-					{% if gameWeek >= forloop.counter %}
-						</a>
-					{% endif %}
-				</td>
+					
+					
+				</li>
 			{% endfor %}
-		</tr>
-	</table>
+		</ul>
+		</div>
+	</div>
 	<!-- END MASTHEAD -->
 	
 	<!-- SIDEBAR -->
@@ -124,7 +126,7 @@
 	
 	<!-- FOOTER -->
 	<footer id="footer" role="contentinfo">
-		<p>Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
+		<p class="text-center">Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
 	</footer>
 	<!-- END FOOTER -->
 	

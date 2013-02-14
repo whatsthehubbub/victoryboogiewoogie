@@ -8,7 +8,7 @@ body {
 	background-repeat: repeat;
 }
 
-.chromeframe {
+#chromeframe {
 	margin: 0;
 	background: @grayLight;
 	color: @black;
@@ -128,26 +128,28 @@ body {
 	.box-small {
 		padding: 1em 0 0.5em 0;
 	}
-	.filter {
-		margin: 0.5em 0 1.5em;
-	}
 }
 
 #itemlist {
+	.filter {
+		margin: 0.5em 0 1.5em;
+	}
 	.box {
 		position: relative;
-		height: 7em;
 		overflow: hidden;
+		padding: 1em;
+		min-height: 10em;
 	}
 	.score {
 		position: absolute;
-		right: 1em;
-		bottom: 1em;
+		right: 0.5em;
+		top: 0.5em;
 		margin: 0;
 		color: @grayLight;
-		.badge {
+		.label {
 			font-family: @sansFontFamily;
 			font-size: @fontSizeMini;
+			background-color: @yellow;
 		}
 	}
 }

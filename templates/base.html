@@ -44,7 +44,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!--[if lt IE 7]>
-	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+	<p id="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- HEADER -->
@@ -67,7 +67,7 @@
 			</ul>
 			<p class="navbar-text pull-right">
 				{% if current_player %}
-					<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
+					<a href="{{ current_player.get_absolute_url }}">{{ current_player.pseudonym }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
 				{% else %}
 					<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
 				{% endif %}

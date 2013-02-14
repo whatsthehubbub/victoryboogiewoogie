@@ -17,7 +17,7 @@
 	<h3>Bijdragen</h3>
 	<ul>
     {% for piece in writer.pieces %}
-    	<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> ({{ piece.datepublished|timesince }} geleden)</li>
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' topic.id topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
 	{% endfor %}
 	</ul>
 	

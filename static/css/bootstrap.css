@@ -878,5 +878,7 @@ body{background-image:url(/static/img/bg.png);background-size:128px 116px;backgr
 #content{margin:1em 0;}#content .box{background-color:#ffffff;padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}
 #content .box-small{padding:1em 0 0.5em 0;}
 #content .filter{margin:0.5em 0 1.5em;}
+#itemlist .box{position:relative;height:7em;overflow:hidden;}
+#itemlist .score{position:absolute;right:1em;bottom:1em;margin:0;color:#999999;}#itemlist .score .badge{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;}
 #footer{color:#999999;padding:1em 0;}#footer a{color:#666666;}
 #footer a:hover{color:#333333;}

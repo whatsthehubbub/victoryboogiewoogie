@@ -1,38 +1,25 @@
 {% load url from future %}
 {% load piece_extras %}
 
-<article class="span3 box">
-	<h2>{{ piece.title }}</h2>
-    <!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
-	<p class="author"><a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a> {{ piece.datepublished|timesince }} geleden</p>
-
-	{% if not hide_topic %}
-		<p class="subject">over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic.title }}</a></p>
-	{% endif %}
-
-	<p>Type: {{ piece.genre }}</p>
-
-	<p>{{ piece.text|linebreaks }}</p>
-
-	<p>Score: {{ piece.score }}.</p>
-
-	<p><a href="{{ piece.get_absolute_url }}">Permalink</a>.</p>
-
-	{% if current_player|likes:piece %}
-		Je vindt dit een goed stuk. (<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">{% csrf_token %} <input type="hidden" name="return_url" value="{{ request.get_full_path }}"> <input type="submit" value="Toch niet?"></form>)
-	{% else %}
-		<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
-			{% csrf_token %}
-			<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
-			<input type="submit" value="Goed stuk!">
-		</form>
-	{% endif %}
+<article class="span4 {{ piece.genre|lower }}">
 	
-	<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
-	<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-
-	<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+	<a href="{{ piece.get_absolute_url }}">
+		<div class="box">
+			
+			<h2>{{ piece.title }}</h2>
+			<!-- <img src="optional-piece-illustration.png" class="poster" alt=""> -->
+			
+			<p>{{ piece.text|linebreaks }}</p>
+			
+			<p class="score">waardering: <span class="badge">{{ piece.score }}</span></p>
+		</div>
+	</a>
+	
+	<div class="clearfix">
+		<p class="author pull-left">
+			<a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a>
+		</p>
+		<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
+	</div>
+	
 </article>

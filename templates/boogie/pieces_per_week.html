@@ -6,7 +6,7 @@
 {% block bodyid %}pieces_per_week{% endblock %}
 
 {% block content %}
-<div class="box box-small">
+<div class="">
 	<div class="row">
 		<div class="span8 offset2">
 			<h2 class="text-center">Week {{ week }}</h2>
@@ -15,7 +15,7 @@
 	</div>
 </div>
 
-<div class="filter">
+<div class="filter text-center">
 	<div class="btn-group"> 
 		{% ifequal order '-datecreated' %}
 			<a href="?order=-score_cache" class="btn">Beste</a>

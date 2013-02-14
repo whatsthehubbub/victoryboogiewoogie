@@ -260,7 +260,8 @@ class Piece(models.Model):
             hours = timedelta.days * 24 + timedelta.seconds / 3600
             likes = PieceVote.objects.filter(piece=self).count()
 
-            return (likes - 1) / math.pow(hours+2, 1.5)
+            # Changed (likes - 1) so we won't get negative results
+            return (likes + 1) / math.pow(hours+2, 1.5)
         else:
             return 0
 

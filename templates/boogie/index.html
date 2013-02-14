@@ -14,6 +14,58 @@
 {% endblock sidebar %}
 
 {% block content %}
+
+<div class="row">
+	<div class="span9">
+		<div>Nieuwste stuk over een personage</div>
+		<div>
+			Drie personage stukken daarvoor
+			<ul>
+				<li>Stuk</li>
+				<li>Stuk</li>
+				<li>Stuk</li>
+			</ul>
+		</div>
+		<div>
+			De personages
+			<div class="row">				
+				<div class="span3">Personage</div>
+				<div class="span3">Personage</div>
+				<div class="span3">Personage</div>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div>Nieuwste stuk over een onderwerp</div>
+		<div>
+			Drie onderwerp stukken daarvoor
+			<ul>
+				<li>Stuk</li>
+				<li>Stuk</li>
+				<li>Stuk</li>
+			</ul>
+		</div>
+		<div>
+			Onderwerpen voor spelers
+			<ul>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+			</ul>
+			Onderwerpen voor schrijvers
+			<ul>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+				<li>Onderwerp</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 	{% for piece in frontpage_pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}

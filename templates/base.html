@@ -79,12 +79,11 @@
 	
 </header>
 <!-- END HEADER -->
-	
-<!-- DOCUMENT -->
-<div class="container">
-	
-	<!-- MASTHEAD -->
-	<ul id="masthead">
+
+<!-- MASTHEAD -->
+<div id="masthead">
+	<div class="container">
+		
 		<!-- Boodschap voor nieuwe spelers om ze te stimuleren om aan te melden. -->
 		<!-- TODO: Dit verstoppen als je bent ingelogd. -->
 		<div class="alert alert-info">
@@ -92,58 +91,55 @@
 			<strong>Welkom!</strong> Victory Boogie Woogie is een gezamenlijk schrijfspel. <a href="">Meld je aan</a> om het verhaal mede te bepalen.
 			<!-- <a href="" class="btn">Aanmelden</a> -->
 		</div>
-
-		<li class="date">10 mei 2013</li>
-		<li class="logo">
-			<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-			<a href="{% url 'index' %}" title="Home">
-				<h1>Victory Boogie Woogie</h1>
-			</a>
-			<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-		</li>
-		<li class="week">Week {{ gameWeek }} van 10</li>
-	</ul>
-	<div id="calendar" class="navbar">
-		<div class="container">
-		<ul class="nav">
-			{% for _ in '1234567890'|make_list %}
-				<li{% if week == forloop.counter %} class="active"{% endif %}{% if gameWeek < forloop.counter %} class="disabled"{% endif %}>
-					{% if gameWeek >= forloop.counter %}
-						<a href="{% url 'pieces_per_week' forloop.counter %}">week {{ forloop.counter }}</a>
-					{% else %}
-						<a>week {{ forloop.counter }}</a>
-					{% endif %}
-					
-					
-				</li>
-			{% endfor %}
+		
+	 	<ul>
+			<li class="date">10 mei 2013</li>
+			<li class="logo">
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				<a href="{% url 'index' %}" title="Home">
+					<h1>Victory Boogie Woogie</h1>
+				</a>
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+			</li>
+			<li class="week">Week {{ gameWeek }} van 10</li>
 		</ul>
+		<div id="calendar" class="navbar">
+			<ul class="nav">
+				{% for _ in '1234567890'|make_list %}
+					<li{% if week == forloop.counter %} class="active"{% endif %}{% if gameWeek < forloop.counter %} class="disabled"{% endif %}>
+						{% if gameWeek >= forloop.counter %}
+							<a href="{% url 'pieces_per_week' forloop.counter %}">week {{ forloop.counter }}</a>
+						{% else %}
+							<a>week {{ forloop.counter }}</a>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
-	<!-- END MASTHEAD -->
-	
-	<!-- SIDEBAR -->
-	<aside id="sidebar">
-		{% block sidebar %}
-		{% endblock %}
-	</aside>
-	<!-- END SIDEBAR -->
-	
-	<!-- CONTENT -->
-	<section id="content">
-		{% block content %}
-		{% endblock %}
-	</section>
-	<!-- END CONTENT -->
-	
-	<!-- FOOTER -->
-	<footer id="footer" role="contentinfo">
-		<p class="text-center">Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
-	</footer>
-	<!-- END FOOTER -->
-	
 </div>
-<!-- END DOCUMENT -->
+<!-- END MASTHEAD -->
+
+<!-- MAIN -->
+<div id="main">
+	<div class="container">
+		
+		<aside id="sidebar">
+			{% block sidebar %}
+			{% endblock %}
+		</aside>
+		
+		<section id="content">
+			{% block content %}
+			{% endblock %}
+		</section>
+		
+		<footer id="footer" role="contentinfo">
+			<p class="text-center">Victory Boogie Woogie is een experimentele literaire game, gemaakt door <a href="http://www.de-gids.nl/" title="De Gids">De Gids</a> en <a href="http://hubbub.eu/" title="Hubbub">Hubbub</a>.<br>Copyright &copy; 2012-2013. <a href="{% url 'colofon' %}">Colofon</a>, <a href="{% url 'help' %}">Help</a> &amp; <a href="{% url 'contact' %}">Contact</a>.</p>
+		</footer>
+	</div>
+</div>
+<!-- END MAIN -->
 
 <!-- JAVASCRIPT -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

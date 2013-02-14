@@ -201,6 +201,8 @@ def piece_validate(request, piece_id):
         # Don't give this player a new assignment
         # tasks.get_new_assignment.delay(piece.writer)
 
+        Notification.objects.create_new_accepted_notification(piece.writer, piece)
+
         # Also we need to create a new topic based on this approved piece
         if piece.new_topic:
             t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
@@ -209,8 +211,12 @@ def piece_validate(request, piece_id):
         # The piece needs more work
         piece.rejection_reason = request.POST.get('reason', '')
         piece.status = 'NEEDSWORK'
+
+        Notification.objects.create_new_needswork_notification(piece.writer, piece)
     elif valid == 'no':
         piece.status = 'REJECTED'
+
+        Notification.objects.create_new_rejected_notification(piece.writer, piece)
 
         # Don't give this player a new assignment
         # TODO Why not?

@@ -107,10 +107,19 @@ from django.core.mail import EmailMessage
 
 class NotificationManager(models.Manager):
     def create_new_assignment_notification(self, player, piece):
-        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuw stukje schrijven. Ga naar <a href="http://www.gidsgame.nl/pieces/submit/">de schrijfafdeling</a>.''')
+        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl/pieces/submit/">de schrijfafdeling</a>.''')
 
     def create_new_summary_notification(self, player, summary):
         return Notification.objects.create(identifier='new-summary', for_player=player, message='''Er is een nieuwe samenvatting geplaatst. Lees hem direct <a href="http://www.gidsgame.nl%s">hier</a>.''' % summary.get_absolute_url())
+
+    def create_new_accepted_notification(self, player, piece):
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is goedgekeurd. Lees hem direct op <a href="http://www.gidsgame.nl%s">de site.</a>''' % piece.get_absolute_url())
+
+    def create_new_needswork_notification(self, player, piece):
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl/pieces/submit/">Probeer het opnieuw</a> met de feedback.''')
+
+    def create_new_rejected_notification(self, player, piece):
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is helaas afgekeurd. Probeer het opnieuw met je volgende opdracht.''')
 
 class Notification(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)

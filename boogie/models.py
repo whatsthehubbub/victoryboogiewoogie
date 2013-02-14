@@ -196,7 +196,10 @@ class Topic(models.Model):
         return False
 
     def get_latest_piece(self):
-        return self.approved_pieces()[0]
+        try:
+            return self.approved_pieces()[0]
+        except IndexError:
+            return None
 
     @models.permalink
     def get_absolute_url(self):

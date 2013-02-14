@@ -6,13 +6,13 @@
 {% block bodyid %}player_profile{% endblock %}
 
 {% block content %}
-	<h2>{{ player.pseudonym }}&rsquo;s profiel</h2>
-
-	<p>[Short bio goes here]</p>
-
 	{% ifequal user.username player.user.username  %} 
 		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
 	{% endifequal %}
+
+	<h2>{{ player.pseudonym }}&rsquo;s profiel</h2>
+
+	<p>[Short bio goes here]</p>
 
 	{% if player.avatar %}
 		<img src="{{ player.avatar.url }}" alt="{{ player.pseudonym }}" title="{{ player.pseudonym }}">
@@ -20,58 +20,52 @@
 
 	<h3>Bijdragen</h3>
 
-	<ul>
-    {% for piece in player.pieces %}
-    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
-	{% endfor %}
-	</ul>
-	
-    <!-- {% if assigned_pieces %}
-        <h4>Toegekend</h4>
-
-        <ol>
+	{% if assigned_pieces %}
+    <h4>Toegekend</h4>	
+    <ul>
         {% for piece in assigned_pieces %}
-        <li><a href="{% url 'piece_submit' %}">Schrijf iets over {{ piece.topic }}</a>.</li>
+        <li><a href="{% url 'piece_submit' %}">Schrijf iets over {{ piece.topic }}</a></li>
         {% endfor %}
-        </ol>
-    {% endif %} -->
+    </ul>
+    {% endif %}
 
-	
 	{% if submitted_pieces %}
-		<h4>Ingediend</h4>
-
+	<h4>Ingediend</h4>
+	<ul>
 		{% for piece in submitted_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-		{% endfor %}
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></li>
+    	{% endfor %}
+	</ul>
 	{% endif %}
-
 	
 	{% if needswork_pieces %}
-		<h4>Kan beter</h4>
-
+	<h4>Geredigeerd</h4>
+	<ul>
 		{% for piece in needswork_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-
-		    <p>Suggesties: {{ piece.rejection_reason }}</p>
-		    <p><a href="{% url 'piece_submit' %}">Bewerken</a></p>
-		{% endfor %}
+    	<li>
+    		<p><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p> 
+    		<p>Suggesties van de redactie: {{ piece.rejection_reason }}</p> 
+    		<p><a href="{% url 'piece_submit' %}">Bewerken</a> <a href="">Opgeven</a></li></p>
+    	{% endfor %}
+	</ul>
 	{% endif %}
-	
 
 	<h4>Gepubliceerd</h4>
+	<ul>
 	{% for piece in approved_pieces %}
-		{% include "boogie/piece_fragment.html" %}
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
 	{% empty %}
-		<p>Van deze speler zijn nog geen stukken gepubliceerd.</p>
+		<li>Van deze speler zijn nog geen stukken gepubliceerd.</li>
 	{% endfor %}
+	</ul>
 
 	{% if rejected_pieces %}
-		<h4>Afgewezen</h4>
-
+	<h4>Afgewezen</h4>
+	<ul>
 		{% for piece in rejected_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-			<p>Reden van afwijzing: {{ piece.rejection_reason }}</p>
-		{% endfor %}
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></li>
+    	{% endfor %}
+	</ul>
 	{% endif %}
 
 {% endblock content %}

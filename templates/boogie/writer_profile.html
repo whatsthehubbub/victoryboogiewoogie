@@ -18,6 +18,8 @@
 	<ul>
     {% for piece in writer.pieces %}
     	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
+	{% empty %}
+		<p>Van deze schrijver zijn nog geen stukken gepubliceerd.</p>
 	{% endfor %}
 	</ul>
 	

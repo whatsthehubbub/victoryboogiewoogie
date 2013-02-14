@@ -8,12 +8,17 @@
 {% block content %}
 	<h2>{{ writer.pseudonym }}&rsquo;s profiel</h2>
 
-	<img src="{{ writer.avatar.url }}" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
-		
-	<h3>Bijdragen</h3>
+	<p>[Short bio goes here]</p>
 
+	{% if writer.avatar %}
+		<img src="{{ writer.avatar.url }}" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
+	{% endif%}		
+	
+	<h3>Bijdragen</h3>
+	<ul>
     {% for piece in writer.pieces %}
-    	{% include "boogie/piece_fragment.html" %}
+    	<li><a href="{{ piece.get_absolute_url }}">{{ piece.title }}</a> ({{ piece.datepublished|timesince }} geleden)</li>
 	{% endfor %}
+	</ul>
 	
 {% endblock content %}

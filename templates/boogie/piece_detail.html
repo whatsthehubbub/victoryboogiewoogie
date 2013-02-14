@@ -6,26 +6,33 @@
 
 {% block content %}
 
-{% include "boogie/piece_fragment.html" %}
-
-<div class="row">
-<div class="span6">
-<h3>Eerder&hellip;</h3>
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p>
-<p>Over <a href="">Onderwerp</a>:</p> 
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p>
-<p>Over <a href="">Personage</a>:</p>
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p></div>
-
-<div class="span6">
-<h3>Later&hellip;</h3>
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p>
-<p>Over <a href="">Onderwerp</a>:</p> 
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p>
-<p>Over <a href="">Personage</a>:</p>
-<p><a href="">Titel</a> door <a href="">Pseudonym</a> timestamp geleden</p></div>
+<div id="itemdetail">
+	<div class="box">
+		<div class="row">
+		
+			<div class="meta span12 clearfix">
+				<p class="genre pull-left">Onderwerp</p>
+				<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
+			</div>
+			
+			<article class="span8 offset2 {{ piece.genre|lower }} clearfix">
+				<p class="score"><span class="label">{{ piece.score }}</span></p>
+				
+				<div class="content">
+					<h2>{{ piece.title }}</h2>
+					<p>{{ piece.text|linebreaks }}</p>
+				</div>
+				
+				<div class="info">
+					<p class="author pull-left">
+						<a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a>
+					</p>
+					<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
+				</div>
+			</article>
+			
+		</div>
+	</div>
 </div>
-
-<p>Status: {{ piece.status }}</p>
     
 {% endblock %}

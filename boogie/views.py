@@ -340,17 +340,6 @@ def player_profile_edit(request, name):
     return HttpResponse(t.render(c))
 
 @login_required
-def writers(request):
-    writers = Player.objects.filter(role='WRITER')
-
-    t = loader.get_template('boogie/writers.html')
-    c = RequestContext(request, {
-        'writers': writers
-    })
-
-    return HttpResponse(t.render(c))
-
-@login_required
 def writer_profile(request, name):
     player = Player.objects.get(user__username=name)
 

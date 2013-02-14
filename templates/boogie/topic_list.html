@@ -25,7 +25,7 @@
 						<td><a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> 
 						
 						<div class="progress pull-right">
-							<div class="bar" style="width: 60%;"></div>
+							<div class="bar" style="width: {{ topic.progress }}%;"></div>
 						</div>
 						
 						</td>

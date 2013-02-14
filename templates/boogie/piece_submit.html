@@ -55,7 +55,8 @@
 
 					<p>Deadline in {{ form.instance.deadline|timeuntil }}.</p>
 
-					<!-- <p>Voortgang tot gebeurtenis: {{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}.</p> -->
+					<!-- TODO: Dit moet anders. Zie: https://app.asana.com/0/1918423466600/3948945563078 -->
+					<p>Voortgang tot gebeurtenis: {{ form.instance.topic.piece_count }} / {{ form.instance.topic.piece_threshold }}.</p>
 				{% endifequal %}
 
 				<form action="{% url 'piece_submit' %}" method="post">

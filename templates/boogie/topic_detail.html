@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block pagetitle %}Bijdrages over {{ topic.title }}{% endblock pagetitle %}
+{% block pagetitle %}Bijdragen over {{ topic.title }}{% endblock pagetitle %}
 
 {% block bodyid %}topic_detail{% endblock %}
 
 {% block content %}
 	<div class="wrapper box clearfix">
-		<h2>Bijdrages over {{ topic.title }}</h2>
+		<h2>Bijdragen over {{ topic.title }}</h2>
 		
 		<p>Een onderwerp voor 
 		{% ifequal topic.pool 'WRITER' %}

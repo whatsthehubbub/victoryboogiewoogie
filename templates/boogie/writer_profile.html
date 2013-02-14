@@ -1,5 +1,3 @@
-<!-- TODO: Realign this page to be a writer profile, and create a seperate character profile page. -->
-
 {% extends "base.html" %}
 {% load url from future %}
 
@@ -8,20 +6,10 @@
 {% block bodyid %}writer_profile{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<img src="character-profile-pic.png" alt="{{ writer.character_name }}" title="{{ writer.character_name}}" />
+	<h2>{{ writer.pseudonym }}&rsquo;s profiel</h2>
+
+	<img src="{{ writer.avatar.url }}" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
 		
-		<p>Personage</p>
-		<h2>{{ writer.character_name }}</h2>
-		
-		<p>Biografie</p>
-		<p>{{ writer.biography }}</p>
-		
-		<img src="writer-profile-pic.png" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym}}" />
-		<p>Gespeeld door</p>
-		<p>{{ writer.pseudonym }}</p>
-	</div>
-	
 	<h3>Bijdragen</h3>
 
     {% for piece in writer.pieces %}

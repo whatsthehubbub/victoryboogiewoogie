@@ -198,8 +198,12 @@ class Piece(models.Model):
     topic = models.ForeignKey(Topic)
     deadline = models.DateTimeField()
     writer = models.ForeignKey(Player)
+
+    character = models.ForeignKey(Character, blank=True, null=True)
+
+    image = models.ImageField(blank=True, upload_to='piece_images')
     
-    genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay')))
+    genre = models.CharField(max_length=255, blank=True, choices=(('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie')))
     title = models.CharField(blank=True, max_length=255)
     text = models.TextField(blank=True)
     new_topic = models.CharField(max_length=255, blank=True)
@@ -215,8 +219,6 @@ class Piece(models.Model):
     
     rejection_reason = models.TextField(blank=True)
     
-    # TODO remove this field, rating is not used anymore?
-    rating = models.IntegerField(default=0)
 
     # Visible on the frontpage or not?
     frontpage = models.BooleanField(default=False)

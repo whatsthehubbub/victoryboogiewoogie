@@ -83,15 +83,13 @@
 <!-- MASTHEAD -->
 <div id="masthead">
 	<div class="container">
-		
-		<!-- Boodschap voor nieuwe spelers om ze te stimuleren om aan te melden. -->
-		<!-- TODO: Dit verstoppen als je bent ingelogd. -->
-		<!--
-		<div class="alert alert-info">
-			<a href="#" class="close" data-dismiss="alert">&times;</a> 
-			<strong>Welkom!</strong> Victory Boogie Woogie is een gezamenlijk schrijfspel. <a href="">Meld je aan</a> om het verhaal mede te bepalen.
-			<a href="" class="btn">Aanmelden</a> 
-		</div> -->
+		{% if not user.is_authenticated %}
+			<div class="alert alert-info">
+				<a href="#" class="close" data-dismiss="alert">&times;</a> 
+				<strong>Welkom!</strong> Victory Boogie Woogie is een gezamenlijk schrijfspel. <a href="">Meld je aan</a> om het verhaal mede te bepalen.
+				<a href="{% url 'login' %}" class="btn">Aanmelden</a> 
+			</div>
+		{% endif %}
 		
 	 	<ul>
 			<li class="date">10 mei 2013</li>

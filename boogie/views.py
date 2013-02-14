@@ -133,12 +133,17 @@ def pieces_per_week(request, week):
 
 @login_required
 def piece_detail(request, id):
-    t = loader.get_template('boogie/piece_detail.html')
+    player = Player.objects.get(user=request.user)
 
-    c = RequestContext(request, {
-            'piece': Piece.objects.get(id=id)
-    })
-    return HttpResponse(t.render(c))
+    if request.user.is_superuser or player.role == 'WRITER':
+        t = loader.get_template('boogie/piece_detail.html')
+
+        c = RequestContext(request, {
+                'piece': Piece.objects.get(id=id)
+        })
+        return HttpResponse(t.render(c))
+    else:
+        return HttpResponseRedirect(reverse('index'))
 
 class PieceSubmitForm(ModelForm):
     genre = ChoiceField(choices=PIECE_GENRE_CHOICES[:-1])

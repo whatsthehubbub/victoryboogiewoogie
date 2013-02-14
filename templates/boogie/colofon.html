@@ -5,19 +5,25 @@
 {% block bodyid %}colofon{% endblock %}
 
 {% block content %}
+<div class="box">
 	<div class="row">
-		<div class="span8">
-			<h2>Colofon</h2>
+	
+		<div class="span8 offset2">
+			<h2 class="text-center">Colofon</h2>
 			<p>Suspendisse quis odio ante, ut semper lorem. Etiam ullamcorper fermentum augue sed gravida. In commodo, mauris ac elementum congue, sapien eros placerat ante, at tincidunt elit leo eleifend tortor. Sed elementum ornare justo nec viverra. Sed consequat nunc et metus porttitor consectetur. Donec eu velit eu lectus faucibus hendrerit. Aenean hendrerit hendrerit tortor, nec dignissim leo semper a.</p>
 		</div>
-		<div class="span4">
-			<h3>De Schrijvers</h3>
+		
+		<div class="span8 offset2">
+			<h3 class="text-center">De Schrijvers</h3>
 			<!-- TODO: Hook this up to the registered writers. -->
-			<ul>
+			<ul class="unstyled">
 				{% for writer in writers %}
-					<li><a href="{{ writer.get_absolute_url }}"><img src="" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym }}"></img> {{ writer.pseudonym }}</a></li>	
+					<li><a href="{{ writer.get_absolute_url }}"><img src="" alt="{{ writer.pseudonym }}" title="{{ writer.pseudonym }}"></img> {{ writer.pseudonym }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
+
+				
 	</div>
+</div>
 {% endblock %}

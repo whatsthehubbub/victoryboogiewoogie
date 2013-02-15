@@ -37,7 +37,6 @@ urlpatterns = patterns('',
     url(r'^bijdragen/(\d+)/vote/up/$', 'boogie.views.piece_vote_up', name='piece_vote_up'),
     url(r'^bijdragen/(\d+)/vote/up/undo/$', 'boogie.views.piece_vote_up_undo', name='piece_vote_up_undo'),
 
-    # TODO for now these two URLs point to the same view
     url(r'^users/(?P<name>\w+?)/$', 'django.views.generic.simple.redirect_to', {'url': '/spelers/%(name)s/'}),
 
     url(r'^schrijvers/(\w+?)/$', 'boogie.views.writer_profile', name='writer_profile'),

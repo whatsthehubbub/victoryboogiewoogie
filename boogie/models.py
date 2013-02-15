@@ -200,7 +200,7 @@ class Topic(models.Model):
 
     def progress(self):
         try:
-           return int(min(1.0, float(self.piece_count) / float(self.piece_threshold)) * 100)
+            return int(min(1.0, float(self.piece_count) / float(self.piece_threshold)) * 100)
         except ZeroDivisionError:
             return 100
 

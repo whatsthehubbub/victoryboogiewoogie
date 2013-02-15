@@ -320,7 +320,7 @@ class UserProfileForm(ModelForm):
 class PlayerProfileForm(ModelForm):
     class Meta:
         model = Player
-        fields = ('pseudonym', 'avatar')
+        fields = ('pseudonym', 'avatar', 'send_emails')
 
 @login_required
 def player_profile_edit(request, name):

@@ -92,10 +92,10 @@ class Character(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        if self.role == 'WRITER':
-            return ('writer_profile', [self.user.username])
-        else:
-            return ('player_profile', [self.user.username])
+        return reverse('character_profile', self.id)
+
+    def pieces(self):
+        return Piece.objects.filter(status='APPROVED', character=self).order_by('-datepublished')
 
 
 class PreLaunchEmail(models.Model):

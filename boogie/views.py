@@ -23,7 +23,7 @@ def index(request):
                 'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
                 'newest_pieces': Piece.objects.filter(status='APPROVED').order_by('-datepublished')[:5],
                 'summary': Summary.objects.all().order_by('-datecreated'),
-                'writers': Player.objects.filter(role='WRITER')
+                'characters': Character.objects.all()
         })
 
         return HttpResponse(t.render(c))
@@ -372,3 +372,15 @@ def writer_profile(request, name):
 
         return HttpResponse(t.render(c))
 
+
+@login_required
+def character_profile(request, id):
+    character = Character.objects.get(id=id)
+
+    t = loader.get_template('boogie/character_profile.html')
+
+    c = RequestContext(request, {
+        'character': character
+    })
+
+    return HttpResponse(t.render(c))

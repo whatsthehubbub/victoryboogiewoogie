@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pagetitle %}{{ character.name }}&rsquo;s profiel{% endblock pagetitle %}
+
+{% block bodyid %}character_profile{% endblock %}
+
+{% block content %}
+	<h2>{{ character.name }}&rsquo;s profiel</h2>
+
+	<p>{{ character.onelinebio }}</p>
+
+	<h3>Bijdragen</h3>
+
+	<ul>
+    {% for piece in character.pieces %}
+    	<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
+	{% empty %}
+		<p>Over dit karakter zijn nog geen stukken gepubliceerd.</p>
+	{% endfor %}
+	</ul>
+	
+{% endblock content %}

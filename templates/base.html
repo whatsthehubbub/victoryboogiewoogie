@@ -52,31 +52,29 @@
 
 <!-- HEADER -->
 <header id="header" class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<ul class="nav">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			{% if current_player %}
+			<li>
+				{% if current_url %}<a href="{% url 'piece_submit' %}">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
+			</li>
+			{% endif %}
+			{% ifequal current_player.role 'WRITER' %}
+			<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
+			{% endifequal %}
+			<li><a href="{% url 'editors' %}">Spelregels</a></li>
+			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+		</ul>
+		<p class="navbar-text pull-right">
+			{% if current_player %}
+				<a href="{{ current_player.get_absolute_url }}">{{ current_player.pseudonym }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
+			{% else %}
+				<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
+			{% endif %}
+		</p>
+	</div>
 	<div class="stripes"></div>
-	
-		<div class="container">
-			<ul class="nav">
-				<li><a href="{% url 'index' %}">Home</a></li>
-				{% if current_player %}
-				<li>
-					{% if current_url %}<a href="{% url 'piece_submit' %}">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
-				</li>
-				{% endif %}
-				{% ifequal current_player.role 'WRITER' %}
-				<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
-				{% endifequal %}
-				<li><a href="{% url 'editors' %}">Spelregels</a></li>
-				<li><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
-			</ul>
-			<p class="navbar-text pull-right">
-				{% if current_player %}
-					<a href="{{ current_player.get_absolute_url }}">{{ current_player.pseudonym }}</a> | <a href="{% url 'logout' %}" class="logout">afmelden</a>
-				{% else %}
-					<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
-				{% endif %}
-			</p>
-		</div>
-	
 </header>
 <!-- END HEADER -->
 

@@ -39,7 +39,6 @@ urlpatterns = patterns('',
 
     url(r'^users/(?P<name>\w+?)/$', 'django.views.generic.simple.redirect_to', {'url': '/spelers/%(name)s/'}),
 
-    url(r'^schrijvers/(\w+?)/$', 'boogie.views.writer_profile', name='writer_profile'),
     url(r'^karakters/(\d+?)/$', 'boogie.views.character_profile', name='character_profile'),
 
     url(r'^spelers/(\w+?)/$', 'boogie.views.player_profile', name='player_profile'),

@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm, widgets, ChoiceField
+from django.forms import ModelForm, ChoiceField
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
@@ -299,20 +299,19 @@ def player_profile(request, name):
         'player': player
     })
     
-    if player.role == 'PLAYER':
-        t = loader.get_template('boogie/player_profile.html')
+    t = loader.get_template('boogie/player_profile.html')
 
-        # Show the approved pieces in any case
-        c['approved_pieces'] = player.pieces().filter(status="APPROVED")
+    # Show the approved pieces in any case
+    c['approved_pieces'] = player.pieces().filter(status="APPROVED")
 
-        if request.user.username == name:
-            c['assigned_pieces'] = player.pieces().filter(status="ASSIGNED")
-            c['submitted_pieces'] = player.pieces().filter(status="SUBMITTED")
+    if request.user.username == name:
+        c['assigned_pieces'] = player.pieces().filter(status="ASSIGNED")
+        c['submitted_pieces'] = player.pieces().filter(status="SUBMITTED")
 
-            c['needswork_pieces'] = player.pieces().filter(status="NEEDSWORK")
-            c['rejected_pieces'] = player.pieces().filter(status="REJECTED")
-        
-        return HttpResponse(t.render(c))
+        c['needswork_pieces'] = player.pieces().filter(status="NEEDSWORK")
+        c['rejected_pieces'] = player.pieces().filter(status="REJECTED")
+    
+    return HttpResponse(t.render(c))
 
 
 class UserProfileForm(ModelForm):
@@ -361,20 +360,6 @@ def player_unsubscribe(request, h):
         logging.error("Tried to unsubscribe player with hash %s", h)
 
     return HttpResponseRedirect(reverse('index'))
-
-@login_required
-def writer_profile(request, name):
-    player = Player.objects.get(user__username=name)
-
-    if player.role == 'WRITER':
-        t = loader.get_template('boogie/writer_profile.html')
-
-        c = RequestContext(request, {
-            'writer': player
-        })
-
-        return HttpResponse(t.render(c))
-
 
 @login_required
 def character_profile(request, id):

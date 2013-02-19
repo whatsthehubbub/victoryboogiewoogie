@@ -61,10 +61,10 @@
 	
 	<ul class="pager pager-bottom">
 		<li class="previous">
-			<a href="#">Older</a>
+			<a href="{{ piece.get_previous_piece.get_absolute_url }}">Older</a>
 		</li>
 		<li class="next">
-			<a href="#">Newer</a>
+			<a href="{{ piece.get_next_piece.get_absolute_url }}">Newer</a>
 		</li>
 	</ul>
 	

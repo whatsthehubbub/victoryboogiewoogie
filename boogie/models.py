@@ -261,7 +261,7 @@ class Piece(models.Model):
 
     def vote_up(self, player):
         try:
-            vote = PieceVote.objects.get(player=player, piece=self)
+            PieceVote.objects.get(player=player, piece=self)
             # Vote exists already so we don't do anything
         except:
             # If the vote does not exist, we create one
@@ -294,6 +294,18 @@ class Piece(models.Model):
     def update_score_cache(self):
         self.score_cache = self.score()
         self.save()
+
+    def get_next_piece(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', datepublished__gt=self.datepublished).order_by('datepublished')[0]
+        except:
+            return None
+
+    def get_previous_piece(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', datepublished__lt=self.datepublished).order_by('-datepublished')[0]
+        except:
+            return None
 
 
 class PieceVote(models.Model):

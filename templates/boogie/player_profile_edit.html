@@ -9,7 +9,11 @@
 <div class="row">
 	<div class="span8 offset2">
 		<h2>Profiel bewerken</h2>
-		<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}">
+		
+		<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}" class="form-horizontal">
+		
+		<div class="control-group">
+		
 			{% csrf_token %}
 			
 			{{ userform.as_p }}

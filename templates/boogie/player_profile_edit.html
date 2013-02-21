@@ -6,9 +6,9 @@
 {% block bodyid %}player_profile_ed{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
+<div class="row">
+	<div class="span8 offset2">
 		<h2>Profiel bewerken</h2>
-		
 		<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}">
 			{% csrf_token %}
 			
@@ -18,4 +18,5 @@
 			<input type="submit" value="Opslaan">
 		</form>
 	</div>
+</div>
 {% endblock content %}

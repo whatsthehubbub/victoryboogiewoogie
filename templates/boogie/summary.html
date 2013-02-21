@@ -5,11 +5,17 @@
 {% block bodyid %}summary{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<h2>Het verhaal tot nu toe&hellip;</h2>
+<div class="row">
+	<div class="span8 offset2">
+		
+		<h2 class="text-center">Het verhaal tot nu toe&hellip;</h2>
 		
 		{% for piece in summary %}
-			<p id="summary_{{ piece.id }}">{{ piece.datecreated }}: {{ piece.content|safe }}</p>
+		<hr>
+		<h3 class="text-center">{{ piece.datecreated }}</h3>
+		<p id="summary_{{ piece.id }}">{{ piece.content|safe }}</p>
 		{% endfor %}
+		
 	</div>
+</div>
 {% endblock content %}

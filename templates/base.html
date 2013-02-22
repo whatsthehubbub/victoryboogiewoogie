@@ -73,13 +73,13 @@
 			<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 			{% endifequal %}
 			<li>
-				<a href="{% url 'notifications' %}">Berichten</a>
-
+				<a href="{% url 'notifications' %}">Berichten
 				{% if current_player %}
 					{% with current_player|new_notifications as new_notification_count %}
 						<span class="badge {% if new_notification_count > 0 %}badge-important{% else %}badge-empty{% endif %}">{{  current_player|new_notifications }}</span>
 					{% endwith %}
 				{% endif %}
+				</a>
 			</li>
 			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 			<li><a href="{% url 'editors' %}">Spelregels</a></li>

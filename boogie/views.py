@@ -90,8 +90,8 @@ def topic_list(request):
     t = loader.get_template('boogie/topic_list.html')
     
     c = RequestContext(request, {
-            'writer_topics': Topic.objects.filter(pool='WRITER'),
-            'player_topics': Topic.objects.filter(pool='PLAYER')
+            'writer_topics': Topic.objects.exclude(archived=True).filter(pool='WRITER'),
+            'player_topics': Topic.objects.exclude(archived=True).filter(pool='PLAYER')
     })
     return HttpResponse(t.render(c))
     

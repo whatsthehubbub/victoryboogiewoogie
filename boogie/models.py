@@ -34,7 +34,7 @@ class Player(models.Model):
             return # Writers don't get new assignments this way
         else:
             # TODO Check if you can get a new topic for which you are already writing
-            new_topic = Topic.objects.exclude(pool='WRITER').order_by('?')[0]
+            new_topic = Topic.objects.exclude(archived=True).exclude(pool='WRITER').order_by('?')[0]
 
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
             piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)

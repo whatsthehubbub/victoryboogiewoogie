@@ -49,9 +49,11 @@ def piece_cleanup():
 
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
+    for piece in Piece.objects.filter(status='WAITING', datepublished__lt=now):
+        piece.status = 'APPROVED'
+        piece.save()
 
-    # Pieces that need to be published will be published
-    # TODO
+        logger.info("Waiting piece with id %d set to APPROVED.", piece.id)
 
 @task()
 def update_user_last_login(user):

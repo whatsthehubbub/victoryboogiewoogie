@@ -80,7 +80,6 @@ class Character(models.Model):
 
     name = models.CharField(max_length=255, help_text='Naam van het personage')
     onelinebio = models.CharField(max_length=255, blank=True)
-    # TODO same with the large and small portrait fields here, though they may be in the assets already
 
     # Common fields
     biography = models.TextField(blank=True)

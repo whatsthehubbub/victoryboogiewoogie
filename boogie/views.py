@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm, ChoiceField
+from django.forms import ModelForm, ChoiceField, TextInput
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
@@ -318,10 +318,19 @@ class UserProfileForm(ModelForm):
         model = User
         fields = ('first_name', 'last_name')
 
+        widgets = {
+            'first_name': TextInput(attrs={'class': 'first_name'}),
+            'last_name': TextInput(attrs={'class': 'last_name'})
+        }
+
 class PlayerProfileForm(ModelForm):
     class Meta:
         model = Player
         fields = ('pseudonym', 'avatar', 'send_emails')
+
+        widgets = {
+            'pseudonym': TextInput(attrs={'class': 'pseudonym'})
+        }
 
 @login_required
 def player_profile_edit(request, name):

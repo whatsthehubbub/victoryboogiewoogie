@@ -65,8 +65,9 @@
 			{% ifequal current_player.role 'WRITER' %}
 			<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 			{% endifequal %}
-			<li><a href="{% url 'editors' %}">Spelregels</a></li>
+			<li><a href="{% url 'notifications' %}">Berichten</a><span class="badge badge-important">6</span></li>
 			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
+			<li><a href="{% url 'editors' %}">Spelregels</a></li>
 		</ul>
 		<p class="navbar-text pull-right">
 			{% if current_player %}

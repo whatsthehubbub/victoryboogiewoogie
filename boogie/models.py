@@ -120,6 +120,9 @@ class NotificationManager(models.Manager):
     def create_new_rejected_notification(self, player, piece):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is helaas afgekeurd. Probeer het opnieuw met je volgende opdracht.''')
 
+    def new_notifications_for_player(self, player):
+        return Notification.objects.filter(for_player=player).filter(datecreated__gte=player.user.last_login).count()
+
 class Notification(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
@@ -159,6 +162,7 @@ class Notification(models.Model):
         return '''Deze e-mail is verstuurd door http://www.gidsgame.nl. Om u direct af te melden van verder e-mails kan je je <a href="http://www.gidsgame.nl%s">met een klik</a> uitschrijven.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
 
     def get_subject(self):
+        # TODO modify subjects based on notification type
         if self.identifier == 'bla':
             return ''
         else:
@@ -332,12 +336,18 @@ class Summary(models.Model):
     def save(self, *args, **kwargs):
         # Create a notification of this summary for all players only if this summary is new
         # This enables us to update
+
+        createNotification = False
         if self.pk is None:
-            # TODO defer this to the celery queue
-            for player in Player.objects.all():
-                Notification.objects.create_new_summary_notification(player, self)
+            # PK is only None on a new object before save
+            createNotification = True
 
         super(Summary, self).save(*args, **kwargs)
+
+        if createNotification:
+            # TODO defer this to the celery queue because it sends an e-mail to every user
+            for player in Player.objects.all():
+                Notification.objects.create_new_summary_notification(player, self)
 
     def get_absolute_url(self):
         return reverse('summary') + '#summary_' + str(self.id)

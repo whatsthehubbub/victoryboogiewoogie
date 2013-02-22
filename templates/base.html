@@ -1,4 +1,5 @@
 {% load url from future %}
+{% load piece_extras %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -55,6 +56,7 @@
 	<div class="container clearfix">
 		<ul class="nav">
 			<li><a href="{% url 'index' %}">Home</a></li>
+			
 			{% if current_player %}
 			<li>
 				{% if current_url %}
@@ -66,10 +68,11 @@
 				{% endif %}
 			</li>
 			{% endif %}
+			
 			{% ifequal current_player.role 'WRITER' %}
 			<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 			{% endifequal %}
-			<li><a href="{% url 'notifications' %}">Berichten</a><span class="badge badge-important">6</span></li>
+			<li><a href="{% url 'notifications' %}">Berichten</a><span class="badge badge-important">{{  current_player|new_notifications }}</span></li>
 			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 			<li><a href="{% url 'editors' %}">Spelregels</a></li>
 		</ul>

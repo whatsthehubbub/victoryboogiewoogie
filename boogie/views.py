@@ -79,6 +79,8 @@ def summary(request):
 def notifications(request):
     player = Player.objects.get(user=request.user)
 
+    tasks.update_user_last_login.apply_async(args=[request.user], countdown=10)
+
     t = loader.get_template('boogie/notifications.html')
 
     c = RequestContext(request, {
@@ -205,8 +207,7 @@ def piece_validate(request, piece_id):
     if valid == 'yes':
         piece.status = 'APPROVED'
 
-        # TODO change this
-        piece.datepublished = datetime.datetime.now()
+        piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
         
         piece.topic.piece_count += 1
         piece.topic.save()
@@ -244,9 +245,7 @@ def piece_validate(request, piece_id):
 
 @user_passes_test(lambda u: u.is_superuser)
 def pieces_assign(request):
-    from boogie.tasks import pieces_assign
-
-    counter = pieces_assign()
+    counter = tasks.pieces_assign()
 
     return HttpResponse('Spelers met een nieuwe opdracht: %d' % counter)
 

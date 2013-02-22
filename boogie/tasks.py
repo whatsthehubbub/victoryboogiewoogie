@@ -1,5 +1,5 @@
 from celery import task
-from boogie.models import Player
+from boogie.models import Player, Piece
 
 from django.utils.timezone import utc
 import datetime
@@ -41,10 +41,19 @@ def piece_cleanup():
         piece.status = "PASTDUE"
         piece.save()
 
-    for piece in Piece.objecst.filter(status='NEEDSWORK', deadline__lt=now):
+    for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
         piece.status = "PASTDUE"
         piece.save()
 
 
     # Pieces that need to be published will be published
     # TODO
+
+@task()
+def update_user_last_login(user):
+    user.last_login = datetime.datetime.utcnow().replace(tzinfo=utc)
+    user.save()
+
+    logger.info("Updated last login time of user %s", str(user))
+
+    return user

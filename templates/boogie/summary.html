@@ -12,8 +12,8 @@
 		
 		{% for piece in summary %}
 		<hr>
-		<h3 class="text-center">{{ piece.datecreated }}</h3>
-		<p id="summary_{{ piece.id }}">{{ piece.content|safe }}</p>
+		<h3 id="summary_{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
+		<p>{{ piece.content|safe }}</p>
 		{% endfor %}
 		
 	</div>

@@ -41,9 +41,13 @@ def piece_cleanup():
         piece.status = "PASTDUE"
         piece.save()
 
+        logger.info("Changed piece with id %d to PASTDUE", piece.id)
+
     for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
         piece.status = "PASTDUE"
         piece.save()
+
+        logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
 
     # Pieces that need to be published will be published

@@ -232,8 +232,8 @@ class Piece(models.Model):
     image = models.ImageField(blank=True, upload_to='piece_images')
     
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
-    title = models.CharField(max_length=255, blank=True)
-    text = models.TextField(blank=True)
+    title = models.CharField(max_length=255, blank=True, verbose_name="Titel")
+    text = models.TextField(blank=True, verbose_name="Tekst")
     new_topic = models.CharField(max_length=255, blank=True, verbose_name="Nieuw onderwerp")
     
     status = models.CharField(max_length=255, choices=(

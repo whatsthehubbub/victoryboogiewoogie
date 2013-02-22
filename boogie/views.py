@@ -210,8 +210,7 @@ def piece_validate(request, piece_id):
         # Check whether this topic should switch pools back to writers
         tasks.check_topic_pool.delay(piece.topic)
 
-        # Don't give this player a new assignment
-        # tasks.get_new_assignment.delay(piece.writer)
+        # TODO make these things work on a deferred publication as well
 
         Notification.objects.create_new_accepted_notification(piece.writer, piece)
 
@@ -219,6 +218,7 @@ def piece_validate(request, piece_id):
         if piece.new_topic:
             t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
             t.save()
+
     elif valid == 'retry':
         # The piece needs more work
         piece.rejection_reason = request.POST.get('reason', '')
@@ -229,10 +229,6 @@ def piece_validate(request, piece_id):
         piece.status = 'REJECTED'
 
         Notification.objects.create_new_rejected_notification(piece.writer, piece)
-
-        # Don't give this player a new assignment
-        # TODO Why not?
-        # tasks.get_new_assignment.delay(piece.writer)
 
     piece.save()
         

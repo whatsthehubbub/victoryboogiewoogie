@@ -10,7 +10,7 @@ class CharacterAdmin(admin.ModelAdmin):
 admin.site.register(Character, CharacterAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pool', 'slug', 'piece_count', 'piece_threshold')
+    list_display = ('title', 'pool', 'slug', 'archived', 'piece_count', 'piece_threshold')
     prepopulated_fields = {"slug": ("title",)}
 admin.site.register(Topic, TopicAdmin)
 

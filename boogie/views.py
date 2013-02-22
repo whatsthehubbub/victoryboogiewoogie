@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm, ChoiceField, TextInput
+from django.forms import ModelForm, ChoiceField, TextInput, ModelChoiceField
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
@@ -190,6 +190,47 @@ def piece_submit(request):
             'form': form
     })
     return HttpResponse(t.render(c))
+
+
+class WriterPieceSubmitForm(ModelForm):
+    topic = ModelChoiceField(queryset=Topic.objects.exclude(archived=True).filter(pool='WRITER'))
+
+    class Meta:
+        model = Piece
+        fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
+
+def writer_piece_submit(request):
+    t = loader.get_template('boogie/writer_piece_submit.html')
+
+    player = Player.objects.get(user=request.user)
+
+    if player.role == 'WRITER':
+        if request.method == 'POST':
+            form = WriterPieceSubmitForm(request.POST)
+            
+            # TODO check for compulsory fields
+
+            if form.is_valid():
+                piece = forms.save(commit=False)
+
+                piece.status = 'APPROVED'
+                piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
+
+                piece.save()
+
+                piece.topic.pool = 'PLAYER'
+                piece.topic.save()
+
+                return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
+
+        else:
+            form = WriterPieceSubmitForm()
+
+        c = RequestContext(request, {
+            'form': form
+        })
+
+        return HttpResponse(t.render(c))
 
 # TODO proper access controls
 @require_POST

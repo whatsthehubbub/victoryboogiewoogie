@@ -28,9 +28,13 @@ urlpatterns = patterns('',
     url(r'^bijdragen/queue/', 'boogie.views.piece_queue', name='piece_queue'),
     
     url(r'^bijdragen/(\d+)/$', 'boogie.views.piece_detail', name='piece_detail'),
+
+    url(r'^bijdragen/indienen/schrijver/$', 'boogie.views.writer_piece_submit', name='writer_piece_submit'),
     url(r'^bijdragen/indienen/$', 'boogie.views.piece_submit', name='piece_submit'),
     url(r'^bijdragen/indienen/bedankt/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/piece_submit_thanks.html'}, name='piece_submit_thanks'),
+    
     url(r'^bijdragen/toekennen/$', 'boogie.views.pieces_assign', name='pieces_assign'),
+    
     url(r'^bijdragen/(\d+)/validate/$', 'boogie.views.piece_validate', name='piece_validate'),
     url(r'^bijdragen/(\d+)/vote/up/$', 'boogie.views.piece_vote_up', name='piece_vote_up'),
     url(r'^bijdragen/(\d+)/vote/up/undo/$', 'boogie.views.piece_vote_up_undo', name='piece_vote_up_undo'),

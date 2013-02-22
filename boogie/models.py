@@ -334,12 +334,6 @@ class PieceVote(models.Model):
     player = models.ForeignKey(Player)
     piece = models.ForeignKey(Piece)
 
-    # TODO rewrite this to a get()
-    @staticmethod
-    def vote_exists(player, piece):
-        return PieceVote.objects.filter(player=player, piece=piece).count() > 0
-
-
 
 class Summary(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)

@@ -28,36 +28,30 @@
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="document" role="document">
-	
-	<!-- LOGIN -->
-	<div id="container">
+
+<!-- LOGIN -->
+<div id="container">
 		
-		<div class="logo">
-			<h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span>Victory Boogie Woogie<span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1>
+	<div class="row">
+		<div id="signin">
+			<h2 class="text-center">Login</h2>
+			
+			<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+				{% csrf_token %}
+				
+				{{ form }}
+				
+				<input type="submit" value="login" class="btn btn-primary">
+				<input type="hidden" name="next" value="{{ next }}">
+			</form>
+			
+			<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord opnieuw ontvangen.</a></p>
+			
 		</div>
-		
-		<!-- After fixing styling of errors I believe the bit below can be deleted. -KA -->
-		{% if form.errors %}
-			<p class="error">Your username and password didn't match. Please try again.</p>
-		{% endif %}
-		
-		<form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-			{% csrf_token %}
-			
-			<ul>
-				{{ form.as_ul }}
-			</ul>
-			
-			<input type="submit" value="login" class="btn btn-large btn-primary">
-			<input type="hidden" name="next" value="{{ next }}">
-		</form>
-		
-		<p class="newpassword"><a href="{% url 'password_reset' %}">Wachtwoord opnieuw ontvangen.</a></p>
-		
 	</div>
-	<!-- END LOGIN -->
+	
 </div>
+<!-- END LOGIN -->
 
 <!-- JAVASCRIPT -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

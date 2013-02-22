@@ -61,8 +61,8 @@
 			<li>
 				{% if current_url %}
 				<div class="navbar-form">
-					<a href="{% url 'piece_submit' %}" class="btn">{{ current_status }}</a>
-				</div>
+					<a href="{% url 'piece_submit' %}" class="btn">{{ current_status }}</a><span class="label" title="nog 5 dagen, 3 uur">[clock icon]</span>
+				</div> 
 				{% else %}	
 					<a class="disabled">{{ current_status }}</a>
 				{% endif %}

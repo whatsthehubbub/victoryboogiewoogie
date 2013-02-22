@@ -7,8 +7,10 @@
 
 {% block sidebar %}
 	{% if summary %}
-	<div id="summary" class="well">
-		Het verhaal tot nu toe... {{ summary.0.content|safe|truncatewords_html:60 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a>
+	<div id="summary" class="well clearfix">
+		<a href="{{ summary.0.get_absolute_url }}">
+		<div class="pull-left"><strong>Het verhaal tot nu toe:</strong> {{ summary.0.content|safe|truncatewords_html:60 }}</div>
+		<div class="pull-right">lees meer...</div></a>
 	</div>
 	{% endif %}
 {% endblock sidebar %}

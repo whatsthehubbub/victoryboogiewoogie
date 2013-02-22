@@ -8,32 +8,37 @@
 {% block content %}
 <div id="itemlistinfo" class="clearfix">
 	
-	<h2 class="text-center">Bijdragen overrrr {{ topic.title }}</h2>
+	<h2 class="text-center">Bijdragen <span class="sub">over {{ topic.title }}</span></h2>
 	
-	<p>Een onderwerp voor 
+	<p class="lead text-center">Een onderwerp voor 
 	{% ifequal topic.pool 'WRITER' %}
 		schrijvers.
 	{% else %}
 		spelers. Voortgang tot gebeurtenis: ({{ topic.progress }}% {{ topic.piece_count }}/{{ topic.piece_threshold }}).
 	{% endifequal%}
 	</p>
-		
-	<p>Sorteren: 
-	{% ifequal order '-datecreated' %} 
-		<a href="?order=-rating">Beste</a>
-	{% else %}
-		<strong>Beste</strong>
-	{% endifequal %} | 
 	
-	{% ifequal order '-rating' %}
-		<a href="?order=-datecreated">Nieuwste</a>
-	{% else %}
-		<strong>Nieuwste</strong>
-	{% endifequal %}</p>
-		
+	<div class="filter pull-right">
+		<div class="btn-group"> 
+			{% ifequal order '-datecreated' %}
+				<a href="?order=-rating" class="btn">Beste</a>
+			{% else %}
+				<a href="?order=-rating" class="btn active">Beste</a>
+			{% endifequal %}
+			
+			{% ifequal order '-rating' %}
+				<a href="?order=-datecreated" class="btn">Nieuwste</a>
+			{% else %}
+				<a href="?order=-datecreated" class="btn active">Nieuwste</a>
+			{% endifequal %}
+		</div>
+	</div>
+	
+	<div id="itemlist" class="row clearfix">
 	{% for piece in pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
+	</div>
 	
 </div>
 {% endblock %}

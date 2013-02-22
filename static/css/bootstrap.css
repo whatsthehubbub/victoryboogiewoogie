@@ -857,7 +857,7 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{color:#ffffff;text-decor
 .affix{position:fixed;}
 body{background-color:#ffffff;background-image:url(/static/img/bg-paper.png);background-size:120px 120px;background-repeat:repeat;}
 h1,h2,h3,h4,h5,h6{color:#000000;}
-h2{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;line-height:1.2em;margin:0.1em 0 0.6em;padding:0;}
+h2{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;line-height:1.2em;margin:0.1em 0 0.6em;padding:0;}h2 .sub{margin-top:-0.5em;font-size:0.6em;display:block;}
 h3{margin:1.5em 0 0.5em;}
 #chromeframe{margin:0;background:#999999;color:#000000;padding:0.5em 0;text-align:center;background-color:#fed700;border-bottom:1px solid #eeeeee;}
 #header{background-color:#ffffff;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}#header a{color:#666666;text-shadow:none;}

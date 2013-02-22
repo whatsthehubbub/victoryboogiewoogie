@@ -924,6 +924,14 @@ h3{margin:1.5em 0 0.5em;}
 #itemdetail .social .like{margin:0.75em 0 0 1em;}#itemdetail .social .like input{margin-top:-0.15em;}
 #itemdetail .social .twitter{margin:1em 0 0;}
 #itemdetail .social .facebook{margin:0.95em 1em 0 0;}
+#createitem form{margin:2em 0;}
+#createitem label[for="id_genre"],#createitem label[for="id_title"],#createitem label[for="id_new_topic"]{float:left;display:inline;width:25%;padding:0.4em 0 0;}
+#createitem #id_genre{float:right;display:inline;width:70%;}
+#createitem #id_title,#createitem #id_new_topic{float:right;display:inline;width:68%;}
+#createitem .text{border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;padding:0.75em 0;margin:0.75em 0 1.25em;}
+#createitem label[for="id_text"]{padding:0 0 0.25em;}
+#createitem #id_text{width:98%;font-size:1.5em;line-height:1.4em;}
+#createitem #id_new_topic{margin:0 0 2em;}
 #notifications #content .date{color:#999999;}
 #notifications #content .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#fed500;}
 #topiclist .progress{width:14em;margin:0;}

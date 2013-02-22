@@ -6,32 +6,34 @@
 {% block bodyid %}topic_detail{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<h2>Bijdragen over {{ topic.title }}</h2>
+<div id="itemlistinfo" class="clearfix">
+	
+	<h2 class="text-center">Bijdragen overrrr {{ topic.title }}</h2>
+	
+	<p>Een onderwerp voor 
+	{% ifequal topic.pool 'WRITER' %}
+		schrijvers.
+	{% else %}
+		spelers. Voortgang tot gebeurtenis: ({{ topic.progress }}% {{ topic.piece_count }}/{{ topic.piece_threshold }}).
+	{% endifequal%}
+	</p>
 		
-		<p>Een onderwerp voor 
-		{% ifequal topic.pool 'WRITER' %}
-			schrijvers.
-		{% else %}
-			spelers. Voortgang tot gebeurtenis: ({{ topic.progress }}% {{ topic.piece_count }}/{{ topic.piece_threshold }}).
-		{% endifequal%}
-		</p>
+	<p>Sorteren: 
+	{% ifequal order '-datecreated' %} 
+		<a href="?order=-rating">Beste</a>
+	{% else %}
+		<strong>Beste</strong>
+	{% endifequal %} | 
+	
+	{% ifequal order '-rating' %}
+		<a href="?order=-datecreated">Nieuwste</a>
+	{% else %}
+		<strong>Nieuwste</strong>
+	{% endifequal %}</p>
 		
-		<p>Sorteren: 
-		{% ifequal order '-datecreated' %} 
-			<a href="?order=-rating">Beste</a>
-		{% else %}
-			<strong>Beste</strong>
-		{% endifequal %} | 
-		
-		{% ifequal order '-rating' %}
-			<a href="?order=-datecreated">Nieuwste</a>
-		{% else %}
-			<strong>Nieuwste</strong>
-		{% endifequal %}</p>
-		
-		{% for piece in pieces %}
-			{% include "boogie/piece_fragment.html" %}
-		{% endfor %}
-	</div>
+	{% for piece in pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% endfor %}
+	
+</div>
 {% endblock %}

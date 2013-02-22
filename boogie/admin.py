@@ -15,7 +15,11 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('topic', 'frontpage', 'score_cache', 'writer', 'genre', 'title', 'text', 'datepublished', 'status', 'character')
+    list_display = ('topic', 'datechanged', 'score_cache', 'writer', 'genre', 'title', 'datepublished', 'status', 'character')
+
+    date_hierarchy = 'datechanged'
+    list_filter = ('genre', 'frontpage', 'topic', 'status', 'character')
+
 admin.site.register(Piece, PieceAdmin)
 
 class PieceVoteAdmin(admin.ModelAdmin):

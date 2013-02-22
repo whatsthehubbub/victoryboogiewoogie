@@ -89,7 +89,7 @@ class Character(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return reverse('character_profile', self.id)
+        return reverse('character_profile', args=(self.id,))
 
     def pieces(self):
         return Piece.objects.filter(status='APPROVED', character=self).order_by('-datepublished')
@@ -156,7 +156,7 @@ class Notification(models.Model):
                 logger.error('Could not send e-mail to %s', to_email)
 
     def get_email_footer(self):
-        return '''Deze e-mail is verstuurd door http://www.gidsgame.nl. Om u direct af te melden van verder e-mails kan je je <a href="http://www.gidsgame.nl%s">met een klik</a> uitschrijven.''' % reverse('player_unsubscribe', self.for_player.emails_unsubscribe_hash)
+        return '''Deze e-mail is verstuurd door http://www.gidsgame.nl. Om u direct af te melden van verder e-mails kan je je <a href="http://www.gidsgame.nl%s">met een klik</a> uitschrijven.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
 
     def get_subject(self):
         if self.identifier == 'bla':

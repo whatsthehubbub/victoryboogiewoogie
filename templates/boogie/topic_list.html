@@ -37,7 +37,7 @@
 		<table class="table table-bordered">
 			<tbody>
 			{% for topic in writer_topics %}
-				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission -->
+				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission. -->
 				<tr>
 					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
 				</tr>
@@ -45,6 +45,20 @@
 			</tbody>
 		</table>
 		
+		<h3 class="text-center">Gearchiveerde Onderwerpen</h3>
+		<p>Over deze onderwerpen zijn we uitgeschreven.</p>
+
+		<table class="table table-bordered">
+			<tbody>
+			{% for topic in archived_topics %}
+				<!-- NOTE: Archived topics are no longer assigned to players or writers. -->
+				<tr>
+					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
 	</div>
 </div>
 {% endblock %}

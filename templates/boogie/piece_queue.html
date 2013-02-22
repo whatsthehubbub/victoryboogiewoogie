@@ -9,34 +9,32 @@
 <div class="row">
 	<div class="span12">
 		<h2 class="text-center">Ingediende bijdragen beoordelen</h2>
-		
+		<ul>
 		{% for piece in pieces %}
-		
-		{% include "boogie/piece_fragment.html" %}
+		<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> (nieuw onderwerp: <em>{{ piece.new_topic }}</em>)
+
+		<form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
+			<input type="hidden" name="ok" value="yes">
+			<input type="submit" class="btn btn-success" value="Goedkeuren">
+		</form>
 			
-		<div>
-			<p>Nieuw onderwerp: {{ piece.new_topic }}</p>
+		<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
+			<input type="hidden" name="ok" value="retry">
+			<label for="reason">Motivatie</label> <input type="text" name="reason">
+			<input type="submit" class="btn btn-warning" value="Opnieuw proberen">
+		</form>
+
+		<form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
+			<input type="hidden" name="ok" value="no">
+			<input type="submit" class="btn btn-danger" value="Afkeuren">
+		</form>
 			
-			<form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
-				<input type="hidden" name="ok" value="yes">
-				<input type="submit" class="btn btn-success" value="Goedkeuren">
-			</form>
-			
-			<form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
-				<input type="hidden" name="ok" value="no">
-				<input type="submit" class="btn btn-warning" value="Afkeuren">
-			</form>
-			
-			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
-				<input type="hidden" name="ok" value="retry">
-				<label for="reason">Motivatie</label> <input type="text" name="reason">
-				<input type="submit" class="btn btn-warning" value="Opnieuw proberen">
-			</form>
-		</div>
+		</li>
 		
 		{% empty %}
-		<p>Geen bijdragen om te beoordelen.</p>
+		<li>Geen bijdragen om te beoordelen.</li>
 	{% endfor %}
+</ul>
 	
 	</div>
 </div>

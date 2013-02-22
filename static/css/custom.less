@@ -259,13 +259,14 @@ h3 {
 	}
 	.score {
 		position: absolute;
-		right: 0.5em;
+		left: 0.5em;
 		bottom: 0.5em;
 		margin: 0;
-		color: @grayLight;
 		.label {
 			font-family: @sansFontFamily;
 			font-size: @fontSizeMini;
+			color: @white;
+			text-shadow: 0px -1px 0px fade(@black, 20%);
 			background-color: @yellow;
 			.box-shadow(0 1px 0px rgba(0,0,0,.3));
 		}
@@ -294,12 +295,14 @@ h3 {
 		}
 	}
 	.pager a {
+		color: @grayLight;
 		border: 0;
 		border-radius: 0;
 		background-color: transparent;
 		padding: 0.75em 1.25em;
 	}
 	.pager a:hover {
+		color: @grayDark;
 		background-color: fade(@grayLighter, 50%);
 	}
 	.pager-top {
@@ -307,7 +310,7 @@ h3 {
 		border-bottom: 1px solid @grayLighter;
 	}
 	.pager-bottom {
-		margin: 4em -1.25em -6em;
+		margin: 0 -1.25em -6em;
 		border-top: 1px solid @grayLighter;
 	}
 	.box {
@@ -315,9 +318,10 @@ h3 {
 	}
 	.meta {
 		color: @grayLight;
-		margin: 2em 0 1em;
-		padding: 0.25em;
+		margin: 0 -1.25em 4em;
+		padding: 0.25em 1em;
 		background-color: fade(@grayLighter, 40%);
+		border-bottom: 1px solid @grayLighter;
 		.genre {
 			margin: 0.65em 0 0 0.25em;
 			font-style: italic;
@@ -326,13 +330,6 @@ h3 {
 			width: 40px;
 			height: 40px;
 		}
-	}
-	.score {
-		font-family: @sansFontFamily;
-		font-size: @fontSizeMini;
-		background-color: @yellow;
-		.box-shadow(0 1px 0px rgba(0,0,0,.3));
-		margin: 0 0 2em;
 	}
 	.author {
 		margin: -1em 0 0;
@@ -344,23 +341,36 @@ h3 {
 	}
 	.social {
 		border: 1px solid @grayLighter;
-		padding: 0.75em;
-		margin: 2em 0 0;
+		margin: 2em 0 6em;
 		.border-radius(@baseBorderRadius);
-		.like {
+		.score {
+			font-family: @sansFontFamily;
+			font-size: 1em;
+			font-weight: 800;
+			color: @white;
+			text-shadow: 0px -1px 0px fade(@black, 20%);
+			background-color: @yellow;
+			margin: 0;
+			padding: 1em 1.5em;
+		}
 		ul {
 			margin: 0;
 		}
 		form {
 			margin: 0;
 		}
-	}
-	.twitter {
-		margin: 0.4em 0 0;
-	}
-	.facebook {
-		margin: 0.35em 0 0;
-	}	
+		.like {
+			margin: 0.75em 0 0 1em;
+			input {
+				margin-top: -0.15em;
+			}
+		}
+		.twitter {
+			margin: 1em 0 0;
+		}
+		.facebook {
+			margin: 0.95em 1em 0 0;
+		}	
 	}
 }
 

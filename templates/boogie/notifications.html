@@ -5,11 +5,22 @@
 {% block bodyid %}notifications{% endblock %}
 
 {% block content %}
-    
-    {% for notification in notifications %}
-    	<p>
-    		{% if notification.datecreated > user.last_login %}NIEUW!{% endif %}
-    		{{ notification.datecreated }}: {{ notification.message|safe }}</p>
-    {% endfor %}
-    
+<div class="row">
+	<div class="span10 offset1">
+		
+		<h2 class="text-center">Berichten</h2>
+		
+		<table class="table table-striped">
+			<tbody>
+			{% for notification in notifications %}
+			<tr>
+				<td class="date">{{ notification.datecreated }}{% if notification.datecreated > user.last_login %}<div class="label">NIEUW</div>{% endif %}</td>
+				<td>{{ notification.message|safe }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		
+	</div>
+</div>
 {% endblock %}

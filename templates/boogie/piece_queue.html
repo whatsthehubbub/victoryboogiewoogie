@@ -6,16 +6,15 @@
 {% block bodyid %}piece_queue{% endblock %}
 
 {% block content %}
-	<div class="wrapper box clearfix">
-		<h2>Ingediende bijdragen beoordelen</h2>
-	</div>
-	
-	
-	{% for piece in pieces %}
-	
-		{% include "boogie/piece_fragment.html" %}
+<div class="row">
+	<div class="span12">
+		<h2 class="text-center">Ingediende bijdragen beoordelen</h2>
 		
-		<div class="wrapper">
+		{% for piece in pieces %}
+		
+		{% include "boogie/piece_fragment.html" %}
+			
+		<div>
 			<p>Nieuw onderwerp: {{ piece.new_topic }}</p>
 			
 			<form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
@@ -38,5 +37,7 @@
 		{% empty %}
 		<p>Geen bijdragen om te beoordelen.</p>
 	{% endfor %}
-
+	
+	</div>
+</div>
 {% endblock %}

@@ -81,8 +81,9 @@ class Character(models.Model):
     name = models.CharField(max_length=255, help_text='Naam van het personage')
     onelinebio = models.CharField(max_length=255, blank=True)
 
-    # Common fields
     biography = models.TextField(blank=True)
+
+    avatar = models.ImageField(blank=True, upload_to='characters')
 
     def __unicode__(self):
         return self.name

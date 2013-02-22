@@ -20,54 +20,54 @@
 	</ul>
 	
 	<div class="row">
-		
-		<article class="span8 offset2 {{ piece.genre|lower }} clearfix">
-			
-			<div class="meta clearfix">
-				<p class="genre pull-left">Onderwerp</p>
-				<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
-			</div>
-			
-			<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>
-			<div class="content">
-				<h2>{{ piece.title }}</h2>
-				<p class="author">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a>, {{ piece.datepublished|timesince }} geleden</p>
-				<p>{{ piece.text|linebreaks }}</p>
-					
-			</div>
-		</article>
-		
 		<div class="span8 offset2">
-			<div class="like pull-left">
-			{% if current_player|likes:piece %} 
-				<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">
-					{% csrf_token %}
-					<ul class="inline">
-						<li>Je vindt dit een goed stuk.</li>
-						<li><input type="hidden" name="return_url" value="{{ request.get_full_path }}">
-							<input type="submit" class="btn btn-link" value="Toch niet?">
-						</li>
-					</ul>
-				</form>
-			{% else %}
-				<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
-					{% csrf_token %}
-					<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
-					<input type="submit" class="btn" value="Goed stuk!">
-				</form>
-			{% endif %}
+			
+			<article class="{{ piece.genre|lower }} clearfix">
+			
+				<div class="meta clearfix">
+					<p class="genre pull-left">Onderwerp: Lorem ipsumd</p>
+					<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
+				</div>
+				
+				<h2 class="text-center">{{ piece.title }}</h2>
+				<div class="author text-center">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a>, {{ piece.datepublished|timesince }} geleden - <span class="score label">{{ piece.get_human_score|floatformat:"1" }}</span></div>
+								
+				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
+				
+			</article>
+			
+			<div class="social clearfix">
+				<div class="like pull-left">
+					{% if current_player|likes:piece %}
+					<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">
+						{% csrf_token %}
+						<ul class="inline">
+							<li>Je vindt dit een goed stuk.</li>
+							<li><input type="hidden" name="return_url" value="{{ request.get_full_path }}">
+								<input type="submit" class="btn btn-link" value="Toch niet?">
+							</li>
+						</ul>
+					</form>
+					{% else %}
+					<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
+						{% csrf_token %}
+						<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
+						<input type="submit" class="btn" value="Goed stuk!">
+					</form>
+					{% endif %}
+				</div>
+				
+				<div class="facebook pull-right">
+					<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
+					<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+				</div>
+				<div class="twitter pull-right">
+					<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>	
 			</div>
 			
-			<div class="facebook pull-right">
-				<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
-				<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-			</div>
-			<div class="twitter pull-right">
-				<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
 		</div>
-		
 	</div>
 	
 	<ul class="pager pager-bottom">

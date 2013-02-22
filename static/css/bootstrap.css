@@ -886,7 +886,7 @@ h3{margin:1.5em 0 0.5em;}
 #calendar .nav li.active a{color:#000000;}
 #calendar .nav li.disabled a,#calendar .nav li.disabled a:hover{color:rgba(153, 153, 153, 0.7);}
 #main{width:980px;margin:-6em auto 2em;background-color:#ffffff;padding:1.5em 0 6em;-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);}
-#content .box{padding:3em 0 4em 0;border:1px solid #eeeeee;}
+#content .box{padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid #eeeeee;}
 #content .box-small{padding:1em 0 0.5em 0;}
 #itemlistinfo{position:relative;margin-bottom:0.5em;}#itemlistinfo .filter{position:absolute;top:0.6em;right:0;}
 #itemlist article{margin-bottom:1em;}
@@ -896,10 +896,10 @@ h3{margin:1.5em 0 0.5em;}
 #itemlist .box{position:relative;overflow:hidden;padding:0;height:16em;}
 #itemlist .overlay{position:absolute;bottom:0;left:0;background-image:url(/static/img/itemlist-overlay.png);background-size:50px 40px;background-repeat:repeat-x;background-position:center bottom;width:100%;height:40px;}
 #itemlist .illustratie .overlay{visibility:hidden;}
-#itemlist .meta{color:#999999;border-bottom:1px solid #eeeeee;background-color:rgba(238, 238, 238, 0.5);padding:0.8em 0 0;}#itemlist .meta .genre{margin:0.25em 0 0.5em 1em;}
+#itemlist .meta{color:#999999;background-color:rgba(238, 238, 238, 0.4);padding:0.8em 0 0;}#itemlist .meta .genre{margin:0.125em 0 0.5em 1em;font-style:italic;}
 #itemlist .meta .character{width:40px;height:40px;margin:-0.5em 0.25em 0.25em 0;}
 #itemlist .content{margin:1em;}
-#itemlist .score{position:absolute;right:0.5em;bottom:0.5em;margin:0;color:#999999;}#itemlist .score .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#fed700;}
+#itemlist .score{position:absolute;right:0.5em;bottom:0.5em;margin:0;color:#999999;}#itemlist .score .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#fed700;-webkit-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);}
 #itemlist .info{margin:0.5em 0 0 0;color:#999999;}#itemlist .info a{color:#666666;}
 #itemlist .info a:hover{color:#333333;text-decoration:underline;}
 #itemdetail .pager .previous a{border-right:1px solid #eeeeee;}
@@ -909,13 +909,15 @@ h3{margin:1.5em 0 0.5em;}
 #itemdetail .pager-top{margin:-1.5em -1.25em 0;border-bottom:1px solid #eeeeee;}
 #itemdetail .pager-bottom{margin:4em -1.25em -6em;border-top:1px solid #eeeeee;}
 #itemdetail .box{padding-top:0;}
-#itemdetail .meta{color:#999999;border-bottom:1px solid #eeeeee;margin:2em 0 1em;}#itemdetail .meta .genre{text-transform:uppercase;margin-top:0.5em;}
+#itemdetail .meta{color:#999999;margin:2em 0 1em;padding:0.25em;background-color:rgba(238, 238, 238, 0.4);}#itemdetail .meta .genre{margin:0.65em 0 0 0.25em;font-style:italic;}
 #itemdetail .meta .character{width:40px;height:40px;}
-#itemdetail .score .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#fed700;}
-#itemdetail .like ul{margin:0;}
-#itemdetail .like form{margin:0;}
-#itemdetail .twitter{margin:0.25em 0 0;}
-#itemdetail .facebook{margin:0;}
+#itemdetail .score{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#fed700;-webkit-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);margin:0 0 2em;}
+#itemdetail .author{margin:-1em 0 0;}
+#itemdetail .headline h2{font-size:4em;}
+#itemdetail .social{border:1px solid #eeeeee;padding:0.75em;margin:2em 0 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}#itemdetail .social .like ul{margin:0;}
+#itemdetail .social .like form{margin:0;}
+#itemdetail .social .twitter{margin:0.4em 0 0;}
+#itemdetail .social .facebook{margin:0.35em 0 0;}
 #notifications .date{color:#999999;}
 #notifications .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#fed700;}
 #topiclist .progress{width:14em;margin:0;}

@@ -179,7 +179,7 @@ h3 {
 #content {
 	.box {
 		padding: 3em 0 4em 0;
-		//.border-radius(@baseBorderRadius);
+		.border-radius(@baseBorderRadius);
 		border: 1px solid @grayLighter;
 	}
 	.box-small {
@@ -242,11 +242,11 @@ h3 {
 	}
 	.meta {
 		color: @grayLight;
-		border-bottom: 1px solid @grayLighter;
-		background-color: fade(@grayLighter, 50%);
+		background-color: fade(@grayLighter, 40%);
 		padding: 0.8em 0 0;
 		.genre {
-			margin: 0.25em 0 0.5em 1em;
+			margin: 0.125em 0 0.5em 1em;
+			font-style: italic;
 		}
 		.character {
 			width: 40px;
@@ -267,6 +267,7 @@ h3 {
 			font-family: @sansFontFamily;
 			font-size: @fontSizeMini;
 			background-color: @yellow;
+			.box-shadow(0 1px 0px rgba(0,0,0,.3));
 		}
 	}
 	.info {
@@ -314,11 +315,12 @@ h3 {
 	}
 	.meta {
 		color: @grayLight;
-		border-bottom: 1px solid @grayLighter;
 		margin: 2em 0 1em;
+		padding: 0.25em;
+		background-color: fade(@grayLighter, 40%);
 		.genre {
-			text-transform: uppercase;
-			margin-top: 0.5em;
+			margin: 0.65em 0 0 0.25em;
+			font-style: italic;
 		}
 		.character {
 			width: 40px;
@@ -326,13 +328,26 @@ h3 {
 		}
 	}
 	.score {
-		.label {
-			font-family: @sansFontFamily;
-			font-size: @fontSizeMini;
-			background-color: @yellow;
+		font-family: @sansFontFamily;
+		font-size: @fontSizeMini;
+		background-color: @yellow;
+		.box-shadow(0 1px 0px rgba(0,0,0,.3));
+		margin: 0 0 2em;
+	}
+	.author {
+		margin: -1em 0 0;
+	}
+	.headline {
+		h2 {
+			font-size: 4em;
 		}
 	}
-	.like {
+	.social {
+		border: 1px solid @grayLighter;
+		padding: 0.75em;
+		margin: 2em 0 0;
+		.border-radius(@baseBorderRadius);
+		.like {
 		ul {
 			margin: 0;
 		}
@@ -341,10 +356,11 @@ h3 {
 		}
 	}
 	.twitter {
-		margin: 0.25em 0 0;
+		margin: 0.4em 0 0;
 	}
 	.facebook {
-		margin: 0;
+		margin: 0.35em 0 0;
+	}	
 	}
 }
 

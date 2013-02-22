@@ -9,14 +9,25 @@
 {% block content %}
 
 <div id="itemdetail">
+	
+	<ul class="pager pager-top">
+		<li class="previous">
+			<a href="{{ piece.get_previous_piece.get_absolute_url }}">Older</a>
+		</li>
+		<li class="next">
+			<a href="{{ piece.get_next_piece.get_absolute_url }}">Newer</a>
+		</li>
+	</ul>
+	
 	<div class="row">
 		
-		<div class="meta span12 clearfix">
-			<p class="genre pull-left">Onderwerp</p>
-			<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
-		</div>
-		
 		<article class="span8 offset2 {{ piece.genre|lower }} clearfix">
+			
+			<div class="meta clearfix">
+				<p class="genre pull-left">Onderwerp</p>
+				<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
+			</div>
+			
 			<p class="score"><span class="label">{{ piece.score }}</span></p>
 			<div class="content">
 				<h2>{{ piece.title }}</h2>
@@ -26,7 +37,7 @@
 			</div>
 		</article>
 		
-		<div class="span8 offset2 well">
+		<div class="span8 offset2">
 			<div class="like pull-left">
 			{% if current_player|likes:piece %} 
 				<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">

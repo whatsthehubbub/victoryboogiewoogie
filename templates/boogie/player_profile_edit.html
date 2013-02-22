@@ -16,7 +16,14 @@
 		
 			{% csrf_token %}
 			
-			{{ userform.as_p }}
+			<!-- {{ userform.as_p }} -->
+			{% for field in userform %}
+			<div class="fieldWrapper">
+				{{ field.errors }}
+				{{ field.label_tag }}
+				<div class="controls">{{ field }}</div>
+			</div>
+			{% endfor %}
 			
 			{{ playerform.as_p }}
 			<input type="submit" value="Opslaan">

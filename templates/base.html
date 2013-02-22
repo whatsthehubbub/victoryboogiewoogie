@@ -52,12 +52,14 @@
 
 <!-- HEADER -->
 <header id="header" class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
+	<div class="container clearfix">
 		<ul class="nav">
 			<li><a href="{% url 'index' %}">Home</a></li>
 			{% if current_player %}
 			<li>
-				{% if current_url %}<a href="{% url 'piece_submit' %}">{% endif %}{{ current_status }}{% if current_url %}</a>{% endif %}
+				{% if current_url %}<a href="{% url 'piece_submit' %}">{% else %}<a class="disabled">{% endif %}
+				{{ current_status }}
+				{% if current_url %}</a>{% else %}</a>{% endif %}
 			</li>
 			{% endif %}
 			{% ifequal current_player.role 'WRITER' %}

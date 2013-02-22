@@ -57,9 +57,13 @@
 			<li><a href="{% url 'index' %}">Home</a></li>
 			{% if current_player %}
 			<li>
-				{% if current_url %}<a href="{% url 'piece_submit' %}">{% else %}<a class="disabled">{% endif %}
-				{{ current_status }}
-				{% if current_url %}</a>{% else %}</a>{% endif %}
+				{% if current_url %}
+				<div class="navbar-form">
+					<a href="{% url 'piece_submit' %}" class="btn">{{ current_status }}</a>
+				</div>
+				{% else %}	
+					<a class="disabled">{{ current_status }}</a>
+				{% endif %}
 			</li>
 			{% endif %}
 			{% ifequal current_player.role 'WRITER' %}

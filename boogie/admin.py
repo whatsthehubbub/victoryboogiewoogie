@@ -6,7 +6,7 @@ class PlayerAdmin(admin.ModelAdmin):
 admin.site.register(Player, PlayerAdmin)
 
 class CharacterAdmin(admin.ModelAdmin):
-	list_display = ('name', 'onelinebio')
+    list_display = ('name', 'onelinebio')
 admin.site.register(Character, CharacterAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
@@ -15,7 +15,7 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('topic', 'frontpage', 'writer', 'genre', 'title', 'text', 'new_topic', 'status', 'rejection_reason', 'character')
+    list_display = ('topic', 'frontpage', 'score_cache', 'writer', 'genre', 'title', 'text', 'datepublished', 'status', 'character')
 admin.site.register(Piece, PieceAdmin)
 
 class PieceVoteAdmin(admin.ModelAdmin):

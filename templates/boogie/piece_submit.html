@@ -41,22 +41,28 @@
 				
 				<p class="lead">Dit is je kans! Schrijf een kek stukje over het onderwerp {{ form.instance.topic.title }}. Je kan kiezen uit verschillende genres, <em>anything goes</em>.</p>
 				
-				<hr>
-				
-				<div class="alert alert-info">
-					<p>Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen. Zet hem op!</p>
-					{% if form.instance.topic.get_latest_piece %}
-						<p>Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.</p>
-					{% else %}
-						<p>Er is nog niks geschreven over dit onderwerp. Je mag dus lekker los.</p>
-					{% endif %}
+				<div class="well">
+					Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen.
 				</div>
 				
-				<div class="timeframe clearfix">
-					<div class="deadline pull-left">Deadline in {{ form.instance.deadline|timeuntil }}.</div>
-					<div class="process pull-right">Voortgang tot gebeurtenis: {{ form.instance.topic.progress }}%</div>
-				</div>
-				
+				<ul class="info clearfix">
+					<li class="pull-left">Info</li>
+					<li class="pull-right">
+						{% if form.instance.topic.get_latest_piece %}
+							Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.
+							{% else %}
+							Er is nog niks geschreven over dit onderwerp. Je mag dus lekker los.
+						{% endif %}
+					</li>
+				</ul>
+				<ul class="info clearfix">
+					<li class="pull-left">Deadline</li>
+					<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
+				</ul>
+				<ul class="info clearfix">
+					<li class="pull-left">Voortgang tot gebeurtenis</li>
+					<li class="pull-right">{{ form.instance.topic.progress }}%</li>
+				</ul>
 			{% endifequal %}
 			
 			<form action="{% url 'piece_submit' %}" method="post">

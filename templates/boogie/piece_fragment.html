@@ -11,7 +11,7 @@
 				<img src="/static/avatars/placeholder-01.jpg" class="character img-circle pull-right">
 			</div>
 			
-			<p class="score"><span class="label">{{ piece.score }}</span></p>
+			<p class="score"><span class="label">{{ piece.get_human_score|floatformat }}</span></p>
 			
 			<div class="content">
 				<h3>{{ piece.title }}</h3>

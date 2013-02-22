@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
+from django.db.models import Min, Max
 
 import logging
 
@@ -283,6 +284,7 @@ class Piece(models.Model):
         # (likes - 1) / (hours_since_publication + 2) ^ 1.5
 
         if self.status == 'APPROVED':
+            # TODO catch the situation what happens if datepublished = None
             timedelta = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
             hours = timedelta.days * 24 + timedelta.seconds / 3600
             likes = PieceVote.objects.filter(piece=self).count()
@@ -295,6 +297,21 @@ class Piece(models.Model):
     def update_score_cache(self):
         self.score_cache = self.score()
         self.save()
+
+    def get_human_score(self):
+        def scale(val, src, dst):
+            """
+            Scale the given value from the scale of src to the scale of dst.
+            """
+            return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
+
+        min_max = Piece.objects.aggregate(Min('score_cache'), Max('score_cache'))
+        min_score = min_max['score_cache__min']
+        max_score = min_max['score_cache__max']
+
+        print min_score, max_score
+
+        return scale(self.score_cache, [min_score, max_score], [1.0, 10.0])
 
     def get_next_piece(self):
         try:

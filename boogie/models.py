@@ -234,7 +234,7 @@ class Piece(models.Model):
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(max_length=255)
     text = models.TextField(blank=True)
-    new_topic = models.CharField(max_length=255, blank=True)
+    new_topic = models.CharField(max_length=255, blank=True, verbose_name="Nieuw onderwerp")
     
     status = models.CharField(max_length=255, choices=(
                     ('ASSIGNED', 'toegekend'),

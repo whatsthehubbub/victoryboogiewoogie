@@ -67,7 +67,7 @@
 			<form action="{% url 'piece_submit' %}" method="post">
 				{% csrf_token %}
 				{{ form.as_ul }}
-				<input type="submit" value="Submit">
+				<input type="submit" value="Verzenden">
 			</form>
 			<p id="char_counter"></p>
 		{% else %}

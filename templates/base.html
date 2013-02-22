@@ -73,13 +73,13 @@
 			<li><a href="{% url 'piece_queue' %}">Beoordelen</a></li>
 			{% endifequal %}
 			<li>
-				<a href="{% url 'notifications' %}">Berichten</a>
-
+				<a href="{% url 'notifications' %}">Berichten
 				{% if current_player %}
 					{% with current_player|new_notifications as new_notification_count %}
 						<span class="badge {% if new_notification_count > 0 %}badge-important{% else %}badge-empty{% endif %}">{{  current_player|new_notifications }}</span>
 					{% endwith %}
 				{% endif %}
+				</a>
 			</li>
 			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 			<li><a href="{% url 'editors' %}">Spelregels</a></li>
@@ -102,8 +102,8 @@
 		{% if not user.is_authenticated %}
 			<div class="alert alert-info">
 				<a href="#" class="close" data-dismiss="alert">&times;</a> 
-				<strong>Welkom!</strong> Victory Boogie Woogie is een gezamenlijk schrijfspel. <a href="">Meld je aan</a> om het verhaal mede te bepalen.
-				<a href="{% url 'login' %}" class="btn">Aanmelden</a> 
+				<strong>Welkom!</strong> Daily Boogie Woogie is een gezamenlijk schrijfspel. Meld je aan om het verhaal mede te bepalen.
+				<a href="{% url 'login' %}" class="btn">Aanmelden</a>
 			</div>
 		{% endif %}
 		
@@ -112,7 +112,7 @@
 			<li class="logo">
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 				<a href="{% url 'index' %}" title="Home">
-					<h1>Boogie Woogie Daily</h1>
+					<h1>Daily Boogie Woogie</h1>
 				</a>
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 			</li>

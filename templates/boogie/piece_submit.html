@@ -56,7 +56,7 @@
 				<!-- TODO: Dit moet anders. Zie: https://app.asana.com/0/1918423466600/3948945563078 -->
 				
 				<div class="clearfix">
-					<p class="pull-left">Voortgang tot gebeurtenis:</p>
+					<p class="pull-left">Voortgang tot gebeurtenis: {{ form.instance.topic.progress }}%</p>
 					<div class="progress pull-right">
 						<div class="bar" style="width: {{ form.instance.topic.progress }}%;"></div>
 					</div>

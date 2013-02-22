@@ -130,8 +130,8 @@ def pieces_per_week(request, week):
     week = int(week)
     datestart = Game.objects.get_latest_game().start_date
 
-    weekStart = datestart + datetime.timedelta(week * 7)
-    weekEnd = datestart + datetime.timedelta((week + 1) * 7)
+    weekStart = datestart + datetime.timedelta((week-1) * 7)
+    weekEnd = datestart + datetime.timedelta((week) * 7)
 
     order_crit = request.GET.get('order', '-score_cache')
 

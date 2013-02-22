@@ -63,8 +63,3 @@ def update_user_last_login(user):
     logger.info("Updated last login time of user %s", str(user))
 
     return user
-
-
-@task()
-def resize_image(imagefield):
-    pass

@@ -37,7 +37,7 @@
 			{% endifequal %}
 			
 			{% ifequal current_player.role 'PLAYER' %}
-				<h2 class="text-center">Schrijf iets nieuws over &lsquo;{{ form.instance.topic.title }}&rsquo;</h2>
+				<h2 class="text-center">Schrijf iets nieuws <span class="sub">over "{{ form.instance.topic.title }}"</span></h2>
 				
 				<p class="lead">Dit is je kans! Schrijf een kek stukje over het onderwerp {{ form.instance.topic.title }}. Je kan kiezen uit verschillende genres, <em>anything goes</em>.</p>
 				

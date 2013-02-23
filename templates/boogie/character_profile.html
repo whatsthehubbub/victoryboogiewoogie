@@ -1,23 +1,40 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block pagetitle %}{{ character.name }}&rsquo;s profiel{% endblock pagetitle %}
+{% block pagetitle %}Bijdragen over {{ character.name }}{% endblock pagetitle %}
 
 {% block bodyid %}character_profile{% endblock %}
 
 {% block content %}
-<div class="row">
-	<div class="span8 offset2">
-		<h2 class="text-center">{{ character.name }}&rsquo;s profiel</h2>
+<div id="itemlistinfo" class="clearfix">
+	
+	<h2 class="text-center">Bijdragen <span class="sub">over {{ character.name }}</span></h2>
+
 		<p>{{ character.onelinebio }}</p>
-		<h3>Bijdragen</h3>
-		<ul>
-		{% for piece in character.pieces %}
-			<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
-		{% empty %}
-			<p>Over dit karakter zijn nog geen stukken gepubliceerd.</p>
-		{% endfor %}
-		</ul>
+		<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+		<p>{{ character.biography }}</p>
+
+	<div class="filter pull-right">
+		<div class="btn-group"> 
+			{% ifequal order '-datecreated' %}
+				<a href="?order=-rating" class="btn">Beste</a>
+			{% else %}
+				<a href="?order=-rating" class="btn active">Beste</a>
+			{% endifequal %}
+			
+			{% ifequal order '-rating' %}
+				<a href="?order=-datecreated" class="btn">Nieuwste</a>
+			{% else %}
+				<a href="?order=-datecreated" class="btn active">Nieuwste</a>
+			{% endifequal %}
+		</div>
 	</div>
+	
+	<div id="itemlist" class="row clearfix">
+	{% for piece in character.pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% endfor %}
+	</div>
+	
 </div>
-{% endblock content %}
+{% endblock %}

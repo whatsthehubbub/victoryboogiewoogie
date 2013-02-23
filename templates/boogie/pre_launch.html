@@ -1,12 +1,16 @@
 {% load url from future %}
 
 {% block content %}
-	<p>Schrijf je in hier om op de hoogte gehouden te worden als het spel live gaat.</p>
+	<p>Literair tijdschrift <a href="http://www.de-gids.nl/">De Gids</a> en game design studio <a href="http://hubbub.eu/">Hubbub</a> presenteren:</p>
+	<h1>Victory Boogie Woogie</h1>
+
+	<p>Een experimentale literaire game waarin Nederlandse auteurs 10 weken lang samen met spelers online een verhaal schrijven.</p> 
+
+	<p>Meld je aan en ontvang eenmalig een e-mail als de game van start gaat, op maandag 8 april 2013.</p>
 
 	<form method="POST" action="">
 		{% csrf_token %}
 		{{ form.as_p }}
-
-		<input type="submit" value="Stuur op">
+		<input type="submit" value="Verzenden">
 	</form>
 {% endblock content %}

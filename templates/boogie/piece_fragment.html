@@ -9,7 +9,7 @@
 				
 				<div class="meta clearfix">
 					<p class="genre pull-left">{{ piece.topic }}</p>
-					{% if piece.character %}<img src="{{ piece.character.avatar.get_absolute_url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
+					{% if piece.character %}<img src="{{ piece.character.avatar.url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
 				</div>
 				
 				<p class="score"><span class="label">score</span></p>
@@ -37,7 +37,7 @@
 				
 				<div class="meta clearfix">
 					<p class="genre pull-left">{{ piece.topic }}</p>
-					{% if piece.character %}<img src="{{ piece.character.avatar.get_absolute_url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
+					{% if piece.character %}<img src="{{ piece.character.avatar.url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
 				</div>
 				
 				<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>

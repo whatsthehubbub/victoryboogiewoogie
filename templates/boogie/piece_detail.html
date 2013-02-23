@@ -32,7 +32,7 @@
 				<h2 class="text-center">{{ piece.title }}</h2>
 				<div class="author text-center">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a>, {{ piece.datepublished|timesince }} geleden.</div>
 				
-				{% if piece.image %}<img src="{{ piece.image }}" alt="{{ piece.title }}">{% endif %}
+				{% if piece.image %}<img src="{{ piece.image.url }}" alt="{{ piece.title }}">{% endif %}
 				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
 				
 			</article>

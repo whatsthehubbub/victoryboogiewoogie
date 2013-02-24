@@ -368,28 +368,23 @@ class PlayerProfileForm(ModelForm):
 def player_profile_edit(request, name):
     t = loader.get_template('boogie/player_profile_edit.html')
 
-    # TODO check if you can edit your profile
     player = Player.objects.get(user__username=name)
+    if request.user == player.user:
+        if request.method == 'POST':
+            profileform = PlayerProfileForm(request.POST, request.FILES, instance=player)
 
-    if request.method == 'POST':
-        userform = UserProfileForm(request.POST, instance=player.user)
-        profileform = PlayerProfileForm(request.POST, request.FILES, instance=player)
+            if profileform.is_valid():
+                profileform.save()
 
-        if userform.is_valid() and profileform.is_valid():
-            userform.save()
-            profileform.save()
+                return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
+        else:
+            playerform = PlayerProfileForm(instance=player)
 
-            return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
-    else:
-        userform = UserProfileForm(instance=player.user)
-        playerform = PlayerProfileForm(instance=player)
+        c = RequestContext(request, {
+            'playerform': playerform
+        })
 
-    c = RequestContext(request, {
-        'userform': userform,
-        'playerform': playerform
-    })
-
-    return HttpResponse(t.render(c))
+        return HttpResponse(t.render(c))
 
 def player_unsubscribe(request, h):
     try:

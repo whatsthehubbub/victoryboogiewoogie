@@ -21,7 +21,7 @@ class Player(models.Model):
 
     # Player fields
     pseudonym = models.CharField(max_length=255, blank=True, verbose_name='Pseudoniem')
-    onelinebio = models.CharField(max_length=255, blank=True)
+    onelinebio = models.CharField(max_length=255, blank=True, verbose_name="Korte biografie")
 
     # E-mail notifications
     send_emails = models.BooleanField(default=True, verbose_name=u'Stuur me e-mail')

@@ -100,7 +100,7 @@ class PreLaunchEmail(models.Model):
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 
-    email = models.EmailField()
+    email = models.EmailField(verbose_name=u'E-mail')
 
 
 from django.core.mail import EmailMessage

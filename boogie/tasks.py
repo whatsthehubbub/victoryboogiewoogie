@@ -20,7 +20,7 @@ def check_topic_pool(topic):
 
 @task()
 def pieces_assign():
-    players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='NEEDSWORK')
+    players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
 
     counter = 0
     for player in players_without:

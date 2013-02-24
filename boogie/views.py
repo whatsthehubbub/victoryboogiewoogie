@@ -91,7 +91,8 @@ def topic_list(request):
     
     c = RequestContext(request, {
             'writer_topics': Topic.objects.exclude(archived=True).filter(pool='WRITER'),
-            'player_topics': Topic.objects.exclude(archived=True).filter(pool='PLAYER')
+            'player_topics': Topic.objects.exclude(archived=True).filter(pool='PLAYER'),
+            'archived_topics': Topic.objects.filter(archived=True)
     })
     return HttpResponse(t.render(c))
     

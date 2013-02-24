@@ -51,7 +51,6 @@
 		<table class="table table-bordered">
 			<tbody>
 			{% for topic in archived_topics %}
-				<!-- NOTE: Archived topics are no longer assigned to players or writers. -->
 				<tr>
 					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
 				</tr>

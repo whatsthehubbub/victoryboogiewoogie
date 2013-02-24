@@ -301,7 +301,10 @@ class Piece(models.Model):
             """
             Scale the given value from the scale of src to the scale of dst.
             """
-            return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
+            try:
+                return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
+            except ZeroDivisionError:
+                return 0.0
 
         min_max = Piece.objects.aggregate(Min('score_cache'), Max('score_cache'))
         min_score = min_max['score_cache__min']

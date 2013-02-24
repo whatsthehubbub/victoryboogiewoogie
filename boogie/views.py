@@ -104,7 +104,6 @@ def topic_detail(request, topicid, slug):
     topic = Topic.objects.get(id=topicid)
 
     c = RequestContext(request, {
-            'hide_topic': True,
             'topic': topic,
             'pieces': topic.approved_pieces().order_by(order),
             'order': order

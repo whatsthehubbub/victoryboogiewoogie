@@ -9,9 +9,15 @@ class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'onelinebio')
 admin.site.register(Character, CharacterAdmin)
 
+
+def archive_topic(modeladmin, request, queryset):
+    queryset.update(archived=True)
+archive_topic.short_description = "Archiveer geselecteerde onderwerpen"
+
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('title', 'pool', 'slug', 'archived', 'piece_count', 'piece_threshold')
     prepopulated_fields = {"slug": ("title",)}
+    actions = [archive_topic]
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):

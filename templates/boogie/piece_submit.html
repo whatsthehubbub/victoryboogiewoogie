@@ -51,7 +51,7 @@
 						{% if form.instance.topic.get_latest_piece %}
 							Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.
 							{% else %}
-							Er is nog niks geschreven over dit onderwerp. Je mag dus lekker los.
+							Er is nog niks geschreven over dit onderwerp. Je mag dus lekker los gaan.
 						{% endif %}
 					</li>
 				</ul>

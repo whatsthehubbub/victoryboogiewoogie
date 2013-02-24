@@ -22,11 +22,11 @@ class Player(models.Model):
     avatar = models.ImageField(blank=True, upload_to='avatars')
 
     # Player fields
-    pseudonym = models.CharField(max_length=255, blank=True, help_text='Pennaam')
+    pseudonym = models.CharField(max_length=255, blank=True, verbose_name='Pseudoniem')
     onelinebio = models.CharField(max_length=255, blank=True)
 
     # E-mail notifications
-    send_emails = models.BooleanField(default=True)
+    send_emails = models.BooleanField(default=True, verbose_name=u'Stuur me e-mail')
     emails_unsubscribe_hash = models.CharField(max_length=255, blank=True)
 
     def get_new_assignment(self):

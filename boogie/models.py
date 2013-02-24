@@ -160,7 +160,7 @@ class Notification(models.Model):
                 logger.error('Could not send e-mail to %s', to_email)
 
     def get_email_footer(self):
-        return '''Deze e-mail is verstuurd door <a href="http://www.gidsgame.nl/">Daily Boogie Woogie</a>. Om je direct af te melden van verdere e-mails kan je je <a href="http://www.gidsgame.nl%s">met een klik uitschrijven</a>.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
+        return '''Deze e-mail is verstuurd door <a href="http://www.gidsgame.nl/">Daily Boogie Woogie</a>. Om je direct af te melden van verdere e-mails kan je je <a href="http://www.gidsgame.nl%s">met één klik uitschrijven</a>.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
 
     def get_subject(self):
         # TODO modify subjects based on notification type

@@ -15,11 +15,7 @@
 		
 		<h2 class="text-center">{{ player.pseudonym }}&rsquo;s profiel</h2>
 		
-		<p>{{ player.onelinebio }}</p>
-		
-		{% if player.avatar %}
-			<img src="{{ player.avatar.url }}" alt="{{ player.pseudonym }}">
-		{% endif %}
+		<p>Biografie: {{ player.onelinebio }}</p>
 		
 		<h3>Bijdragen</h3>
 		

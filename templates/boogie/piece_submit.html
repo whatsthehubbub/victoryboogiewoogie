@@ -27,8 +27,6 @@
 <div id="createitem" class="row">
 	<div class="span8 offset2">
 		
-		<!-- TODO: Show progress towards event for selected topic. Not sure how we're going to turn a numbers into a progress bar, I'll leave that up to Simon.  -->
-		<!-- TODO: Show deadline for submission. -->
 		<!-- TODO: Include character count. -->
 		
 		{% if form %}
@@ -37,21 +35,15 @@
 			{% endifequal %}
 			
 			{% ifequal current_player.role 'PLAYER' %}
-				<h2 class="text-center">Schrijf iets nieuws <span class="sub">over "{{ form.instance.topic.title }}"</span></h2>
-				
-				<p class="lead">Dit is je kans! Schrijf een kek stukje over het onderwerp {{ form.instance.topic.title }}. Je kan kiezen uit verschillende genres, <em>anything goes</em>.</p>
-				
-				<div class="well">
-					Houd rekening met wat er vooraf is gegaan in het algemeen, en over dit onderwerp in het bijzonder. Na inzending buigt de redactie zich over je stukje, en krijg je een email zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen.
-				</div>
-				
+				<h2 class="text-center">Schrijf een bijdrage <span class="sub">over “{{ form.instance.topic.title }}”</span></h2>
+												
 				<ul class="info clearfix">
 					<li class="pull-left">Info</li>
 					<li class="pull-right">
 						{% if form.instance.topic.get_latest_piece %}
-							Lees het <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste stukje</a> over dit onderwerp of bekijk het archief van <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle stukjes</a> over dit onderwerp.
+							Lees de <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste bijdrage</a> over “{{ form.instance.topic.title }}” of bekijk <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle bijdragen</a> over dit onderwerp.
 							{% else %}
-							Er is nog niks geschreven over dit onderwerp. Je mag dus lekker los gaan.
+							Er is nog niks geschreven over dit onderwerp. <em>Carte blanche!</em>
 						{% endif %}
 					</li>
 				</ul>
@@ -71,10 +63,14 @@
 				{% for field in form %}
 				<div class="{{ field.html_name }} clearfix">{{ field.label_tag }}{{ field }}</div>
 				{% endfor %}
-				
+
+				<p id="char_counter"></p>
+
 				<input type="submit" value="Verzenden" class="btn pull-right">
 			</form>
-			<p id="char_counter"></p>
+
+			<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijken naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra deze is geplaatst of als ze willen dat je het aanpast, of als ze hebben besloten hem af te wijzen.</div>
+
 		{% else %}
 			<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
 		{% endif %}

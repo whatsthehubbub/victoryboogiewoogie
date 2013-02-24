@@ -19,8 +19,6 @@ class Player(models.Model):
     user = models.OneToOneField(User)
     role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='PLAYER')
 
-    avatar = models.ImageField(blank=True, upload_to='avatars')
-
     # Player fields
     pseudonym = models.CharField(max_length=255, blank=True, verbose_name='Pseudoniem')
     onelinebio = models.CharField(max_length=255, blank=True)

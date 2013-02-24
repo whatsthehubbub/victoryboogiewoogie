@@ -358,7 +358,7 @@ class UserProfileForm(ModelForm):
 class PlayerProfileForm(ModelForm):
     class Meta:
         model = Player
-        fields = ('pseudonym', 'avatar', 'send_emails')
+        fields = ('pseudonym', 'send_emails')
 
         widgets = {
             'pseudonym': TextInput(attrs={'class': 'pseudonym'})

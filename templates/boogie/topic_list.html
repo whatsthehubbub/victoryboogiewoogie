@@ -27,6 +27,10 @@
 						</div>
 					</td>
 				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets...</td>
+				</tr>
 			{% endfor %}
 			</tbody>
 		</table>
@@ -41,6 +45,10 @@
 				<tr>
 					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
 				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets...</td>
+				</tr>
 			{% endfor %}
 			</tbody>
 		</table>
@@ -53,6 +61,10 @@
 			{% for topic in archived_topics %}
 				<tr>
 					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets...</td>
 				</tr>
 			{% endfor %}
 			</tbody>

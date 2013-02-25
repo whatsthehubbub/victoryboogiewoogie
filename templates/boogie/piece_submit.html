@@ -61,7 +61,7 @@
 				</ul>
 			{% endifequal %}
 			
-			<form action="{% url 'piece_submit' %}" method="post">
+			<form action="{% url 'piece_submit' %}" method="post" class="clearfix">
 				{% csrf_token %}
 				
 				{% for field in form %}

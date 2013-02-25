@@ -34,7 +34,9 @@
 		{% for character in characters %}
 		<div class="span4">
 			<a href="{% url 'character_profile' character.id %}">
-				{% if piece.character.avatar %}<img src="{{ character.avatar.url }}" alt="{{ character.name }}"></img>{% endif %}
+				{% if character.avatar %}
+					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+				{% endif %}
 				<p>{{ character.name }}</p>
 			</a>
 		</div>

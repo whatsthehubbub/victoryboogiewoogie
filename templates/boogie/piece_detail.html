@@ -21,7 +21,12 @@
 	
 	<div class="meta clearfix">
 		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
-		{% if piece.character %}<p class="pull-right">Personage: <a href="{% url 'character_profile' piece.character.id %}">{{ piece.character.name }}<img src="{{ piece.character.avatar.url }}" class="character img-circle" alt="{{ piece.character.name }}"></a></p>{% endif %}
+		{% if piece.character %}
+			<p class="pull-right">Personage: 
+				<a href="{% url 'character_profile' piece.character.id %}">{{ piece.character.name }}{% if piece.character.avatar %}<img src="{{ piece.character.avatar.url }}" class="character img-circle" alt="{{ piece.character.name }}">{% endif %}
+				</a>
+			</p>
+		{% endif %}
 	</div>
 	
 	<div class="row">

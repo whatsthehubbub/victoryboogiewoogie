@@ -67,7 +67,6 @@
 					<a class="disabled">{{ current_status }}</a>
 				{% endif %}
 			</li>
-			{% endif %}
 			<li>
 				<a href="{% url 'notifications' %}">Berichten
 				{% if current_player %}
@@ -77,6 +76,7 @@
 				{% endif %}
 				</a>
 			</li>
+			{% endif %}
 			<li{% if url == 'topic_list' %} class="active"{% endif %}><a href="{% url 'topic_list' %}">Onderwerpen</a></li>
 			<li><a href="{% url 'editors' %}">Spelregels</a></li>
 			{% ifequal current_player.role 'WRITER' %}

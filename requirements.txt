@@ -16,3 +16,4 @@ wsgiref==0.1.2
 django-registration
 django-storages==1.1.6
 boto==2.8.0
+django-crispy-forms==1.2.3

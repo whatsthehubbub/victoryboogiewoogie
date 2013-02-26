@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load crispy_forms_tags %}
 
 {% block pagetitle %}Profiel bewerken{% endblock pagetitle %}
 
@@ -13,20 +14,7 @@
 	</div>
 	
 	<div class="span8 offset2">
-		<form method="POST" enctype="multipart/form-data" action="{% url 'player_profile_edit' user.username %}" class="form-horizontal">
-		<div class="control-group">
-			{% csrf_token %}
-			{% for field in playerform %}
-			<div class="control-group">
-				{{ field.label_tag }}
-				<div class="controls clearfix">
-					{{ field }}
-				</div>
-			</div>
-			{% endfor %}
-			<input type="submit" value="Opslaan" class="btn pull-right">
-		</div>
-		</form>
+		{% crispy playerform %}
 	</div>
 	
 </div>

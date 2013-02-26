@@ -962,6 +962,7 @@ a:hover{text-decoration:none;}
 #createitem #id_text{font-size:1.5em;line-height:1.4em;}
 #entryqueue{color:#999999;}#entryqueue .item{margin-top:1em;}
 #entryqueue .action{margin-bottom:2em;}
+#notifications .new td{background-color:rgba(227, 33, 18, 0.1);}
 #notifications .date{color:#999999;}
 #notifications .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#e32112;}
 #topiclist .progress{width:14em;margin:0;}

@@ -11,7 +11,7 @@
 		<table class="table table-striped row">
 			<tbody>
 			{% for notification in notifications %}
-			<tr>
+			<tr class="{% if notification.datecreated > user.last_login %}new{% endif %}">
 				<td class="date span3">{{ notification.datecreated }}{% if notification.datecreated > user.last_login %}<div class="label">NIEUW</div>{% endif %}</td>
 				<td class="span7">{{ notification.message|safe }}</td>
 			</tr>

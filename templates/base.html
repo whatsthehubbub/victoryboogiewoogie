@@ -98,13 +98,6 @@
 <!-- MASTHEAD -->
 <div id="masthead">
 	<div class="container">
-		{% if not user.is_authenticated %}
-			<div class="alert alert-info">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> 
-				<strong>Welkom!</strong> Boogie Woogie Daily is een gezamenlijk schrijfspel. <a href="{% url 'registration_register' %}">Meld je aan</a> om het verhaal mede te bepalen.
-			</div>
-		{% endif %}
-		
 	 	<ul>
 			<li class="date">10 mei 2013</li>
 			<li class="logo">
@@ -116,6 +109,13 @@
 			</li>
 			<li class="week">Week {{ gameWeek }} van 10</li>
 		</ul>
+		
+		{% if not user.is_authenticated %}
+		<div id="welcome">
+			Dit is een gezamenlijk schrijfspel. <a href="{% url 'registration_register' %}">Meld je aan</a> om het verhaal mede te bepalen.
+		</div>
+		{% endif %}
+		
 		<div id="calendar" class="navbar clearfix">
 			<ul class="nav">
 				{% for _ in '1234567890'|make_list %}

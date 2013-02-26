@@ -874,7 +874,7 @@ a:hover{text-decoration:none;}
 #signin .errorlist{list-style:none;padding:0;margin:0 0 0.5em;color:#e32112;}
 #signin .newpassword{border-top:1px solid #eeeeee;padding:1.6em 0 0;margin:2em 0 -1em;}#signin .newpassword a{color:#999999;}
 #signin .newpassword a:hover{color:#333333;text-decoration:none;}
-#header{background-color:#ffffff;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);box-shadow:0 1px 4px rgba(0, 0, 0, 0.1);}#header a{color:#666666;text-shadow:none;text-decoration:none;}
+#header{background-color:#ffffff;-webkit-box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);}#header a{color:#666666;text-shadow:none;text-decoration:none;}
 #header a:hover{color:#333333;}
 #header a:active{color:#000000;}
 #header a.disabled{color:rgba(153, 153, 153, 0.5);}
@@ -883,6 +883,7 @@ a:hover{text-decoration:none;}
 #header .badge-empty{background-color:#999999;}
 #header .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #header .container{padding:0.5em 0 0.5em 0;}
+#welcome{color:#999999;padding:0 0 0.5em;margin:-0.5em 0 -0.25em;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:0.9em;}
 #masthead{padding:5em 0 6em 0;text-align:center;background-color:#e6e4e2;color:#000000;-webkit-box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);-moz-box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);}#masthead a:hover{text-decoration:none;}
 #masthead ul{margin:0.5em auto 0.5em;padding:0;list-style:none;}
 #masthead li{display:inline;margin:0;padding:0;}
@@ -930,6 +931,7 @@ a:hover{text-decoration:none;}
 #characterlist a{text-decoration:none;}#characterlist a h4{color:#666666;}
 #characterlist a:hover h4{color:#000000;}
 #characterlist a:hover img{opacity:1;}
+#playerdetail{position:relative;}#playerdetail .edit{position:absolute;top:0.6em;right:0;text-decoration:none;}
 #itemdetail .pager .previous a{border-right:1px solid #eeeeee;}
 #itemdetail .pager .next a{border-left:1px solid #eeeeee;}
 #itemdetail .pager a{color:#999999;border:0;border-radius:0;background-color:transparent;padding:0.95em 1.25em 0.55em;text-decoration:none;}

@@ -36,6 +36,11 @@ h3 {
 	margin: 1.5em 0 0.5em;
 }
 
+h2.sans, h3.sans, h4.sans, h5.sans, h6.sans {
+	font-family: @headFontFamily;
+	text-transform: uppercase;
+} 
+
 a {
 	text-decoration: underline;
 }
@@ -48,6 +53,7 @@ a:hover {
 	background-color: @yellow;
 }
 
+// !CHROMEFRAME
 #chromeframe {
 	margin: 0;
 	background: @grayLight;
@@ -58,6 +64,160 @@ a:hover {
 	border-bottom: 1px solid @grayLighter;
 }
 
+// !HEADER
+#header {
+	background-color: @white;
+	.box-shadow(0 2px 6px rgba(0,0,0,.3));
+	a {
+		color: @gray;
+		text-shadow: none;
+		text-decoration: none;
+	}
+	a:hover {
+		color: @grayDark;
+	}
+	a:active {
+		color: @black;
+	}
+	a.disabled {
+		color: fade(@grayLight, 50%);
+	}
+	li {
+		position: relative;
+	}
+	.badge {
+		position: absolute;
+		top: 0;
+		right: 5px;
+		font-family: @sansFontFamily;
+		font-size: @fontSizeMini;
+		background-color: @red;
+		padding: 2px 6px;
+		margin: 0;
+		.box-shadow( 0 1px 1px rgba(0,0,0,.2));
+	}
+	.badge-empty {
+		background-color: @grayLight;
+	}
+	.stripes {
+		height: 5px;
+		background-image: url(/static/img/bg-header-stripes.png);
+		background-size: 400px 5px;
+		background-repeat: repeat-x;
+	}
+	.container {
+		padding: 0.5em 0 0.5em 0;
+	}
+}
+
+// !WELCOME
+#welcome {
+	//border-bottom: 1px solid fade(@grayLight, 50%);
+	color: fade(@grayLight, 70%);
+	text-shadow: 0px 1px 0px fade(@white, 60%);
+	padding: 0 0 0.5em;
+	margin: -0.5em 0 -0.25em;
+	
+	font-family: @headFontFamily;
+	text-transform: uppercase;
+	font-weight: 900;
+	font-size: 0.9em;
+}
+
+// !MASTHEAD
+#masthead {
+	padding: 5em 0 6em 0;
+	text-align: center;
+	background-color: #e6e4e2;
+	color: @black;
+	.box-shadow(inset 0 -1px 2px rgba(0,0,0,.1));
+	a:hover {
+		text-decoration: none;
+	}
+	ul {
+		margin: 0.5em auto 0.5em;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+	.logo {
+		text-align: center;
+	}
+	.logo a {
+		text-decoration: none;
+	}
+	.logo h1 {
+		display: inline;
+		color: fade(@grayLight, 50%);
+		text-shadow: 0px 1px 0px fade(@white, 60%);
+		font-family: @headFontFamily;
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 2.5em;
+	}
+	.logo img {
+		width: 8px;
+		height: 8px;
+		margin: -1.4em 0.5em 0;
+		opacity: 0.2;
+	}
+	.date, .week {
+		vertical-align: 0.6em;
+		color: fade(@grayLight, 70%);
+		text-shadow: 0px 1px 0px fade(@white, 60%);
+	}
+	.date {
+		text-align: right;
+	}
+	.week {
+		text-align: left;
+	}
+}
+
+// !CALENDAR
+#calendar {
+	margin: 1em 0 0;
+	.nav {
+		margin: 0;
+		display: table;
+		width: 100%;
+	}
+	.nav li {
+		display: table-cell;
+		width: 1%;
+		float: none;
+		text-align: center;
+	}
+	.nav li.active a {
+		background-color: transparent;
+		box-shadow: none;
+		/* background-image: url(/static/img/calendar-arrow.png);
+		background-size: 20px 15px;
+		background-repeat: no-repeat;
+		background-position: center bottom;
+		*/
+	}
+	.nav li a {
+		color: @gray;
+		text-align: center;
+		text-shadow: 0px 1px 0px fade(@white, 60%);
+	}
+	.nav li a:hover {
+		color: @grayDark;
+	}
+	.nav li.active a {
+		color: @black;
+	}
+	.nav li.disabled a, .nav li.disabled a:hover {
+		color: fade(@grayLight, 70%);
+	}
+}
+
+// !SIGN IN
 #signin {
 	max-width: 32em;
 	padding: 1em 1em 3em;
@@ -125,155 +285,10 @@ a:hover {
 	}
 }
 
-#header {
-	background-color: @white;
-	.box-shadow(0 2px 6px rgba(0,0,0,.3));
-	a {
-		color: @gray;
-		text-shadow: none;
-		text-decoration: none;
-	}
-	a:hover {
-		color: @grayDark;
-	}
-	a:active {
-		color: @black;
-	}
-	a.disabled {
-		color: fade(@grayLight, 50%);
-	}
-	li {
-		position: relative;
-	}
-	.badge {
-		position: absolute;
-		top: 0;
-		right: 5px;
-		font-family: @sansFontFamily;
-		font-size: @fontSizeMini;
-		background-color: @red;
-		padding: 2px 6px;
-		margin: 0;
-		.box-shadow( 0 1px 1px rgba(0,0,0,.2));
-	}
-	.badge-empty {
-		background-color: @grayLight;
-	}
-	.stripes {
-		height: 5px;
-		background-image: url(/static/img/bg-header-stripes.png);
-		background-size: 400px 5px;
-		background-repeat: repeat-x;
-	}
-	.container {
-		padding: 0.5em 0 0.5em 0;
-	}
-}
-
-#welcome {
-	//border-bottom: 1px solid fade(@grayLight, 50%);
-	color: @grayLight;
-	padding: 0 0 0.5em;
-	margin: -0.5em 0 -0.25em;
-	
-	font-family: @headFontFamily;
-	text-transform: uppercase;
-	font-weight: 900;
-	font-size: 0.9em;
-}
-
-#masthead {
-	padding: 5em 0 6em 0;
-	text-align: center;
-	background-color: #e6e4e2;
-	color: @black;
-	.box-shadow(inset 0 -1px 2px rgba(0,0,0,.1));
-	a:hover {
-		text-decoration: none;
-	}
-	ul {
-		margin: 0.5em auto 0.5em;
-		padding: 0;
-		list-style: none;
-	}
-	li {
-		display: inline;
-		margin: 0;
-		padding: 0;
-	}
-	.logo {
-		text-align: center;
-	}
-	.logo a {
-		text-decoration: none;
-	}
-	.logo h1 {
-		display: inline;
-		color: fade(@grayLight, 50%);
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-		font-family: @headFontFamily;
-		text-transform: uppercase;
-		font-weight: 900;
-		font-size: 2.5em;
-	}
-	.logo img {
-		width: 8px;
-		height: 8px;
-		margin: -1.4em 0.5em 0;
-		opacity: 0.2;
-	}
-	.date, .week {
-		vertical-align: 0.6em;
-		color: fade(@grayLight, 70%);
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-	}
-	.date {
-		text-align: right;
-	}
-	.week {
-		text-align: left;
-	}
-}
-
-#calendar {
-	margin: 0.8em 0 0;
-	.nav {
-		margin: 0;
-		display: table;
-		width: 100%;
-	}
-	.nav li {
-		display: table-cell;
-		width: 1%;
-		float: none;
-		text-align: center;
-	}
-	.nav li.active a {
-		background-color: transparent;
-		box-shadow: none;
-		/* background-image: url(/static/img/calendar-arrow.png);
-		background-size: 20px 15px;
-		background-repeat: no-repeat;
-		background-position: center bottom;
-		*/
-	}
-	.nav li a {
-		color: @gray;
-		text-align: center;
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-	}
-	.nav li a:hover {
-		color: @grayDark;
-	}
-	.nav li.active a {
-		color: @black;
-	}
-	.nav li.disabled a, .nav li.disabled a:hover {
-		color: fade(@grayLight, 70%);
-	}
-}
-
+// !SUMMARY
 #summary {
+	border-bottom: 1px dashed @grayLighter;
+	padding: 0.5em 0 1.5em;
 	a {
 		color: @gray;
 		.pull-right {
@@ -286,6 +301,7 @@ a:hover {
 	}
 }
 
+// !MAIN
 #main {
 	width: 980px;
 	margin: -6em auto 2em;
@@ -301,10 +317,11 @@ a:hover {
 		background-position: center top;
 		background-repeat: repeat-x;
 		background-color: transparent;
-		background-color: #e6e4e2;
+		background-color: @white;
 	}
 }
 
+// !CONTENT
 #content {
 	.box {
 		padding: 3em 0 4em 0;
@@ -316,14 +333,17 @@ a:hover {
 	}
 }
 
+// !HOME LATEST
 #home-latest {
 	margin-top: 2em;
 }
 
+// !HOME CHARACTERS
 #home-characters {
 	margin-top: 4em;
 }
 
+// !ITEMLIST INFO
 #itemlistinfo {
 	position: relative;
 	margin-bottom: 0.5em;
@@ -337,6 +357,7 @@ a:hover {
 	}
 }
 
+// !ITEMLIST
 #itemlist {
 	a {
 		text-decoration: none;
@@ -427,6 +448,7 @@ a:hover {
 	}
 }
 
+// !CHARACTER INFO
 #characterinfo {
 	padding-bottom: 2em;
 	h2 {
@@ -448,6 +470,7 @@ a:hover {
 	}
 }
 
+// !CHARACTERLIST
 #characterlist {
 	img {
 		.border-radius(50%);
@@ -469,6 +492,7 @@ a:hover {
 	}
 }
 
+// !PLAYER DETAIL
 #playerdetail {
 	.meta {
 		position: relative;
@@ -488,6 +512,7 @@ a:hover {
 	}
 }
 
+// !PLAYER EDIT
 #playeredit {
 	form {
 		margin: 1em 0 0;
@@ -514,6 +539,7 @@ a:hover {
 	}
 }
 
+// !ITEM DETAIL
 #itemdetail {
 	.pager {
 		
@@ -613,6 +639,7 @@ a:hover {
 	}
 }
 
+// !CREATE ITEM
 #createitem {
 	.info {
 		padding: 0.5em 0;
@@ -670,6 +697,7 @@ a:hover {
 	}
 }
 
+// !ENTRY QUEUE
 #entryqueue {
 	color: @grayLight;
 	.item {
@@ -680,6 +708,7 @@ a:hover {
 	}
 }
 
+// !NOTIFICATIONS
 #notifications {
 	#content {
 		.date {
@@ -694,6 +723,7 @@ a:hover {
 	}
 }
 
+// !TOPIC LIST
 #topiclist {
 	.progress {
 		width: 14em;
@@ -701,6 +731,7 @@ a:hover {
 	}
 }
 
+// !FOOTER
 #footer {
 	color: @grayLight;
 	padding: 0.5em 0 1.5em;

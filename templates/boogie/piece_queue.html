@@ -44,7 +44,7 @@
 				{% csrf_token %}
 				<input type="hidden" name="ok" value="retry">
 				<div class="input-append">
-					<input class="span5" id="appendedInputButtons" type="text" name="reason" placeholder="Motivatie">
+					<input class="span5" id="appendedInputButtons" type="text" name="reason" placeholder="Motivatie" {% if piece.rejection_reason %}value="{{ piece.rejection_reason }}"{% endif %}>
 					<button class="btn" type="submit">Opnieuw</button>
 				</div>
 			</form>

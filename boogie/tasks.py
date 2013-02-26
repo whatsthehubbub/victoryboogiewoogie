@@ -1,5 +1,5 @@
 from celery import task
-from boogie.models import Player, Piece
+from boogie.models import Player, Piece, Topic
 
 from django.utils.timezone import utc
 import datetime
@@ -13,8 +13,28 @@ def get_new_assignment(player):
 
 
 @task()
-def check_topic_pool(topic):
-    return topic.check_pool()
+def check_topic_pool():
+    writer_topics = Topic.objects.filter(pool='WRITER').count()
+    writers = Player.objects.filter(role="WRITER").count()
+
+    difference = writers - writer_topics
+
+    if difference > 0:
+        # Move topics to the writers pool
+        # TODO doing this in pure python right now
+
+        annotated_list = []
+
+        player_topics = Topic.objects.filter(pool='PLAYER')
+        for topic in player_topics:
+            annotated_list.append((topic, topic.approved_pieces_since()))
+
+        annotated_list.sort(key=lambda topic: topic[1])
+
+        to_promote = annotated_list[:difference]
+        for topic in to_promote:
+            logger.info("Promoting topic %s", str(topic))
+            topic.update(pool='WRITER')
 
 
 

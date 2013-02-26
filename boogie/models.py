@@ -186,17 +186,14 @@ class Topic(models.Model):
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')
     
+    def approved_pieces_since(self):
+        # TODO this is hard coded
+        last_time = datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1)
+
+        return self.piece_set.filter(status='APPROVED').filter(datepublished__gt=last_time).count()
+
     def __unicode__(self):
         return self.title
-    
-    def check_pool(self):
-        if self.pool == 'PLAYER' and self.piece_count >= self.piece_threshold:
-            self.piece_count = 0
-            self.pool = 'WRITER'
-            self.save()
-
-            return True
-        return False
 
     def progress(self):
         try:
@@ -282,8 +279,8 @@ class Piece(models.Model):
 
         if self.status == 'APPROVED':
             # TODO catch the situation what happens if datepublished = None
-            timedelta = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
-            hours = timedelta.days * 24 + timedelta.seconds / 3600
+            diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
+            hours = diff.days * 24 + diff.seconds / 3600
             likes = PieceVote.objects.filter(piece=self).count()
 
             # Changed (likes - 1) so we won't get negative results

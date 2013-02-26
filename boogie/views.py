@@ -239,8 +239,6 @@ def piece_validate(request, piece_id):
         piece.topic.piece_count += 1
         piece.topic.save()
 
-        # Check whether this topic should switch pools back to writers
-        tasks.check_topic_pool.delay(piece.topic)
 
         # TODO make these things work on a deferred publication as well
 

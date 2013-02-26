@@ -198,12 +198,6 @@ class Topic(models.Model):
     def __unicode__(self):
         return self.title
 
-    def progress(self):
-        try:
-            return int(min(1.0, float(self.piece_count) / float(self.piece_threshold)) * 100)
-        except ZeroDivisionError:
-            return 100
-
     def get_latest_piece(self):
         try:
             return self.approved_pieces()[0]

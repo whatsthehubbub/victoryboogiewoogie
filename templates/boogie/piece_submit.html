@@ -29,13 +29,9 @@
 		
 		<!-- TODO: Include character count. -->
 		
-		{% if form %}
-			{% ifequal current_player.role 'WRITER' %}
-				<h2 class="text-center">Schrijf een gebeurtenis</h2>
-			{% endifequal %}
-			
-			{% ifequal current_player.role 'PLAYER' %}
-				<h2 class="text-center">Schrijf een bijdrage <span class="sub">over “{{ form.instance.topic.title }}”</span></h2>
+		{% ifequal current_player.role 'PLAYER' %}
+		{% if form %}			
+			<h2 class="text-center">Schrijf een bijdrage <span class="sub">over “{{ form.instance.topic.title }}”</span></h2>
 				
 			{% if form.instance.rejection_reason %}
 				<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
@@ -59,7 +55,6 @@
 					<li class="pull-left">Voortgang tot gebeurtenis</li>
 					<li class="pull-right">{{ form.instance.topic.progress }}%</li>
 				</ul>
-			{% endifequal %}
 			
 			<form action="{% url 'piece_submit' %}" method="post" class="clearfix">
 				{% csrf_token %}
@@ -78,7 +73,10 @@
 		{% else %}
 			<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
 		{% endif %}
-		
+		{% else %}
+			<h2 class="text-center">Bijdrage schrijven</h2>
+			<div class="alert">Deze pagina is bestemd voor spelers. Jij bent ingelogd als schrijver. Wil je een bijdrage schrijven? Ga naar <a href="{% url 'writer_piece_submit' %}">de afdeling voor schrijvers</a>.</div>
+		{% endifequal %}		
 	</div>
 </div>
 {% endblock %}

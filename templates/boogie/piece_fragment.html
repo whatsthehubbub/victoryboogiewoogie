@@ -5,7 +5,7 @@
 				<div class="overlay"></div>
 			
 				<div class="meta clearfix">
-					<p class="genre pull-left">{{ piece.topic }}</p>
+					{% ifnotequal bodyid topic_detail %}<p class="genre pull-left">{{ piece.topic }}</p>{% endifnotequal %}
 					{% if piece.character.avatar %}<img src="{{ piece.character.avatar.url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
 				</div>
 				

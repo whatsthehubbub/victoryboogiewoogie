@@ -14,6 +14,10 @@ import datetime
 import math
 
 class Player(models.Model):
+    class Meta:
+        verbose_name = u'Speler'
+        verbose_name_plural = u'Spelers'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 
@@ -74,6 +78,10 @@ user_registered.connect(create_player)
 
 
 class Character(models.Model):
+    class Meta:
+        verbose_name = u'Personage'
+        verbose_name_plural = u'Personages'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 
@@ -96,6 +104,10 @@ class Character(models.Model):
 
 
 class PreLaunchEmail(models.Model):
+    class Meta:
+        verbose_name = u'Aangemelde e-mail'
+        verbose_name_plural = u'Aangemelde e-mails'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 
@@ -126,6 +138,10 @@ class NotificationManager(models.Manager):
         return Notification.objects.filter(for_player=player).filter(datecreated__gte=player.user.last_login).count()
 
 class Notification(models.Model):
+    class Meta:
+        verbose_name = u'Bericht'
+        verbose_name_plural = u'Berichten'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 
@@ -172,6 +188,10 @@ class Notification(models.Model):
 
 
 class Topic(models.Model):
+    class Meta:
+        verbose_name = u'Onderwerp'
+        verbose_name_plural = u'Onderwerpen'
+
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     
@@ -208,16 +228,20 @@ class Topic(models.Model):
 PIECE_GENRE_CHOICES = (('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
 
 class Piece(models.Model):
+    class Meta:
+        verbose_name = u'Bijdrage'
+        verbose_name_plural = u'Bijdragen'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
     
-    topic = models.ForeignKey(Topic)
+    topic = models.ForeignKey(Topic, verbose_name=u'Onderwerp')
     deadline = models.DateTimeField()
     writer = models.ForeignKey(Player)
 
-    character = models.ForeignKey(Character, blank=True, null=True)
+    character = models.ForeignKey(Character, blank=True, null=True, verbose_name=u'Personage')
 
-    image = models.ImageField(blank=True, upload_to='piece_images')
+    image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Illustratie')
     
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(max_length=255, blank=True, verbose_name="Titel")
@@ -315,6 +339,10 @@ class Piece(models.Model):
 
 
 class PieceVote(models.Model):
+    class Meta:
+        verbose_name = u'Stem'
+        verbose_name_plural = u'Stemmen'
+
     # This counts votes up
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
@@ -324,6 +352,10 @@ class PieceVote(models.Model):
 
 
 class Summary(models.Model):
+    class Meta:
+        verbose_name = u'Samenvatting'
+        verbose_name_plural = u'Samenvattingen'
+
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
 

@@ -291,6 +291,80 @@ a:hover {
 	}
 }
 
+// !PRELAUNCH
+#prelaunch {
+	.container {
+		background-image: url(/static/img/pre-launch-header.png);
+		background-size: 960px 600px;
+		background-repeat: no-repeat;
+		background-position: 50% top;
+		padding-bottom: 6em;
+	}
+	.intro {
+		color: fade(@grayDark, 80%);
+		margin-top: 4em;
+		margin-bottom: 1em;
+		a {
+			color: @grayDark;
+		}
+		a:hover {
+			color: @black;
+		}
+	}
+	.logo {
+		
+	}
+	.logo h1 {
+		display: inline;
+		color: @black;
+		font-family: @headFontFamily;
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 3em;
+	}
+	.logo img {
+		width: 8px;
+		height: 8px;
+		margin: -1.8em 0.5em 0;
+		opacity: 0.2;
+	}
+	.description {
+		color: fade(@grayDark, 80%);
+		margin-top: 1em;
+		margin-bottom: 2em;
+	}
+	.register {
+		margin-top: 4em;
+		.stripes {
+			height: 5px;
+			background-image: url(/static/img/bg-header-stripes.png);
+			background-size: 400px 5px;
+			background-repeat: repeat-x;
+		}
+		background-color: white;
+		//.border-radius(@baseBorderRadius);
+		.box-shadow(0 2px 2px rgba(0,0,0,.2));
+		.box {
+			margin: 2em;
+			p {
+				margin-bottom: 1em;
+			}
+		}
+		label {
+			display: none;
+		}
+		.form-actions {
+			padding: 0;
+			background-color: transparent;
+			border-top: none;
+			text-align: center;
+			input {
+				
+			}
+		}
+	}
+}
+
 // !SUMMARY
 #summary {
 	border-bottom: 1px dashed fade(@grayLight, 50%);

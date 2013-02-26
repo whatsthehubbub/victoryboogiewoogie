@@ -41,7 +41,7 @@ class PreLaunchEmailForm(ModelForm):
         self.helper.form_method = 'post'
 
         self.helper.layout = Layout(
-            Field('email', css_class='input-block-level'),
+            Field('email', css_class='input-block-level', placeholder='email@adres.nl'),
             FormActions(
                 Submit('submit', 'Verzenden', css_class='btn')
             )

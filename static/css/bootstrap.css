@@ -903,6 +903,16 @@ a:hover{text-decoration:none;}
 #signin .errorlist{list-style:none;padding:0;margin:0 0 0.5em;color:#e32112;}
 #signin .newpassword{border-top:1px solid #eeeeee;padding:1.6em 0 0;margin:2em 0 -1em;}#signin .newpassword a{color:#999999;}
 #signin .newpassword a:hover{color:#333333;text-decoration:none;}
+#prelaunch .container{background-image:url(/static/img/pre-launch-header.png);background-size:960px 600px;background-repeat:no-repeat;background-position:50% top;padding-bottom:6em;}
+#prelaunch .intro{color:rgba(51, 51, 51, 0.8);margin-top:4em;margin-bottom:1em;}#prelaunch .intro a{color:#333333;}
+#prelaunch .intro a:hover{color:#000000;}
+#prelaunch .logo h1{display:inline;color:#000000;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:3em;}
+#prelaunch .logo img{width:8px;height:8px;margin:-1.8em 0.5em 0;opacity:0.2;}
+#prelaunch .description{color:rgba(51, 51, 51, 0.8);margin-top:1em;margin-bottom:2em;}
+#prelaunch .register{margin-top:4em;background-color:white;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#prelaunch .register .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
+#prelaunch .register .box{margin:2em;}#prelaunch .register .box p{margin-bottom:1em;}
+#prelaunch .register label{display:none;}
+#prelaunch .register .form-actions{padding:0;background-color:transparent;border-top:none;text-align:center;}
 #summary{border-bottom:1px dashed rgba(153, 153, 153, 0.5);padding:0.35em 1.25em 1.35em;margin:0 -1.25em 1em;background-image:url(/static/img/scissor.png);background-size:25px 18px;background-position:8px bottom;background-repeat:no-repeat;}#summary a{color:#666666;text-decoration:none;}
 #summary a:hover{color:#000000;}
 #main{width:980px;margin:-6em auto 2em;background-color:#ffffff;padding:0 0 6em;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#main .papertop{height:5px;margin:0 0 1.25em;background-image:url(/static/img/bg-main-top.png);background-size:21px 5px;background-position:center top;background-repeat:repeat-x;background-color:transparent;background-color:#ffffff;}

@@ -16,18 +16,18 @@
 {% endblock sidebar %}
 
 {% block content %}
-<div class="row">
-	<div class="span12">
-	
-		<h2 class="text-center">De nieuwste bijdragen</h2></div>
-		<div id="itemlist" class="clearfix">
+<div id="home-latest">
+	<h2 class="text-center">De nieuwste bijdragen</h2>
+	<div id="itemlist" class="row">
 		{% for piece in frontpage_pieces %}
 			{% include "boogie/piece_fragment.html" %}
 		{% endfor %}
-		</div>
-		
-		<h2 class="text-center">De personages</h2></div>
-		<div id="characterlist" class="row">
+	</div>
+</div>
+
+<div id="home-characters">
+	<h2 class="text-center">De personages</h2>
+	<div id="characterlist" class="row">
 		{% for character in characters %}
 		<div class="span3">
 			<a href="{% url 'character_profile' character.id %}">
@@ -38,8 +38,6 @@
 			</a>
 		</div>
 		{% endfor %}
-		</div>
-		
 	</div>
 </div>
 {% endblock %}

@@ -2,11 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm, ChoiceField, TextInput, ModelChoiceField
+from django.forms import ModelForm, ChoiceField, TextInput, ModelChoiceField, ValidationError
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from boogie.models import *
@@ -189,6 +188,33 @@ class WriterPieceSubmitForm(ModelForm):
         model = Piece
         fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
 
+    def clean_genre(self):
+        genre = self.cleaned_data['genre']
+
+        if not genre:
+            raise ValidationError("Je hebt geen genre ingevuld.")
+
+        return genre
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+
+        if not title:
+            raise ValidationError("Je hebt geen titel ingevuld.")
+
+        return title
+
+    def clean(self):
+        cleaned_data = super(WriterPieceSubmitForm, self).clean()
+
+        text = self.cleaned_data['text']
+        genre = self.cleaned_data['text']
+
+        if not text and not genre == 'Headline':
+            raise ValidationError("Schrijf een tekst (voor niet headline bijdragen).")
+
+        return cleaned_data
+
 def writer_piece_submit(request):
     t = loader.get_template('boogie/writer_piece_submit.html')
 
@@ -201,10 +227,12 @@ def writer_piece_submit(request):
             # TODO check for compulsory fields
 
             if form.is_valid():
-                piece = forms.save(commit=False)
+                piece = form.save(commit=False)
 
                 piece.status = 'APPROVED'
                 piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
+                piece.writer = player
+                piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
 
                 piece.save()
 

@@ -929,7 +929,7 @@ a:hover{text-decoration:none;}
 #prelaunch .logo h1{display:inline;color:#000000;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:3em;}
 #prelaunch .logo img{width:12px;height:12px;margin:-1.8em 0.5em 0;}
 #prelaunch .tagline{color:#000000;margin-top:0em;margin-bottom:0.5em;}
-#prelaunch .description{color:#333333;margin-top:2em;margin-bottom:1em;}
+#prelaunch .description{color:#333333;margin-top:2em;margin-bottom:1em;font-style:italic;font-weight:400;}
 #prelaunch .register{margin-top:3em;background-color:white;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#prelaunch .register .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #prelaunch .register .box{margin:2em;}#prelaunch .register .box p{margin-bottom:1em;}
 #prelaunch .register label{display:none;}

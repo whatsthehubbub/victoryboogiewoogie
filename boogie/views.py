@@ -174,7 +174,7 @@ def piece_submit(request):
 
                     return HttpResponseRedirect(reverse('piece_submit_thanks'))
             else:
-                form = PieceSubmitForm(instance=piece, initial={'genre': 'Proza'})
+                form = PieceSubmitForm(instance=piece)
     
     c = RequestContext(request, {
             'form': form
@@ -189,7 +189,6 @@ class WriterPieceSubmitForm(ModelForm):
         model = Piece
         fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
 
-# TODO proper access controls?
 def writer_piece_submit(request):
     t = loader.get_template('boogie/writer_piece_submit.html')
 

@@ -35,7 +35,7 @@ class Player(models.Model):
             new_topic = Topic.objects.exclude(archived=True).exclude(pool='WRITER').order_by('?')[0]
 
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
-            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self)
+            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self, genre='Proza')
 
             Notification.objects.create_new_assignment_notification(self, piece)
 

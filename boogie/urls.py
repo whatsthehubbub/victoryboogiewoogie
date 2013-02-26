@@ -32,6 +32,7 @@ urlpatterns = patterns('',
     url(r'^pre/launch/$', 'boogie.views.pre_launch', name='pre_launch'),
     url(r'^pre/launch/thanks/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/pre_launch_thanks.html'}, name='pre_launch_thanks'),
     
+    # TODO these are redefined in the included registration URL
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset', {'password_reset_form': CrispyResetForm}, name='password_reset'),

@@ -871,7 +871,7 @@ a:hover{text-decoration:none;}
 #header a:active{color:#000000;}
 #header a.disabled{color:rgba(153, 153, 153, 0.5);}
 #header li{position:relative;}
-#header .badge{position:absolute;top:0;right:5px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#e32112;padding:2px 6px;margin:0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);}
+#header .badge{position:absolute;top:0;right:5px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;background-color:#0031be;padding:2px 6px;margin:0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);}
 #header .badge-empty{background-color:#999999;}
 #header .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #header .container{padding:0.5em 0 0.5em 0;}
@@ -962,9 +962,9 @@ a:hover{text-decoration:none;}
 #createitem #id_text{font-size:1.5em;line-height:1.4em;}
 #entryqueue{color:#999999;}#entryqueue .item{margin-top:1em;}
 #entryqueue .action{margin-bottom:2em;}
-#notifications .new td{background-color:rgba(227, 33, 18, 0.1);}
+#notifications .new td{background-color:rgba(0, 49, 190, 0.1);}
 #notifications .date{color:#999999;}
-#notifications .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#e32112;}
+#notifications .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#0031be;}
 #topiclist .progress{width:14em;margin:0;}
 #footer{color:#999999;padding:0.5em 0 1.5em;}#footer a{color:#666666;}
 #footer a:hover{color:#333333;}

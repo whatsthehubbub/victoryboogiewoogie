@@ -39,7 +39,7 @@ h3 {
 h2.sans, h3.sans, h4.sans, h5.sans, h6.sans {
 	font-family: @headFontFamily;
 	text-transform: uppercase;
-} 
+}
 
 a {
 	text-decoration: underline;
@@ -288,21 +288,18 @@ a:hover {
 // !SUMMARY
 #summary {
 	border-bottom: 1px dashed fade(@grayLight, 50%);
-	padding: 0.5em 1.25em 1.75em;
+	padding: 0.35em 1.25em 1.35em;
 	margin: 0 -1.25em 1em;
 	background-image: url(/static/img/scissor.png);
 	background-size: 25px 18px;
-	background-position: 20px bottom;
+	background-position: 8px bottom;
 	background-repeat: no-repeat;
 	a {
 		color: @gray;
-		.pull-right {
-			text-decoration: underline;
-		}
+		text-decoration: none;
 	}
 	a:hover {
 		color: @black;
-		text-decoration: none;
 	}
 }
 
@@ -522,25 +519,6 @@ a:hover {
 	form {
 		margin: 1em 0 0;
 		padding: 1em 0 0;
-	}
-	label[for="id_pseudonym"], label[for="id_onelinebio"], label[for="id_send_emails"] {
-		font-weight: 800;
-		float: left;
-		display: inline;
-		width: 25%;
-		padding: 0.4em 0 0;
-	}
-	#id_pseudonym, #id_onelinebio, #id_send_emails {
-		float: right;
-		display: inline;
-		width: 70%;
-	}
-	.controls {
-		margin-left: 0;
-	}
-	#id_send_emails {
-		width: 72.5%;
-		margin-top: 0.5em;
 	}
 }
 

@@ -10,14 +10,20 @@
 	
 	<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ topic.title }}</h2>
 	
-	<p class="lead text-center">Een onderwerp voor 
+	<p class="lead text-center">
+	{% if topic.archived %}
+		Dit onderwerp is gearchiveerd. Er kan niet langer over geschreven worden.
+	{% else %}
+		Een onderwerp voor 
 	{% ifequal topic.pool 'WRITER' %}
 		schrijvers.
 	{% else %}
 		spelers. Rangorde: <span class="badge">00</span>. <!-- TODO: Hook this up to topic rank. -->
 	{% endifequal%}
+	{% endif %}
 	</p>
 	
+	{% if pieces.count > 1 %}
 	<div class="filter pull-right">
 		<div class="btn-group"> 
 			{% ifequal order '-datecreated' %}
@@ -33,6 +39,7 @@
 			{% endifequal %}
 		</div>
 	</div>
+	{% endif %}
 	
 	<div id="itemlist" class="row clearfix">
 	{% for piece in pieces %}

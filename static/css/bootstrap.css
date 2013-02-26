@@ -881,6 +881,26 @@ a:hover{text-decoration:none;}
 #masthead li{display:inline;margin:0;padding:0;}
 #masthead .logo{text-align:center;}
 #masthead .logo a{text-decoration:none;}
+#masthead .logo a:hover .char1{color:#5a9fff;}
+#masthead .logo a:hover .char2{color:#000000;}
+#masthead .logo a:hover .char3{color:#fed500;}
+#masthead .logo a:hover .char4{color:#e32112;}
+#masthead .logo a:hover .char5{color:#0031be;}
+#masthead .logo a:hover .char6{color:#000000;}
+#masthead .logo a:hover .char7{color:#0031be;}
+#masthead .logo a:hover .char8{color:#5a9fff;}
+#masthead .logo a:hover .char9{color:#fed500;}
+#masthead .logo a:hover .char10{color:#0031be;}
+#masthead .logo a:hover .char11{color:#e32112;}
+#masthead .logo a:hover .char12{color:#fed500;}
+#masthead .logo a:hover .char13{color:#000000;}
+#masthead .logo a:hover .char14{color:#fed500;}
+#masthead .logo a:hover .char15{color:#e32112;}
+#masthead .logo a:hover .char16{color:#0031be;}
+#masthead .logo a:hover .char17{color:#fed500;}
+#masthead .logo a:hover .char18{color:#e32112;}
+#masthead .logo a:hover .char19{color:#5a9fff;}
+#masthead .logo a:hover img{opacity:1;}
 #masthead .logo h1{display:inline;color:rgba(153, 153, 153, 0.5);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:2.5em;}
 #masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;opacity:0.2;}
 #masthead .date,#masthead .week{vertical-align:0.6em;color:rgba(153, 153, 153, 0.7);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);}

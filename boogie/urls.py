@@ -1,5 +1,28 @@
 from django.conf.urls import patterns, url
 
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Field
+from crispy_forms.bootstrap import FormActions
+from django.contrib.auth.forms import PasswordResetForm
+
+class CrispyResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):        
+        super(CrispyResetForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_class = 'form'
+        self.helper.form_action = 'auth_password_reset'
+        self.helper.form_method = 'post'
+
+        self.helper.layout = Layout(
+            Field('email', css_class='input-block-level'),
+            FormActions(
+                Submit('submit', 'Verzenden', css_class='btn')
+            )
+        )
+
+
 urlpatterns = patterns('',
     url(r'^$', 'boogie.views.index', name='index'),
 
@@ -11,7 +34,7 @@ urlpatterns = patterns('',
     
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
-    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
+    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset', {'password_reset_form': CrispyResetForm}, name='password_reset'),
     url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
     url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)/(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', name='password_reset_confirm'),
     url(r'^password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),

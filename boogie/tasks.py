@@ -29,7 +29,7 @@ def check_topic_pool():
         for topic in player_topics:
             annotated_list.append((topic, topic.approved_pieces_since()))
 
-        annotated_list.sort(key=lambda topic: topic[1])
+        annotated_list.sort(key=lambda topic: topic[1], reverse=True)
 
         to_promote = annotated_list[:difference]
         for topic in to_promote:

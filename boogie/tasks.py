@@ -34,8 +34,9 @@ def check_topic_pool():
         to_promote = annotated_list[:difference]
         for topic in to_promote:
             logger.info("Promoting topic %s", str(topic))
-            topic[0].update(pool='WRITER')
-
+            
+            topic[0].pool = 'WRITER'
+            topic[0].save()
 
 
 @task()

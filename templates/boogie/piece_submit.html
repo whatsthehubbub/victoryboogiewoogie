@@ -34,7 +34,7 @@
 				<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
 					
 				{% if form.instance.rejection_reason %}
-					<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
+					<div class="alert">Feedback van de redactie: <em>{{ form.instance.rejection_reason }}</em></div>
 				{% endif %}
 								
 					<ul class="info clearfix">
@@ -52,8 +52,8 @@
 						<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
 					</ul>
 					<ul class="info clearfix">
-						<li class="pull-left">Voortgang tot gebeurtenis</li>
-						<li class="pull-right">{{ form.instance.topic.progress }}%</li>
+						<li class="pull-left">Rangorde</li>
+						<li class="pull-right"><span class="badge">00</span></li><!-- TODO: Hook this up to topic rank. -->
 					</ul>
 				
 				<form action="{% url 'piece_submit' %}" method="post" class="clearfix">

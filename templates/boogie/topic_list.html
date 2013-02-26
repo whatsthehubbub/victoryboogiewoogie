@@ -12,29 +12,7 @@
 		<h2 class="text-center">De Onderwerpen</h2>
 		
 		<hr>
-		
-		<h3 class="text-center">Onderwerpen voor spelers</h3>
-		<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. Ook kun je zien wat de voortgang is van ieder onderwerp tot een &lsquo;gebeurtenis&rsquo;.</p>
-		
-		<table id="topiclist" class="table table-bordered">
-			<tbody>
-			{% for topic in player_topics %}
-				<tr>
-					<td>
-						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> 
-						<div class="progress pull-right">
-							<div class="bar" style="width: {{ topic.progress }}%;"></div>
-						</div>
-					</td>
-				</tr>
-			{% empty %}
-				<tr>
-					<td>Nog niets&hellip;</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
-		
+				
 		<h3 class="text-center">Onderwerpen voor schrijvers</h3>
 		<p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
 		
@@ -48,6 +26,25 @@
 			{% empty %}
 				<tr>
 					<td>Momenteel niets&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<h3 class="text-center">Onderwerpen voor spelers</h3>
+		<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. Ook kun je zien wat de voortgang is van ieder onderwerp tot een &lsquo;gebeurtenis&rsquo;.</p>
+		
+		<table id="topiclist" class="table table-bordered">
+			<tbody>
+			{% for topic in player_topics %}
+				<tr>
+					<td>
+						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="badge">00</span> <!-- TODO: Hook this up to ranking. -->
+					</td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets&hellip;</td>
 				</tr>
 			{% endfor %}
 			</tbody>

@@ -6,7 +6,9 @@
 {% block sidebar %}
 	{% if summary %}
 	<div id="summary" class="clearfix">
-		<a href="{{ summary.0.get_absolute_url }}"><strong>Het verhaal tot nu toe:</strong> {{ summary.0.content|safe|truncatewords_html:40 }} lees meer</a>
+		<a href="{{ summary.0.get_absolute_url }}">
+			<p class="lead"><em>Het verhaal tot nu toe:</em> {{ summary.0.content|safe|truncatewords_html:40 }}</p>
+		</a>
 	</div>
 	{% endif %}
 {% endblock sidebar %}
@@ -16,7 +18,8 @@
 	<h2 class="text-center">De nieuwste bijdragen</h2>
 	<div id="itemlist" class="row">
 		
-		<!--<article class="span4 advertentie clearfix">
+		<!--
+		<article class="span4 advertentie clearfix">
 			<a href="#">
 				<div class="box">
 					<div class="meta clearfix">
@@ -28,7 +31,8 @@
 			<div class="info">
 				<p class="pull-right">van <a href="#">Haubenstueberl</a></p>
 			</div>
-		</article>-->
+		</article>
+		-->
 		
 		{% for piece in frontpage_pieces %}
 			{% include "boogie/piece_fragment.html" %}

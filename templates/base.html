@@ -98,17 +98,14 @@
 <!-- MASTHEAD -->
 <div id="masthead">
 	<div class="container">
-	 	<ul>
-			<li class="date">10 mei 2013</li>
-			<li class="logo">
-				<a href="{% url 'index' %}" title="Home">
-					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-					<h1>Boogie Woogie Daily</h1>
-					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-				</a>
-			</li>
-			<li class="week">Week {{ gameWeek }} van 10</li>
-		</ul>
+		
+		<div class="logo">
+			<a href="{% url 'index' %}" title="Home">
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				<h1>Boogie Woogie Daily</h1>
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+			</a>
+		</div>
 		
 		{% if not user.is_authenticated %}
 		<div id="welcome">

@@ -117,20 +117,6 @@ a:hover {
 	}
 }
 
-// !WELCOME
-#welcome {
-	//border-bottom: 1px solid fade(@grayLight, 50%);
-	color: fade(@grayLight, 70%);
-	text-shadow: 0px 1px 0px fade(@white, 60%);
-	padding: 0 0 0.5em;
-	margin: -0.5em 0 -0.25em;
-	
-	font-family: @headFontFamily;
-	text-transform: uppercase;
-	font-weight: 900;
-	font-size: 0.9em;
-}
-
 // !MASTHEAD
 #masthead {
 	padding: 5em 0 6em 0;
@@ -141,18 +127,10 @@ a:hover {
 	a:hover {
 		text-decoration: none;
 	}
-	ul {
-		margin: 0.5em auto 0.5em;
-		padding: 0;
-		list-style: none;
-	}
-	li {
-		display: inline;
-		margin: 0;
-		padding: 0;
-	}
 	.logo {
 		text-align: center;
+		margin: 1.5em auto;
+		padding: 0;
 	}
 	.logo a {
 		text-decoration: none;
@@ -226,24 +204,24 @@ a:hover {
 		font-family: @headFontFamily;
 		text-transform: uppercase;
 		font-weight: 900;
-		font-size: 2.5em;
+		font-size: 3.5em;
 	}
 	.logo img {
-		width: 8px;
-		height: 8px;
-		margin: -1.4em 0.5em 0;
+		width: 12px;
+		height: 12px;
+		margin: -2em 0.5em 0;
 		opacity: 0.2;
 	}
-	.date, .week {
-		vertical-align: 0.6em;
+	#welcome {
+		//border-bottom: 1px solid fade(@grayLight, 50%);
 		color: fade(@grayLight, 70%);
 		text-shadow: 0px 1px 0px fade(@white, 60%);
-	}
-	.date {
-		text-align: right;
-	}
-	.week {
-		text-align: left;
+		padding: 0 0 0.5em;
+		margin: -1.5em 0 -0.25em;
+		font-family: @headFontFamily;
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 0.9em;
 	}
 }
 
@@ -437,14 +415,15 @@ a:hover {
 // !SUMMARY
 #summary {
 	border-bottom: 1px dashed fade(@grayLight, 50%);
-	padding: 0.35em 1.25em 1.35em;
+	padding: 0.5em 1.25em 0.5em;
 	margin: 0 -1.25em 1em;
 	background-image: url(/static/img/scissor.png);
 	background-size: 25px 18px;
 	background-position: 8px bottom;
 	background-repeat: no-repeat;
+
 	a {
-		color: @gray;
+		color: @grayLight;
 		text-decoration: none;
 	}
 	a:hover {

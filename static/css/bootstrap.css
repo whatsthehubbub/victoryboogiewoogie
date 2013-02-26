@@ -875,11 +875,8 @@ a:hover{text-decoration:none;}
 #header .badge-empty{background-color:#999999;}
 #header .stripes{height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #header .container{padding:0.5em 0 0.5em 0;}
-#welcome{color:rgba(153, 153, 153, 0.7);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);padding:0 0 0.5em;margin:-0.5em 0 -0.25em;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:0.9em;}
 #masthead{padding:5em 0 6em 0;text-align:center;background-color:#e6e4e2;color:#000000;-webkit-box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);-moz-box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);box-shadow:inset 0 -1px 2px rgba(0, 0, 0, 0.1);}#masthead a:hover{text-decoration:none;}
-#masthead ul{margin:0.5em auto 0.5em;padding:0;list-style:none;}
-#masthead li{display:inline;margin:0;padding:0;}
-#masthead .logo{text-align:center;}
+#masthead .logo{text-align:center;margin:1.5em auto;padding:0;}
 #masthead .logo a{text-decoration:none;}
 #masthead .logo a:hover .char1{color:#5a9fff;}
 #masthead .logo a:hover .char2{color:#000000;}
@@ -901,11 +898,9 @@ a:hover{text-decoration:none;}
 #masthead .logo a:hover .char18{color:#e32112;}
 #masthead .logo a:hover .char19{color:#5a9fff;}
 #masthead .logo a:hover img{opacity:1;}
-#masthead .logo h1{display:inline;color:rgba(153, 153, 153, 0.5);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:2.5em;}
-#masthead .logo img{width:8px;height:8px;margin:-1.4em 0.5em 0;opacity:0.2;}
-#masthead .date,#masthead .week{vertical-align:0.6em;color:rgba(153, 153, 153, 0.7);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);}
-#masthead .date{text-align:right;}
-#masthead .week{text-align:left;}
+#masthead .logo h1{display:inline;color:rgba(153, 153, 153, 0.5);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:3.5em;}
+#masthead .logo img{width:12px;height:12px;margin:-2em 0.5em 0;opacity:0.2;}
+#masthead #welcome{color:rgba(153, 153, 153, 0.7);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);padding:0 0 0.5em;margin:-1.5em 0 -0.25em;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:0.9em;}
 #calendar{margin:1em 0 0;}#calendar .nav{margin:0;display:table;width:100%;}
 #calendar .nav li{display:table-cell;width:1%;float:none;text-align:center;}
 #calendar .nav li.active a{background-color:transparent;box-shadow:none;}
@@ -934,7 +929,7 @@ a:hover{text-decoration:none;}
 #prelaunch .register .box{margin:2em;}#prelaunch .register .box p{margin-bottom:1em;}
 #prelaunch .register label{display:none;}
 #prelaunch .register .form-actions{padding:0;background-color:transparent;border-top:none;text-align:center;}
-#summary{border-bottom:1px dashed rgba(153, 153, 153, 0.5);padding:0.35em 1.25em 1.35em;margin:0 -1.25em 1em;background-image:url(/static/img/scissor.png);background-size:25px 18px;background-position:8px bottom;background-repeat:no-repeat;}#summary a{color:#666666;text-decoration:none;}
+#summary{border-bottom:1px dashed rgba(153, 153, 153, 0.5);padding:0.5em 1.25em 0.5em;margin:0 -1.25em 1em;background-image:url(/static/img/scissor.png);background-size:25px 18px;background-position:8px bottom;background-repeat:no-repeat;}#summary a{color:#999999;text-decoration:none;}
 #summary a:hover{color:#000000;}
 #main{width:980px;margin:-6em auto 2em;background-color:#ffffff;padding:0 0 6em;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#main .papertop{height:5px;margin:0 0 1.25em;background-image:url(/static/img/bg-main-top.png);background-size:21px 5px;background-position:center top;background-repeat:repeat-x;background-color:transparent;background-color:#ffffff;}
 #content a:hover .box{border:1px solid #eeeeee;}

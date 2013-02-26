@@ -304,6 +304,14 @@ a:hover {
 	}
 }
 
+#home-latest {
+	margin-top: 2em;
+}
+
+#home-characters {
+	margin-top: 4em;
+}
+
 #itemlistinfo {
 	position: relative;
 	margin-bottom: 0.5em;
@@ -464,11 +472,12 @@ a:hover {
 		border: 0;
 		border-radius: 0;
 		background-color: transparent;
-		padding: 0.75em 1.25em;
+		padding: 0.95em 1.25em 0.55em;
+		text-decoration: none;
 	}
 	.pager a:hover {
 		color: @grayDark;
-		background-color: fade(@grayLighter, 50%);
+		//background-color: fade(@grayLighter, 50%);
 	}
 	.pager-top {
 		margin: -1.5em -1.25em 0;
@@ -477,6 +486,10 @@ a:hover {
 	.pager-bottom {
 		margin: 0 -1.25em -6em;
 		border-top: 1px solid @grayLighter;
+		a {
+			padding-top: 0.6em;
+			padding-bottom: 0.5em;
+		}
 	}
 	.box {
 		padding-top: 0;
@@ -487,13 +500,17 @@ a:hover {
 		padding: 0.25em 1em;
 		background-color: fade(@grayLighter, 40%);
 		border-bottom: 1px solid @grayLighter;
-		.genre {
-			margin: 0.65em 0 0 0.25em;
+		p {
+			margin: 0.6em 0;
 			font-style: italic;
+		}
+		.genre {
+			//margin: 0.65em 0 0 0.25em;
 		}
 		.character {
 			width: 40px;
 			height: 40px;
+			margin-left: 0.5em;
 		}
 	}
 	.author {

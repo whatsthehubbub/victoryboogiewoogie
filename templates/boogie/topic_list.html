@@ -7,12 +7,12 @@
 <div class="row">
 	<div class="span8 offset2">
 		
-		<h2 class="text-center">De Onderwerpen</h2>
+		<h2 class="text-center">De onderwerpen</h2>
 		
 		<hr>
 				
 		<h3 class="text-center">Onderwerpen voor schrijvers</h3>
-		<p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
+		<p>Dit zijn de onderwerpen waar schrijvers binnenkort iets mee gaan doen.</p>
 		
 		<table class="table table-striped table-bordered">
 			<tbody>
@@ -30,14 +30,14 @@
 		</table>
 
 		<h3 class="text-center">Onderwerpen voor spelers</h3>
-		<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. Ook kun je zien wat de voortgang is van ieder onderwerp tot een &lsquo;gebeurtenis&rsquo;.</p>
+		<p>Dit zijn de onderwerpen waarvan spelers er steeds willekeurig één toegewezen krijgen. Ook kun je zien hoeveel bijdragen er deze ronde per onderwerp gepubliceerd zijn. Iedere ronde worden de onderwerpen met de meeste bijdragen doorgestuurd naar de schrijvers, en zetten we de teller weer op nul.</p>
 		
 		<table id="topiclist" class="table table-striped table-bordered">
 			<tbody>
 			{% for topic in player_topics %}
 				<tr>
 					<td>
-						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="label pull-right">{{ topic.piece_count }}</span> <!-- TODO: Hook this up to ranking. -->
+						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="label pull-right">{{ topic.piece_count }}</span>
 					</td>
 				</tr>
 			{% empty %}

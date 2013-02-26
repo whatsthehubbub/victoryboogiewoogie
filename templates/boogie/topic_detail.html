@@ -25,12 +25,12 @@
 	<div class="filter pull-right">
 		<div class="btn-group"> 
 			{% ifequal order '-datecreated' %}
-				<a href="?order=-rating" class="btn">Beste</a>
+				<a href="?order=-score_cache" class="btn">Beste</a>
 			{% else %}
-				<a href="?order=-rating" class="btn active">Beste</a>
+				<a href="?order=-score_cache" class="btn active">Beste</a>
 			{% endifequal %}
 			
-			{% ifequal order '-rating' %}
+			{% ifequal order '-score_cache' %}
 				<a href="?order=-datecreated" class="btn">Nieuwste</a>
 			{% else %}
 				<a href="?order=-datecreated" class="btn active">Nieuwste</a>

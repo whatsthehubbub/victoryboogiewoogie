@@ -57,7 +57,6 @@ def pre_launch(request):
     })
     return HttpResponse(t.render(c))
 
-@login_required
 def summary(request):
     t = loader.get_template('boogie/summary.html')
 
@@ -67,7 +66,6 @@ def summary(request):
 
     return HttpResponse(t.render(c))
 
-@login_required
 def notifications(request):
     player = Player.objects.get(user=request.user)
 
@@ -81,8 +79,6 @@ def notifications(request):
 
     return HttpResponse(t.render(c))
     
-
-@login_required
 def topic_list(request):
     t = loader.get_template('boogie/topic_list.html')
     
@@ -93,7 +89,6 @@ def topic_list(request):
     })
     return HttpResponse(t.render(c))
     
-@login_required
 def topic_detail(request, topicid, slug):
     t = loader.get_template('boogie/topic_detail.html')
     
@@ -108,7 +103,6 @@ def topic_detail(request, topicid, slug):
     })
     return HttpResponse(t.render(c))
     
-@login_required
 def piece_list(request):
     t = loader.get_template('boogie/piece_list.html')
     
@@ -117,7 +111,6 @@ def piece_list(request):
     })
     return HttpResponse(t.render(c))
 
-@login_required
 def pieces_per_week(request, week):
     week = int(week)
     datestart = Game.objects.get_latest_game().start_date
@@ -137,7 +130,6 @@ def pieces_per_week(request, week):
 
     return HttpResponse(t.render(c))
 
-@login_required
 def piece_detail(request, id):
     player = Player.objects.get(user=request.user)
     piece = Piece.objects.get(id=id)
@@ -150,6 +142,7 @@ def piece_detail(request, id):
         })
         return HttpResponse(t.render(c))
     else:
+        # TODO change this?
         return HttpResponseRedirect(reverse('index'))
 
 class PieceSubmitForm(ModelForm):
@@ -196,6 +189,7 @@ class WriterPieceSubmitForm(ModelForm):
         model = Piece
         fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
 
+# TODO proper access controls?
 def writer_piece_submit(request):
     t = loader.get_template('boogie/writer_piece_submit.html')
 
@@ -310,6 +304,7 @@ def piece_vote_up_undo(request, piece_id):
         return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
 
 
+# TODO who can see this?
 @login_required    
 def piece_queue(request):
     t = loader.get_template('boogie/piece_queue.html')
@@ -319,7 +314,6 @@ def piece_queue(request):
     })
     return HttpResponse(t.render(c))
 
-@login_required
 def player_profile(request, name):
     player = Player.objects.get(user__username=name)
 
@@ -340,17 +334,6 @@ def player_profile(request, name):
         c['rejected_pieces'] = player.pieces().filter(status="REJECTED")
     
     return HttpResponse(t.render(c))
-
-
-class UserProfileForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name')
-
-        widgets = {
-            'first_name': TextInput(attrs={'class': 'first_name'}),
-            'last_name': TextInput(attrs={'class': 'last_name'})
-        }
 
 class PlayerProfileForm(ModelForm):
     class Meta:
@@ -393,7 +376,6 @@ def player_unsubscribe(request, h):
 
     return HttpResponseRedirect(reverse('index'))
 
-@login_required
 def character_profile(request, id):
     character = Character.objects.get(id=id)
 

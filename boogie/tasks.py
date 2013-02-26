@@ -20,23 +20,19 @@ def check_topic_pool():
     difference = writers - writer_topics
 
     if difference > 0:
-        # Move topics to the writers pool
+        # Promote topics to the writers pool
         # TODO doing this in pure python right now
 
-        annotated_list = []
+        player_topics = Topic.objects.filter(pool='PLAYER').order_by('-piece_count')[:difference]
 
-        player_topics = Topic.objects.filter(pool='PLAYER')
         for topic in player_topics:
-            annotated_list.append((topic, topic.approved_pieces_since()))
+            topic.pool = 'WRITER'
+            topic.save()
 
-        annotated_list.sort(key=lambda topic: topic[1], reverse=True)
+            logger.info("Promoted topic %s", unicode(topic))
 
-        to_promote = annotated_list[:difference]
-        for topic in to_promote:
-            logger.info("Promoting topic %s", unicode(topic))
-            
-            topic[0].pool = 'WRITER'
-            topic[0].save()
+        logger.info("Reset piece_count on all Topics to 0")
+        Topic.objects.update(piece_count=0)
 
 
 @task()

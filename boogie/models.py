@@ -181,10 +181,6 @@ class Topic(models.Model):
 
     # Counts of pieces written and pieces needed for a pool change
     piece_count = models.IntegerField(default=0)
-
-    # A function of the number of writers
-    # and how much work those writers have to do right now
-    piece_threshold = models.IntegerField(default=3)
     
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')

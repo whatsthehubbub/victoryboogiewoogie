@@ -15,7 +15,7 @@ def archive_topic(modeladmin, request, queryset):
 archive_topic.short_description = "Archiveer geselecteerde onderwerpen"
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pool', 'slug', 'archived', 'piece_count', 'piece_threshold')
+    list_display = ('title', 'pool', 'slug', 'archived', 'piece_count')
     prepopulated_fields = {"slug": ("title",)}
     actions = [archive_topic]
 admin.site.register(Topic, TopicAdmin)

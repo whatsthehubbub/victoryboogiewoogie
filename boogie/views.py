@@ -165,24 +165,22 @@ def piece_detail(request, id):
 
 class PieceSubmitForm(ModelForm):
     def __init__(self, *args, **kwargs):
+        super(PieceSubmitForm, self).__init__(*args, **kwargs)
+
         self.helper = FormHelper()
         self.helper.form_class = 'form'
         self.helper.form_action = ''
         self.helper.form_method = 'post'
 
         self.helper.layout = Layout(
-            MultiField(
-                Field('genre', css_class='input-block-level'),
-                Field('title', css_class='input-block-level'),
-                Field('text', css_class='input-block-level'),
-                Field('new_topic', css_class="input-block-level"),
-            ),
+            Field('genre', css_class='input-block-level'),
+            Field('title', css_class='input-block-level'),
+            Field('text', css_class='input-block-level'),
+            Field('new_topic', css_class="input-block-level"),
             FormActions(
                 Submit('submit', 'Opslaan', css_class='btn')
             )
         )
-
-        super(PieceSubmitForm, self).__init__(*args, **kwargs)
 
     genre = ChoiceField(choices=PIECE_GENRE_CHOICES[:-1])
 

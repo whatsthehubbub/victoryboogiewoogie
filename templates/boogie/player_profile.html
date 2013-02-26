@@ -9,7 +9,7 @@
 <div id="playerdetail" class="row">
 	
 	<div class="span12">
-		<h2 class="text-center">{{ player.pseudonym }}&rsquo;s profiel</h2>
+		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.pseudonym }}</h2>
 		
 		{% ifequal user.username player.user.username  %} 
 			<a class="btn pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
@@ -19,58 +19,76 @@
 	
 	<div class="span8 offset2">
 		
-		<p>Biografie: {{ player.onelinebio }}</p>
-		
-		<h3>Bijdragen</h3>
-		
-		{% if assigned_pieces %}
-			<h4>Toegekend</h4>
-			<ul>
-			{% for piece in assigned_pieces %}
-				<li><a href="{% url 'piece_submit' %}">Schrijf iets over {{ piece.topic }}</a></li>
-			{% endfor %}
-			</ul>
-		{% endif %}
+		<p class="lead">{{ player.onelinebio }}</p>
 		
 		{% if submitted_pieces %}
-			<h4>Ingediend</h4>
-			<ul>
+		<h4 class="text-center">Ingediende bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
 			{% for piece in submitted_pieces %}
-				<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></li>
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets&hellip;</td>
+				</tr>
 			{% endfor %}
-			</ul>
+			</tbody>
+		</table>
 		{% endif %}
 		
 		{% if needswork_pieces %}
-			<h4>Geredigeerd</h4>
-			<ul>
+		<h4 class="text-center">Geredigeerde bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
 			{% for piece in needswork_pieces %}
-				<li>
-					<p><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
-					<p>Suggesties van de redactie: {{ piece.rejection_reason }}</p>
-					<p><a href="{% url 'piece_submit' %}">Bewerken</a> <a href="">Opgeven</a></p>
-				</li>
-				{% endfor %}
-			</ul>
+				<tr>
+					<td colspan="3"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+				<tr>
+					<td><p>Suggesties van de redactie: {{ piece.rejection_reason }}</p></td>
+					<td><a href="{% url 'piece_submit' %}">Bewerken</a></td>
+					<td><a href="">Opgeven</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
 		{% endif %}
 		
-		<h4>Gepubliceerd</h4>
-		<ul>
-		{% for piece in approved_pieces %}
-			<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</li>
-		{% empty %}
-			<li>Van deze speler zijn nog geen stukken gepubliceerd.</li>
-		{% endfor %}
-		</ul>
+		<h4 class="text-center">Gepubliceerde bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in approved_pieces %}
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> {{ piece.datepublished|timesince }} geleden</td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Er zijn nog geen stukken gepubliceerd&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
 		
-		{% if rejected_pieces %}
-		<h4>Afgewezen</h4>
-		<ul>
-		{% for piece in rejected_pieces %}
-			<li><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></li>
-		{% endfor %}
-		</ul>
-		{% endif %}
+		<h4 class="text-center">Afgewezen bidragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in rejected_pieces %}
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Er zijn nog geen stukken afgewezen&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
 	
 	</div>
 </div>

@@ -31,7 +31,7 @@
 		
 		{% ifequal current_player.role 'PLAYER' %}
 		{% if form %}			
-			<h2 class="text-center">Schrijf een bijdrage <span class="sub">over “{{ form.instance.topic.title }}”</span></h2>
+			<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
 				
 			{% if form.instance.rejection_reason %}
 				<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
@@ -62,9 +62,7 @@
 				{% for field in form %}
 				<div class="{{ field.html_name }} clearfix">{{ field.label_tag }}{{ field }}</div>
 				{% endfor %}
-
-				<p id="char_counter"></p>
-
+				
 				<input type="submit" value="Verzenden" class="btn pull-right">
 			</form>
 

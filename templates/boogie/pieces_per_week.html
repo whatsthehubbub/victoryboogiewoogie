@@ -10,6 +10,7 @@
 	
 	<h2 class="text-center">Week {{ week }}</h2>
 	
+	{% if pieces.count > 1 %}
 	<div class="filter pull-right">
 		<div class="btn-group"> 
 			{% ifequal order '-datecreated' %}
@@ -25,6 +26,7 @@
 			{% endifequal %}
 		</div>
 	</div>
+	{% endif %}
 	
 </div>
 

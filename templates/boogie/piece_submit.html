@@ -11,9 +11,9 @@
 		$('#id_genre').change(function() {
 
 			if ($('#id_genre').val() === 'Headline') {
-				$('#id_text').parent().slideUp();
+				$('#div_id_text').slideUp();
 			} else {
-				$('#id_text').parent().slideDown();
+				$('#div_id_text').slideDown();
 			}
 		});
 	});
@@ -35,7 +35,7 @@
 				<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
 					
 				{% if form.instance.rejection_reason %}
-					<div class="alert">Feedback van de redactie: <em>{{ form.instance.rejection_reason }}</em></div>
+					<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
 				{% endif %}
 								
 					<ul class="info clearfix">
@@ -54,7 +54,7 @@
 					</ul>
 					<ul class="info clearfix">
 						<li class="pull-left">Aantal bijdragen deze ronde</li>
-						<li class="pull-right"><span class="badge">{{ form.instance.topic.piece_count }}</span></li><!-- TODO: Hook this up to topic rank. -->
+						<li class="pull-right"><span class="label">{{ form.instance.topic.piece_count }}</span></li><!-- TODO: Hook this up to topic rank. -->
 					</ul>
 				
 				{% crispy form %}

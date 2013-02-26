@@ -33,7 +33,7 @@ def check_topic_pool():
 
         to_promote = annotated_list[:difference]
         for topic in to_promote:
-            logger.info("Promoting topic %s", str(topic))
+            logger.info("Promoting topic %s", unicode(topic))
             
             topic[0].pool = 'WRITER'
             topic[0].save()
@@ -81,6 +81,6 @@ def update_user_last_login(user):
     user.last_login = datetime.datetime.utcnow().replace(tzinfo=utc)
     user.save()
 
-    logger.info("Updated last login time of user %s", str(user))
+    logger.info("Updated last login time of user %s", user.username)
 
     return user

@@ -105,7 +105,8 @@ from django.core.mail import EmailMessage
 
 class NotificationManager(models.Manager):
     def create_new_assignment_notification(self, player, piece):
-        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl/bijdagen/schrijven/">de schrijfafdeling</a>.''')
+        # TODO change these urls
+        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl/bijdragen/schrijven/">de schrijfafdeling</a>.''')
 
     def create_new_summary_notification(self, player, summary):
         return Notification.objects.create(identifier='new-summary', for_player=player, message='''Er is een nieuwe samenvatting geplaatst. <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % summary.get_absolute_url())
@@ -114,7 +115,8 @@ class NotificationManager(models.Manager):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is goedgekeurd! <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % piece.get_absolute_url())
 
     def create_new_needswork_notification(self, player, piece):
-        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl/bijdagen/schrijven/">Probeer het opnieuw</a> met de feedback.''')
+        # TODO change these urls
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl/bijdragen/schrijven/">Probeer het opnieuw</a> met de feedback.''')
 
     def create_new_rejected_notification(self, player, piece):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is helaas afgekeurd. Probeer het opnieuw met je volgende opdracht.''')
@@ -249,7 +251,7 @@ class Piece(models.Model):
     frontpage = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return '%s by %s' % (str(self.topic), str(self.writer))
+        return '%s by %s' % (unicode(self.topic), unicode(self.writer))
 
 
     @models.permalink
@@ -356,7 +358,7 @@ class Summary(models.Model):
                 Notification.objects.create_new_summary_notification(player, self)
 
     def get_absolute_url(self):
-        return reverse('summary') + '#summary_' + str(self.id)
+        return reverse('summary') + ('#summary_%d' % self.id)
 
 
 class GameManager(models.Manager):
@@ -385,7 +387,7 @@ class Game(models.Model):
     objects = GameManager()
 
     def __unicode__(self):
-        return "Game with start: %s" % str(self.start_date)
+        return "Game with start: %s" % self.start_date.isoformat()
 
 
     def save(self, *args, **kwargs):

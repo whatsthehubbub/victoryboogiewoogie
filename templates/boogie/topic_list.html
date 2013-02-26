@@ -39,7 +39,7 @@
 			{% for topic in player_topics %}
 				<tr>
 					<td>
-						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="badge">00</span> <!-- TODO: Hook this up to ranking. -->
+						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="label pull-right">00</span> <!-- TODO: Hook this up to ranking. -->
 					</td>
 				</tr>
 			{% empty %}

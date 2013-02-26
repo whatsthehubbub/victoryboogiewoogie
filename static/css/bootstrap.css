@@ -861,6 +861,7 @@ h2{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:upp
 h2 .sub-bottom{margin-top:-0.5em;font-size:0.6em;display:block;}
 h3{margin:1.5em 0 0.5em;}
 h2.sans,h3.sans,h4.sans,h5.sans,h6.sans{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;}
+.badge,.label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;}
 a{text-decoration:underline;}
 a:hover{text-decoration:none;}
 .progress .bar{background-color:#fed500;}

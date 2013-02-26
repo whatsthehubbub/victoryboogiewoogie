@@ -466,10 +466,13 @@ a:hover {
 
 // !CONTENT
 #content {
+	a:hover .box {
+		border: 1px solid fade(@grayLight, 40%);
+	}
 	.box {
 		padding: 3em 0 4em 0;
 		.border-radius(@baseBorderRadius);
-		border: 1px solid @grayLighter;
+		border: 1px solid fade(@grayLighter, 60%);
 	}
 	.box-small {
 		padding: 1em 0 0.5em 0;

@@ -19,7 +19,13 @@ h2 {
 	line-height: 1.2em;
 	margin: 0.1em 0 0.8em;
 	padding: 0;
-	.sub {
+	.sub-top {
+		margin-top: -0.5em;
+		margin-bottom: -0.5em;
+		font-size: 0.6em;
+		display: block;
+	}
+	.sub-bottom {
 		margin-top: -0.5em;
 		font-size: 0.6em;
 		display: block;
@@ -28,6 +34,14 @@ h2 {
 
 h3 {
 	margin: 1.5em 0 0.5em;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
 }
 
 .progress .bar {
@@ -117,10 +131,10 @@ h3 {
 	a {
 		color: @gray;
 		text-shadow: none;
+		text-decoration: none;
 	}
 	a:hover {
 		color: @grayDark;
-		text-decoration: none;
 	}
 	a:active {
 		color: @black;
@@ -177,6 +191,9 @@ h3 {
 	}
 	.logo {
 		text-align: center;
+	}
+	.logo a {
+		text-decoration: none;
 	}
 	.logo h1 {
 		display: inline;
@@ -247,6 +264,9 @@ h3 {
 #summary {
 	a {
 		color: @gray;
+		.pull-right {
+			text-decoration: underline;
+		}
 	}
 	a:hover {
 		color: @black;
@@ -260,7 +280,7 @@ h3 {
 	background-color: @white;
 	padding: 0 0 6em;
 	//.border-radius(@baseBorderRadius);
-	.box-shadow(0 1px 2px rgba(0,0,0,.2));
+	.box-shadow(0 2px 2px rgba(0,0,0,.2));
 	.papertop {
 		height: 5px;
 		margin: 0 0 2em;
@@ -292,9 +312,15 @@ h3 {
 		top: 0.6em;
 		right: 0;
 	}
+	a {
+		text-decoration: none;
+	}
 }
 
 #itemlist {
+	a {
+		text-decoration: none;
+	}
 	article {
 		margin-bottom: 1em;
 	}
@@ -381,18 +407,39 @@ h3 {
 	}
 }
 
+#characterinfo {
+	padding-bottom: 2em;
+	h2 {
+		position: relative;
+		z-index: 3;
+		margin-bottom: 2em;
+	}
+	.biography {
+		position: relative;
+		z-index: 2;
+	}
+	.portrait {
+		position: relative;
+		z-index: 1;
+		margin-top: -5em;
+		img {
+			margin-left: -2em;
+		}
+	}
+}
+
 #characterlist {
 	img {
 		.border-radius(50%);
 		opacity: 0.7;
 	}
 	a {
+		text-decoration: none;
 		h4 {
 			color: @gray;
 		}
 	}
 	a:hover {
-		text-decoration: none;
 		h4 {
 			color: @black;
 		}

@@ -22,7 +22,7 @@
 
 	<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ character.name }}</h2>
 	
-	{% if pieces.count > 1 %}
+	{% if character.pieces.count > 1 %}
 	<div class="filter pull-right">
 		<div class="btn-group"> 
 			{% ifequal order '-datecreated' %}

@@ -16,8 +16,11 @@ class PreLaunchMiddleware(object):
     def process_request(self, request):
         game = Game.objects.get_latest_game()
 
-        if request.path.startswith(settings.STATIC_URL) or request.path.startswith('/admin') or request.path.startswith(reverse('boogie.views.pre_launch')):
+        if request.path.startswith(settings.STATIC_URL) or request.path.startswith('/admin') or request.path.startswith('/login') or request.path.startswith(reverse('boogie.views.pre_launch')):
             return None
 
-        if not game.started:
-            return HttpResponseRedirect(reverse('boogie.views.pre_launch'))
+        if not game.started: # Pre launch situation
+            if request.user.is_authenticated():
+                return None
+            else:
+                return HttpResponseRedirect(reverse('boogie.views.pre_launch'))

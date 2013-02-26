@@ -10,12 +10,12 @@
 		
 		<h2 class="text-center">Berichten</h2>
 		
-		<table class="table table-striped">
+		<table class="table table-striped row">
 			<tbody>
 			{% for notification in notifications %}
 			<tr>
-				<td class="date">{{ notification.datecreated }}{% if notification.datecreated > user.last_login %}<div class="label">NIEUW</div>{% endif %}</td>
-				<td>{{ notification.message|safe }}</td>
+				<td class="date span3">{{ notification.datecreated }}{% if notification.datecreated > user.last_login %}<div class="label">NIEUW</div>{% endif %}</td>
+				<td class="span7">{{ notification.message|safe }}</td>
 			</tr>
 			{% endfor %}
 			</tbody>

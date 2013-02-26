@@ -1,4 +1,5 @@
 {% load url from future %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 	<p>Literair tijdschrift <a href="http://www.de-gids.nl/">De Gids</a> en game design studio <a href="http://hubbub.eu/">Hubbub</a> presenteren:</p>
@@ -8,9 +9,5 @@
 
 	<p>Meld je aan en ontvang eenmalig een e-mail als de game van start gaat, op maandag 8 april 2013.</p>
 
-	<form method="POST" action="">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Verzenden">
-	</form>
+	{% crispy form %}
 {% endblock content %}

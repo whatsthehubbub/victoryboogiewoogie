@@ -12,6 +12,10 @@ from boogie.models import *
 
 from boogie import tasks
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Button, Div, Field, MultiField
+from crispy_forms.bootstrap import FormActions
+
 
 def index(request):
     t = loader.get_template('boogie/index.html')
@@ -29,6 +33,21 @@ class PreLaunchEmailForm(ModelForm):
     class Meta:
         model = PreLaunchEmail
         fields = ('email', )
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_class = 'form'
+        self.helper.form_action = ''
+        self.helper.form_method = 'post'
+
+        self.helper.layout = Layout(
+            Field('email', css_class='input-block-level'),
+            FormActions(
+                Submit('submit', 'Verzenden', css_class='btn')
+            )
+        )
+
+        super(PreLaunchEmailForm, self).__init__(*args, **kwargs)
 
 def colofon(request):
     t = loader.get_template('boogie/colofon.html')
@@ -380,9 +399,6 @@ def player_profile(request, name):
     
     return HttpResponse(t.render(c))
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Button, Div, Field, MultiField
-from crispy_forms.bootstrap import FormActions
 
 class PlayerProfileForm(ModelForm):
     class Meta:

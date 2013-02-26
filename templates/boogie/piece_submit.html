@@ -53,8 +53,8 @@
 						<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
 					</ul>
 					<ul class="info clearfix">
-						<li class="pull-left">Rangorde</li>
-						<li class="pull-right"><span class="badge">00</span></li><!-- TODO: Hook this up to topic rank. -->
+						<li class="pull-left">Aantal bijdragen deze ronde</li>
+						<li class="pull-right"><span class="badge">{{ form.instance.topic.piece_count }}</span></li><!-- TODO: Hook this up to topic rank. -->
 					</ul>
 				
 				{% crispy form %}

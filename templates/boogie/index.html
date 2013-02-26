@@ -7,7 +7,7 @@
 
 {% block sidebar %}
 	{% if summary %}
-	<div id="summary" class="well clearfix">
+	<div id="summary" class="clearfix">
 		<a href="{{ summary.0.get_absolute_url }}">
 		<div class="pull-left"><strong>Het verhaal tot nu toe:</strong> {{ summary.0.content|safe|truncatewords_html:60 }}</div>
 		<div class="pull-right">lees meer&hellip;</div></a>
@@ -30,7 +30,7 @@
 				</div>
 			</a>
 			<div class="info">
-				<p class="pull-right">van <a href="">Haubenstueberl</a></p>
+				<p class="pull-right">van <a href="#">Haubenstueberl</a></p>
 			</div>
 		</article>
 		

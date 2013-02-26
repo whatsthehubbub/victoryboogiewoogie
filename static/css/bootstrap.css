@@ -902,7 +902,7 @@ a:hover{text-decoration:none;}
 #signin .errorlist{list-style:none;padding:0;margin:0 0 0.5em;color:#e32112;}
 #signin .newpassword{border-top:1px solid #eeeeee;padding:1.6em 0 0;margin:2em 0 -1em;}#signin .newpassword a{color:#999999;}
 #signin .newpassword a:hover{color:#333333;text-decoration:none;}
-#summary a{color:#666666;}#summary a .pull-right{text-decoration:underline;}
+#summary{border-bottom:1px dashed #eeeeee;padding:0.5em 0 1.5em;}#summary a{color:#666666;}#summary a .pull-right{text-decoration:underline;}
 #summary a:hover{color:#000000;text-decoration:none;}
 #main{width:980px;margin:-6em auto 2em;background-color:#ffffff;padding:0 0 6em;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#main .papertop{height:5px;margin:0 0 1.25em;background-image:url(/static/img/bg-main-top.png);background-size:21px 5px;background-position:center top;background-repeat:repeat-x;background-color:transparent;background-color:#ffffff;}
 #content .box{padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid #eeeeee;}

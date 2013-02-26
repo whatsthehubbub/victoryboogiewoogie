@@ -34,7 +34,7 @@ def player(request):
                 returnDict['current_url'] = ''
         else: # Writers can always write something
             returnDict['current_status'] = 'Bijdrage schrijven'
-            returnDict['current_url'] = reverse('piece_submit')
+            returnDict['current_url'] = reverse('writer_piece_submit')
 
     try:
         startDate = Game.objects.get_latest_game().start_date

@@ -30,50 +30,47 @@
 		<!-- TODO: Include character count. -->
 		
 		{% ifequal current_player.role 'PLAYER' %}
-		{% if form %}			
-			<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
+			{% if form %}			
+				<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
+					
+				{% if form.instance.rejection_reason %}
+					<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
+				{% endif %}
+								
+					<ul class="info clearfix">
+						<li class="pull-left">Info</li>
+						<li class="pull-right">
+							{% if form.instance.topic.get_latest_piece %}
+								Lees de <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste bijdrage</a> over “{{ form.instance.topic.title }}” of bekijk <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle bijdragen</a> over dit onderwerp.
+								{% else %}
+								Er is nog niks geschreven over dit onderwerp. <em>Carte blanche!</em>
+							{% endif %}
+						</li>
+					</ul>
+					<ul class="info clearfix">
+						<li class="pull-left">Deadline</li>
+						<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
+					</ul>
+					<ul class="info clearfix">
+						<li class="pull-left">Voortgang tot gebeurtenis</li>
+						<li class="pull-right">{{ form.instance.topic.progress }}%</li>
+					</ul>
 				
-			{% if form.instance.rejection_reason %}
-				<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
+				<form action="{% url 'piece_submit' %}" method="post" class="clearfix">
+					{% csrf_token %}
+					
+					{% for field in form %}
+					<div class="{{ field.html_name }} clearfix">{{ field.label_tag }}{{ field }}</div>
+					{% endfor %}
+					
+					<input type="submit" value="Verzenden" class="btn pull-right">
+				</form>
+
+				<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
+
+			{% else %}
+				<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
 			{% endif %}
-							
-				<ul class="info clearfix">
-					<li class="pull-left">Info</li>
-					<li class="pull-right">
-						{% if form.instance.topic.get_latest_piece %}
-							Lees de <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste bijdrage</a> over “{{ form.instance.topic.title }}” of bekijk <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle bijdragen</a> over dit onderwerp.
-							{% else %}
-							Er is nog niks geschreven over dit onderwerp. <em>Carte blanche!</em>
-						{% endif %}
-					</li>
-				</ul>
-				<ul class="info clearfix">
-					<li class="pull-left">Deadline</li>
-					<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
-				</ul>
-				<ul class="info clearfix">
-					<li class="pull-left">Voortgang tot gebeurtenis</li>
-					<li class="pull-right">{{ form.instance.topic.progress }}%</li>
-				</ul>
-			
-			<form action="{% url 'piece_submit' %}" method="post" class="clearfix">
-				{% csrf_token %}
-				
-				{% for field in form %}
-				<div class="{{ field.html_name }} clearfix">{{ field.label_tag }}{{ field }}</div>
-				{% endfor %}
-				
-				<input type="submit" value="Verzenden" class="btn pull-right">
-			</form>
-
-			<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
-
-		{% else %}
-			<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
-		{% endif %}
-		{% else %}
-			<h2 class="text-center">Bijdrage schrijven</h2>
-			<div class="alert">Deze pagina is bestemd voor spelers. Jij bent ingelogd als schrijver. Wil je een bijdrage schrijven? Ga naar <a href="{% url 'writer_piece_submit' %}">de afdeling voor schrijvers</a>.</div>
 		{% endifequal %}		
 	</div>
 </div>

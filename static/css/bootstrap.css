@@ -931,8 +931,10 @@ a:hover{text-decoration:none;}
 #characterlist a{text-decoration:none;}#characterlist a h4{color:#666666;}
 #characterlist a:hover h4{color:#000000;}
 #characterlist a:hover img{opacity:1;}
-#playerdetail{position:relative;}#playerdetail .edit{position:absolute;top:0.6em;right:0;text-decoration:none;}
+#playerdetail .meta{position:relative;}
+#playerdetail .edit{position:absolute;top:0.6em;right:0;text-decoration:none;}
 #playerdetail .light{color:#999999;}
+#playerdetail h4{margin-top:2em;margin-bottom:1em;}
 #playeredit form{margin:3em 0 1em;padding:1em 0 0;}
 #playeredit label[for="id_pseudonym"],#playeredit label[for="id_onelinebio"],#playeredit label[for="id_send_emails"]{font-weight:800;float:left;display:inline;width:25%;padding:0.4em 0 0;}
 #playeredit #id_pseudonym,#playeredit #id_onelinebio,#playeredit #id_send_emails{float:right;display:inline;width:70%;}

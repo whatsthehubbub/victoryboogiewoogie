@@ -361,7 +361,7 @@ def player_profile(request, name):
     return HttpResponse(t.render(c))
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Div, Field
+from crispy_forms.layout import Layout, Submit, Button, Div, Field
 from crispy_forms.bootstrap import FormActions
 
 class PlayerProfileForm(ModelForm):
@@ -375,18 +375,18 @@ class PlayerProfileForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.form_class = 'form-horizontal'
+        self.helper.form_class = 'form'
         self.helper.form_action = ''
         self.helper.form_method = 'post'
 
         self.helper.layout = Layout(
             Div(
-                Field('pseudonym', css_class=''),
-                Field('onelinebio', css_class=''),
-                Field('send_emails', css_class="")
+                Field('pseudonym', css_class='input-block-level'),
+                Field('onelinebio', css_class='input-block-level'),
+                Field('send_emails', css_class='')
             ),
             FormActions(
-                Submit('submit', 'Opslaan', css_class='blabla')
+                Submit('submit', 'Opslaan', css_class='btn')
             )
         )
 

@@ -149,10 +149,22 @@ def pieces_per_week(request, week):
     return HttpResponse(t.render(c))
 
 def piece_detail(request, id):
-    player = Player.objects.get(user=request.user)
     piece = Piece.objects.get(id=id)
 
-    if piece.status == "APPROVED" or request.user.is_superuser or player.role == 'WRITER' or player==piece.writer:
+    show = False
+
+    if piece.status == 'APPROVED':
+        show = True
+    elif request.user.is_authenticated:
+        if request.user.is_superuser:
+            show = True
+        else:
+            player = Player.objects.get(user=request.user)
+
+            if player.role == 'WRITER' or player==piece.writer:
+                show = True
+
+    if show:
         t = loader.get_template('boogie/piece_detail.html')
 
         c = RequestContext(request, {
@@ -160,9 +172,8 @@ def piece_detail(request, id):
         })
         return HttpResponse(t.render(c))
     else:
-        # TODO change this?
         return HttpResponseRedirect(reverse('index'))
-
+        
 class PieceSubmitForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(PieceSubmitForm, self).__init__(*args, **kwargs)

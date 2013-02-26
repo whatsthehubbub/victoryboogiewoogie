@@ -20,27 +20,25 @@
 	<div class="span12">
 	
 		<h2 class="text-center">De nieuwste bijdragen</h2></div>
-		
 		<div id="itemlist" class="clearfix">
 		{% for piece in frontpage_pieces %}
 			{% include "boogie/piece_fragment.html" %}
 		{% endfor %}
 		</div>
 		
-		<!-- Personage-lijst, misschien moet dit gewoon naar z'n eigen pagina -->
-		
 		<h2 class="text-center">De personages</h2></div>
-		
+		<div id="characterlist" class="row">
 		{% for character in characters %}
-		<div class="span4">
+		<div class="span3">
 			<a href="{% url 'character_profile' character.id %}">
 				{% if character.avatar %}
 					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
 				{% endif %}
-				<p>{{ character.name }}</p>
+				<h4 class="text-center">{{ character.name }}</h4>
 			</a>
 		</div>
 		{% endfor %}
+		</div>
 		
 	</div>
 </div>

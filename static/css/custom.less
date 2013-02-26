@@ -44,6 +44,7 @@ h2.sans, h3.sans, h4.sans, h5.sans, h6.sans {
 .badge, .label {
 	font-family: @sansFontFamily;
 	font-size: @fontSizeMini;
+	padding: 3px 4px 4px;
 	//.box-shadow( 0 1px 1px rgba(0,0,0,.2));
 }
 
@@ -467,12 +468,12 @@ a:hover {
 // !CONTENT
 #content {
 	a:hover .box {
-		border: 1px solid fade(@grayLight, 40%);
+		border: 1px solid @grayLighter;
 	}
 	.box {
 		padding: 3em 0 4em 0;
 		.border-radius(@baseBorderRadius);
-		border: 1px solid fade(@grayLighter, 60%);
+		border: 1px solid fade(@grayLighter, 50%);
 	}
 	.box-small {
 		padding: 1em 0 0.5em 0;
@@ -493,6 +494,9 @@ a:hover {
 #itemlistinfo {
 	position: relative;
 	margin-bottom: 0.5em;
+	.label {
+		vertical-align: 2px;
+	}
 	.filter {
 		position: absolute;
 		top: 0.6em;
@@ -552,8 +556,9 @@ a:hover {
 	}
 	.meta {
 		color: @grayLight;
-		background-color: fade(@grayLighter, 40%);
+		background-color: fade(@grayLighter, 30%);
 		//padding: 0.8em 0 0;
+		border-bottom: 1px solid fade(@grayLighter, 50%);
 		.genre {
 			margin: 0.75em 0 0.75em 0.5em;
 			font-style: italic;
@@ -734,7 +739,7 @@ a:hover {
 	.social {
 		border: 1px solid @grayLighter;
 		margin: 2em 0 6em;
-		.border-radius(@baseBorderRadius);
+		//.border-radius(@baseBorderRadius);
 		.score {
 			font-family: @sansFontFamily;
 			font-size: 1em;
@@ -797,7 +802,7 @@ a:hover {
 
 // !ENTRY QUEUE
 #entryqueue {
-	color: @grayLight;
+	//color: @grayLight;
 	.item {
 		margin-top: 1em;
 	}

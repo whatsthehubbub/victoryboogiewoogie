@@ -16,7 +16,7 @@
 		<h3 class="text-center">Onderwerpen voor schrijvers</h3>
 		<p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
 		
-		<table class="table table-bordered">
+		<table class="table table-striped table-bordered">
 			<tbody>
 			{% for topic in writer_topics %}
 				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission. -->
@@ -34,7 +34,7 @@
 		<h3 class="text-center">Onderwerpen voor spelers</h3>
 		<p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. Ook kun je zien wat de voortgang is van ieder onderwerp tot een &lsquo;gebeurtenis&rsquo;.</p>
 		
-		<table id="topiclist" class="table table-bordered">
+		<table id="topiclist" class="table table-striped table-bordered">
 			<tbody>
 			{% for topic in player_topics %}
 				<tr>
@@ -53,7 +53,7 @@
 		<h3 class="text-center">Gearchiveerde onderwerpen</h3>
 		<p>Over deze onderwerpen zijn we uitgeschreven.</p>
 
-		<table class="table table-bordered">
+		<table class="table table-striped table-bordered">
 			<tbody>
 			{% for topic in archived_topics %}
 				<tr>

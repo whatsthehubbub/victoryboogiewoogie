@@ -6,14 +6,24 @@
 {% block bodyid %}character_profile{% endblock %}
 
 {% block content %}
-<div id="itemlistinfo" class="clearfix">
-	
-	<h2 class="text-center">Bijdragen <span class="sub">over {{ character.name }}</span></h2>
 
-		<p>{{ character.onelinebio }}</p>
-		<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+<div id="characterinfo" class="row">
+	<h2 class="span12 text-center">{{ character.name }}</h2>
+	<div class="span6 offset1 biography">
+		<p class="lead">{{ character.onelinebio }}</p>
 		<p>{{ character.biography }}</p>
+	</div>
+	<div class="span5 portrait">
+		<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+	</div>
+</div>
 
+<hr>
+
+<div id="itemlistinfo" class="clearfix">
+
+	<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ character.name }}</h2>
+	
 	<div class="filter pull-right">
 		<div class="btn-group"> 
 			{% ifequal order '-datecreated' %}
@@ -29,12 +39,12 @@
 			{% endifequal %}
 		</div>
 	</div>
-	
-	<div id="itemlist" class="row clearfix">
+</div>
+
+<div id="itemlist" class="row clearfix">
 	{% for piece in character.pieces %}
 		{% include "boogie/piece_fragment.html" %}
 	{% endfor %}
-	</div>
-	
 </div>
+
 {% endblock %}

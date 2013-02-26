@@ -15,20 +15,15 @@ from boogie import tasks
 
 
 def index(request):
-    game = Game.objects.get_latest_game()
+    t = loader.get_template('boogie/index.html')
+    
+    c = RequestContext(request, {
+            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+            'summary': Summary.objects.all().order_by('-datecreated'),
+            'characters': Character.objects.all()
+    })
 
-    if game.started:
-        t = loader.get_template('boogie/index.html')
-        
-        c = RequestContext(request, {
-                'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
-                'summary': Summary.objects.all().order_by('-datecreated'),
-                'characters': Character.objects.all()
-        })
-
-        return HttpResponse(t.render(c))
-    else:
-        return HttpResponseRedirect(reverse('boogie.views.pre_launch'))
+    return HttpResponse(t.render(c))
 
 
 class PreLaunchEmailForm(ModelForm):

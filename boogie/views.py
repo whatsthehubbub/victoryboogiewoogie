@@ -13,7 +13,7 @@ from boogie.models import *
 from boogie import tasks
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Button, Div, Field, MultiField
+from crispy_forms.layout import Layout, Submit, Div, Field, MultiField
 from crispy_forms.bootstrap import FormActions
 
 
@@ -152,11 +152,11 @@ def piece_detail(request, id):
     player = Player.objects.get(user=request.user)
     piece = Piece.objects.get(id=id)
 
-    if request.user.is_superuser or player.role == 'WRITER' or player==piece.writer:
+    if piece.status == "APPROVED" or request.user.is_superuser or player.role == 'WRITER' or player==piece.writer:
         t = loader.get_template('boogie/piece_detail.html')
 
         c = RequestContext(request, {
-                'piece': piece
+            'piece': piece
         })
         return HttpResponse(t.render(c))
     else:

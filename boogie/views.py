@@ -182,7 +182,7 @@ def piece_submit(request):
 
 
 class WriterPieceSubmitForm(ModelForm):
-    topic = ModelChoiceField(queryset=Topic.objects.exclude(archived=True).filter(pool='WRITER'))
+    topic = ModelChoiceField(queryset=Topic.objects.exclude(archived=True).filter(pool='WRITER'), label='Onderwerp')
 
     class Meta:
         model = Piece

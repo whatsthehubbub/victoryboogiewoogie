@@ -10,10 +10,10 @@
 	
 	<ul class="pager pager-top">
 		<li class="previous">
-			<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>
+			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
 		</li>
 		<li class="next">
-			<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>
+			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
 		</li>
 	</ul>
 	
@@ -85,10 +85,10 @@
 	
 	<ul class="pager pager-bottom">
 		<li class="previous">
-			<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>
+			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
 		</li>
 		<li class="next">
-			<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>
+			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
 		</li>
 	</ul>
 	

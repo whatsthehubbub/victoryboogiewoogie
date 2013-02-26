@@ -42,6 +42,8 @@
 	<div id="itemlist" class="row clearfix">
 	{% for piece in pieces %}
 		{% include "boogie/piece_fragment.html" %}
+	{% empty %}
+		<p class="text-center">Er is nog niks gepubliceerd over dit onderwerp…</p>
 	{% endfor %}
 	</div>
 	

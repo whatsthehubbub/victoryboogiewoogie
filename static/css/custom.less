@@ -287,8 +287,13 @@ a:hover {
 
 // !SUMMARY
 #summary {
-	border-bottom: 1px dashed @grayLighter;
-	padding: 0.5em 0 1.5em;
+	border-bottom: 1px dashed fade(@grayLight, 50%);
+	padding: 0.5em 1.25em 1.75em;
+	margin: 0 -1.25em 1em;
+	background-image: url(/static/img/scissor.png);
+	background-size: 25px 18px;
+	background-position: 20px bottom;
+	background-repeat: no-repeat;
 	a {
 		color: @gray;
 		.pull-right {

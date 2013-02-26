@@ -247,8 +247,8 @@ class WriterPieceSubmitForm(ModelForm):
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
-        if not text and genre != 'Headline':
-            raise ValidationError("Schrijf een tekst (voor niet headline bijdragen).")
+        if not text and (genre != 'Headline' and genre != 'Illustratie'):
+            raise ValidationError("Schrijf een tekst (voor niet headline / illustratie bijdragen).")
 
         return cleaned_data
 

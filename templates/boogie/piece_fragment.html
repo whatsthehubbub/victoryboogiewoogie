@@ -5,8 +5,14 @@
 				<div class="overlay"></div>
 			
 				<div class="meta clearfix">
-					{% ifnotequal bodyid topic_detail %}<p class="genre pull-left">{{ piece.topic }}</p>{% endifnotequal %}
-					{% if piece.character.avatar %}<img src="{{ piece.character.avatar.url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">{% endif %}
+					{% ifnotequal topic piece.topic %}
+						<p class="genre pull-left">{{ piece.topic }}</p>
+					{% endifnotequal %}
+					{% ifnotequal character piece.character %}
+						{% if piece.character.avatar %}
+							<img src="{{ piece.character.avatar.url }}" class="character img-circle pull-right" alt="{{ piece.character.name }}">
+						{% endif %}
+					{% endifnotequal %}
 				</div>
 				
 				<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>

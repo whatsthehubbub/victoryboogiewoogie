@@ -477,6 +477,35 @@ a:hover {
 		right: 0;
 		text-decoration: none;
 	}
+	.light {
+		color: @grayLight;
+	}
+}
+
+#playeredit {
+	form {
+		margin: 3em 0 1em;
+		padding: 1em 0 0;
+	}
+	label[for="id_pseudonym"], label[for="id_onelinebio"], label[for="id_send_emails"] {
+		font-weight: 800;
+		float: left;
+		display: inline;
+		width: 25%;
+		padding: 0.4em 0 0;
+	}
+	#id_pseudonym, #id_onelinebio, #id_send_emails {
+		float: right;
+		display: inline;
+		width: 70%;
+	}
+	.controls {
+		margin-left: 0;
+	}
+	#id_send_emails {
+		width: 72.5%;
+		margin-top: 0.5em;
+	}
 }
 
 #itemdetail {

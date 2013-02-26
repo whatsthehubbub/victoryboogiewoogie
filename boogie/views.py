@@ -207,10 +207,10 @@ class WriterPieceSubmitForm(ModelForm):
     def clean(self):
         cleaned_data = super(WriterPieceSubmitForm, self).clean()
 
-        text = self.cleaned_data['text']
-        genre = self.cleaned_data['text']
+        text = cleaned_data.get('text')
+        genre = cleaned_data.get('genre')
 
-        if not text and not genre == 'Headline':
+        if not text and genre != 'Headline':
             raise ValidationError("Schrijf een tekst (voor niet headline bijdragen).")
 
         return cleaned_data
@@ -222,7 +222,7 @@ def writer_piece_submit(request):
 
     if player.role == 'WRITER':
         if request.method == 'POST':
-            form = WriterPieceSubmitForm(request.POST)
+            form = WriterPieceSubmitForm(request.POST, request.FILES)
             
             # TODO check for compulsory fields
 

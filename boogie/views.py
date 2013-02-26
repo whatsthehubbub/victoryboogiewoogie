@@ -172,9 +172,9 @@ class PieceSubmitForm(ModelForm):
 
         self.helper.layout = Layout(
             MultiField(
-                Field('genre', css_class=''),
+                Field('genre', css_class='input-block-level'),
                 Field('title', css_class='input-block-level'),
-                Field('text', css_class=''),
+                Field('text', css_class='input-block-level'),
                 Field('new_topic', css_class="input-block-level"),
             ),
             FormActions(

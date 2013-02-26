@@ -15,7 +15,9 @@ from boogie import tasks
 
 
 def index(request):
-    if request.user.is_authenticated():
+    game = Game.objects.get_latest_game()
+
+    if game.started:
         t = loader.get_template('boogie/index.html')
         
         c = RequestContext(request, {

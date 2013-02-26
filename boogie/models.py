@@ -272,7 +272,6 @@ class Piece(models.Model):
             vote = PieceVote.objects.get(player=player, piece=self)
             vote.delete()
         except:
-            print 'fail'
             logger.info('Tried to undo non-existent vote')
 
 
@@ -309,8 +308,6 @@ class Piece(models.Model):
         min_max = Piece.objects.aggregate(Min('score_cache'), Max('score_cache'))
         min_score = min_max['score_cache__min']
         max_score = min_max['score_cache__max']
-
-        print min_score, max_score
 
         return scale(self.score_cache, [min_score, max_score], [1.0, 10.0])
 
@@ -382,6 +379,9 @@ class Game(models.Model):
     datechanged = models.DateTimeField(auto_now=True)
 
     start_date = models.DateField()
+
+    # Used to turn on/off the pre launch screen
+    started = models.BooleanField(default=False)
 
     days_between_reassign = models.IntegerField(default=1)
 

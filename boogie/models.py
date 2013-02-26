@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
 from django.db.models import Min, Max
+from django.conf import settings
 
 import logging
 
@@ -146,7 +147,7 @@ class Notification(models.Model):
     def send_email(self):
         if self.for_player.send_emails:
             subject = self.get_subject()
-            from_email = 'postbode@gidsgame.nl'
+            from_email = settings.DEFAULT_FROM_EMAIL
             to_email = self.for_player.user.email
 
             content = self.message + '<br><br>' + self.get_email_footer()

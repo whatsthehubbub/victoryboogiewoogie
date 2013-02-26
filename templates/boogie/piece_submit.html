@@ -8,14 +8,19 @@
 	<script type="text/javascript">
 
 	$(document).ready(function() {
-		$('#id_genre').change(function() {
-
+		function checkSlide() {
 			if ($('#id_genre').val() === 'Headline') {
 				$('#div_id_text').slideUp();
 			} else {
 				$('#div_id_text').slideDown();
 			}
+		}
+
+		$('#id_genre').change(function() {
+			checkSlide();
 		});
+
+		checkSlide();
 	});
 
 	</script>

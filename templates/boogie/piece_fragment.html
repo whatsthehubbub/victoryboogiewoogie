@@ -18,14 +18,15 @@
 				<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>
 
 				{% ifequal piece.genre "Illustratie" %}
-					<img src="{{ piece.image.url }}" alt="{{ piece.title }}">
+					{% if piece.image %}
+						<img src="{{ piece.image.url }}" alt="{{ piece.title }}">
+					{% endif %}
 				{% else %}
 					<div class="content">
 						<h3 class="sans">{{ piece.title }}</h3>
 						<p>{{ piece.text|linebreaks }}</p>
 					</div>
 				{% endifequal %}
-
 			</div>
 		</a>
 		

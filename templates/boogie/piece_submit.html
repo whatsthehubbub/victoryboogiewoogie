@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load crispy_forms_tags %}
 
 {% block pagetitle %}Schrijven{% endblock pagetitle %}
 
@@ -56,15 +57,7 @@
 						<li class="pull-right"><span class="badge">00</span></li><!-- TODO: Hook this up to topic rank. -->
 					</ul>
 				
-				<form action="{% url 'piece_submit' %}" method="post" class="clearfix">
-					{% csrf_token %}
-					
-					{% for field in form %}
-					<div class="{{ field.html_name }} clearfix">{{ field.label_tag }}{{ field }}</div>
-					{% endfor %}
-					
-					<input type="submit" value="Verzenden" class="btn pull-right">
-				</form>
+				{% crispy form %}
 
 				<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
 

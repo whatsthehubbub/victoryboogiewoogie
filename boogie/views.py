@@ -145,6 +145,26 @@ def piece_detail(request, id):
         return HttpResponseRedirect(reverse('index'))
 
 class PieceSubmitForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_class = 'form'
+        self.helper.form_action = ''
+        self.helper.form_method = 'post'
+
+        self.helper.layout = Layout(
+            MultiField(
+                Field('genre', css_class=''),
+                Field('title', css_class='input-block-level'),
+                Field('text', css_class=''),
+                Field('new_topic', css_class="input-block-level"),
+            ),
+            FormActions(
+                Submit('submit', 'Opslaan', css_class='btn')
+            )
+        )
+
+        super(PieceSubmitForm, self).__init__(*args, **kwargs)
+
     genre = ChoiceField(choices=PIECE_GENRE_CHOICES[:-1])
 
     class Meta:
@@ -361,7 +381,7 @@ def player_profile(request, name):
     return HttpResponse(t.render(c))
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Button, Div, Field
+from crispy_forms.layout import Layout, Submit, Button, Div, Field, MultiField
 from crispy_forms.bootstrap import FormActions
 
 class PlayerProfileForm(ModelForm):

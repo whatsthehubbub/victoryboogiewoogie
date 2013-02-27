@@ -910,6 +910,27 @@ a:hover{text-decoration:none;}
 #calendar .nav li.disabled a,#calendar .nav li.disabled a:hover{color:rgba(153, 153, 153, 0.7);}
 #signin{max-width:32em;padding:1em 1em 3em;margin:3em auto;background-color:#ffffff;-webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.2);box-shadow:0 2px 4px rgba(0, 0, 0, 0.2);text-align:center;}#signin .stripes{margin:-1em -1em 0;height:5px;background-image:url(/static/img/bg-header-stripes.png);background-size:400px 5px;background-repeat:repeat-x;}
 #signin .logo{text-align:center;margin:1.5em 0 2em;padding:0 0 1.5em;border-bottom:1px solid #eeeeee;}
+#signin .logo a{text-decoration:none;}
+#signin .logo a:hover .char1{color:#5a9fff;}
+#signin .logo a:hover .char2{color:#000000;}
+#signin .logo a:hover .char3{color:#fed500;}
+#signin .logo a:hover .char4{color:#e32112;}
+#signin .logo a:hover .char5{color:#0031be;}
+#signin .logo a:hover .char6{color:#000000;}
+#signin .logo a:hover .char7{color:#0031be;}
+#signin .logo a:hover .char8{color:#5a9fff;}
+#signin .logo a:hover .char9{color:#fed500;}
+#signin .logo a:hover .char10{color:#0031be;}
+#signin .logo a:hover .char11{color:#e32112;}
+#signin .logo a:hover .char12{color:#fed500;}
+#signin .logo a:hover .char13{color:#000000;}
+#signin .logo a:hover .char14{color:#fed500;}
+#signin .logo a:hover .char15{color:#e32112;}
+#signin .logo a:hover .char16{color:#0031be;}
+#signin .logo a:hover .char17{color:#fed500;}
+#signin .logo a:hover .char18{color:#e32112;}
+#signin .logo a:hover .char19{color:#5a9fff;}
+#signin .logo a:hover img{opacity:1;}
 #signin .logo h1{display:inline;color:rgba(153, 153, 153, 0.5);text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:1.8em;}
 #signin .logo img{width:8px;height:8px;margin:-1em 0.5em 0;opacity:0.2;}
 #signin h2{font-size:1.6em;}
@@ -962,6 +983,7 @@ a:hover{text-decoration:none;}
 #characterlist a:hover h4{color:#000000;}
 #characterlist a:hover img{opacity:1;}
 #playerdetail .meta{position:relative;}
+#playerdetail .label{display:block;position:absolute;top:1.5em;left:0;text-decoration:none;background-color:#5a9fff;}
 #playerdetail .edit{position:absolute;top:0.6em;right:0;text-decoration:none;}
 #playerdetail .light{color:#999999;}
 #playerdetail h4{margin-top:2em;margin-bottom:1em;}

@@ -414,10 +414,6 @@ class PlayerProfileForm(ModelForm):
         model = Player
         fields = ('pseudonym', 'onelinebio', 'send_emails')
 
-        widgets = {
-            'pseudonym': TextInput(attrs={'class': 'pseudonym'})
-        }
-
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_class = 'form'
@@ -437,6 +433,14 @@ class PlayerProfileForm(ModelForm):
 
         super(PlayerProfileForm, self).__init__(*args, **kwargs)
 
+    def clean_pseudonym(self):
+        pseudonym = self.cleaned_data['pseudonym']
+
+        if not pseudonym:
+            raise ValidationError("Vul een pseudoniem in.")
+
+        return pseudonym
+
 
 @login_required
 def player_profile_edit(request, name):
@@ -445,10 +449,10 @@ def player_profile_edit(request, name):
     player = Player.objects.get(user__username=name)
     if request.user == player.user:
         if request.method == 'POST':
-            profileform = PlayerProfileForm(request.POST, request.FILES, instance=player)
+            playerform = PlayerProfileForm(request.POST, request.FILES, instance=player)
 
-            if profileform.is_valid():
-                profileform.save()
+            if playerform.is_valid():
+                playerform.save()
 
                 return HttpResponseRedirect(reverse('boogie.views.player_profile', args=[name]))
         else:

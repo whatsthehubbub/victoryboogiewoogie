@@ -64,7 +64,7 @@ class Player(models.Model):
 
 
 # Code to create new player classes after registration
-from registration.signals import user_registered
+from registration.signals import user_activated
 
 def create_player(sender, user, request, **kwarg):
     player = Player.objects.create(user=user) # Default role is player
@@ -74,7 +74,7 @@ def create_player(sender, user, request, **kwarg):
     player.save()
 
     player.get_new_assignment()
-user_registered.connect(create_player)
+user_activated.connect(create_player)
 
 
 class Character(models.Model):

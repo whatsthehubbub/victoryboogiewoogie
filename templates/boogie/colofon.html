@@ -13,15 +13,15 @@
 	</div>
 
 	<div class="span8 offset2">
-		<h3 class="text-center">De Schrijvers</h3>
-		<div class="span2 text-center">
+		<h3 class="text-center">Schrijvers</h3>
+		<p>Het onderstaande bonte gezelschap vormt achter de schermen de redactie. Ze schrijven stukken over de personages, en beoordelen bijdragen van spelers.</p>
+		<ul>
 			{% for writer in writers %}
 				<a href="{{ writer.get_absolute_url }}">
-					<img class="img-polaroid" src="{{ writer.avatar.url }}" alt="{{ writer.pseudonym }}"></img> 
-					<h4>{{ writer.pseudonym }}</h4>
+					<li>{{ writer.pseudonym }}</li>
 				</a>
 			{% endfor %}
-		</div>
+		</ul>
 	</div>
 	
 </div>

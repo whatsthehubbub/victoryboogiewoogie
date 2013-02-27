@@ -20,7 +20,7 @@
 			<tbody>
 			{% for writer in writers %}
 				<tr>
-					<td><a href="{{ writer.get_absolute_url }}">{{ writer.pseudonym }}</a></td>
+					<td><a href="{{ writer.get_absolute_url }}">{{ writer.get_name }}</a></td>
 				</tr>
 			{% endfor %}
 			</tbody>

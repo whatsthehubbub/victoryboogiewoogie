@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block pagetitle %}{{ player.pseudonym }}&rsquo;s profiel{% endblock pagetitle %}
+{% block pagetitle %}{{ player.get_name }}&rsquo;s profiel{% endblock pagetitle %}
 
 {% block content %}
 <div id="playerdetail" class="row">
@@ -13,7 +13,7 @@
 			<span class="pull-left label">Speler</span>
 		{% endifequal %}
 
-		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.pseudonym }}</h2>
+		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.get_name }}</h2>
 		
 		{% ifequal user.username player.user.username  %} 
 			<a class="btn pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>

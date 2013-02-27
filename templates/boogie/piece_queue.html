@@ -21,7 +21,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="span2">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.pseudonym }}</a></td>
+					<td class="span2">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></td>
 					<td class="span3">Over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
 					<td class="span3">Nieuw onderwerp: <em>{{ piece.new_topic }}</em></td>
 				</tr>

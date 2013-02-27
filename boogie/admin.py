@@ -45,5 +45,5 @@ class NotificationAdmin(admin.ModelAdmin):
 admin.site.register(Notification, NotificationAdmin)
 
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('start_date', 'days_between_reassign')
+    list_display = ('start_date', 'started', 'days_between_reassign')
 admin.site.register(Game, GameAdmin)

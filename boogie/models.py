@@ -25,7 +25,7 @@ class Player(models.Model):
     role = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='PLAYER')
 
     # Player fields
-    pseudonym = models.CharField(max_length=255, blank=True, verbose_name='Pseudoniem (verplicht)')
+    pseudonym = models.CharField(max_length=255, blank=True, verbose_name='Pseudoniem')
     onelinebio = models.CharField(max_length=255, blank=True, verbose_name="Korte biografie")
 
     # E-mail notifications

@@ -66,15 +66,10 @@ class Player(models.Model):
 # Code to create new player classes after registration
 from registration.signals import user_activated
 
-def create_player(sender, user, request, **kwarg):
-    player = Player.objects.create(user=user) # Default role is player
-    
-    import uuid
-    player.emails_unsubscribe_hash = uuid.uuid4().hex
-    player.save()
-
+def activate_player(sender, user, request, **kwarg):
+    player = Player.objects.get(user=user)
     player.get_new_assignment()
-user_activated.connect(create_player)
+user_activated.connect(activate_player)
 
 
 class Character(models.Model):

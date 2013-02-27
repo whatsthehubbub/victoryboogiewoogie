@@ -640,6 +640,24 @@ a:hover {
 	.info {
 		margin: 0.5em 0 0 0;
 		color: @grayLight;
+		.author a {
+			position: relative;
+			padding-right: 15px;
+			display: inline-block;
+			max-width: 7em;
+			overflow: hidden;
+			.fader {
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				width: 15px;
+				background-image: url(/static/img/overflow-fader.png);
+				background-size: 15px 50px;
+				background-position: right center;
+				background-repeat: repeat-y;
+			}
+		}
 		a {
 			color: @gray;
 		}

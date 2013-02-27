@@ -28,7 +28,7 @@ class CrispyRegistrationForm(EmailRegistrationForm):
             Field('password1', css_class='input-block-level'),
             Field('password2', css_class='input-block-level'),
             FormActions(
-                Submit('submit', 'Verzenden', css_class='btn')
+                Submit('submit', 'Aanmelden', css_class='btn')
             )
         )
 

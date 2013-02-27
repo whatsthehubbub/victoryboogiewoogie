@@ -1,15 +1,10 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block pagetitle %}Aanmelden{% endblock pagetitle %}
 
 {% block content %}
 <h2>Aanmelden</h2>
 <p>Meld je aan om mee te kunnen spelen met Boogie Woogie Daily.</p>
-	<form method="POST" action="/register/">
-		{% csrf_token %}
-		
-		{{ form.as_p }}
-
-		<input type="submit" value="Aanmelden">
-	</form>
+	{% crispy form %}
 {% endblock content %}

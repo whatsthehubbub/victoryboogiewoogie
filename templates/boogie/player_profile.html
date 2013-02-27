@@ -7,6 +7,12 @@
 <div id="playerdetail" class="row">
 	
 	<div class="meta span8 offset2">
+		{% ifequal player.role 'WRITER' %}
+			<span class="pull-left label">Schrijver</span>
+		{% else %}
+			<span class="pull-left label">Speler</span>
+		{% endifequal %}
+
 		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.pseudonym }}</h2>
 		
 		{% ifequal user.username player.user.username  %} 

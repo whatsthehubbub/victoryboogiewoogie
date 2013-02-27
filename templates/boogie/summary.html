@@ -3,15 +3,16 @@
 {% block pagetitle %}Het verhaal tot nu toe&hellip;{% endblock pagetitle %}
 
 {% block content %}
-<div class="row">
+<div id="summarylist" class="row">
 	<div class="span8 offset2">
 		
-		<h2 class="text-center">Het verhaal tot nu toe&hellip;</h2>
+		<h2 class="text-center">Het verhaal tot nu toe…</h2>
 		
 		{% for piece in summary %}
-		<hr>
-		<h3 id="summary_{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
-		<p>{{ piece.content|safe }}</p>
+		<div class="summaryitem">
+			<h3 id="summary_{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
+			<p>{{ piece.content|safe }}</p>
+		</div>
 		{% endfor %}
 		
 	</div>

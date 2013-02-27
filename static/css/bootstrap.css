@@ -857,9 +857,9 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{color:#ffffff;text-decor
 .affix{position:fixed;}
 body{background-color:#ffffff;background-image:url(/static/img/bg-paper.png);background-size:120px 120px;background-repeat:repeat;}
 h1,h2,h3,h4,h5,h6{color:#000000;}
-h2{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;line-height:1.2em;margin:0.15em 0 0.5em;padding:0;}h2 .sub-top{margin-top:-0.5em;margin-bottom:-0.5em;font-size:0.6em;display:block;}
+h2{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;line-height:1.2em;margin:0.5em 0 0.75em;padding:0;}h2 .sub-top{margin-top:-0.5em;margin-bottom:-0.5em;font-size:0.6em;display:block;}
 h2 .sub-bottom{margin-top:-0.5em;font-size:0.6em;display:block;}
-h3{margin:1.5em 0 0.5em;}
+h3{color:#666666;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;line-height:1.2em;margin:2em 0 0.5em;padding:0;}
 h2.sans,h3.sans,h4.sans,h5.sans,h6.sans{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;}
 .badge,.label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;padding:3px 4px 4px;}
 a{text-decoration:underline;}
@@ -956,20 +956,22 @@ a:hover{text-decoration:none;}
 #content a:hover .box{border:1px solid #eeeeee;}
 #content .box{padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid rgba(238, 238, 238, 0.5);}
 #content .box-small{padding:1em 0 0.5em 0;}
-#home-latest{margin-top:2em;}
+#home-latest{margin-top:2em;border-bottom:1px dashed rgba(153, 153, 153, 0.5);margin-left:-1.25em;padding-left:1.25em;margin-right:-1.25em;padding-right:1.25em;padding-bottom:3em;}
 #home-characters{margin-top:4em;}
-#itemlistinfo{position:relative;margin-bottom:0.5em;}#itemlistinfo .label{vertical-align:2px;}
-#itemlistinfo .filter{position:absolute;top:0.6em;right:0;}
-#itemlistinfo a{text-decoration:none;}
-#itemlist a{text-decoration:none;}
+#summarylist .summaryitem{border-bottom:1px solid #eeeeee;padding-bottom:2em;}
+#itemlist{position:relative;}#itemlist .filter{position:absolute;top:1.55em;right:0;}
+#itemlist a{text-decoration:none;}#itemlist a .content h3{color:#666666;}
+#itemlist a .content p{color:#999999;}
+#itemlist a:hover .content h3{color:#333333;}
+#itemlist a:hover .content p{color:#222222;}
 #itemlist article{margin-bottom:1em;}
 #itemlist article a:hover{text-decoration:none;}#itemlist article a:hover .meta{background-color:#eeeeee;}
-#itemlist article.headline h3{font-size:1.8em;line-height:1.4em;margin-top:0.5em;}
+#itemlist article.headline h3{font-size:1.8em;line-height:1.2em;margin-top:0.5em;}
 #itemlist article.proza h3,#itemlist article.poezie h3,#itemlist article.essay h3{font-size:1.4em;line-height:1.2em;margin-top:1em;}
 #itemlist .box{position:relative;overflow:hidden;padding:0;height:16em;}
 #itemlist .overlay{position:absolute;bottom:0;left:0;background-image:url(/static/img/itemlist-overlay.png);background-size:50px 40px;background-repeat:repeat-x;background-position:center bottom;width:100%;height:40px;}
 #itemlist .illustratie .overlay{visibility:hidden;}
-#itemlist .meta{color:#999999;background-color:rgba(238, 238, 238, 0.3);border-bottom:1px solid rgba(238, 238, 238, 0.5);}#itemlist .meta .genre{margin:0.75em 0 0.75em 0.5em;font-style:italic;}
+#itemlist .meta{color:#999999;background-color:rgba(238, 238, 238, 0.3);}#itemlist .meta .genre{margin:0.75em 0 0.75em 0.5em;font-style:italic;}
 #itemlist .meta .character{width:40px;height:40px;margin:0.2em 0.5em;}
 #itemlist .content{margin:1em;}
 #itemlist .score{position:absolute;left:0.5em;bottom:0.5em;margin:0;}#itemlist .score .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;color:#ffffff;text-shadow:0px -1px 0px rgba(0, 0, 0, 0.2);background-color:#fed500;-webkit-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);box-shadow:0 1px 0px rgba(0, 0, 0, 0.3);}
@@ -984,8 +986,8 @@ a:hover{text-decoration:none;}
 #characterlist a:hover h4{color:#000000;}
 #characterlist a:hover img{opacity:1;}
 #playerdetail .meta{position:relative;}
-#playerdetail .label{display:block;position:absolute;top:1.5em;left:0;text-decoration:none;background-color:#5a9fff;}
-#playerdetail .edit{position:absolute;top:0.6em;right:0;text-decoration:none;}
+#playerdetail .label{display:block;position:absolute;top:2.5em;left:0;text-decoration:none;background-color:#5a9fff;}
+#playerdetail .edit{position:absolute;top:1.55em;right:0;text-decoration:none;}
 #playerdetail .light{color:#999999;}
 #playerdetail h4{margin-top:2em;margin-bottom:1em;}
 #playeredit form{margin:1em 0 0;padding:1em 0 0;}

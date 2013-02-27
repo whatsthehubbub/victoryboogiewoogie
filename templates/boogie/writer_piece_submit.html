@@ -1,13 +1,20 @@
-<html>
+{% extends "base.html" %}
+{% load url from future %}
+{% load crispy_forms_tags %}
 
+{% block pagetitle %}Schrijven{% endblock pagetitle %}
 
-<form method="POST" enctype="multipart/form-data">
-{% csrf_token %}
+{% block content %}
+<div id="createitem" class="row">
+	<div class="span8 offset2">
+		<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
+		
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Versturen">
+		</form>
 
-{{ form.as_p }}
-
-<input type="submit" value="Versturen">
-
-</form>
-
-</html>
+	</div>
+</div>
+{% endblock %}

@@ -53,7 +53,7 @@ class Player(models.Model):
         if self.pseudonym:
             return self.pseudonym
         else:
-            return self.user.username
+            return self.user.email
 
     def __unicode__(self):
         return self.user.username

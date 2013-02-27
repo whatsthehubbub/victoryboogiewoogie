@@ -5,6 +5,11 @@
 {% block pagetitle %}Account geactiveerd gelukt{% endblock pagetitle %}
 
 {% block content %}
-	<h2>Account geactiveerd</h2>
-	<p>Je account is geactiveerd! Welkom bij Boogie Woogie Daily. Je kunt nu <a href="{% url 'login' %}">inloggen</a>.</p>
+<div class="row">
+	<div class="span6 offset3">
+		<h2 class="text-center">Account geactiveerd</h2>
+		<hr>
+		<p class="lead">Je account is geactiveerd! Welkom bij Boogie Woogie Daily. Je kunt nu <a href="{% url 'login' %}">inloggen</a>.</p>
+	</div>
+</div>
 {% endblock content %}

@@ -441,7 +441,6 @@ class PlayerProfileForm(ModelForm):
 
         return pseudonym
 
-
 @login_required
 def player_profile_edit(request, name):
     t = loader.get_template('boogie/player_profile_edit.html')
@@ -483,7 +482,8 @@ def character_profile(request, id):
 
     c = RequestContext(request, {
         'character': character,
-        'order': order
+        'order': order,
+        'pieces': Piece.objects.filter(status='APPROVED', character=character).order_by(order)
     })
 
     return HttpResponse(t.render(c))

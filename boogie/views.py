@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
 from django.template.defaultfilters import slugify
-from django.forms import ModelForm, ChoiceField, TextInput, ModelChoiceField, ValidationError
+from django.forms import ModelForm, ChoiceField, ModelChoiceField, ValidationError
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 
@@ -13,7 +13,7 @@ from boogie.models import *
 from boogie import tasks
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Div, Field, MultiField
+from crispy_forms.layout import Layout, Submit, Div, Field, HTML
 from crispy_forms.bootstrap import FormActions
 
 
@@ -187,6 +187,7 @@ class PieceSubmitForm(ModelForm):
             Field('genre', css_class='input-block-level'),
             Field('title', css_class='input-block-level'),
             Field('text', css_class='input-block-level'),
+            HTML('<p id="charactercount">5000</p>'),
             Field('new_topic', css_class="input-block-level"),
             FormActions(
                 Submit('submit', 'Opslaan', css_class='btn')

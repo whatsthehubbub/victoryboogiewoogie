@@ -1,81 +1,58 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}home{% endblock %}
-
-{% block content %}
-	{% for piece in pieces %}
-		{% include "boogie/piece_fragment.html" %}
-	{% endfor %}
-	
-	<!-- TODO: Hook this up to characters played by writers. -->
-	<section id="characters">
-		<h2>De personages</h2>
-		<ul>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio lorem ipsum dolor.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio este lauda.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio durum es lorem.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-			<li>
-				<a href="" title="Character Name">
-					<img src="{{ STATIC_URL }}avatars/placeholder.jpg" alt="Character Name">
-					<h3>Character name</h3>
-					<p>One line character bio sit amet.</p>
-				</a>
-			</li>
-		</ul>
-	</section>	
-{% endblock %}
+{% block pagetitle %}Home{% endblock pagetitle %}
 
 {% block sidebar %}
 	{% if summary %}
-	<div class="summary">
-		<p><strong>Het verhaal tot nu toe... </strong> {{ summary.0.content|safe|truncatewords_html:10 }} <a href="{{ summary.0.get_absolute_url }}">lees meer</a></p>
+	<div id="summary" class="clearfix">
+		<a href="{{ summary.0.get_absolute_url }}">
+			<p class="lead"><em>Het verhaal tot nu toe:</em> {{ summary.0.content|safe|truncatewords_html:40 }}</p>
+		</a>
 	</div>
 	{% endif %}
 {% endblock sidebar %}
+
+{% block content %}
+<div id="home-latest">
+	<h2 class="text-center">De nieuwste bijdragen</h2>
+	<div id="itemlist" class="row">
+		
+		<!--
+		<article class="span4 advertentie clearfix">
+			<a href="#">
+				<div class="box">
+					<div class="meta clearfix">
+						<p class="genre pull-left">Advertentie</p>
+					</div>
+					<img src="{{ STATIC_URL }}img/ad-placeholder.png">
+				</div>
+			</a>
+			<div class="info">
+				<p class="pull-right">van <a href="#">Haubenstueberl</a></p>
+			</div>
+		</article>
+		-->
+		
+		{% for piece in frontpage_pieces %}
+			{% include "boogie/piece_fragment.html" %}
+		{% endfor %}
+	</div>
+</div>
+
+<div id="home-characters">
+	<h2 class="text-center">De personages</h2>
+	<div id="characterlist" class="row">
+		{% for character in characters %}
+		<div class="span3">
+			<a href="{% url 'character_profile' character.id %}">
+				{% if character.avatar %}
+					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+				{% endif %}
+				<h4 class="text-center">{{ character.name }}</h4>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -1,37 +1,67 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}piece_queue{% endblock %}
+{% block pagetitle %}Beoordelen{% endblock pagetitle %}
 
 {% block content %}
-    <h2>Ingediende bijdragen</h2>
-    
-    <ol>
-    {% for piece in pieces %}
-        {% include "boogie/piece_fragment.html" %}
-        
-        <p>Nieuw onderwerp: {{ piece.new_topic }}</p>
-
-        <form method="POST" action="{% url 'piece_validate' piece.id %}">{% csrf_token %}
-            <input type="hidden" name="ok" value="yes">
-            <input type="submit" class="btn btn-success" value="Goedkeuren">
-        </form>
-
-        <form method="POST" action="{% url 'piece_validate' piece.id %}"> {% csrf_token %}
-            <input type="hidden" name="ok" value="no">
-            <input type="submit" class="btn btn-warning" value="Afkeuren">
-        </form>
-        
-        <form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">{% csrf_token %}
-            <input type="hidden" name="ok" value="retry">
-            <label for="reason">Motivatie</label> <input type="text" name="reason">
-            <input type="submit" class="btn btn-warning" value="Opnieuw proberen">
-        </form>
-
-        </li>
-    {% empty %}
-        <p>Geen bijdragen om te beoordelen.</p>
-    {% endfor %}
-    </ol>
-    
+<div id="entryqueue" class="row">
+	<div class="span12">
+		<h2 class="text-center">Ingediende bijdragen beoordelen</h2>
+	</div>
+	
+	{% for piece in pieces %}
+	<div class="item span10 offset1">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="span10" colspan="3">
+						<a href="{% url 'piece_detail' piece.id %}" title="{{ piece.title }}">
+							<h4>{{ piece.title }}</h4>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="span2">Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></td>
+					<td class="span3">Over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+					<td class="span3">Nieuw onderwerp: <em>{{ piece.new_topic }}</em></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="action clearfix">
+		<div class="span2 offset1">
+			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="pull-left">
+				{% csrf_token %}
+				<input type="hidden" name="ok" value="yes">
+				<input type="submit" class="span2 btn btn-success" value="Goedkeuren">
+			</form>
+		</div>
+		<div class="span6">
+			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">
+				{% csrf_token %}
+				<input type="hidden" name="ok" value="retry">
+				<div class="input-append">
+					<input class="span5" id="appendedInputButtons" type="text" name="reason" placeholder="Motivatie" {% if piece.rejection_reason %}value="{{ piece.rejection_reason }}"{% endif %}>
+					<button class="btn" type="submit">Opnieuw</button>
+				</div>
+			</form>
+		</div>
+		<div class="span2">
+			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="pull-right">
+				{% csrf_token %}
+				<input type="hidden" name="ok" value="no">
+				<input type="submit" class="span2 btn btn-danger" value="Afkeuren">
+			</form>
+		</div>
+	</div>
+	
+	{% empty %}
+	<div class="span8 offset2">
+		<p class="lead text-center">Geen bijdragen om te beoordelen.</p>
+	</div>
+	{% endfor %}
+	
+	</div>
+</div>
 {% endblock %}

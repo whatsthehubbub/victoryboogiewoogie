@@ -1,29 +1,39 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}pieces_per_week{% endblock %}
+{% block pagetitle %}Week {{ week }}{% endblock pagetitle %}
 
 {% block content %}
-
-<!-- TODO: Hook this up to week navigation in the header. -->
-
-<h2>Week {{ week }}</h2>
-
-<p>Sorteren: 
-    {% ifequal order '-datecreated' %} 
-        <a href="?order=-rating">Beste</a>
-    {% else %}
-        <strong>Beste</strong>
-    {% endifequal %}
-    |
-    {% ifequal order '-rating' %} 
-        <a href="?order=-datecreated">Nieuwste</a>
-    {% else %}
-        <strong>Nieuwste</strong>
-    {% endifequal %}</p>
-
+<div id="itemlist" class="row clearfix">
+	
+	<div class="span12">
+		<h2 class="text-center">Week {{ week }}</h2>
+		
+		{% if pieces.count > 1 %}
+		<div class="filter pull-right">
+			<div class="btn-group"> 
+				{% ifequal order '-datecreated' %}
+					<a href="?order=-score_cache" class="btn">Beste</a>
+				{% else %}
+					<a href="?order=-score_cache" class="btn active">Beste</a>
+				{% endifequal %}
+				
+				{% ifequal order '-score_cache' %}
+					<a href="?order=-datecreated" class="btn">Nieuwste</a>
+				{% else %}
+					<a href="?order=-datecreated" class="btn active">Nieuwste</a>
+				{% endifequal %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	
 	{% for piece in pieces %}
 		{% include "boogie/piece_fragment.html" %}
+	{% empty %}
+		<p class="lead text-center">Er is nog niks gepubliceerd in deze week.</p>
 	{% endfor %}
+
+</div>
 
 {% endblock %}

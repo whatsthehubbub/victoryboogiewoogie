@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Berichten{% endblock pagetitle %}
+
+{% block content %}
+<div id="notifications" class="row">
+	<div class="span10 offset1">
+		
+		<h2 class="text-center">Berichten</h2>
+		
+		<table class="table table-striped row">
+			<tbody>
+			{% for notification in notifications %}
+			<tr class="{% if notification.datecreated > user.last_login %}new{% endif %}">
+				<td class="date span3">{{ notification.datecreated }}{% if notification.datecreated > user.last_login %}<div class="label">NIEUW</div>{% endif %}</td>
+				<td class="span7">{{ notification.message|safe }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+{% endblock %}

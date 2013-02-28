@@ -14,8 +14,8 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
 	
 	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
 	
@@ -28,43 +28,49 @@
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="document" role="document" class="clearfix">
-	
-	<!-- LOGIN -->
-	<div id="login">
+
+<!-- LOGIN -->
+<div id="login" class="container">
 		
-		<div class="logo">
-			<h1><span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span>Victory Boogie Woogie<span><img src="{{ STATIC_URL }}img/logo-vbw-dot.png"></span></h1>
+	<div class="row">
+		<div id="signin">
+			<div class="stripes"></div>
+			<div class="logo">
+				<a href="{% url 'index' %}" title="Home">
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+					<h1>Victory Boogie Woogie</h1>
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				</a>
+			</div>
+			
+			<h2 class="text-center">Inloggen</h2>
+			
+			<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+				{% csrf_token %}
+				
+				{{ form }}
+				
+				<input type="submit" value="inloggen" class="btn btn-large">
+				<input type="hidden" name="next" value="{{ next }}">
+			</form>
+			
+			<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>
+			
 		</div>
-		
-		{% if form.errors %}
-			<p class="error">Your username and password didn't match. Please try again.</p>
-		{% endif %}
-		
-		<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-			{% csrf_token %}
-			
-			<ul class="loginform">
-				{{ form.as_ul }}
-			</ul>
-			
-			<input type="submit" value="login" />
-			<input type="hidden" name="next" value="{{ next }}" />
-		</form>
-		<p class="newpassword"><a href="{% url 'password_reset' %}">Wachtwoord opnieuw ontvangen.</a></p>
 	</div>
-	<!-- END LOGIN -->
+	
 </div>
+<!-- END LOGIN -->
 
 <!-- JAVASCRIPT -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-<script src="{{ STATIC_URL }}js/plugins.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 <script src="{{ STATIC_URL }}js/main.min.js"></script>
 
 <!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	var _gaq=[['_setAccount','UA-38252406-1'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	s.parentNode.insertBefore(g,s)}(document,'script'));

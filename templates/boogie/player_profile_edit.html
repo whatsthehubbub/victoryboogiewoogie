@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load crispy_forms_tags %}
 
-{% block bodyid %}player_profile_ed{% endblock %}
+{% block pagetitle %}Profiel bewerken{% endblock pagetitle %}
 
 {% block content %}
+<div id="playeredit" class="row">
 	
-	<form method="POST" action="{% url 'player_profile_edit' user.username %}">
-		{% csrf_token %}
-
-		{{ userform.as_p }}
-
-		{{ playerform.as_p }}
-		<input type="submit" value="Opslaan">
-	</form>
-
+	<div class="span12">
+		<h2 class="text-center"><span class="sub-top">Profiel</span> bewerken</h2>
+	</div>
+	
+	<div class="span6 offset3">
+		{% crispy playerform %}
+	</div>
+	
+</div>
 {% endblock content %}

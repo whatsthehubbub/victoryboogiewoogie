@@ -1,68 +1,88 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}player_profile{% endblock %}
+{% block pagetitle %}{{ player.get_name }}&rsquo;s profiel{% endblock pagetitle %}
 
 {% block content %}
-	{% ifequal user.username player.user.username  %} 
-		<a class="btn btn-info" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
-	{% endifequal %}
-
-    <!-- <h2>Speler: {{ player.user.username }}</h2> -->
-
-	<h2>{{ player.user.first_name }} {{ player.user.last_name }} alias {{ player.pseudonym }}</h2>
-
-	<h3>Biografie</h3> 
-	<p>{{ player.biography }}</p>
-
-	<h3>Bijdragen</h3>
+<div id="playerdetail" class="row">
 	
-    <!-- {% if assigned_pieces %}
-        <h4>Toegekend</h4>
+	<div class="meta span8 offset2">
+		{% ifequal player.role 'WRITER' %}
+			<span class="pull-left label">Schrijver</span>
+		{% else %}
+			<span class="pull-left label">Speler</span>
+		{% endifequal %}
 
-        <ol>
-        {% for piece in assigned_pieces %}
-        <li><a href="{% url 'piece_submit' %}">Schrijf iets over {{ piece.topic }}</a>.</li>
-        {% endfor %}
-        </ol>
-    {% endif %} -->
-
+		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.get_name }}</h2>
+		
+		{% ifequal user.username player.user.username  %} 
+			<a class="btn pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
+		{% endifequal %}
+	</div>
 	
-	{% if submitted_pieces %}
-		<h4>Ingediend</h4>
-
-		{% for piece in submitted_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-		{% endfor %}
-	{% endif %}
-
+	<div class="span8 offset2">
+		
+		<p class="lead">{{ player.onelinebio }}</p>
+		
+		<hr>
+		
+		{% if submitted_pieces %}
+		<h4 class="text-center">Ingediende bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in submitted_pieces %}
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+		
+		{% if needswork_pieces %}
+		<h4 class="text-center">Geredigeerde bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in needswork_pieces %}
+				<tr>
+					<td colspan="3"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+				<tr>
+					<td><p>Suggesties van de redactie: {{ piece.rejection_reason }}</p></td>
+					<td><a href="{% url 'piece_submit' %}">Bewerken</a></td>
+					<td><a href="">Opgeven</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+		
+		{% if approved_pieces %}
+		<h4 class="text-center">Gepubliceerde bijdragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in approved_pieces %}
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> <span class="light">{{ piece.datepublished|timesince }} geleden</span></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+		
+		{% if rejected_pieces %}
+		<h4 class="text-center">Afgewezen bidragen</h4>
+		<table class="table table-bordered">
+			<tbody>
+			{% for piece in rejected_pieces %}
+				<tr>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
 	
-	{% if needswork_pieces %}
-		<h4>Kan beter</h4>
-
-		{% for piece in needswork_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-
-		    <p>Suggesties: {{ piece.rejection_reason }}</p>
-		    <p><a href="{% url 'piece_submit' %}">Bewerken</a></p>
-		{% endfor %}
-	{% endif %}
-	
-
-	<h4>Gepubliceerd</h4>
-	{% for piece in approved_pieces %}
-		{% include "boogie/piece_fragment.html" %}
-	{% empty %}
-		<p>Van deze speler zijn nog geen stukken gepubliceerd.</p>
-	{% endfor %}
-
-	{% if rejected_pieces %}
-		<h4>Afgewezen</h4>
-
-		{% for piece in rejected_pieces %}
-			{% include "boogie/piece_fragment.html" %}
-			<p>Reden van afwijzing: {{ piece.rejection_reason }}</p>
-		{% endfor %}
-	{% endif %}
-
+	</div>
+</div>
 {% endblock content %}

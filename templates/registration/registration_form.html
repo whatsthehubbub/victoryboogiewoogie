@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block pagetitle %}Aanmelden{% endblock pagetitle %}
 
 {% block content %}
-
-	<form method="POST" action="/register/">
-		{% csrf_token %}
-		
-		{{ form.as_p }}
-
-		<input type="submit" value="Registreer">
-	</form>
+<div class="row">
+	<div class="span6 offset3">
+		<h2 class="text-center">Aanmelden</h2>
+		<hr>
+		<p class="lead">Meld je aan om mee te kunnen spelen met Victory Boogie Woogie.</p>
+		<hr>
+	{% crispy form %}
+	</div>
+</div>
 {% endblock content %}

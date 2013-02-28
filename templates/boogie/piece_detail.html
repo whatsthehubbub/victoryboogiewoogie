@@ -1,13 +1,97 @@
 {% extends "base.html" %}
+{% load piece_extras %}
+{% load url from future %}
 
-{% block bodyid %}piece_detail{% endblock %}
+{% block pagetitle %}{{ piece.title }}{% endblock pagetitle %}
 
 {% block content %}
-    
-    <h2>{{ piece }}</h2>
-    
-    <p>by {{ piece.writer }}</p>
-    
-    {{ piece.status }}
+
+<div id="itemdetail">
+	
+	<ul class="pager pager-top">
+		<li class="previous">
+			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
+		</li>
+		<li class="next">
+			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
+		</li>
+	</ul>
+	
+	<div class="meta clearfix">
+		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+		{% if piece.character %}
+			{% if piece.character.avatar %}
+			<a href="{% url 'character_profile' piece.character.id %}" class="pull-right">
+				<img src="{{ piece.character.avatar.url }}" class="character img-circle" alt="{{ piece.character.name }}">
+			</a>
+			{% endif %}
+			<p class="pull-right">
+				Personage: <a href="{% url 'character_profile' piece.character.id %}">{{ piece.character.name }}</a>
+			</p>
+		{% endif %}
+	</div>
+	
+	<div class="row">
+		<div class="span8 offset2">
+			
+			<article class="{{ piece.genre|lower }} clearfix">
+								
+				<h2 class="text-center">{{ piece.title }}</h2>
+				<div class="author text-center"><em>Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> – {% if piece.datepublished %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}.</em></div>
+				
+				{% if piece.image %}<img src="{{ piece.image.url }}" alt="{{ piece.title }}">{% endif %}
+				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
+				
+			</article>
+			
+			<div class="social clearfix">
+				
+				<div class="score pull-left">
+					{{ piece.get_human_score|floatformat:"1" }}
+				</div>
+				
+				<div class="like pull-left">
+					{% if current_player|likes:piece %}
+					<form method="POST" action="{% url 'piece_vote_up_undo' piece.id %}">
+						{% csrf_token %}
+						<ul class="inline">
+							<li>Je vindt dit een goed stuk.</li>
+							<li><input type="hidden" name="return_url" value="{{ request.get_full_path }}">
+								<input type="submit" class="btn btn-link" value="Toch niet?">
+							</li>
+						</ul>
+					</form>
+					{% else %}
+					<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
+						{% csrf_token %}
+						<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
+						<input type="submit" class="btn" value="Goed stuk!">
+					</form>
+					{% endif %}
+				</div>
+				
+				<div class="facebook pull-right">
+					<!-- Facebook Like Button https://developers.facebook.com/docs/reference/plugins/like/ -->
+					<div class="fb-like" data-href="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+				</div>
+				<div class="twitter pull-right">
+					<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>	
+			</div>
+			
+		</div>
+	</div>
+	
+	<ul class="pager pager-bottom">
+		<li class="previous">
+			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
+		</li>
+		<li class="next">
+			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
+		</li>
+	</ul>
+	
+</div>
     
 {% endblock %}

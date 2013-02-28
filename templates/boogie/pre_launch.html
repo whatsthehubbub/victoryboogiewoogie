@@ -1,0 +1,73 @@
+{% load url from future %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Victory Boogie Woogie</title>
+	
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
+	
+	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
+	
+	<script type="text/javascript" src="//use.typekit.net/nhp4ozy.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+	
+<body>
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- PRELAUNCH -->
+<div id="prelaunch">
+	<div class="container">
+		<div class="row">
+			<h6 class="intro sans text-center"><a href="http://www.de-gids.nl/">De Gids</a> en <a href="http://hubbub.eu/">Hubbub</a> presenteren:</h6>
+			<div class="span12">
+				<div class="logo text-center">
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+						<h1>Victory Boogie Woogie</h1>
+					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				</div>
+				<h3 class="tagline sans text-center">Een experimentele literaire game</h3>
+				<h4 class="description text-center">Schrijf 10 weken lang mee aan Victory Boogie Woogie <br>samen met bekende Nederlandse auteurs.</h4>
+			</div>
+			<div class="register span6 offset3">
+				<div class="stripes"></div>
+				<div class="box">
+					<p>Meld je aan en ontvang eenmalig een e-mail als de game van start gaat, op maandag 8 april 2013:</p>
+					{% crispy form %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END PRELAUNCH -->
+
+<!-- JAVASCRIPT -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+<!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
+<script>
+	var _gaq=[['_setAccount','UA-38252406-1'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>

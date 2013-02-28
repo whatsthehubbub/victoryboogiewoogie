@@ -1,35 +1,51 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}topic_detail{% endblock %}
+{% block pagetitle %}Bijdragen over {{ topic.title }}{% endblock pagetitle %}
 
 {% block content %}
-
-<h2>Bijdrages over {{ topic.title }}</h2>
-
-<p>Een onderwerp voor
-    {% ifequal topic.pool 'WRITER' %}
-        schrijvers.
-    {% else %}
-        spelers. Voortgang tot gebeurtenis: ({{ topic.piece_count }}/{{ topic.piece_threshold }}).
-    {% endifequal%}
-</p>
-
-<p>Sorteren: 
-    {% ifequal order '-datecreated' %} 
-        <a href="?order=-rating">Beste</a>
-    {% else %}
-        <strong>Beste</strong>
-    {% endifequal %}
-    |
-    {% ifequal order '-rating' %} 
-        <a href="?order=-datecreated">Nieuwste</a>
-    {% else %}
-        <strong>Nieuwste</strong>
-    {% endifequal %}</p>
-
-    {% for piece in pieces %}
-        {% include "boogie/piece_fragment.html" %}
-    {% endfor %}
-
+<div id="itemlist" class="row clearfix">
+	
+	<div class="span12 clearfix">
+		<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ topic.title }}</h2>
+		
+		<p class="lead text-center">
+		{% if topic.archived %}
+			Dit onderwerp is gearchiveerd. Er kan niet langer over geschreven worden.
+		{% else %}
+			Een onderwerp voor 
+		{% ifequal topic.pool 'WRITER' %}
+			schrijvers.
+		{% else %}
+			spelers. Aantal bijdragen deze ronde: <span class="label">{{ topic.piece_count }}</span>
+		{% endifequal%}
+		{% endif %}
+		</p>
+		
+		{% if pieces.count > 1 %}
+		<div class="filter pull-right">
+			<div class="btn-group"> 
+				{% ifequal order '-datecreated' %}
+					<a href="?order=-score_cache" class="btn">Beste</a>
+				{% else %}
+					<a href="?order=-score_cache" class="btn active">Beste</a>
+				{% endifequal %}
+				
+				{% ifequal order '-score_cache' %}
+					<a href="?order=-datecreated" class="btn">Nieuwste</a>
+				{% else %}
+					<a href="?order=-datecreated" class="btn active">Nieuwste</a>
+				{% endifequal %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	
+	{% for piece in pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% empty %}
+		<p class="text-center">Er is nog niks gepubliceerd over dit onderwerp…</p>
+	{% endfor %}
+	
+</div>
 {% endblock %}

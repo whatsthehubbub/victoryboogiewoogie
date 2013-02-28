@@ -1,22 +1,72 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-{% block bodyid %}topic_list{% endblock %}
+{% block pagetitle %}Onderwerpen{% endblock pagetitle %}
 
 {% block content %}
-    <h2>De Onderwerpen</h2>
-    
-    <h2>Onderwerpen voor spelers</h2>
-    <p>Dit zijn de onderwerpen waarvan spelers er willekeurig één toegewezen krijgen. De getallen achter elk onderwerp geven aan hoeveel bijdragen er zijn geschreven en hoeveel er nog te gaan zijn tot een &lsquo;gebeurtenis&rsquo;.</p>
-    <ul>{% for topic in player_topics %}
-        <li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a> ({{ topic.piece_count }} / {{ topic.piece_threshold }})</li>
-    {% endfor %}</ul>
+<div class="row">
+	<div class="span8 offset2">
+		
+		<h2 class="text-center">Onderwerpen</h2>
 
-    <h2>Onderwerpen voor schrijvers</h2>
-    <p>Dit zijn de onderwerpen waar schrijvers iets mee moeten. We noemen dit een <em>gebeurtenis</em>.</p>
-    <ul>{% for topic in writer_topics %}
-        <!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission -->
-        <li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li> 
-    {% endfor %}</ul>
-    
+		<p class="lead">Onderwerpen zijn het motortje achter deze game. Elke bijdrage moet over een onderwerp gaan. Er is een lijst onderwerpen voor schrijvers, en een lijst voor spelers.</p>
+		
+		<hr>
+				
+		<h3 class="text-center">Onderwerpen voor schrijvers</h3>
+		<p>Schrijvers mogen steeds een onderwerp kiezen uit deze lijst. Als ze een bijdrage hebben geschreven over een onderwerp gaat het naar de spelerslijst.</p>
+		
+		<table class="table table-striped table-bordered">
+			<tbody>
+			{% for topic in writer_topics %}
+				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission. -->
+				<tr>
+					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Momenteel niets&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<h3 class="text-center">Onderwerpen voor spelers</h3>
+		<p>Spelers krijgen steeds willekeurig één onderwerp uit deze lijst toegewezen. Per ronde kijken we welke onderwerpen de meeste gepubliceerde bijdragen hebben. Deze worden naar de schrijverslijst gestuurd.</p>
+		
+		<table id="topiclist" class="table table-striped table-bordered">
+			<tbody>
+			{% for topic in player_topics %}
+				<tr>
+					<td>
+						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="label pull-right">{{ topic.piece_count }}</span>
+					</td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		
+		<h3 class="text-center">Gearchiveerde onderwerpen</h3>
+		<p>De redactie archiveert zo nu en dan onderwerpen waar we over zijn uitgeschreven.</p>
+
+		<table class="table table-striped table-bordered">
+			<tbody>
+			{% for topic in archived_topics %}
+				<tr>
+					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+				</tr>
+			{% empty %}
+				<tr>
+					<td>Nog niets&hellip;</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
 {% endblock %}

@@ -1,5 +1,4 @@
 from celery import task
-from boogie.models import Player, Piece, Topic, Notification
 
 from django.utils.timezone import utc
 import datetime
@@ -14,6 +13,8 @@ def get_new_assignment(player):
 
 @task()
 def check_topic_pool():
+    from boogie.models import Topic, Player
+
     writer_topics = Topic.objects.filter(pool='WRITER').count()
     writers = Player.objects.filter(role="WRITER").count()
 
@@ -35,6 +36,8 @@ def check_topic_pool():
 
 @task()
 def pieces_assign():
+    from boogie.models import Player
+
     players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
 
     counter = 0
@@ -48,6 +51,8 @@ def pieces_assign():
 
 @task()
 def piece_cleanup():
+    from boogie.models import Piece
+
     # Pieces whose deadline has passed, will be set to PASTDUE
 
     now = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -87,5 +92,7 @@ def update_user_last_login(user):
 
 @task()
 def create_summary_notifications_for_all_players(summary):
+    from boogie.models import Player, Notification
+    
     for player in Player.objects.all():
         Notification.objects.create_new_summary_notification(player, summary)

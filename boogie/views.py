@@ -1,7 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.template import RequestContext, loader
-from django.template.defaultfilters import slugify
 from django.forms import ModelForm, ChoiceField, ModelChoiceField, ValidationError
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -310,22 +309,7 @@ def piece_validate(request, piece_id):
         valid = request.POST.get('ok', '')
 
         if valid == 'yes':
-            piece.status = 'APPROVED'
-
-            piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
-            
-            piece.topic.piece_count += 1
-            piece.topic.save()
-
-
-            # TODO make these things work on a deferred publication as well
-
-            Notification.objects.create_new_accepted_notification(piece.writer, piece)
-
-            # Also we need to create a new topic based on this approved piece
-            if piece.new_topic:
-                t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
-                t.save()
+            piece.approve() # Saves internally
 
         elif valid == 'retry':
             # The piece needs more work

@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
 from django.db.models import Min, Max
 from django.conf import settings
+from django.template.defaultfilters import slugify
 
 import logging
 
@@ -127,7 +128,6 @@ class NotificationManager(models.Manager):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is goedgekeurd! <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % piece.get_absolute_url())
 
     def create_new_needswork_notification(self, player, piece):
-        # TODO change these urls
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl%s">Probeer het opnieuw</a> met de feedback.''' % reverse('piece_submit'))
 
     def create_new_rejected_notification(self, player, piece):
@@ -205,7 +205,7 @@ class Topic(models.Model):
         return self.piece_set.filter(status='APPROVED')
     
     def approved_pieces_since(self):
-        # TODO this is hard coded
+        # TODO the time since last is hard coded (so if we change it, change it here too)
         last_time = datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1)
 
         return self.piece_set.filter(status='APPROVED').filter(datepublished__gt=last_time).count()
@@ -294,7 +294,6 @@ class Piece(models.Model):
         # (likes - 1) / (hours_since_publication + 2) ^ 1.5
 
         if self.status == 'APPROVED':
-            # TODO catch the situation what happens if datepublished = None
             diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
             hours = diff.days * 24 + diff.seconds / 3600
             likes = PieceVote.objects.filter(piece=self).count()
@@ -335,6 +334,23 @@ class Piece(models.Model):
             return Piece.objects.filter(status='APPROVED', datepublished__lt=self.datepublished).order_by('-datepublished')[0]
         except:
             return None
+
+    def approve(self):
+        self.status = 'APPROVED'
+
+        self.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
+            
+        self.topic.piece_count += 1
+        self.topic.save()
+
+        Notification.objects.create_new_accepted_notification(self.writer, self)
+
+        # Also we need to create a new topic based on this approved piece
+        if self.new_topic:
+            t = Topic.objects.create(pool="PLAYER", title=self.new_topic, slug=slugify(self.new_topic))
+            t.save()
+
+        self.save()
 
 
 class PieceVote(models.Model):

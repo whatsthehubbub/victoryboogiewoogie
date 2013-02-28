@@ -21,8 +21,6 @@ def check_topic_pool():
 
     if difference > 0:
         # Promote topics to the writers pool
-        # TODO doing this in pure python right now
-
         player_topics = Topic.objects.filter(pool='PLAYER').order_by('-piece_count')[:difference]
 
         for topic in player_topics:
@@ -74,10 +72,7 @@ def piece_cleanup():
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
     for piece in Piece.objects.filter(status='WAITING', datepublished__lt=now):
-
-        # TODO set a bunch more fields here
-        piece.status = 'APPROVED'
-        piece.save()
+        piece.approve()
 
         logger.info("Waiting piece with id %d set to APPROVED.", piece.id)
 

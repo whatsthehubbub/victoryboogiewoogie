@@ -67,7 +67,7 @@ class CrispyRegistrationForm(EmailRegistrationForm):
     def __init__(self, *args, **kwargs):        
         super(CrispyRegistrationForm, self).__init__(*args, **kwargs)
 
-        self.fields['pseudonym'] = CharField(label="Pseudoniem")
+        self.fields['pseudonym'] = CharField(label="Pennaam")
 
         self.helper = FormHelper()
         self.helper.form_class = 'form'

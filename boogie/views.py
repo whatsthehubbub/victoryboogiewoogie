@@ -187,7 +187,7 @@ class PieceSubmitForm(ModelForm):
             Field('genre', css_class='input-block-level'),
             Field('title', css_class='input-block-level'),
             Field('text', css_class='input-block-level'),
-            HTML('<p id="charactercount" class="pull-right label label-warning">5000</p>'),
+            HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('new_topic', css_class="input-block-level"),
             FormActions(
                 Submit('submit', 'Opslaan', css_class='btn')

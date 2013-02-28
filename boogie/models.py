@@ -118,8 +118,7 @@ from django.core.mail import EmailMessage
 
 class NotificationManager(models.Manager):
     def create_new_assignment_notification(self, player, piece):
-        # TODO change these urls
-        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl/bijdragen/schrijven/">de schrijfafdeling</a>.''')
+        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl%s">de schrijfafdeling</a>.''' % reverse('piece_submit'))
 
     def create_new_summary_notification(self, player, summary):
         return Notification.objects.create(identifier='new-summary', for_player=player, message='''Er is een nieuwe samenvatting geplaatst. <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % summary.get_absolute_url())
@@ -129,7 +128,7 @@ class NotificationManager(models.Manager):
 
     def create_new_needswork_notification(self, player, piece):
         # TODO change these urls
-        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl/bijdragen/schrijven/">Probeer het opnieuw</a> met de feedback.''')
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl%s">Probeer het opnieuw</a> met de feedback.''' % reverse('piece_submit'))
 
     def create_new_rejected_notification(self, player, piece):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is helaas afgekeurd. Probeer het opnieuw met je volgende opdracht.''')

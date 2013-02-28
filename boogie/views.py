@@ -299,46 +299,48 @@ def writer_piece_submit(request):
 
         return HttpResponse(t.render(c))
 
-# TODO proper access controls
 @require_POST
 @login_required
 def piece_validate(request, piece_id):
-    piece = Piece.objects.get(id=piece_id)
+    player = Player.objects.get(user=request.user)
+
+    if player.role == 'WRITER':
+        piece = Piece.objects.get(id=piece_id)
     
-    valid = request.POST.get('ok', '')
-    
-    if valid == 'yes':
-        piece.status = 'APPROVED'
+        valid = request.POST.get('ok', '')
 
-        piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
-        
-        piece.topic.piece_count += 1
-        piece.topic.save()
+        if valid == 'yes':
+            piece.status = 'APPROVED'
+
+            piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
+            
+            piece.topic.piece_count += 1
+            piece.topic.save()
 
 
-        # TODO make these things work on a deferred publication as well
+            # TODO make these things work on a deferred publication as well
 
-        Notification.objects.create_new_accepted_notification(piece.writer, piece)
+            Notification.objects.create_new_accepted_notification(piece.writer, piece)
 
-        # Also we need to create a new topic based on this approved piece
-        if piece.new_topic:
-            t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
-            t.save()
+            # Also we need to create a new topic based on this approved piece
+            if piece.new_topic:
+                t = Topic.objects.create(pool="PLAYER", title=piece.new_topic, slug=slugify(piece.new_topic))
+                t.save()
 
-    elif valid == 'retry':
-        # The piece needs more work
-        piece.rejection_reason = request.POST.get('reason', '')
-        piece.status = 'NEEDSWORK'
+        elif valid == 'retry':
+            # The piece needs more work
+            piece.rejection_reason = request.POST.get('reason', '')
+            piece.status = 'NEEDSWORK'
 
-        Notification.objects.create_new_needswork_notification(piece.writer, piece)
-    elif valid == 'no':
-        piece.status = 'REJECTED'
+            Notification.objects.create_new_needswork_notification(piece.writer, piece)
+        elif valid == 'no':
+            piece.status = 'REJECTED'
 
-        Notification.objects.create_new_rejected_notification(piece.writer, piece)
+            Notification.objects.create_new_rejected_notification(piece.writer, piece)
 
-    piece.save()
-        
-    return HttpResponseRedirect(reverse('piece_queue'))
+        piece.save()
+            
+        return HttpResponseRedirect(reverse('piece_queue'))
 
 @user_passes_test(lambda u: u.is_superuser)
 def pieces_assign(request):
@@ -377,16 +379,17 @@ def piece_vote_up_undo(request, piece_id):
     else:
         return HttpResponseRedirect(reverse('boogie.views.piece_detail', args=[piece.id]))
 
-
-# TODO who can see this?
 @login_required    
 def piece_queue(request):
-    t = loader.get_template('boogie/piece_queue.html')
+    player = Player.objects.get(user=request.user)
 
-    c = RequestContext(request, {
-        'pieces': Piece.objects.filter(status='SUBMITTED').order_by('-datecreated')
-    })
-    return HttpResponse(t.render(c))
+    if player.role == 'WRITER':    
+        t = loader.get_template('boogie/piece_queue.html')
+
+        c = RequestContext(request, {
+            'pieces': Piece.objects.filter(status='SUBMITTED').order_by('-datecreated')
+        })
+        return HttpResponse(t.render(c))
 
 def player_profile(request, name):
     player = Player.objects.get(user__username=name)

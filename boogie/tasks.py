@@ -1,5 +1,5 @@
 from celery import task
-from boogie.models import Player, Piece, Topic
+from boogie.models import Player, Piece, Topic, Notification
 
 from django.utils.timezone import utc
 import datetime
@@ -84,3 +84,8 @@ def update_user_last_login(user):
     logger.info("Updated last login time of user %s", user.username)
 
     return user
+
+@task()
+def create_summary_notifications_for_all_players(summary):
+    for player in Player.objects.all():
+        Notification.objects.create_new_summary_notification(player, summary)

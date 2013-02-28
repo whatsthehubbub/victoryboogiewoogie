@@ -7,6 +7,8 @@ from django.db.models import Min, Max
 from django.conf import settings
 from django.template.defaultfilters import slugify
 
+from boogie import tasks
+
 import logging
 
 logger = logging.getLogger('sake')
@@ -391,9 +393,7 @@ class Summary(models.Model):
         super(Summary, self).save(*args, **kwargs)
 
         if createNotification:
-            # TODO defer this to the celery queue because it sends an e-mail to every user
-            for player in Player.objects.all():
-                Notification.objects.create_new_summary_notification(player, self)
+            tasks.create_summary_notifications_for_all_players.apply_async(args=[self])
 
     def get_absolute_url(self):
         return reverse('summary') + ('#summary_%d' % self.id)

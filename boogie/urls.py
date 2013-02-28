@@ -4,7 +4,7 @@ from django.conf.urls import patterns, url
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from crispy_forms.bootstrap import FormActions
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm, AuthenticationForm
 
 class CrispyResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):        
@@ -39,6 +39,13 @@ class CrispySetPasswordForm(SetPasswordForm):
             )
         )
 
+class EmailLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(EmailLoginForm, self).__init__(*args, **kwargs)
+
+        self.fields['username'].label = 'E-mail'
+
+
 
 urlpatterns = patterns('',
     url(r'^$', 'boogie.views.index', name='index'),
@@ -50,7 +57,7 @@ urlpatterns = patterns('',
     url(r'^pre/launch/thanks/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/pre_launch_thanks.html'}, name='pre_launch_thanks'),
     
     # TODO these are redefined in the included registration URL
-    url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'authentication_form': EmailLoginForm}, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset', {'password_reset_form': CrispyResetForm}, name='password_reset'),
     url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),

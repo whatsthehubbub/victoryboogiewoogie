@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-	color: @gray;
+	//color: @gray;
 	font-family: @headFontFamily;
 	text-transform: uppercase;
 	line-height: 1.2em;
@@ -764,7 +764,7 @@ a:hover {
 		top: 2.5em;
 		left: 0;
 		text-decoration: none;
-		background-color: @blue;
+		//background-color: @blue;
 	}
 	.edit {
 		position: absolute;
@@ -778,6 +778,29 @@ a:hover {
 	h4 {
 		margin-top: 2em;
 		margin-bottom: 1em;
+	}
+	table {
+		border-bottom: 1px solid #ddd;
+		h5 {
+			margin: 0.5em 0 0.25em;
+			a {
+				color: @gray;
+				text-decoration: none;
+			}
+			a:hover {
+				color: @black;
+			}
+		}
+		p {
+			margin: 0.25em 0 0.5em;
+		}
+		.alert {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+			a {
+				margin-left: 0.5em;
+			}
+		}
 	}
 }
 
@@ -916,6 +939,12 @@ a:hover {
 		font-size: 1.5em;
 		line-height: 1.4em;
 	}
+	#charactercount {
+		background-color: @orange;
+	}
+	#charactercount.limit {
+		background-color: @red;
+	}
 	#div_id_new_topic {
 		clear: both;
 	}
@@ -949,10 +978,15 @@ a:hover {
 }
 
 // !TOPIC LIST
-#topiclist {
-	.progress {
-		width: 14em;
-		margin: 0;
+#topiclists {
+	table {
+		border-bottom: 1px solid #ddd;
+	}
+}
+
+#colofon {
+	table {
+		border-bottom: 1px solid #ddd;
 	}
 }
 

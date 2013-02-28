@@ -8,9 +8,9 @@
 	
 	<div class="meta span8 offset2">
 		{% ifequal player.role 'WRITER' %}
-			<span class="pull-left label">Schrijver</span>
+			<span class="pull-left label label-inverse">Schrijver</span>
 		{% else %}
-			<span class="pull-left label">Speler</span>
+			<span class="pull-left label label-inverse">Speler</span>
 		{% endifequal %}
 
 		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.get_name }}</h2>
@@ -40,17 +40,16 @@
 		{% endif %}
 		
 		{% if needswork_pieces %}
-		<h4 class="text-center">Geredigeerde bijdragen</h4>
-		<table class="table table-bordered">
+		<h3 class="text-center">Geredigeerde bijdragen</h3>
+		<table class="table table-hover">
 			<tbody>
 			{% for piece in needswork_pieces %}
 				<tr>
-					<td colspan="3"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
-				</tr>
-				<tr>
-					<td><p>Suggesties van de redactie: {{ piece.rejection_reason }}</p></td>
-					<td><a href="{% url 'piece_submit' %}">Bewerken</a></td>
-					<td><a href="">Opgeven</a></td>
+					<td>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+						<div class="alert">Suggesties van de redactie: {{ piece.rejection_reason }}<a href="{% url 'piece_submit' %}">Bewerken</a></div>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>
@@ -58,12 +57,15 @@
 		{% endif %}
 		
 		{% if approved_pieces %}
-		<h4 class="text-center">Gepubliceerde bijdragen</h4>
-		<table class="table table-bordered">
+		<h3 class="text-center">Gepubliceerde bijdragen</h3>
+		<table class="table table-hover">
 			<tbody>
 			{% for piece in approved_pieces %}
 				<tr>
-					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> <span class="light">{{ piece.datepublished|timesince }} geleden</span></td>
+					<td>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> – {{ piece.datepublished|timesince }} geleden</p>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>
@@ -71,12 +73,15 @@
 		{% endif %}
 		
 		{% if rejected_pieces %}
-		<h4 class="text-center">Afgewezen bidragen</h4>
-		<table class="table table-bordered">
+		<h3 class="text-center">Afgewezen bidragen</h3>
+		<table class="table table-hover">
 			<tbody>
 			{% for piece in rejected_pieces %}
 				<tr>
-					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+					<td>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+					</td>
 				</tr>
 			{% endfor %}
 			</tbody>

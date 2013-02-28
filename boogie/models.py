@@ -5,6 +5,9 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
 from django.db.models import Min, Max
 from django.conf import settings
+from django.template.defaultfilters import slugify
+
+from boogie import tasks
 
 import logging
 
@@ -57,6 +60,11 @@ class Player(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def update_unsubscribe_hash(self):
+        import uuid
+        self.emails_unsubscribe_hash = uuid.uuid4().hex
+
 
     @models.permalink
     def get_absolute_url(self):
@@ -113,8 +121,7 @@ from django.core.mail import EmailMessage
 
 class NotificationManager(models.Manager):
     def create_new_assignment_notification(self, player, piece):
-        # TODO change these urls
-        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl/bijdragen/schrijven/">de schrijfafdeling</a>.''')
+        return Notification.objects.create(identifier='player-new-assignment', for_player=player, message='''Je mag een nieuwe bijdrage schrijven. Ga naar <a href="http://www.gidsgame.nl%s">de schrijfafdeling</a>.''' % reverse('piece_submit'))
 
     def create_new_summary_notification(self, player, summary):
         return Notification.objects.create(identifier='new-summary', for_player=player, message='''Er is een nieuwe samenvatting geplaatst. <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % summary.get_absolute_url())
@@ -123,8 +130,7 @@ class NotificationManager(models.Manager):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is goedgekeurd! <a href="http://www.gidsgame.nl%s">Lees hem direct hier</a>.''' % piece.get_absolute_url())
 
     def create_new_needswork_notification(self, player, piece):
-        # TODO change these urls
-        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl/bijdragen/schrijven/">Probeer het opnieuw</a> met de feedback.''')
+        return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Er moet nog wat aan je bijdrage gebeuren. <a href="http://www.gidsgame.nl%s">Probeer het opnieuw</a> met de feedback.''' % reverse('piece_submit'))
 
     def create_new_rejected_notification(self, player, piece):
         return Notification.objects.create(identifier='player-piece-accepted', for_player=player, message='''Je bijdrage is helaas afgekeurd. Probeer het opnieuw met je volgende opdracht.''')
@@ -201,7 +207,7 @@ class Topic(models.Model):
         return self.piece_set.filter(status='APPROVED')
     
     def approved_pieces_since(self):
-        # TODO this is hard coded
+        # TODO the time since last is hard coded (so if we change it, change it here too)
         last_time = datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1)
 
         return self.piece_set.filter(status='APPROVED').filter(datepublished__gt=last_time).count()
@@ -290,7 +296,6 @@ class Piece(models.Model):
         # (likes - 1) / (hours_since_publication + 2) ^ 1.5
 
         if self.status == 'APPROVED':
-            # TODO catch the situation what happens if datepublished = None
             diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
             hours = diff.days * 24 + diff.seconds / 3600
             likes = PieceVote.objects.filter(piece=self).count()
@@ -332,6 +337,23 @@ class Piece(models.Model):
         except:
             return None
 
+    def approve(self):
+        self.status = 'APPROVED'
+
+        self.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
+            
+        self.topic.piece_count += 1
+        self.topic.save()
+
+        Notification.objects.create_new_accepted_notification(self.writer, self)
+
+        # Also we need to create a new topic based on this approved piece
+        if self.new_topic:
+            t = Topic.objects.create(pool="PLAYER", title=self.new_topic, slug=slugify(self.new_topic))
+            t.save()
+
+        self.save()
+
 
 class PieceVote(models.Model):
     class Meta:
@@ -371,9 +393,7 @@ class Summary(models.Model):
         super(Summary, self).save(*args, **kwargs)
 
         if createNotification:
-            # TODO defer this to the celery queue because it sends an e-mail to every user
-            for player in Player.objects.all():
-                Notification.objects.create_new_summary_notification(player, self)
+            tasks.create_summary_notifications_for_all_players.apply_async(args=[self])
 
     def get_absolute_url(self):
         return reverse('summary') + ('#summary_%d' % self.id)

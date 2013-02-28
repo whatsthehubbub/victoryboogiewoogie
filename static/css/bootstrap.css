@@ -991,7 +991,7 @@ a:hover{text-decoration:none;}
 #characterlist a:hover h4{color:#000000;}
 #characterlist a:hover img{opacity:1;}
 #playerdetail .meta{position:relative;}
-#playerdetail .label{display:block;position:absolute;top:2.5em;left:0;text-decoration:none;background-color:#5a9fff;}
+#playerdetail .label{display:block;position:absolute;top:2.5em;left:0;text-decoration:none;}
 #playerdetail .edit{position:absolute;top:1.55em;right:0;text-decoration:none;}
 #playerdetail .light{color:#999999;}
 #playerdetail h4{margin-top:2em;margin-bottom:1em;}

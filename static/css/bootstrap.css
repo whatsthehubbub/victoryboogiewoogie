@@ -1018,6 +1018,7 @@ a:hover{text-decoration:none;}
 #createitem .info li.pull-right{float:right;width:70%;}
 #createitem form{margin:1em 0 1em;padding:1em 0 0;}
 #createitem #id_text{font-size:1.5em;line-height:1.4em;}
+#createitem #div_id_new_topic{clear:both;}
 #entryqueue .item{margin-top:1em;}
 #entryqueue .action{margin-bottom:2em;}
 #notifications .new td{background-color:rgba(90, 159, 255, 0.1);}

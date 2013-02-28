@@ -955,7 +955,7 @@ a:hover{text-decoration:none;}
 #prelaunch .register .box{margin:2em;}#prelaunch .register .box p{margin-bottom:1em;}
 #prelaunch .register label{display:none;}
 #prelaunch .register .form-actions{padding:0;background-color:transparent;border-top:none;text-align:center;}
-#summary{border-bottom:1px dashed rgba(153, 153, 153, 0.5);padding:0.5em 1.25em 0.5em;margin:0 -1.25em 1em;background-image:url(/static/img/scissor.png);background-size:25px 18px;background-position:8px bottom;background-repeat:no-repeat;}#summary a{color:#999999;text-decoration:none;}
+#summary{border-bottom:1px dashed rgba(153, 153, 153, 0.5);padding:0.5em 1.25em 0.5em;margin:0 -1.25em 1em;background-image:url(../img/scissor.png);background-size:25px 18px;background-position:8px bottom;background-repeat:no-repeat;}#summary a{color:#999999;text-decoration:none;}
 #summary a:hover{color:#000000;}
 #main{width:980px;margin:-6em auto 2em;background-color:#ffffff;padding:0 0 6em;-webkit-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);}#main .papertop{height:5px;margin:0 0 1.25em;background-image:url(/static/img/bg-main-top.png);background-size:21px 5px;background-position:center top;background-repeat:repeat-x;background-color:transparent;background-color:#ffffff;}
 #content a:hover .box{border:1px solid #eeeeee;}

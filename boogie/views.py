@@ -468,6 +468,7 @@ def player_unsubscribe(request, h):
     try:
         player = Player.objects.get(emails_unsubscribe_hash=h)
         player.send_emails = False
+        player.update_unsubscribe_hash()
         player.save()
     except:
         logging.error("Tried to unsubscribe player with hash %s", h)

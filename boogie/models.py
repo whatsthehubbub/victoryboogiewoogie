@@ -58,6 +58,11 @@ class Player(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    def update_unsubscribe_hash(self):
+        import uuid
+        self.emails_unsubscribe_hash = uuid.uuid4().hex
+
+
     @models.permalink
     def get_absolute_url(self):
         return ('player_profile', [self.user.username])

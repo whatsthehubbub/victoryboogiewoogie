@@ -40,8 +40,7 @@ def register(request, backend, success_url=None, form_class=None,
             # Custom code, creating player here ourselves
             player = Player.objects.create(user=new_user) # Default role is player
     
-            import uuid
-            player.emails_unsubscribe_hash = uuid.uuid4().hex
+            player.update_unsubscribe_hash()
             player.pseudonym = form.cleaned_data.get('pseudonym')
             player.save()
 

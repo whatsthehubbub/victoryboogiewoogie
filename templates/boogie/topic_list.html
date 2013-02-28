@@ -4,7 +4,7 @@
 {% block pagetitle %}Onderwerpen{% endblock pagetitle %}
 
 {% block content %}
-<div class="row">
+<div id="topiclists" class="row">
 	<div class="span8 offset2">
 		
 		<h2 class="text-center">Onderwerpen</h2>
@@ -16,7 +16,7 @@
 		<h3 class="text-center">Onderwerpen voor schrijvers</h3>
 		<p>Schrijvers mogen steeds een onderwerp kiezen uit deze lijst. Als ze een bijdrage hebben geschreven over een onderwerp gaat het naar de spelerslijst.</p>
 		
-		<table class="table table-striped table-bordered">
+		<table class="table table-striped">
 			<tbody>
 			{% for topic in writer_topics %}
 				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission. -->
@@ -34,7 +34,7 @@
 		<h3 class="text-center">Onderwerpen voor spelers</h3>
 		<p>Spelers krijgen steeds willekeurig één onderwerp uit deze lijst toegewezen. Per ronde kijken we welke onderwerpen de meeste gepubliceerde bijdragen hebben. Deze worden naar de schrijverslijst gestuurd.</p>
 		
-		<table id="topiclist" class="table table-striped table-bordered">
+		<table class="table table-striped">
 			<tbody>
 			{% for topic in player_topics %}
 				<tr>
@@ -53,7 +53,7 @@
 		<h3 class="text-center">Gearchiveerde onderwerpen</h3>
 		<p>De redactie archiveert zo nu en dan onderwerpen waar we over zijn uitgeschreven.</p>
 
-		<table class="table table-striped table-bordered">
+		<table class="table table-striped">
 			<tbody>
 			{% for topic in archived_topics %}
 				<tr>

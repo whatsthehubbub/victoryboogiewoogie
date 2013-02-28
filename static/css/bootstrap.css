@@ -1030,6 +1030,6 @@ a:hover{text-decoration:none;}
 #notifications .new td{background-color:rgba(90, 159, 255, 0.1);}
 #notifications .date{color:#999999;}
 #notifications .label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;margin-left:0.5em;background-color:#0031be;}
-#topiclist .progress{width:14em;margin:0;}
+#topiclists table{border-bottom:1px solid #ddd;}
 #footer{color:#999999;padding:0.5em 0 1.5em;}#footer a{color:#666666;}
 #footer a:hover{color:#333333;}

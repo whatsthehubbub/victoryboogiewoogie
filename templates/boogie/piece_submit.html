@@ -10,8 +10,10 @@
 	function checkSlide() {
 		if ($('#id_genre').val() === 'Headline') {
 			$('#div_id_text').slideUp();
+			$('#charactercount').hide();
 		} else {
 			$('#div_id_text').slideDown();
+			$('#charactercount').show();
 		}
 	}
 
@@ -22,17 +24,20 @@
 
 		checkSlide();
 
-		$('#id_text').keyup(function () {
+		$('#id_text').keyup(function() {
 			var max = 5000;
 			var len = $(this).val().length;
-
+			var box = $('#charactercount');
+			
 			if (len >= max) {
-				$('#charactercount').text('Je hebt de limiet bereikt.');
+				box.text('Je hebt de limiet bereikt.');
 				var firstString = $(this).val().slice(0, 5000);
 				$(this).val(firstString);
+				box.addClass("limit");
 			} else {
 				var remains = max - len;
-				$('#charactercount').text(remains + ' tekens over.');
+				box.text(remains + ' tekens over.');
+				box.removeClass("limit");
 			}
 		});
 	});

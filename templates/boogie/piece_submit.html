@@ -10,9 +10,10 @@
 	function checkSlide() {
 		if ($('#id_genre').val() === 'Headline') {
 			$('#div_id_text').slideUp();
-			$('#charactercount').visibility
+			$('#charactercount').hide();
 		} else {
 			$('#div_id_text').slideDown();
+			$('#charactercount').show();
 		}
 	}
 
@@ -23,7 +24,7 @@
 
 		checkSlide();
 
-		$('#id_text').keyup(function () {
+		$('#id_text').keyup(function() {
 			var max = 5000;
 			var len = $(this).val().length;
 			var box = $('#charactercount');

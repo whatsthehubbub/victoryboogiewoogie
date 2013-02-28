@@ -54,6 +54,13 @@ def piece_cleanup():
 
     now = datetime.datetime.utcnow().replace(tzinfo=utc)
 
+    # Make sure all pieces have a datepublished
+    for piece in Piece.objects.filter(datepublished=None):
+        piece.datepublished = now
+        piece.save()
+
+        logger.info("Updated date published of piece %d", piece.id)
+
     for piece in Piece.objects.filter(status='ASSIGNED', deadline__lt=now):
         piece.status = "PASTDUE"
         piece.save()
@@ -67,6 +74,8 @@ def piece_cleanup():
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
     for piece in Piece.objects.filter(status='WAITING', datepublished__lt=now):
+
+        # TODO set a bunch more fields here
         piece.status = 'APPROVED'
         piece.save()
 

@@ -438,7 +438,7 @@ class PlayerProfileForm(ModelForm):
         pseudonym = self.cleaned_data['pseudonym']
 
         if not pseudonym:
-            raise ValidationError("Vul een pseudoniem in.")
+            raise ValidationError("Vul een pennaam in.")
 
         return pseudonym
 

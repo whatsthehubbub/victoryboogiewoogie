@@ -3,7 +3,7 @@
 		<a href="{{ piece.get_absolute_url }}">
 			<div class="box">
 				<div class="overlay"></div>
-			
+				
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
 						<p class="genre pull-left">{{ piece.topic }}</p>
@@ -32,7 +32,7 @@
 		
 		<div class="info">
 			<p class="author pull-left">
-				door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a>
+				door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}<span class="fader"></span></a>
 			</p>
 			<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
 		</div>

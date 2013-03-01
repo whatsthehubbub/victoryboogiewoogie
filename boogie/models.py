@@ -93,7 +93,7 @@ class Character(models.Model):
 
     biography = models.TextField(blank=True)
 
-    avatar = models.ImageField(blank=True, upload_to='characters')
+    avatar = models.ImageField(blank=True, upload_to='characters', help_text="Avatars moeten in 400x400px worden ingesteld")
 
     def __unicode__(self):
         return self.name

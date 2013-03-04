@@ -263,6 +263,7 @@ class WriterPieceSubmitForm(ModelForm):
 
         return cleaned_data
 
+@login_required
 def writer_piece_submit(request):
     t = loader.get_template('boogie/writer_piece_submit.html')
 
@@ -297,6 +298,8 @@ def writer_piece_submit(request):
         })
 
         return HttpResponse(t.render(c))
+    else:
+        return HttpResponseRedirect(reverse('piece_submit'))
 
 @require_POST
 @login_required

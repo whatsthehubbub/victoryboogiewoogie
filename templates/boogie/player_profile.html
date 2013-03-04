@@ -13,7 +13,7 @@
 			<span class="pull-left label label-inverse">Speler</span>
 		{% endifequal %}
 
-		<h2 class="text-center"><span class="sub-top">profiel</span>{{ player.get_name }}</h2>
+		<h2 class="text-center"><span class="sub-top">profiel van</span>{{ player.get_name }}</h2>
 		
 		{% ifequal user.username player.user.username  %} 
 			<a class="btn pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>

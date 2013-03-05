@@ -285,8 +285,9 @@ def writer_piece_submit(request):
 
                 piece.save()
 
-                piece.topic.pool = 'PLAYER'
-                piece.topic.save()
+                topic = piece.topic
+                topic.pool = 'PLAYER'
+                topic.save()
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
 

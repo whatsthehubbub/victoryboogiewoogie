@@ -199,6 +199,33 @@ class PieceSubmitForm(ModelForm):
         model = Piece
         fields = ('genre', 'title', 'text', 'new_topic')
 
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+
+        if not title:
+            raise ValidationError("Je hebt geen titel ingevuld.")
+
+        return title
+
+    def clean_new_topic(self):
+        new_topic = self.cleaned_data.get('new_topic')
+
+        if not new_topic:
+            raise ValidationError("Je hebt geen nieuw onderwerp ingevuld.")
+
+        return new_topic
+
+    def clean(self):
+        cleaned_data = super(PieceSubmitForm, self).clean()
+
+        text = cleaned_data.get('text')
+        genre = cleaned_data.get('genre')
+
+        if not text and (genre != 'Headline' and genre != 'Illustratie'):
+            raise ValidationError("Schrijf een tekst of kies headline als genre.")
+
+        return cleaned_data
+
 @login_required
 def piece_submit(request):
     t = loader.get_template('boogie/piece_submit.html')

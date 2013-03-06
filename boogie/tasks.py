@@ -42,8 +42,10 @@ def pieces_assign():
 
     counter = 0
     for player in players_without:
-        player.get_new_assignment()
-        counter += 1
+        result = player.get_new_assignment()
+        
+        if result:
+            counter += 1
 
     logger.info('Assigned %d players a new piece', counter)
 

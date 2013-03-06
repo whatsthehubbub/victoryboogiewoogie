@@ -213,6 +213,12 @@ class PieceSubmitForm(ModelForm):
         if not new_topic:
             raise ValidationError("Je hebt geen nieuw onderwerp ingevuld.")
 
+        try:
+            Topic.objects.get(title=new_topic)
+            raise ValidationError("Dit onderwerp bestaat al. Verzin iets anders.")
+        except Topic.DoesNotExist:
+            pass
+
         return new_topic
 
     def clean(self):

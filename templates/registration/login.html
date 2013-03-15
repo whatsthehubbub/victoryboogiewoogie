@@ -12,6 +12,7 @@
 	<title>Victory Boogie Woogie</title>
 	
 	<meta name="description" content="Victory Boogie Woogie is een experimentele literaire game.">
+	<meta name="viewport" content="980px">
 	
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
@@ -29,36 +30,26 @@
 
 
 <!-- LOGIN -->
-<div id="login" class="container">
-		
-	<div class="row">
-		<div id="signin">
-			<div class="stripes"></div>
-			<div class="logo">
-				<a href="{% url 'index' %}" title="Home">
-					<h2>Your Daily</h2>
-					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-					<h1>Victory Boogie Woogie</h1>
-					<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-				</a>
-			</div>
-			
-			<h2 class="text-center">Inloggen</h2>
-			
-			<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-				{% csrf_token %}
-				
-				{{ form }}
-				
-				<input type="submit" value="inloggen" class="btn btn-large">
-				<input type="hidden" name="next" value="{{ next }}">
-			</form>
-			
-			<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>
-			
+<div id="login">
+	<div id="signin">
+		<div class="stripes"></div>
+		<div class="logo">
+			<a href="{% url 'index' %}" title="Home">
+				<h2>Your Daily</h2>
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+				<h1>Victory Boogie Woogie</h1>
+				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
+			</a>
 		</div>
+		<h2 class="text-center">Inloggen</h2>
+		<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="inloggen" class="btn btn-large">
+			<input type="hidden" name="next" value="{{ next }}">
+		</form>
+		<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>
 	</div>
-	
 </div>
 <!-- END LOGIN -->
 

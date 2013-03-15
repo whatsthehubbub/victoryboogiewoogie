@@ -4,17 +4,54 @@
 
 {% block pagetitle %}Schrijven{% endblock pagetitle %}
 
+{% block extrahead %}
+<script type="text/javascript">
+
+function checkSlide() {
+    if (($('#id_genre').val() === 'Headline')||(($('#id_genre').val() === 'Illustratie'))) {
+    	$('#div_id_text').slideUp();
+    	$('#charactercount').hide();
+    } else {
+    	$('#div_id_text').slideDown();
+    	$('#charactercount').show();
+    }
+}
+
+$(document).ready(function() {
+    $('#id_genre').change(function() {
+    	checkSlide();
+    });
+
+    checkSlide();
+
+    $('#id_text').keyup(function() {
+    	var max = 5000;
+    	var len = $(this).val().length;
+    	var box = $('#charactercount');
+    	
+    	if (len >= max) {
+    		box.text('Je hebt de limiet bereikt.');
+    		var firstString = $(this).val().slice(0, 5000);
+    		$(this).val(firstString);
+    		box.addClass("limit");
+    	} else {
+    		var remains = max - len;
+    		box.text(remains + ' tekens over.');
+    		box.removeClass("limit");
+    	}
+    });
+});
+
+</script>
+{% endblock extrahead %}
+
 {% block content %}
 <div id="createitem" class="row">
 	<div class="span8 offset2">
-		<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
+		<h2 class="text-center">Schrijf een bijdrage</h2>
 		
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="submit" value="Versturen">
-		</form>
-
+		{% crispy form %}
+		
 	</div>
 </div>
 {% endblock %}

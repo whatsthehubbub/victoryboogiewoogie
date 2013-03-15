@@ -1,9 +1,10 @@
 {% load url from future %}
-	<article class="span4 {{ piece.genre|lower }} clearfix">
+	<article class="{% if frontpage_pieces %}{% if forloop.counter == 1 or forloop.counter == 4 %}span8{% else %}span4{% endif %}{% else %}span4{% endif %} {{ piece.genre|lower }} clearfix">
 		<a href="{{ piece.get_absolute_url }}">
 			<div class="box">
 				<div class="overlay"></div>
 				
+				{% if topic != piece.topic or character != piece.character %}
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
 						<p class="genre pull-left">{{ piece.topic }}</p>
@@ -14,17 +15,18 @@
 						{% endif %}
 					{% endifnotequal %}
 				</div>
+				{% endif %}
 				
 				<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>
 
 				{% ifequal piece.genre "Illustratie" %}
 					{% if piece.image %}
-						<img src="{{ piece.image.url }}" alt="{{ piece.title }}">
+						<div class="image" style="background-image:url({{ piece.image.url }})"></div>
 					{% endif %}
 				{% else %}
 					<div class="content">
 						<h3 class="sans">{{ piece.title }}</h3>
-						<p>{{ piece.text|linebreaks }}</p>
+						{% if piece.genre != "Headline" %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
 					</div>
 				{% endifequal %}
 			</div>

@@ -20,7 +20,7 @@ def index(request):
     t = loader.get_template('boogie/index.html')
     
     c = RequestContext(request, {
-            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished'),
             'summary': Summary.objects.all().order_by('-datecreated'),
             'characters': Character.objects.all()
     })
@@ -214,7 +214,7 @@ class PieceSubmitForm(ModelForm):
             raise ValidationError("Je hebt geen nieuw onderwerp ingevuld.")
 
         try:
-            Topic.objects.get(title=new_topic)
+            Topic.objects.get(title__iexact=new_topic)
             raise ValidationError("Dit onderwerp bestaat al. Verzin iets anders.")
         except Topic.DoesNotExist:
             pass
@@ -268,6 +268,27 @@ class WriterPieceSubmitForm(ModelForm):
     class Meta:
         model = Piece
         fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
+
+    def __init__(self, *args, **kwargs):
+        super(WriterPieceSubmitForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_class = 'form'
+        self.helper.form_action = ''
+        self.helper.form_method = 'post'
+
+        self.helper.layout = Layout(
+            Field('topic', css_class='input-block-level'),
+            Field('character', css_class='input-block-level'),
+            Field('genre', css_class="input-block-level"),
+            Field('title', css_class="input-block-level"),
+            Field('text', css_class="input-block-level"),
+            HTML('<p id="charactercount" class="pull-right label">5000</p>'),
+            Field('image', css_class='input-block-level'),
+            FormActions(
+                Submit('submit', 'Opslaan', css_class='btn')
+            )
+        )
 
     def clean_genre(self):
         genre = self.cleaned_data['genre']

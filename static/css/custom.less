@@ -74,10 +74,9 @@ a:hover {
 	margin: 0;
 	background: @grayLight;
 	color: @black;
-	padding: 0.5em 0;
+	padding: 0.2em 0;
 	text-align: center;
 	background-color: @yellow;
-	border-bottom: 1px solid @grayLighter;
 }
 
 // !HEADER
@@ -96,7 +95,11 @@ a:hover {
 		color: @black;
 	}
 	a.disabled {
-		color: fade(@grayLight, 50%);
+		color: lighten(@grayLight, 10%);
+	}
+	.btn {
+		color: @grayDark;
+		text-shadow: 0px 1px 0px fade(@white, 60%);
 	}
 	li {
 		position: relative;
@@ -133,106 +136,122 @@ a:hover {
 	background-color: #e6e4e2;
 	color: @black;
 	.box-shadow(inset 0 -1px 2px rgba(0,0,0,.1));
+	.wf-loading {
+		visibility: hidden;
+	}
 	a:hover {
 		text-decoration: none;
 	}
 	.logo {
 		text-align: center;
-		margin: 1.5em auto;
+		margin: 1.5em auto 1.25em;
 		padding: 0;
-	}
-	.logo a {
-		text-decoration: none;
-	}
-	.logo a:hover {
-		.char1 {
-			color: @blue;
+		
+		a {
+			text-decoration: none;
 		}
-		.char2 {
-			color: @black;
+		a:hover {
+			.char1 {
+				color: @blueDark;
+			}
+			.char2 {
+				color: @black;
+			}
+			.char3 {
+				color: @yellow;
+			}
+			.char4 {
+				color: @red;
+			}
+			.char5 {
+				color: @blueDark;
+			}
+			.char6 {
+				color: @yellow;
+			}
+			.char7 {
+				color: @red;
+			}
+			.char8 {
+				color: @white;
+			}
+			.char9 {
+				color: @black;
+			}
+			.char10 {
+				color: @blueDark;
+			}
+			.char11 {
+				color: @yellow;
+			}
+			.char12 {
+				color: @red;
+			}
+			.char13 {
+				color: @black;
+			}
+			.char14 {
+				color: @yellow;
+			}
+			.char15 {
+				color: @red;
+			}
+			.char16 {
+				color: @blueDark;
+			}
+			.char17 {
+				color: @yellow;
+			}
+			.char18 {
+				color: @red;
+			}
+			.char19 {
+				color: @blueDark;
+			}
+			.char20 {
+				color: @black;
+			}
+			.char21 {
+				color: @yellow;
+			}
+			img {
+				opacity: 1;
+			}
+			h2 {
+				color: @black;
+			}
 		}
-		.char3 {
-			color: @yellow;
+		h1 {
+			display: inline;
+			color: lighten(@grayLight, 12%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+			font-family: @headFontFamily;
+			text-transform: uppercase;
+			font-weight: 900;
+			font-size: 3.5em;
 		}
-		.char4 {
-			color: @red;
-		}
-		.char5 {
-			color: @blueDark;
-		}
-		.char6 {
-			color: @black;
-		}
-		.char7 {
-			color: @blueDark;
-		}
-		.char8 {
-			color: @blue;
-		}
-		.char9 {
-			color: @yellow;
-		}
-		.char10 {
-			color: @blueDark;
-		}
-		.char11 {
-			color: @red;
-		}
-		.char12 {
-			color: @yellow;
-		}
-		.char13 {
-			color: @black;
-		}
-		.char14 {
-			color: @yellow;
-		}
-		.char15 {
-			color: @red;
-		}
-		.char16 {
-			color: @blueDark;
-		}
-		.char17 {
-			color: @yellow;
-		}
-		.char18 {
-			color: @red;
-		}
-		.char19 {
-			color: @blue;
-		}
-		.char20 {
-			color: @black;
-		}
-		.char21 {
-			color: @yellow;
+		h2 {
+			font-size: 1.75em;
+			margin-top: -0.75em;
+			margin-bottom: 0.25em;
+			font-family: @scriptFontFamily;
+			font-weight: 500;
+			color: lighten(@grayLight, 12%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+			text-transform: none;
 		}
 		img {
-			opacity: 1;
+			width: 12px;
+			height: 12px;
+			margin: -2em 0.5em 0;
+			opacity: 0.2;
 		}
 	}
-	.logo h1 {
-		display: inline;
-		color: fade(@grayLight, 50%);
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-		font-family: @headFontFamily;
-		text-transform: uppercase;
-		font-weight: 900;
-		font-size: 3.5em;
-	}
-	.logo img {
-		width: 12px;
-		height: 12px;
-		margin: -2em 0.5em 0;
-		opacity: 0.2;
-	}
 	#welcome {
-		//border-bottom: 1px solid fade(@grayLight, 50%);
-		color: fade(@grayLight, 70%);
+		color: lighten(@grayLight, 12%);
 		text-shadow: 0px 1px 0px fade(@white, 60%);
 		padding: 0 0 0.5em;
-		margin: -1.5em 0 -0.25em;
+		margin: -1em 0 -0.25em;
 		font-family: @headFontFamily;
 		text-transform: uppercase;
 		font-weight: 900;
@@ -242,41 +261,58 @@ a:hover {
 
 // !CALENDAR
 #calendar {
-	margin: 1em 0 0;
+	position: relative;
+	margin: 1em -1.25em 0;
 	.nav {
-		margin: 0;
+		position: relative;
+		z-index: 4;
 		display: table;
 		width: 100%;
+		li {
+			display: table-cell;
+			width: 1%;
+			float: none;
+			text-align: center;			
+		}
+		li:first-child, li:last-child {
+			color: lighten(@grayLight, 18%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+		}
+		a {
+		    color: @gray;
+		    text-align: center;
+		    text-shadow: 0px 1px 0px fade(@white, 60%);
+		    .border-radius(@baseBorderRadius);
+		}
+		a:hover {
+			color: @grayDark;
+		}
+		.active a {
+			color: @grayDark;
+			background-color: @yellow;
+			box-shadow: none;
+		}
+		.current a {
+			color: @black;
+			background-color: lighten(@grayLighter, 5%);
+		}
+		.disabled a, .disabled a:hover {
+			color: lighten(@grayLight, 10%);
+			background-color: none;
+		}
 	}
-	.nav li {
-		display: table-cell;
-		width: 1%;
-		float: none;
-		text-align: center;
-	}
-	.nav li.active a {
-		background-color: transparent;
-		box-shadow: none;
-		/* background-image: url(../img/calendar-arrow.png);
-		background-size: 20px 15px;
-		background-repeat: no-repeat;
-		background-position: center bottom;
-		*/
-	}
-	.nav li a {
-		color: @gray;
-		text-align: center;
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-	}
-	.nav li a:hover {
-		color: @grayDark;
-	}
-	.nav li.active a {
-		color: @black;
-	}
-	.nav li.disabled a, .nav li.disabled a:hover {
-		color: fade(@grayLight, 70%);
-	}
+}
+
+#papertop {
+	position: relative;
+	z-index: 5;
+	height: 5px;
+	margin: -5px -1.25em 0;
+	background-image: url(../img/bg-main-top.png);
+	background-size: 21px 5px;
+	background-position: center top;
+	background-repeat: repeat-x;
+	//background-color: #e6e4e2;
 }
 
 // !SIGN IN
@@ -301,101 +337,120 @@ a:hover {
 		margin: 1.5em 0 2em;
 		padding: 0 0 1.5em;
 		border-bottom: 1px solid @grayLighter;
-	}
-	.logo a {
-		text-decoration: none;
-	}
-	.logo a:hover {
-		.char1 {
-			color: @blue;
+		
+		a {
+			text-decoration: none;
 		}
-		.char2 {
-			color: @black;
+		a:hover {
+			.char1 {
+			    color: @blueDark;
+			}
+			.char2 {
+			    color: @black;
+			}
+			.char3 {
+			    color: @yellow;
+			}
+			.char4 {
+			    color: @red;
+			}
+			.char5 {
+			    color: @blueDark;
+			}
+			.char6 {
+			    color: @yellow;
+			}
+			.char7 {
+			    color: @red;
+			}
+			.char8 {
+			    color: @white;
+			}
+			.char9 {
+			    color: @black;
+			}
+			.char10 {
+			    color: @blueDark;
+			}
+			.char11 {
+			    color: @yellow;
+			}
+			.char12 {
+			    color: @red;
+			}
+			.char13 {
+			    color: @black;
+			}
+			.char14 {
+			    color: @yellow;
+			}
+			.char15 {
+			    color: @red;
+			}
+			.char16 {
+			    color: @blueDark;
+			}
+			.char17 {
+			    color: @yellow;
+			}
+			.char18 {
+			    color: @red;
+			}
+			.char19 {
+			    color: @blueDark;
+			}
+			.char20 {
+			    color: @black;
+			}
+			.char21 {
+			    color: @yellow;
+			}
+			img {
+			    opacity: 1;
+			}
+			h2 {
+				color: @black;
+			}
 		}
-		.char3 {
-			color: @yellow;
+		h1 {
+			display: inline;
+			color: lighten(@grayLight, 18%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+			font-family: @headFontFamily;
+			text-transform: uppercase;
+			font-weight: 900;
+			font-size: 2em;
 		}
-		.char4 {
-			color: @red;
-		}
-		.char5 {
-			color: @blueDark;
-		}
-		.char6 {
-			color: @black;
-		}
-		.char7 {
-			color: @blueDark;
-		}
-		.char8 {
-			color: @blue;
-		}
-		.char9 {
-			color: @yellow;
-		}
-		.char10 {
-			color: @blueDark;
-		}
-		.char11 {
-			color: @red;
-		}
-		.char12 {
-			color: @yellow;
-		}
-		.char13 {
-			color: @black;
-		}
-		.char14 {
-			color: @yellow;
-		}
-		.char15 {
-			color: @red;
-		}
-		.char16 {
-			color: @blueDark;
-		}
-		.char17 {
-			color: @yellow;
-		}
-		.char18 {
-			color: @red;
-		}
-		.char19 {
-			color: @blue;
-		}
-		.char20 {
-			color: @black;
-		}
-		.char21 {
-			color: @yellow;
+		h2 {
+			font-size: 1.25em;
+			margin-top: 1em;
+			margin-bottom: -0.15em;
+			font-family: @scriptFontFamily;
+			font-weight: 500;
+			color: lighten(@grayLight, 18%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+			text-transform: none;
 		}
 		img {
-			opacity: 1;
+			width: 8px;
+			height: 8px;
+			margin: -1em 0.5em 0;
+			opacity: 0.2;
 		}
-	}
-	.logo h1 {
-		display: inline;
-		color: fade(@grayLight, 50%);
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-		font-family: @headFontFamily;
-		text-transform: uppercase;
-		font-weight: 900;
-		font-size: 1.8em;
-	}
-	.logo img {
-		width: 8px;
-		height: 8px;
-		margin: -1em 0.5em 0;
-		opacity: 0.2;
 	}
 	h2 {
 		font-size: 1.6em;
+	}
+	form {
+		text-align: center;
 	}
 	label {
 		margin: 1em 0 0.5em;
 	}
 	input[type="submit"] {
+		text-align: center;
 		display: block;
+		width: 6em;
 		margin: 1.5em auto 0;
 	}
 	.errorlist {
@@ -428,9 +483,11 @@ a:hover {
 		padding-bottom: 10em;
 	}
 	.intro {
-		color: fade(@grayDark, 80%);
-		margin-top: 4em;
-		margin-bottom: 1em;
+		color: @grayDark;
+		margin-top: 1.75em;
+		margin-bottom: 0.5em;
+		font-style: italic;
+		font-weight: 400;
 		a {
 			color: @grayDark;
 		}
@@ -439,35 +496,109 @@ a:hover {
 		}
 	}
 	.logo {
-		
-	}
-	.logo h1 {
-		display: inline;
-		color: @black;
-		font-family: @headFontFamily;
-		text-transform: uppercase;
-		font-weight: 900;
-		font-size: 3em;
-	}
-	.logo img {
-		width: 12px;
-		height: 12px;
-		margin: -1.8em 0.5em 0;
+		h1 {
+			display: inline;
+			color: @black;
+			font-family: @headFontFamily;
+			text-transform: uppercase;
+			font-weight: 900;
+			font-size: 3em;
+			.char1 {
+			    color: @blueDark;
+			}
+			.char2 {
+			    color: @black;
+			}
+			.char3 {
+			    color: @yellow;
+			}
+			.char4 {
+			    color: @red;
+			}
+			.char5 {
+			    color: @blueDark;
+			}
+			.char6 {
+			    color: @yellow;
+			}
+			.char7 {
+			    color: @red;
+			}
+			.char8 {
+			    color: @white;
+			}
+			.char9 {
+			    color: @black;
+			}
+			.char10 {
+			    color: @blueDark;
+			}
+			.char11 {
+			    color: @yellow;
+			}
+			.char12 {
+			    color: @red;
+			}
+			.char13 {
+			    color: @black;
+			}
+			.char14 {
+			    color: @yellow;
+			}
+			.char15 {
+			    color: @red;
+			}
+			.char16 {
+			    color: @blueDark;
+			}
+			.char17 {
+			    color: @yellow;
+			}
+			.char18 {
+			    color: @red;
+			}
+			.char19 {
+			    color: @blueDark;
+			}
+			.char20 {
+			    color: @black;
+			}
+			.char21 {
+			    color: @yellow;
+			}
+		}
+		h2 {
+			font-size: 1.75em;
+			margin-top: 0.5em;
+			margin-bottom: 0.25em;
+			font-family: @scriptFontFamily;
+			font-weight: 500;
+			color: @black;
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+			text-transform: none;
+		}
+		img {
+			width: 12px;
+			height: 12px;
+			margin: -1.8em 0.5em 0;
+		}
 	}
 	.tagline {
+		font-size: 1em;
 		color: @black;
-		margin-top: 0em;
-		margin-bottom: 0.5em;
+		text-shadow: 0px 1px 0px fade(@white, 60%);
+		margin-top: 0.5em;
+		margin-bottom: 0em;
 	}
 	.description {
 		color: @grayDark;
-		margin-top: 2em;
+		margin-top: 1.75em;
 		margin-bottom: 1em;
 		font-style: italic;
 		font-weight: 400;
 	}
 	.register {
-		margin-top: 3em;
+		margin-top: 1.75em;
 		.stripes {
 			height: 5px;
 			background-image: url(../img/bg-header-stripes.png);
@@ -491,18 +622,15 @@ a:hover {
 			background-color: transparent;
 			border-top: none;
 			text-align: center;
-			input {
-				
-			}
 		}
 	}
 }
 
 // !SUMMARY
 #summary {
-	border-bottom: 1px dashed fade(@grayLight, 50%);
-	padding: 0.5em 1.25em 0.5em;
-	margin: 0 -1.25em 1em;
+	border-bottom: 1px dashed @grayLighter;
+	padding: 0.5em 1.25em;
+	margin: 1em -1.25em 0em;
 	background-image: url(../img/scissor.png);
 	background-size: 25px 18px;
 	background-position: 8px bottom;
@@ -524,27 +652,18 @@ a:hover {
 	padding: 0 0 6em;
 	//.border-radius(@baseBorderRadius);
 	.box-shadow(0 2px 2px rgba(0,0,0,.2));
-	.papertop {
-		height: 5px;
-		margin: 0 0 1.25em;
-		background-image: url(../img/bg-main-top.png);
-		background-size: 21px 5px;
-		background-position: center top;
-		background-repeat: repeat-x;
-		background-color: transparent;
-		background-color: @white;
-	}
 }
 
 // !CONTENT
 #content {
+	padding-top: 1.25em;
 	a:hover .box {
 		border: 1px solid @grayLighter;
 	}
 	.box {
 		padding: 3em 0 4em 0;
 		.border-radius(@baseBorderRadius);
-		border: 1px solid fade(@grayLighter, 50%);
+		border: 1px solid @grayLighter;
 	}
 	.box-small {
 		padding: 1em 0 0.5em 0;
@@ -553,8 +672,8 @@ a:hover {
 
 // !HOME LATEST
 #home-latest {
-	margin-top: 2em;
-	border-bottom: 1px dashed fade(@grayLight, 50%);
+	//margin-top: 2em;
+	border-bottom: 1px solid @grayLighter;
 	margin-left: -1.25em;
 	padding-left: 1.25em;
 	margin-right: -1.25em;
@@ -607,10 +726,16 @@ a:hover {
 	article {
 		margin-bottom: 1em;
 	}
+	article.span8 .content {
+		margin: 1em 4em;
+	}
+	article.span8.headline h3 {
+		font-size: 3.5em;
+	}
 	article a:hover {
 		text-decoration: none;
 		.meta {
-			background-color: @grayLighter;
+			background-color: lighten(@grayLighter,5%);
 		}
 	}
 	article.headline h3 {
@@ -643,14 +768,19 @@ a:hover {
 		width: 100%;
 		height: 40px;
 	}
+	.illustratie .image {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center center;
+	}
 	.illustratie .overlay {
 		visibility: hidden;
 	}
 	.meta {
 		color: @grayLight;
-		background-color: fade(@grayLighter, 30%);
-		//padding: 0.8em 0 0;
-		//border-bottom: 1px solid fade(@grayLighter, 50%);
+		border-bottom: 1px solid @grayLighter;
+		padding: 0.15em 0;
 		.genre {
 			margin: 0.75em 0 0.75em 0.5em;
 			font-style: italic;
@@ -659,6 +789,7 @@ a:hover {
 			width: 40px;
 			height: 40px;
 			margin: 0.2em 0.5em;
+			.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 	.content {
@@ -672,15 +803,15 @@ a:hover {
 		.label {
 			font-family: @sansFontFamily;
 			font-size: @fontSizeMini;
-			color: @white;
-			text-shadow: 0px -1px 0px fade(@black, 20%);
+			color: @grayDark;
+			text-shadow: 0px 1px 0px fade(@white, 80%);
 			background-color: @yellow;
-			.box-shadow(0 1px 0px rgba(0,0,0,.3));
+			.box-shadow(0 1px 0px fade(@black, 20%));
 		}
 	}
 	.info {
 		margin: 0.5em 0 0 0;
-		color: fade(@grayLight, 80%);
+		color: lighten(@grayLight, 10%);
 		.author a {
 			position: relative;
 			padding-right: 15px;
@@ -749,6 +880,7 @@ a:hover {
 		}
 		img {
 			opacity: 1;
+			//.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 }
@@ -814,47 +946,13 @@ a:hover {
 
 // !ITEM DETAIL
 #itemdetail {
-	.pager {
-		
-		.previous a {
-			border-right: 1px solid @grayLighter;
-		}
-		.next a {
-			border-left: 1px solid @grayLighter;
-		}
-	}
-	.pager a {
-		color: @grayLight;
-		border: 0;
-		border-radius: 0;
-		background-color: transparent;
-		padding: 0.95em 1.25em 0.55em;
-		text-decoration: none;
-	}
-	.pager a:hover {
-		color: @grayDark;
-		//background-color: fade(@grayLighter, 50%);
-	}
-	.pager-top {
-		margin: -1.5em -1.25em 0;
-		border-bottom: 1px solid @grayLighter;
-	}
-	.pager-bottom {
-		margin: 0 -1.25em -6em;
-		border-top: 1px solid @grayLighter;
-		a {
-			padding-top: 0.6em;
-			padding-bottom: 0.5em;
-		}
-	}
 	.box {
 		padding-top: 0;
 	}
 	.meta {
 		color: @grayLight;
-		margin: 0 -1.25em 4em;
-		padding: 0.25em 1em;
-		background-color: fade(@grayLighter, 40%);
+		margin: -1.25em -1.25em 4em;
+		padding: 0.5em 1em;
 		border-bottom: 1px solid @grayLighter;
 		p {
 			margin: 0.6em 0;
@@ -867,6 +965,7 @@ a:hover {
 			width: 40px;
 			height: 40px;
 			margin-left: 0.5em;
+			.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 	.author {
@@ -878,15 +977,17 @@ a:hover {
 		}
 	}
 	.social {
+		display: block;
+		overflow: hidden;
 		border: 1px solid @grayLighter;
 		margin: 2em 0 6em;
-		//.border-radius(@baseBorderRadius);
+		.border-radius(@baseBorderRadius);
 		.score {
 			font-family: @sansFontFamily;
 			font-size: 1em;
 			font-weight: 800;
-			color: @white;
-			text-shadow: 0px -1px 0px fade(@black, 20%);
+			color: @grayDark;
+			text-shadow: 0px 1px 0px fade(@white, 80%);
 			background-color: @yellow;
 			margin: 0;
 			padding: 1em 1.5em;
@@ -904,11 +1005,24 @@ a:hover {
 			}
 		}
 		.twitter {
+			display: block;
+			overflow: hidden;
 			margin: 1em 0 0;
 		}
 		.facebook {
+			display: block;
+			overflow: hidden;
 			margin: 0.95em 1em 0 0;
 		}	
+	}
+	.navigator {
+		margin: 0 -1.25em -3em;
+		padding: 2em 4em 0;
+		border-top: 1px solid @grayLighter;
+		h4 {
+			font-weight: 400;
+			font-style: italic;
+		}
 	}
 }
 
@@ -945,7 +1059,7 @@ a:hover {
 	#charactercount.limit {
 		background-color: @red;
 	}
-	#div_id_new_topic {
+	#div_id_new_topic, #div_id_image {
 		clear: both;
 	}
 }
@@ -964,7 +1078,7 @@ a:hover {
 // !NOTIFICATIONS
 #notifications {
 	.new td {
-		background-color: fade(@blue, 10%);
+		background-color: lighten(@blue, 30%);
 	}
 	.date {
 		color: @grayLight;

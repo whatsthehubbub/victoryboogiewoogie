@@ -5,44 +5,44 @@
 {% block pagetitle %}Schrijven{% endblock pagetitle %}
 
 {% block extrahead %}
-	<script type="text/javascript">
+<script type="text/javascript">
 
-	function checkSlide() {
-		if ($('#id_genre').val() === 'Headline') {
-			$('#div_id_text').slideUp();
-			$('#charactercount').hide();
-		} else {
-			$('#div_id_text').slideDown();
-			$('#charactercount').show();
-		}
-	}
+function checkSlide() {
+    if ($('#id_genre').val() === 'Headline') {
+    	$('#div_id_text').slideUp();
+    	$('#charactercount').hide();
+    } else {
+    	$('#div_id_text').slideDown();
+    	$('#charactercount').show();
+    }
+}
 
-	$(document).ready(function() {
-		$('#id_genre').change(function() {
-			checkSlide();
-		});
+$(document).ready(function() {
+    $('#id_genre').change(function() {
+    	checkSlide();
+    });
 
-		checkSlide();
+    checkSlide();
 
-		$('#id_text').keyup(function() {
-			var max = 5000;
-			var len = $(this).val().length;
-			var box = $('#charactercount');
-			
-			if (len >= max) {
-				box.text('Je hebt de limiet bereikt.');
-				var firstString = $(this).val().slice(0, 5000);
-				$(this).val(firstString);
-				box.addClass("limit");
-			} else {
-				var remains = max - len;
-				box.text(remains + ' tekens over.');
-				box.removeClass("limit");
-			}
-		});
-	});
+    $('#id_text').keyup(function() {
+    	var max = 5000;
+    	var len = $(this).val().length;
+    	var box = $('#charactercount');
+    	
+    	if (len >= max) {
+    		box.text('Je hebt de limiet bereikt.');
+    		var firstString = $(this).val().slice(0, 5000);
+    		$(this).val(firstString);
+    		box.addClass("limit");
+    	} else {
+    		var remains = max - len;
+    		box.text(remains + ' tekens over.');
+    		box.removeClass("limit");
+    	}
+    });
+});
 
-	</script>
+</script>
 {% endblock extrahead %}
 
 {% block content %}
@@ -54,11 +54,11 @@
 		{% ifequal current_player.role 'PLAYER' %}
 			{% if form %}			
 				<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
-					
+				
 				{% if form.instance.rejection_reason %}
 					<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
 				{% endif %}
-								
+					
 					<ul class="info clearfix">
 						<li class="pull-left">Info</li>
 						<li class="pull-right">
@@ -79,9 +79,9 @@
 					</ul>
 				
 				{% crispy form %}
-
+				
 				<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
-
+				
 			{% else %}
 				<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
 			{% endif %}

@@ -7,16 +7,11 @@
 <div id="playerdetail" class="row">
 	
 	<div class="meta span8 offset2">
-		{% ifequal player.role 'WRITER' %}
-			<span class="pull-left label label-inverse">Schrijver</span>
-		{% else %}
-			<span class="pull-left label label-inverse">Speler</span>
-		{% endifequal %}
-
-		<h2 class="text-center"><span class="sub-top">profiel van</span>{{ player.get_name }}</h2>
+		
+		<h2 class="text-center"><span class="sub-top">profiel van {% ifequal player.role 'WRITER' %}schrijver{% else %}speler{% endifequal %}</span>{{ player.get_name }}</h2>
 		
 		{% ifequal user.username player.user.username  %} 
-			<a class="btn pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
+			<a class="btn btn-primary pull-right edit" href="{% url 'player_profile_edit' user.username %}">Bewerken</a>
 		{% endifequal %}
 	</div>
 	
@@ -27,8 +22,8 @@
 		<hr>
 		
 		{% if submitted_pieces %}
-		<h4 class="text-center">Ingediende bijdragen</h4>
-		<table class="table table-bordered">
+		<h3 class="text-center">Ingediende bijdragen</h3>
+		<table class="table table-hover">
 			<tbody>
 			{% for piece in submitted_pieces %}
 				<tr>

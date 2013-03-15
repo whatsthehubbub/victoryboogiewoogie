@@ -11,54 +11,42 @@
 	
 	<title>Victory Boogie Woogie</title>
 	
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="Victory Boogie Woogie is een experimentele literaire game.">
+	<meta name="viewport" content="980px">
 	
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
 	
 	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
 	
-	<script type="text/javascript" src="//use.typekit.net/nhp4ozy.js"></script>
+	<script type="text/javascript" src="//use.typekit.net/lho8sop.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 	
 <body>
-<!--[if lt IE 7]>
-	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-<![endif]-->
-
+<!--[if lt IE 7]><p id="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p><![endif]-->
 
 <!-- LOGIN -->
-<div id="login" class="container">
-		
-	<div class="row">
-		<div id="signin">
-			<div class="stripes"></div>
-			<div class="logo">
-				<a href="{% url 'index' %}" title="Home">
+<div id="login">
+	<div id="signin">
+		<div class="stripes"></div>
+		<div class="logo">
+			<a href="{% url 'index' %}" title="Home">
+				<h2>Your Daily</h2>
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-					<h1>Victory Boogie Woogie</h1>
+				<h1>Victory Boogie Woogie</h1>
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
-				</a>
-			</div>
-			
-			<h2 class="text-center">Inloggen</h2>
-			
-			<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-				{% csrf_token %}
-				
-				{{ form }}
-				
-				<input type="submit" value="inloggen" class="btn btn-large">
-				<input type="hidden" name="next" value="{{ next }}">
-			</form>
-			
-			<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>
-			
+			</a>
 		</div>
+		<h2 class="text-center">Inloggen</h2>
+		<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="inloggen" class="btn btn-primary">
+			<input type="hidden" name="next" value="{{ next }}">
+		</form>
+		<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>
 	</div>
-	
 </div>
 <!-- END LOGIN -->
 
@@ -68,7 +56,7 @@
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 <script src="{{ STATIC_URL }}js/main.min.js"></script>
 
-<!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
+<!-- GOOGLE ANALYTICS -->
 <script>
 	var _gaq=[['_setAccount','UA-38252406-1'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

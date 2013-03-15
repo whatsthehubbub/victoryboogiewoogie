@@ -115,15 +115,23 @@
 		
 		<div id="calendar" class="navbar clearfix">
 			<ul class="nav">
+				<li {% if gameWeek < 1 %}class="label"{% endif %}>start &rarr;</li>
+
 				{% for _ in '1234567890'|make_list %}
 					<li{% if week == forloop.counter %} class="active"{% endif %}{% if gameWeek < forloop.counter %} class="disabled"{% endif %}>
 						{% if gameWeek >= forloop.counter %}
-							<a href="{% url 'pieces_per_week' forloop.counter %}">week {{ forloop.counter }}</a>
+							<a href="{% url 'pieces_per_week' forloop.counter %}" {% if gameWeek == forloop.counter %}class="label"{% endif %}>week {{ forloop.counter }}</a>
 						{% else %}
 							<a>week {{ forloop.counter }}</a>
 						{% endif %}
 					</li>
 				{% endfor %}
+
+				{% if gameWeek > 10 %}
+					<li class="label"><a href="{% url 'post_game' %}">einde</a>.</li>
+				{% else %}
+					<li>einde.</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>

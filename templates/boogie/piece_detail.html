@@ -8,15 +8,6 @@
 
 <div id="itemdetail">
 	
-	<ul class="pager pager-top">
-		<li class="previous">
-			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
-		</li>
-		<li class="next">
-			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
-		</li>
-	</ul>
-	
 	<div class="meta clearfix">
 		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
 		{% if piece.character %}

@@ -4,6 +4,7 @@
 			<div class="box">
 				<div class="overlay"></div>
 				
+				{% if topic != piece.topic or character != piece.character %}
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
 						<p class="genre pull-left">{{ piece.topic }}</p>
@@ -14,6 +15,7 @@
 						{% endif %}
 					{% endifnotequal %}
 				</div>
+				{% endif %}
 				
 				<p class="score"><span class="label">{{ piece.get_human_score|floatformat:"1" }}</span></p>
 

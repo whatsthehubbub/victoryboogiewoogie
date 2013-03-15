@@ -266,6 +266,8 @@ a:hover {
 	position: relative;
 	margin: 1em -1.25em 0;
 	.nav {
+		position: relative;
+		z-index: 4;
 		display: table;
 		width: 100%;
 		li {
@@ -285,33 +287,35 @@ a:hover {
 		    .border-radius(@baseBorderRadius);
 		}
 		a:hover {
-		    color: @grayDark;
+			color: @grayDark;
 		}
 		.active a {
-			color: @black;
-			background-color: @grayLighter;
-			box-shadow: none;		    
-		}
-		.current a {
 			color: @grayDark;
 			background-color: @yellow;
+			box-shadow: none;
+		}
+		.current a {
+			color: @black;
+			background-color: lighten(@grayLighter, 5%);
 		}
 		.disabled a, .disabled a:hover {
 			color: fade(@grayLight, 70%);
+			background-color: none;
 		}
 	}
 }
 
 #papertop {
 	position: relative;
-		height: 5px;
-		margin: -5px -1.25em 0;
-		background-image: url(../img/bg-main-top.png);
-		background-size: 21px 5px;
-		background-position: center top;
-		background-repeat: repeat-x;
-		//background-color: #e6e4e2;
-	}
+	z-index: 5;
+	height: 5px;
+	margin: -5px -1.25em 0;
+	background-image: url(../img/bg-main-top.png);
+	background-size: 21px 5px;
+	background-position: center top;
+	background-repeat: repeat-x;
+	//background-color: #e6e4e2;
+}
 
 // !SIGN IN
 #signin {
@@ -627,8 +631,8 @@ a:hover {
 // !SUMMARY
 #summary {
 	border-bottom: 1px dashed fade(@grayLight, 50%);
-	padding: 0.5em 1.25em 0.5em;
-	margin: 0 -1.25em 1em;
+	padding: 0.5em 1.25em;
+	margin: 1em -1.25em 0em;
 	background-image: url(../img/scissor.png);
 	background-size: 25px 18px;
 	background-position: 8px bottom;
@@ -670,7 +674,7 @@ a:hover {
 
 // !HOME LATEST
 #home-latest {
-	margin-top: 2em;
+	//margin-top: 2em;
 	border-bottom: 1px dashed fade(@grayLight, 50%);
 	margin-left: -1.25em;
 	padding-left: 1.25em;

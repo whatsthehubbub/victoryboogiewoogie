@@ -866,7 +866,7 @@ h2.sans,h3.sans,h4.sans,h5.sans,h6.sans{font-family:"brandon-grotesque",Helvetic
 a{text-decoration:underline;}
 a:hover{text-decoration:none;}
 .progress .bar{background-color:#fed500;}
-#chromeframe{margin:0;background:#999999;color:#000000;padding:0.5em 0;text-align:center;background-color:#fed500;border-bottom:1px solid #eeeeee;}
+#chromeframe{margin:0;background:#999999;color:#000000;padding:0.15em 0;text-align:center;background-color:#fed500;border-bottom:1px solid #eeeeee;}
 #header{background-color:#ffffff;-webkit-box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);box-shadow:0 2px 6px rgba(0, 0, 0, 0.3);}#header a{color:#666666;text-shadow:none;text-decoration:none;}
 #header a:hover{color:#333333;}
 #header a:active{color:#000000;}
@@ -998,6 +998,7 @@ a:hover{text-decoration:none;}
 #itemlist a:hover .content p{color:#222222;}
 #itemlist article{margin-bottom:1em;}
 #itemlist article.span8 .content{margin:1em 4em;}
+#itemlist article.span8.headline h3{font-size:3.5em;}
 #itemlist article a:hover{text-decoration:none;}#itemlist article a:hover .meta{background-color:rgba(238, 238, 238, 0.5);}
 #itemlist article.headline h3{font-size:1.8em;line-height:1.2em;margin-top:0.5em;text-align:center;}
 #itemlist article.proza h3,#itemlist article.poezie h3,#itemlist article.essay h3{font-size:1.4em;line-height:1.2em;margin-top:1em;text-align:center;}

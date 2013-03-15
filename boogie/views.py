@@ -280,10 +280,10 @@ class WriterPieceSubmitForm(ModelForm):
         self.helper.layout = Layout(
             Field('topic', css_class='input-block-level'),
             Field('character', css_class='input-block-level'),
-            Field('image', css_class='input-block-level'),
             Field('genre', css_class="input-block-level"),
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
+            Field('image', css_class='input-block-level'),
             FormActions(
                 Submit('submit', 'Opslaan', css_class='btn')
             )

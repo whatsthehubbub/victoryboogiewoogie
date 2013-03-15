@@ -32,6 +32,10 @@ class PieceVoteAdmin(admin.ModelAdmin):
     list_display = ('player', 'piece')
 admin.site.register(PieceVote, PieceVoteAdmin)
 
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('datecreated', 'sender', 'rank')
+admin.site.register(Advertisement, AdvertisementAdmin)
+
 class SummaryAdmin(admin.ModelAdmin):
     list_display = ('datecreated', 'content')
 admin.site.register(Summary, SummaryAdmin)

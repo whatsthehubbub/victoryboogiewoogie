@@ -372,6 +372,28 @@ class PieceVote(models.Model):
     piece = models.ForeignKey(Piece)
 
 
+class Advertisement(models.Model):
+    class Meta:
+        verbose_name = u'Advertentie'
+        verbose_name_plural = u'Advertenties'
+
+    datecreated = models.DateTimeField(auto_now_add=True)
+    datechanged = models.DateTimeField(auto_now=True)
+
+    image = models.ImageField(blank=True, upload_to='advertisements', help_text="")
+
+    url = models.URLField(blank=True)
+    sender = models.CharField(blank=True, max_length=255)
+
+    rank = models.IntegerField(default=1)
+
+    def __unicode__(self):
+        return self.sender
+
+    def get_absolute_url(self):
+        return self.url
+
+
 class Summary(models.Model):
     class Meta:
         verbose_name = u'Samenvatting'

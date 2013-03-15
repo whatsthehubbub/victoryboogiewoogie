@@ -20,7 +20,7 @@ def index(request):
     t = loader.get_template('boogie/index.html')
     
     c = RequestContext(request, {
-            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')[:5],
+            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished'),
             'summary': Summary.objects.all().order_by('-datecreated'),
             'characters': Character.objects.all()
     })

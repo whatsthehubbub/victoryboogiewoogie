@@ -45,7 +45,7 @@
 		<form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
 			{% csrf_token %}
 			{{ form }}
-			<input type="submit" value="inloggen" class="btn btn-large">
+			<input type="submit" value="inloggen" class="btn btn-primary">
 			<input type="hidden" name="next" value="{{ next }}">
 		</form>
 		<p class="newpassword text-center"><a href="{% url 'password_reset' %}">Wachtwoord vergeten?</a></p>

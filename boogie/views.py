@@ -214,7 +214,7 @@ class PieceSubmitForm(ModelForm):
             raise ValidationError("Je hebt geen nieuw onderwerp ingevuld.")
 
         try:
-            Topic.objects.get(title=new_topic)
+            Topic.objects.get(title__iexact=new_topic)
             raise ValidationError("Dit onderwerp bestaat al. Verzin iets anders.")
         except Topic.DoesNotExist:
             pass

@@ -1050,7 +1050,7 @@ a:hover{text-decoration:none;}
 #createitem #id_text{font-size:1.5em;line-height:1.4em;}
 #createitem #charactercount{background-color:#f5a400;}
 #createitem #charactercount.limit{background-color:#e32112;}
-#createitem #div_id_new_topic{clear:both;}
+#createitem #div_id_new_topic,#createitem #div_id_image{clear:both;}
 #entryqueue .item{margin-top:1em;}
 #entryqueue .action{margin-bottom:2em;}
 #notifications .new td{background-color:rgba(90, 159, 255, 0.1);}

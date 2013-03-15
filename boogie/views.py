@@ -283,6 +283,7 @@ class WriterPieceSubmitForm(ModelForm):
             Field('genre', css_class="input-block-level"),
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
+            HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('image', css_class='input-block-level'),
             FormActions(
                 Submit('submit', 'Opslaan', css_class='btn')

@@ -73,7 +73,7 @@
 				</div>	
 			</div>			
 			<div class="row">
-				<div class="span4">
+				<div class="span4 prev">
 					<h4>Vorige bijdrage…</h4>					
 					<ul>
 						{% if piece.get_previous_piece %}<li>Over alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title }}</a></li>{% endif %}
@@ -83,7 +83,7 @@
 						{% if piece.character and piece.get_previous_piece %}<li>Over {{ piece.character }}: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title }}</a></li>{% endif %}
 					</ul>	
 				</div>
-				<div class="span4">
+				<div class="span4 next">
 					<h4>Volgende bijdrage…</h4>
 					<ul>
 						{% if piece.get_next_piece %}<li><a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title }}</a></li>{% endif %}
@@ -96,15 +96,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<ul class="pager pager-bottom">
-		<li class="previous">
-			{% if piece.get_previous_piece %}<a href="{{ piece.get_previous_piece.get_absolute_url }}">Vorige</a>{% endif %}
-		</li>
-		<li class="next">
-			{% if piece.get_next_piece %}<a href="{{ piece.get_next_piece.get_absolute_url }}">Volgende</a>{% endif %}
-		</li>
-	</ul>
 	
 </div>
     

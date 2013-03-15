@@ -12,8 +12,8 @@
 	
 	<title>{% block pagetitle %}{% endblock %} - Victory Boogie Woogie</title>
 	
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="Victory Boogie Woogie is een experimentele literaire game.">
+	<meta name="viewport" content="980px">
 	
 	<!-- Facebook Open Graph Tags https://developers.facebook.com/docs/reference/plugins/like/ -->
 	<meta property="og:title" content="Victory Boogie Woogie" />
@@ -24,13 +24,12 @@
     <meta property="fb:admins" content="1284304749" />
 	
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-	<link rel="stylesheet" href="{{ STATIC_URL }}webfonts/ss-standard.css">
 	
 	<script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
 	
-	<script type="text/javascript" src="//use.typekit.net/nhp4ozy.js"></script>
+	<script type="text/javascript" src="//use.typekit.net/lho8sop.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
+	
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	{% block extrahead %}{% endblock extrahead %}
 </head>
@@ -61,7 +60,7 @@
 			<li>
 				{% if current_url %}
 				<div class="navbar-form">
-					<a href="{{ current_url }}" class="btn">{{ current_status }}</a>
+					<a href="{{ current_url }}" class="btn btn-warning">{{ current_status }}</a>
 				</div> 
 				{% else %}	
 					<a class="disabled">{{ current_status }}</a>
@@ -101,6 +100,7 @@
 		
 		<div class="logo">
 			<a href="{% url 'index' %}" title="Home">
+				<h2>Your Daily</h2>
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
 				<h1>Victory Boogie Woogie</h1>
 				<img src="{{ STATIC_URL }}img/logo-vbw-dot.png">
@@ -158,9 +158,9 @@
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 <script src="{{ STATIC_URL }}js/main.min.js"></script>
 
-<!-- GOOGLE ANALYTICS (change UA-XXXXX-X) -->
+<!-- GOOGLE ANALYTICS -->
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	var _gaq=[['_setAccount','UA-38252406-1'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	s.parentNode.insertBefore(g,s)}(document,'script'));

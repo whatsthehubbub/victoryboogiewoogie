@@ -263,42 +263,55 @@ a:hover {
 
 // !CALENDAR
 #calendar {
-	margin: 1em 0 0;
+	position: relative;
+	margin: 1em -1.25em 0;
 	.nav {
-		margin: 0;
 		display: table;
 		width: 100%;
-	}
-	.nav li {
-		display: table-cell;
-		width: 1%;
-		float: none;
-		text-align: center;
-	}
-	.nav li.active a {
-		background-color: transparent;
-		box-shadow: none;
-		/* background-image: url(../img/calendar-arrow.png);
-		background-size: 20px 15px;
-		background-repeat: no-repeat;
-		background-position: center bottom;
-		*/
-	}
-	.nav li a {
-		color: @gray;
-		text-align: center;
-		text-shadow: 0px 1px 0px fade(@white, 60%);
-	}
-	.nav li a:hover {
-		color: @grayDark;
-	}
-	.nav li.active a {
-		color: @black;
-	}
-	.nav li.disabled a, .nav li.disabled a:hover {
-		color: fade(@grayLight, 70%);
+		li {
+			display: table-cell;
+			width: 1%;
+			float: none;
+			text-align: center;			
+		}
+		li:first-child, li:last-child {
+			color: lighten(@grayLight, 18%);
+			text-shadow: 0px 1px 0px fade(@white, 60%);
+		}
+		a {
+		    color: @gray;
+		    text-align: center;
+		    text-shadow: 0px 1px 0px fade(@white, 60%);
+		    .border-radius(@baseBorderRadius);
+		}
+		a:hover {
+		    color: @grayDark;
+		}
+		.active a {
+			color: @black;
+			background-color: @grayLighter;
+			box-shadow: none;		    
+		}
+		.current a {
+			color: @grayDark;
+			background-color: @yellow;
+		}
+		.disabled a, .disabled a:hover {
+			color: fade(@grayLight, 70%);
+		}
 	}
 }
+
+#papertop {
+	position: relative;
+		height: 5px;
+		margin: -5px -1.25em 0;
+		background-image: url(../img/bg-main-top.png);
+		background-size: 21px 5px;
+		background-position: center top;
+		background-repeat: repeat-x;
+		//background-color: #e6e4e2;
+	}
 
 // !SIGN IN
 #signin {
@@ -637,16 +650,6 @@ a:hover {
 	padding: 0 0 6em;
 	//.border-radius(@baseBorderRadius);
 	.box-shadow(0 2px 2px rgba(0,0,0,.2));
-	.papertop {
-		height: 5px;
-		margin: 0 0 1.25em;
-		background-image: url(../img/bg-main-top.png);
-		background-size: 21px 5px;
-		background-position: center top;
-		background-repeat: repeat-x;
-		background-color: transparent;
-		background-color: @white;
-	}
 }
 
 // !CONTENT

@@ -37,7 +37,9 @@
 			<article class="{{ piece.genre|lower }} clearfix">
 								
 				<h2 class="text-center">{{ piece.title }}</h2>
-				<div class="author text-center"><em>Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> – {% if piece.datepublished %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}</em></div>
+				<div class="author text-center"><em>Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> – {% if piece.datepublished %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}
+
+				{% ifequal piece.writer.role 'PLAYER' %}{% if piece.character %}<span class="label">Gastbijdrage</span>{% endif %}{% endifequal %}</div>
 				
 				{% if piece.image %}<img src="{{ piece.image.url }}" alt="{{ piece.title }}">{% endif %}
 				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}

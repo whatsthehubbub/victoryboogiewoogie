@@ -115,7 +115,7 @@
 		
 		<div id="calendar" class="navbar clearfix">
 			<ul class="nav">
-				<li class="disabled"><a>start</a></li>
+				<li class="disabled"><a>start…</a></li>
 				{% for _ in '1234567890'|make_list %}
 					<li class="{% if week == forloop.counter %}active {% endif %}{% if gameWeek < forloop.counter %}disabled{% endif %} {% if gameWeek == forloop.counter %}current{% endif %}">
 						{% if gameWeek >= forloop.counter %}
@@ -127,9 +127,9 @@
 				{% endfor %}
 
 				{% if gameWeek > 10 %}
-					<li class="current"><a href="{% url 'post_game' %}">einde</a></li>
+					<li class="current"><a href="{% url 'post_game' %}">…einde</a></li>
 				{% else %}
-					<li class="disabled"><a>einde</a></li>
+					<li class="disabled"><a>…einde</a></li>
 				{% endif %}
 			</ul>
 		</div>

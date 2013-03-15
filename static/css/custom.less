@@ -95,11 +95,11 @@ a:hover {
 		color: @black;
 	}
 	a.disabled {
-		color: fade(@grayLight, 50%);
+		color: lighten(@grayLight, 10%);
 	}
 	.btn {
 		color: @grayDark;
-		text-shadow: 0px 1px 0px fade(@white, 70%);
+		text-shadow: 0px 1px 0px fade(@white, 60%);
 	}
 	li {
 		position: relative;
@@ -223,7 +223,7 @@ a:hover {
 		}
 		h1 {
 			display: inline;
-			color: lighten(@grayLight, 18%);
+			color: lighten(@grayLight, 12%);
 			text-shadow: 0px 1px 0px fade(@white, 60%);
 			font-family: @headFontFamily;
 			text-transform: uppercase;
@@ -236,7 +236,7 @@ a:hover {
 			margin-bottom: 0.25em;
 			font-family: @scriptFontFamily;
 			font-weight: 500;
-			color: lighten(@grayLight, 18%);
+			color: lighten(@grayLight, 12%);
 			text-shadow: 0px 1px 0px fade(@white, 60%);
 			text-transform: none;
 		}
@@ -248,11 +248,10 @@ a:hover {
 		}
 	}
 	#welcome {
-		//border-bottom: 1px solid fade(@grayLight, 50%);
-		color: fade(@grayLight, 70%);
+		color: lighten(@grayLight, 12%);
 		text-shadow: 0px 1px 0px fade(@white, 60%);
 		padding: 0 0 0.5em;
-		margin: -1.5em 0 -0.25em;
+		margin: -1em 0 -0.25em;
 		font-family: @headFontFamily;
 		text-transform: uppercase;
 		font-weight: 900;
@@ -298,7 +297,7 @@ a:hover {
 			background-color: lighten(@grayLighter, 5%);
 		}
 		.disabled a, .disabled a:hover {
-			color: fade(@grayLight, 70%);
+			color: lighten(@grayLight, 10%);
 			background-color: none;
 		}
 	}
@@ -664,7 +663,7 @@ a:hover {
 	.box {
 		padding: 3em 0 4em 0;
 		.border-radius(@baseBorderRadius);
-		border: 1px solid fade(@grayLighter, 50%);
+		border: 1px solid @grayLighter;
 	}
 	.box-small {
 		padding: 1em 0 0.5em 0;
@@ -736,7 +735,7 @@ a:hover {
 	article a:hover {
 		text-decoration: none;
 		.meta {
-			background-color: fade(@grayLighter,50%);
+			background-color: lighten(@grayLighter,5%);
 		}
 	}
 	article.headline h3 {
@@ -780,9 +779,7 @@ a:hover {
 	}
 	.meta {
 		color: @grayLight;
-		//background-color: fade(@grayLighter, 30%);
-		//padding: 0.8em 0 0;
-		border-bottom: 1px solid fade(@grayLighter, 50%);
+		border-bottom: 1px solid @grayLighter;
 		padding: 0.15em 0;
 		.genre {
 			margin: 0.75em 0 0.75em 0.5em;
@@ -814,7 +811,7 @@ a:hover {
 	}
 	.info {
 		margin: 0.5em 0 0 0;
-		color: fade(@grayLight, 80%);
+		color: lighten(@grayLight, 10%);
 		.author a {
 			position: relative;
 			padding-right: 15px;
@@ -883,7 +880,7 @@ a:hover {
 		}
 		img {
 			opacity: 1;
-			.box-shadow( 0 0 1px rgba(0,0,0,.3));
+			//.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 }
@@ -956,7 +953,6 @@ a:hover {
 		color: @grayLight;
 		margin: -1.25em -1.25em 4em;
 		padding: 0.5em 1em;
-		//background-color: fade(@grayLighter, 40%);
 		border-bottom: 1px solid @grayLighter;
 		p {
 			margin: 0.6em 0;
@@ -1082,7 +1078,7 @@ a:hover {
 // !NOTIFICATIONS
 #notifications {
 	.new td {
-		background-color: fade(@blue, 10%);
+		background-color: lighten(@blue, 30%);
 	}
 	.date {
 		color: @grayLight;

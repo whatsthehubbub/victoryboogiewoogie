@@ -19,7 +19,7 @@
 
 				{% ifequal piece.genre "Illustratie" %}
 					{% if piece.image %}
-						<img src="{{ piece.image.url }}" alt="{{ piece.title }}">
+						<div class="image" style="background-image:url({{ piece.image.url }})"></div>
 					{% endif %}
 				{% else %}
 					<div class="content">

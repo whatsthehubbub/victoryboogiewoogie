@@ -269,6 +269,26 @@ class WriterPieceSubmitForm(ModelForm):
         model = Piece
         fields = ('topic', 'character', 'image', 'genre', 'title', 'text')
 
+    def __init__(self, *args, **kwargs):
+        super(WriterPieceSubmitForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_class = 'form'
+        self.helper.form_action = ''
+        self.helper.form_method = 'post'
+
+        self.helper.layout = Layout(
+            Field('topic', css_class='input-block-level'),
+            Field('character', css_class='input-block-level'),
+            Field('image', css_class='input-block-level'),
+            Field('genre', css_class="input-block-level"),
+            Field('title', css_class="input-block-level"),
+            Field('text', css_class="input-block-level"),
+            FormActions(
+                Submit('submit', 'Opslaan', css_class='btn')
+            )
+        )
+
     def clean_genre(self):
         genre = self.cleaned_data['genre']
 

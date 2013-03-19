@@ -341,6 +341,31 @@ class Piece(models.Model):
         except:
             return None
 
+    def get_next_piece_by_topic(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', topic=self.topic, datepublished__gt=self.datepublished).order_by('datepublished')[0]
+        except:
+            return None
+
+    def get_previous_piece_by_topic(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', topic=self.topic, datepublished__lt=self.datepublished).order_by('-datepublished')[0]
+        except:
+            return None
+
+    def get_next_piece_by_character(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', character=self.character, datepublished__gt=self.datepublished).order_by('datepublished')[0]
+        except:
+            return None
+
+    def get_previous_piece_by_character(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', character=self.character, datepublished__lt=self.datepublished).order_by('-datepublished')[0]
+        except:
+            return None
+
+
     def approve(self):
         self.status = 'APPROVED'
 

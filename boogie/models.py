@@ -468,7 +468,7 @@ class Game(models.Model):
         return 0
 
     def over(self):
-        if self.weeks_since_start > 10:
+        if self.weeks_since_start() > 10:
             return True
         else:
             return False

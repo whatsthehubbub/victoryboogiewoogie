@@ -5,12 +5,20 @@
 
 {% block content %}
 <div class="row">
-	<div class="span6 offset3">
-		<h2 class="text-center">Aanmelden</h2>
-		<hr>
-		<p class="lead">Meld je aan om mee te kunnen spelen met Victory Boogie Woogie.</p>
-		<hr>
-	{% crispy form %}
-	</div>
+	{% if not game.over %}
+		<div class="span6 offset3">
+			<h2 class="text-center">Aanmelden</h2>
+			<hr>
+			<p class="lead">Meld je aan om mee te kunnen spelen met Victory Boogie Woogie.</p>
+			<hr>
+		{% crispy form %}
+		</div>
+	{% else %}
+		<div class="span6 offset3">
+			<h2 class="text-center">Game over</h2>
+			<hr>
+			<p class="lead">Het spel is helaas voorbij en je kunt je niet meer aanmelden.</p>
+		</div>
+	{% endif %}
 </div>
 {% endblock content %}

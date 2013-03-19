@@ -427,6 +427,7 @@ class Summary(models.Model):
 
 class GameManager(models.Manager):
     def get_latest_game(self):
+        # This is the active game
         # TODO cache this call
 
         games = Game.objects.all().order_by('-start_date')
@@ -446,6 +447,9 @@ class Game(models.Model):
     # Used to turn on/off the pre launch screen
     started = models.BooleanField(default=False)
 
+    # Active is past week 10
+    # active = models.BooleanField(default=True)
+
     days_between_reassign = models.IntegerField(default=1)
 
     objects = GameManager()
@@ -453,6 +457,21 @@ class Game(models.Model):
     def __unicode__(self):
         return "Game with start: %s" % self.start_date.isoformat()
 
+    def weeks_since_start(self):
+        today = datetime.date.today()
+
+        if today >= self.start_date:
+            delta = today - self.start_date
+
+            return (delta.days / 7) + 1
+
+        return 0
+
+    def over(self):
+        if self.weeks_since_start > 10:
+            return True
+        else:
+            return False
 
     def save(self, *args, **kwargs):
         super(Game, self).save(*args, **kwargs)

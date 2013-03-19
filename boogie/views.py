@@ -22,9 +22,6 @@ def index(request):
     frontpage_pieces = Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')
     ads = Advertisement.objects.all().order_by('rank')
 
-    print frontpage_pieces
-    print frontpage_pieces.count()
-
     max_ad_rank = Advertisement.objects.all().aggregate(Max('rank'))['rank__max']
     max_items = frontpage_pieces.count() + ads.count()
 
@@ -159,6 +156,7 @@ def pieces_per_week(request, week):
     week = int(week)
     datestart = Game.objects.get_latest_game().start_date
 
+    # TODO not good to pass dates into a datetime compare, but it works
     weekStart = datestart + datetime.timedelta((week-1) * 7)
     weekEnd = datestart + datetime.timedelta((week) * 7)
 

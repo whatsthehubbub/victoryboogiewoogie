@@ -37,16 +37,9 @@ def player(request):
             returnDict['current_url'] = reverse('writer_piece_submit')
 
     try:
-        startDate = Game.objects.get_latest_game().start_date
-        today = datetime.date.today()
-
-        delta = today - startDate
-
-        if today >= startDate:
-            returnDict['gameWeek'] = (delta.days / 7) + 1
-        else:
-            returnDict['gameWeek'] = 0
-    except IndexError:
+        game = Game.objects.get_latest_game()
+        returnDict['game'] = game
+    except:
         pass
 
     return returnDict

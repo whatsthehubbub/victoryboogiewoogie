@@ -1,5 +1,5 @@
 {% load url from future %}
-	<article class="{% if frontpage_pieces %}{% if forloop.counter == 1 or forloop.counter == 4 %}span8{% else %}span4{% endif %}{% else %}span4{% endif %} {{ piece.genre|lower }} clearfix">
+	<article class="{% if piece_and_ads and piece.highlight %}span8{% else %}span4{% endif %} {{ piece.genre|lower }} clearfix">
 		<a href="{{ piece.get_absolute_url }}">
 			<div class="box">
 				<div class="overlay"></div>

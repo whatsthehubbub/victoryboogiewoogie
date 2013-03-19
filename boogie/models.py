@@ -269,6 +269,8 @@ class Piece(models.Model):
 
     # Visible on the frontpage or not?
     frontpage = models.BooleanField(default=False)
+    # Highlighted on the front page or not?
+    highlight = models.BooleanField(default=False)
     
     def __unicode__(self):
         return '%s by %s' % (unicode(self.topic), unicode(self.writer))

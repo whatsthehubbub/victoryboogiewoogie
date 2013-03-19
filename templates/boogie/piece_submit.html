@@ -52,13 +52,16 @@ $(document).ready(function() {
 		<!-- TODO: Include character count. -->
 		
 		{% ifequal current_player.role 'PLAYER' %}
-			{% if form %}			
-				<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
-				
-				{% if form.instance.rejection_reason %}
-					<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
-				{% endif %}
+			{% if game.over %}
+				<h2 class="text-center">Het spel is voorbij.</h2>
+			{% else %}
+				{% if form %}			
+					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
 					
+					{% if form.instance.rejection_reason %}
+						<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
+					{% endif %}
+						
 					<ul class="info clearfix">
 						<li class="pull-left">Info</li>
 						<li class="pull-right">
@@ -77,13 +80,14 @@ $(document).ready(function() {
 						<li class="pull-left">Aantal bijdragen deze ronde</li>
 						<li class="pull-right"><span class="label">{{ form.instance.topic.piece_count }}</span></li><!-- TODO: Hook this up to topic rank. -->
 					</ul>
-				
-				{% crispy form %}
-				
-				<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
-				
-			{% else %}
-				<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
+					
+					{% crispy form %}
+					
+					<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
+					
+				{% else %}
+					<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
+				{% endif %}
 			{% endif %}
 		{% endifequal %}		
 	</div>

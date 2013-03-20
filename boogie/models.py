@@ -31,6 +31,9 @@ class Player(models.Model):
     pseudonym = models.CharField(max_length=20, blank=True, verbose_name='Pennaam')
     onelinebio = models.CharField(max_length=255, blank=True, verbose_name="Korte biografie")
 
+    # Write a piece about a character on next assignment
+    piece_about_character = models.ForeignKey('Character', null=True, blank=True, help_text='De volgende keer dat de speler een stukje schrijft gaat het over dit karakter.')
+
     # E-mail notifications
     send_emails = models.BooleanField(default=True, verbose_name=u'Stuur me e-mail')
     emails_unsubscribe_hash = models.CharField(max_length=255, blank=True)
@@ -42,8 +45,16 @@ class Player(models.Model):
             # TODO Check if you can get a new topic for which you are already writing
             new_topic = Topic.objects.exclude(archived=True).exclude(pool='WRITER').order_by('?')[0]
 
+            # If the piece_about_character field is set, the next assignment is going to be about this character
+            if self.piece_about_character:
+                character = self.piece_about_character
+                self.piece_about_character = None
+                self.save()
+            else:
+                character = None
+
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
-            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self, genre='Proza')
+            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self, genre='Proza', character=character)
 
             Notification.objects.create_new_assignment_notification(self, piece)
 
@@ -65,6 +76,8 @@ class Player(models.Model):
         import uuid
         self.emails_unsubscribe_hash = uuid.uuid4().hex
 
+    def email(self):
+        return self.user.email
 
     @models.permalink
     def get_absolute_url(self):

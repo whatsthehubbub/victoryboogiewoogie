@@ -72,6 +72,14 @@ $(document).ready(function() {
 							{% endif %}
 						</li>
 					</ul>
+
+					{% if form.instance.character %}
+						<ul class="info clearfix">
+							<li class="pull-left">Over personage</li>
+							<li class="pull-right">{{ form.instance.character }} (Hoe vet! Je mag iets schrijven over dit personage.)</li>
+						</ul>
+					{% endif %}
+
 					<ul class="info clearfix">
 						<li class="pull-left">Deadline</li>
 						<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>

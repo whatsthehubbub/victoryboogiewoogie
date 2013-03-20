@@ -990,7 +990,7 @@ a:hover{text-decoration:none;}
 #content .box-small{padding:1em 0 0.5em 0;}
 #home-latest{border-bottom:1px solid #eeeeee;margin-left:-1.25em;padding-left:1.25em;margin-right:-1.25em;padding-right:1.25em;padding-bottom:3em;}
 #home-characters{margin-top:4em;}
-#summarylist .summaryitem{border-bottom:1px solid #eeeeee;padding-bottom:2em;}
+#summarylist .summaryitem{border-bottom:1px solid #eeeeee;padding-bottom:2em;}#summarylist .summaryitem h3{margin:0;padding:2em 0 1em;}
 #itemlist{position:relative;}#itemlist .filter{position:absolute;top:1.55em;right:0;}
 #itemlist a{text-decoration:none;}#itemlist a .content h3{color:#666666;}
 #itemlist a .content p{color:#999999;}

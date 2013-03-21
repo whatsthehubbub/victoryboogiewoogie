@@ -57,17 +57,17 @@ $(document).ready(function() {
 				<p class="lead">Je kunt helaas niet meer meeschrijven. <a href="{% url 'post_game' %}">Lees hier de terugblik</a>.</p>
 			{% else %}
 				{% if form %}			
-					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}</h2>
+					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{{ form.instance.topic.title }}{% if form.instance.character %} &amp; {{ form.instance.character }}{% endif %}</h2>
 					
 					{% if form.instance.rejection_reason %}
 						<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
 					{% endif %}
 						
 					<ul class="info clearfix">
-						<li class="pull-left">Info</li>
+						<li class="pull-left">Onderwerp</li>
 						<li class="pull-right">
 							{% if form.instance.topic.get_latest_piece %}
-								Lees de <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">laatste bijdrage</a> over “{{ form.instance.topic.title }}” of bekijk <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">alle bijdragen</a> over dit onderwerp.
+								Lees de laatste bijdrage over “{{ form.instance.topic.title }}” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|truncatechars:140 }}</a>
 								{% else %}
 								Er is nog niks geschreven over dit onderwerp. <em>Carte blanche!</em>
 							{% endif %}
@@ -76,8 +76,8 @@ $(document).ready(function() {
 
 					{% if form.instance.character %}
 						<ul class="info clearfix">
-							<li class="pull-left">Over personage</li>
-							<li class="pull-right">{{ form.instance.character }} (Hoe vet! Je mag iets schrijven over dit personage.)</li>
+							<li class="pull-left">Personage</li>
+							<li class="pull-right">Lees de laatste bijdrage over “{{ form.instance.character }}” getiteld <a href="">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a></li>
 						</ul>
 					{% endif %}
 

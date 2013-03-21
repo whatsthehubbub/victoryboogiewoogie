@@ -75,10 +75,11 @@ $(document).ready(function() {
 					</ul>
 
 					{% if form.instance.character %}
-						<ul class="info clearfix">
-							<li class="pull-left">Personage</li>
-							<li class="pull-right">Lees de laatste bijdrage over “{{ form.instance.character }}” getiteld <a href="">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a></li>
-						</ul>
+					<ul class="info clearfix">
+						<li class="pull-left">Personage</li>
+						<!--TODO: Hook the link below up to the latest piece about this character.-->
+						<li class="pull-right">Lees de laatste bijdrage over {{ form.instance.character }} getiteld <a href="">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a></li>
+					</ul>
 					{% endif %}
 
 					<ul class="info clearfix">
@@ -87,7 +88,7 @@ $(document).ready(function() {
 					</ul>
 					<ul class="info clearfix">
 						<li class="pull-left">Aantal bijdragen deze ronde</li>
-						<li class="pull-right"><span class="label">{{ form.instance.topic.piece_count }}</span></li><!-- TODO: Hook this up to topic rank. -->
+						<li class="pull-right"><span class="label">{{ form.instance.topic.piece_count }}</span></li>
 					</ul>
 					
 					{% crispy form %}

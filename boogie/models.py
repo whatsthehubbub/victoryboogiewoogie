@@ -462,7 +462,7 @@ class Summary(models.Model):
             tasks.create_summary_notifications_for_all_players.apply_async(args=[self])
 
     def get_absolute_url(self):
-        return reverse('summary') + ('#samenvatting_%d' % self.id)
+        return reverse('summary') + ('#samenvatting-%d' % self.id)
 
 
 class GameManager(models.Manager):

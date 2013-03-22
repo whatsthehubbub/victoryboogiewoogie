@@ -78,7 +78,7 @@ $(document).ready(function() {
 					<ul class="info clearfix">
 						<li class="pull-left">Personage</li>
 						<!--TODO: Hook the link below up to the latest piece about this character.-->
-						<li class="pull-right">Lees de laatste bijdrage over {{ form.instance.character }} getiteld <a href="">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a></li>
+						<li class="pull-right">Lees de laatste bijdrage over {{ form.instance.character }} getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a></li>
 					</ul>
 					{% endif %}
 

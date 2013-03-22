@@ -118,6 +118,12 @@ class Character(models.Model):
     def pieces(self):
         return Piece.objects.filter(status='APPROVED', character=self).order_by('-datepublished')
 
+    def get_latest_piece(self):
+        try:
+            return self.pieces()[0]
+        except IndexError:
+            return None
+
 
 class PreLaunchEmail(models.Model):
     class Meta:

@@ -2,7 +2,8 @@ from django.contrib import admin
 from boogie.models import *
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'pseudonym', 'role', 'send_emails')
+    list_display = ('email', 'pseudonym', 'role', 'send_emails')
+    list_filter = ('piece_about_character',)
 admin.site.register(Player, PlayerAdmin)
 
 class CharacterAdmin(admin.ModelAdmin):
@@ -33,7 +34,7 @@ class PieceVoteAdmin(admin.ModelAdmin):
 admin.site.register(PieceVote, PieceVoteAdmin)
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('datecreated', 'sender', 'rank')
+    list_display = ('datecreated', 'sender', 'rank', 'active')
 admin.site.register(Advertisement, AdvertisementAdmin)
 
 class SummaryAdmin(admin.ModelAdmin):

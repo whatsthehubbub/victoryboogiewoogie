@@ -19,8 +19,32 @@ from crispy_forms.bootstrap import FormActions
 def index(request):
     t = loader.get_template('boogie/index.html')
     
+    frontpage_pieces = Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')
+    ads = Advertisement.objects.filter(active=True).order_by('rank')
+
+    max_ad_rank = Advertisement.objects.filter(active=True).aggregate(Max('rank'))['rank__max']
+    max_items = frontpage_pieces.count() + ads.count()
+
+    piece_and_ads = (max(max_ad_rank, max_items)+2) * [None]
+
+    for ad in ads:
+        piece_and_ads[ad.rank] = ('ad', ad)
+
+    piece_counter = 0
+
+    for counter in range(1, len(piece_and_ads)):
+        if not piece_and_ads[counter]:
+            try:
+                piece_and_ads[counter] = ('piece', frontpage_pieces[piece_counter])
+            except IndexError:
+                pass # Ran out of pieces
+            
+            piece_counter += 1
+
+    piece_and_ads = [el for el in piece_and_ads if el]
+
     c = RequestContext(request, {
-            'frontpage_pieces': Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished'),
+            'piece_and_ads': piece_and_ads,
             'summary': Summary.objects.all().order_by('-datecreated'),
             'characters': Character.objects.all()
     })
@@ -132,6 +156,7 @@ def pieces_per_week(request, week):
     week = int(week)
     datestart = Game.objects.get_latest_game().start_date
 
+    # TODO not good to pass dates into a datetime compare, but it works
     weekStart = datestart + datetime.timedelta((week-1) * 7)
     weekEnd = datestart + datetime.timedelta((week) * 7)
 
@@ -523,7 +548,7 @@ def player_unsubscribe(request, h):
 def character_profile(request, id):
     character = Character.objects.get(id=id)
 
-    order = request.GET.get('order', '-datecreated')
+    order = request.GET.get('order', '-datepublished')
 
     t = loader.get_template('boogie/character_profile.html')
 

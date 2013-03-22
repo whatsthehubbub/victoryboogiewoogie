@@ -27,7 +27,7 @@
 			<tbody>
 			{% for piece in submitted_pieces %}
 				<tr>
-					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
+					<td><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a> over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></td>
 				</tr>
 			{% endfor %}
 			</tbody>
@@ -41,7 +41,7 @@
 			{% for piece in needswork_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
 						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
 						<div class="alert">Suggesties van de redactie: {{ piece.rejection_reason }}<a href="{% url 'piece_submit' %}">Bewerken</a></div>
 					</td>
@@ -58,7 +58,7 @@
 			{% for piece in approved_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
 						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> – {{ piece.datepublished|timesince }} geleden</p>
 					</td>
 				</tr>
@@ -74,7 +74,7 @@
 			{% for piece in rejected_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a></h5>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
 						<p>over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
 					</td>
 				</tr>

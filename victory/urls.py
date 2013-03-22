@@ -16,9 +16,9 @@ from registration.backends import get_backend
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.forms import CharField
+from django.forms import CharField, ValidationError
 
-from boogie.models import Player
+from boogie.models import Player, Game
 
 # We don't do from registration.views import register
 # But copy the code to add the saving of an extra field
@@ -54,7 +54,9 @@ def register(request, backend, success_url=None, form_class=None,
     
     if extra_context is None:
         extra_context = {}
+
     context = RequestContext(request)
+    
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
 

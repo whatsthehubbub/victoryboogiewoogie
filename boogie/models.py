@@ -31,6 +31,9 @@ class Player(models.Model):
     pseudonym = models.CharField(max_length=20, blank=True, verbose_name='Pennaam')
     onelinebio = models.CharField(max_length=255, blank=True, verbose_name="Korte biografie")
 
+    # Write a piece about a character on next assignment
+    piece_about_character = models.ForeignKey('Character', null=True, blank=True, help_text='De volgende keer dat de speler een stukje schrijft gaat het over dit karakter.')
+
     # E-mail notifications
     send_emails = models.BooleanField(default=True, verbose_name=u'Stuur me e-mail')
     emails_unsubscribe_hash = models.CharField(max_length=255, blank=True)
@@ -42,8 +45,16 @@ class Player(models.Model):
             # TODO Check if you can get a new topic for which you are already writing
             new_topic = Topic.objects.exclude(archived=True).exclude(pool='WRITER').order_by('?')[0]
 
+            # If the piece_about_character field is set, the next assignment is going to be about this character
+            if self.piece_about_character:
+                character = self.piece_about_character
+                self.piece_about_character = None
+                self.save()
+            else:
+                character = None
+
             deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
-            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self, genre='Proza')
+            piece = Piece.objects.create(topic=new_topic, deadline=deadline, writer=self, genre='Proza', character=character)
 
             Notification.objects.create_new_assignment_notification(self, piece)
 
@@ -65,6 +76,8 @@ class Player(models.Model):
         import uuid
         self.emails_unsubscribe_hash = uuid.uuid4().hex
 
+    def email(self):
+        return self.user.email
 
     @models.permalink
     def get_absolute_url(self):
@@ -104,6 +117,12 @@ class Character(models.Model):
 
     def pieces(self):
         return Piece.objects.filter(status='APPROVED', character=self).order_by('-datepublished')
+
+    def get_latest_piece(self):
+        try:
+            return self.pieces()[0]
+        except IndexError:
+            return None
 
 
 class PreLaunchEmail(models.Model):
@@ -182,14 +201,14 @@ class Notification(models.Model):
             self.for_player.update_unsubscribe_hash()
             self.for_player.save()
 
-        return '''Deze e-mail is verstuurd door <a href="http://www.gidsgame.nl/">Boogie Woogie Daily</a>. Om je direct af te melden van verdere e-mails kan je je <a href="http://www.gidsgame.nl%s">met één klik uitschrijven</a>.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
+        return '''Deze e-mail is verstuurd door <a href="http://www.gidsgame.nl/">Victory Boogie Woogie</a>. Om je direct af te melden van verdere e-mails kan je je <a href="http://www.gidsgame.nl%s">met één klik uitschrijven</a>.''' % reverse('player_unsubscribe', args=(self.for_player.emails_unsubscribe_hash,))
 
     def get_subject(self):
         # TODO modify subjects based on notification type
         if self.identifier == 'bla':
             return ''
         else:
-            return 'Nieuw bericht van Boogie Woogie Daily'
+            return 'Nieuw bericht van Victory Boogie Woogie'
 
 
 class Topic(models.Model):
@@ -269,6 +288,8 @@ class Piece(models.Model):
 
     # Visible on the frontpage or not?
     frontpage = models.BooleanField(default=False)
+    # Highlighted on the front page or not?
+    highlight = models.BooleanField(default=False)
     
     def __unicode__(self):
         return '%s by %s' % (unicode(self.topic), unicode(self.writer))
@@ -341,6 +362,31 @@ class Piece(models.Model):
         except:
             return None
 
+    def get_next_piece_by_topic(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', topic=self.topic, datepublished__gt=self.datepublished).order_by('datepublished')[0]
+        except:
+            return None
+
+    def get_previous_piece_by_topic(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', topic=self.topic, datepublished__lt=self.datepublished).order_by('-datepublished')[0]
+        except:
+            return None
+
+    def get_next_piece_by_character(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', character=self.character, datepublished__gt=self.datepublished).order_by('datepublished')[0]
+        except:
+            return None
+
+    def get_previous_piece_by_character(self):
+        try:
+            return Piece.objects.filter(status='APPROVED', character=self.character, datepublished__lt=self.datepublished).order_by('-datepublished')[0]
+        except:
+            return None
+
+
     def approve(self):
         self.status = 'APPROVED'
 
@@ -382,6 +428,8 @@ class Advertisement(models.Model):
 
     image = models.ImageField(blank=True, upload_to='advertisements', help_text="")
 
+    active = models.BooleanField(default=True)
+
     url = models.URLField(blank=True)
     sender = models.CharField(blank=True, max_length=255)
 
@@ -422,11 +470,12 @@ class Summary(models.Model):
             tasks.create_summary_notifications_for_all_players.apply_async(args=[self])
 
     def get_absolute_url(self):
-        return reverse('summary') + ('#summary_%d' % self.id)
+        return reverse('summary') + ('#samenvatting-%d' % self.id)
 
 
 class GameManager(models.Manager):
     def get_latest_game(self):
+        # This is the active game
         # TODO cache this call
 
         games = Game.objects.all().order_by('-start_date')
@@ -446,6 +495,9 @@ class Game(models.Model):
     # Used to turn on/off the pre launch screen
     started = models.BooleanField(default=False)
 
+    # Active is past week 10
+    # active = models.BooleanField(default=True)
+
     days_between_reassign = models.IntegerField(default=1)
 
     objects = GameManager()
@@ -453,6 +505,21 @@ class Game(models.Model):
     def __unicode__(self):
         return "Game with start: %s" % self.start_date.isoformat()
 
+    def weeks_since_start(self):
+        today = datetime.date.today()
+
+        if today >= self.start_date:
+            delta = today - self.start_date
+
+            return (delta.days / 7) + 1
+
+        return 0
+
+    def over(self):
+        if self.weeks_since_start() > 10:
+            return True
+        else:
+            return False
 
     def save(self, *args, **kwargs):
         super(Game, self).save(*args, **kwargs)

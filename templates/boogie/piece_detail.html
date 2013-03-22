@@ -74,28 +74,28 @@
 	</div>
 	
 	<div class="navigator clearfix">
-		{% if piece.get_previous_piece or piece.character and piece.get_previous_piece %}
+		{% if piece.get_previous_piece or piece.get_previous_piece_by_topic and piece.get_previous_piece_by_character %}
 	    <div class="prev pull-left">
 	    	<h4 class="text-left">Vorige bijdrage over…</h4>					
 	    	<ul class="unstyled text-left">
-	    		{% if piece.get_previous_piece %}<li>Alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title }}</a></li>{% endif %}
-	    		
-	    		{% if piece.get_previous_piece %}<li>{{ piece.topic }}: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title }}</a></li>{% endif %}
-	    		
-	    		{% if piece.character and piece.get_previous_piece %}<li>{{ piece.character }}: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title }}</a></li>{% endif %}
+	    		{% if piece.character and piece.get_previous_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_previous_piece_by_character.get_absolute_url }}">{{ piece.get_previous_piece_by_character.title|truncatechars:50 }}</a></li>{% endif %}
+   		
+	    		{% if piece.get_previous_piece_by_topic %}<li>{{ piece.topic }}: <a href="{{ piece.get_previous_piece_by_topic.get_absolute_url }}">{{ piece.get_previous_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}  		
+
+	    		{% if piece.get_previous_piece %}<li>Alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title|truncatechars:50 }}</a></li>{% endif %}
 	    	</ul>	
 	    </div>
 	    {% endif %}
 	    
-	    {% if piece.get_next_piece or piece.character and piece.get_next_piece %}
+	    {% if piece.get_next_piece or piece.get_next_piece_by_topic and piece.get_next_piece_by_character %}
 	    <div class="next pull-right">
 	    	<h4 class="text-right">Volgende bijdrage over…</h4>
 	    	<ul class="unstyled text-right">
-	    		{% if piece.get_next_piece %}<li>Alles: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title }}</a></li>{% endif %}
+	    		{% if piece.character and piece.get_next_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_next_piece_by_character.get_absolute_url }}">{{ piece.get_next_piece_by_character.title|truncatechars:50 }}</a></li>{% endif %}
+
+	    		{% if piece.get_next_piece_by_topic %}<li>{{ piece.topic }}: <a href="{{ piece.get_next_piece_by_topic.get_absolute_url }}">{{ piece.get_next_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}
 	
-	    		{% if piece.get_next_piece %}<li>{{ piece.topic }}: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title }}</a></li>{% endif %}
-	
-	    		{% if piece.character and piece.get_next_piece %}<li>{{ piece.character }}: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title }}</a></li>{% endif %}
+	    		{% if piece.get_next_piece %}<li>Alles: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title|truncatechars:50 }}</a></li>{% endif %}	
 	    	</ul>
 	    </div>
 	    {% endif %}

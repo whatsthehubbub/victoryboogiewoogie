@@ -36,20 +36,21 @@ def check_topic_pool():
 
 @task()
 def pieces_assign():
-    from boogie.models import Player
+    from boogie.models import Player, Game
 
-    players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
+    if not Game.objects.get_latest_game().over():
+        players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
 
-    counter = 0
-    for player in players_without:
-        result = player.get_new_assignment()
-        
-        if result:
-            counter += 1
+        counter = 0
+        for player in players_without:
+            result = player.get_new_assignment()
+            
+            if result:
+                counter += 1
 
-    logger.info('Assigned %d players a new piece', counter)
+        logger.info('Assigned %d players a new piece', counter)
 
-    return counter
+        return counter
 
 @task()
 def piece_cleanup():

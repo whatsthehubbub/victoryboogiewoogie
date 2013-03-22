@@ -548,7 +548,7 @@ def player_unsubscribe(request, h):
 def character_profile(request, id):
     character = Character.objects.get(id=id)
 
-    order = request.GET.get('order', '-datecreated')
+    order = request.GET.get('order', '-datepublished')
 
     t = loader.get_template('boogie/character_profile.html')
 

@@ -10,8 +10,8 @@
 		
 		{% for piece in summary %}
 		<div class="summaryitem">
-			<h3 id="samenvatting_{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
-			<p>{{ piece.content|safe }}</p>
+			<h3 id="samenvatting-{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
+			<div>{{ piece.content|safe }}</div>
 		</div>
 		{% endfor %}
 		

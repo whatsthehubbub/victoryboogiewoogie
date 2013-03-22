@@ -20,9 +20,9 @@ def index(request):
     t = loader.get_template('boogie/index.html')
     
     frontpage_pieces = Piece.objects.exclude(frontpage=False).filter(status='APPROVED').order_by('-datepublished')
-    ads = Advertisement.objects.all().order_by('rank')
+    ads = Advertisement.objects.filter(active=True).order_by('rank')
 
-    max_ad_rank = Advertisement.objects.all().aggregate(Max('rank'))['rank__max']
+    max_ad_rank = Advertisement.objects.filter(active=True).aggregate(Max('rank'))['rank__max']
     max_items = frontpage_pieces.count() + ads.count()
 
     piece_and_ads = (max(max_ad_rank, max_items)+2) * [None]

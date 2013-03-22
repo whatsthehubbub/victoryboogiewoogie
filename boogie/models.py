@@ -428,6 +428,8 @@ class Advertisement(models.Model):
 
     image = models.ImageField(blank=True, upload_to='advertisements', help_text="")
 
+    active = models.BooleanField(default=True)
+
     url = models.URLField(blank=True)
     sender = models.CharField(blank=True, max_length=255)
 

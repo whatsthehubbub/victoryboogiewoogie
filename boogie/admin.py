@@ -34,7 +34,7 @@ class PieceVoteAdmin(admin.ModelAdmin):
 admin.site.register(PieceVote, PieceVoteAdmin)
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('datecreated', 'sender', 'rank')
+    list_display = ('datecreated', 'sender', 'rank', 'active')
 admin.site.register(Advertisement, AdvertisementAdmin)
 
 class SummaryAdmin(admin.ModelAdmin):

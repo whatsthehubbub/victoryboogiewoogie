@@ -1,5 +1,5 @@
 Django==1.4.5
-PIL==1.1.7
+Pillow==2.0.0
 South==0.7.6
 amqplib==1.0.2
 anyjson==0.3.3
@@ -13,8 +13,8 @@ psycopg2==2.4.5
 python-dateutil==1.5
 pytz==2012f
 wsgiref==0.1.2
-django-registration
-django-storages==1.1.6
+django-registration==0.8
+django-storages==1.1.7
 boto==2.8.0
 django-crispy-forms==1.2.3
 gunicorn==0.17.2

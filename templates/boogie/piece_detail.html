@@ -30,7 +30,11 @@
 				<h2 class="text-center">{{ piece.title }}</h2>
 				<div class="author text-center"><em>Door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> {% ifequal piece.writer.role 'PLAYER' %}{% if piece.character %}– <span class="label">Gastbijdrage</span>{% endif %}{% endifequal %} – {% if piece.datepublished %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}</div>
 				
-				{% if piece.image %}<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title }}">{% endif %}
+				{% if piece.image %}
+				<figure>
+					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title }}">
+				</figure>
+				{% endif %}
 				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
 				
 			</article>

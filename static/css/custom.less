@@ -33,7 +33,6 @@ h2 {
 }
 
 h3 {
-	//color: @gray;
 	font-family: @headFontFamily;
 	text-transform: uppercase;
 	line-height: 1.2em;
@@ -54,7 +53,6 @@ h2.sans, h3.sans, h4.sans, h5.sans, h6.sans {
 	font-family: @sansFontFamily;
 	font-size: @fontSizeMini;
 	padding: 3px 4px 4px;
-	//.box-shadow( 0 1px 1px rgba(0,0,0,.2));
 }
 
 a {
@@ -312,7 +310,6 @@ a:hover {
 	background-size: 21px 5px;
 	background-position: center top;
 	background-repeat: repeat-x;
-	//background-color: #e6e4e2;
 }
 
 // !SIGN IN
@@ -321,8 +318,6 @@ a:hover {
 	padding: 1em 1em 3em;
 	margin: 3em auto;
 	background-color: @white;
-	//border: 1px solid #e5e5e5;
-	//.border-radius(@baseBorderRadius);
 	.box-shadow(0 2px 4px rgba(0,0,0,.2));
 	text-align: center;
 	.stripes {
@@ -599,15 +594,14 @@ a:hover {
 	}
 	.register {
 		margin-top: 1.75em;
+		background-color: @white;
+		.box-shadow(0 2px 2px rgba(0,0,0,.2));
 		.stripes {
 			height: 5px;
 			background-image: url(../img/bg-header-stripes.png);
 			background-size: 400px 5px;
 			background-repeat: repeat-x;
 		}
-		background-color: white;
-		//.border-radius(@baseBorderRadius);
-		.box-shadow(0 2px 2px rgba(0,0,0,.2));
 		.box {
 			margin: 2em;
 			p {
@@ -650,7 +644,6 @@ a:hover {
 	margin: -6em auto 2em;
 	background-color: @white;
 	padding: 0 0 6em;
-	//.border-radius(@baseBorderRadius);
 	.box-shadow(0 2px 2px rgba(0,0,0,.2));
 }
 
@@ -672,7 +665,6 @@ a:hover {
 
 // !HOME LATEST
 #home-latest {
-	//margin-top: 2em;
 	border-bottom: 1px solid @grayLighter;
 	margin-left: -1.25em;
 	padding-left: 1.25em;
@@ -793,7 +785,6 @@ a:hover {
 			width: 40px;
 			height: 40px;
 			margin: 0.2em 0.5em;
-			.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 	.content {
@@ -860,16 +851,12 @@ a:hover {
 		position: relative;
 		z-index: 1;
 		margin-top: -5em;
-		img {
-			margin-left: -2em;
-		}
 	}
 }
 
 // !CHARACTERLIST
 #characterlist {
 	img {
-		.border-radius(50%);
 		opacity: 0.7;
 	}
 	a {
@@ -884,7 +871,6 @@ a:hover {
 		}
 		img {
 			opacity: 1;
-			//.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 }
@@ -900,7 +886,6 @@ a:hover {
 		top: 2.5em;
 		left: 0;
 		text-decoration: none;
-		//background-color: @blue;
 	}
 	.edit {
 		position: absolute;
@@ -963,13 +948,12 @@ a:hover {
 			font-style: italic;
 		}
 		.genre {
-			//margin: 0.65em 0 0 0.25em;
+			
 		}
 		.character {
 			width: 40px;
 			height: 40px;
 			margin-left: 0.5em;
-			.box-shadow( 0 0 1px rgba(0,0,0,.3));
 		}
 	}
 	.author {
@@ -1070,7 +1054,6 @@ a:hover {
 
 // !ENTRY QUEUE
 #entryqueue {
-	//color: @grayLight;
 	.item {
 		margin-top: 1em;
 	}

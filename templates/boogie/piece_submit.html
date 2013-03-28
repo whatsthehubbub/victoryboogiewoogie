@@ -90,7 +90,7 @@ $(document).ready(function() {
 
 					<ul class="info clearfix">
 						<li class="pull-left">Deadline</li>
-						<li class="pull-right">{{ form.instance.deadline|timeuntil }}</li>
+						<li class="pull-right">{% if form.instance.deadline|timeuntil == '0 minuten' %}Verstreken! Binnenkort krijg je een nieuwe opdracht.{% else %}{{ form.instance.deadline|timeuntil }}{% endif %}</li>
 					</ul>
 					<ul class="info clearfix">
 						<li class="pull-left">Aantal bijdragen deze ronde</li>

@@ -38,7 +38,10 @@ def check_topic_pool():
 def pieces_assign():
     from boogie.models import Player, Game
 
-    if not Game.objects.get_latest_game().over():
+    today = datetime.date.today()
+    game = Game.objects.get_latest_game()
+
+    if today >= game.start_date and not game.over():
         players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
 
         counter = 0
@@ -73,11 +76,12 @@ def piece_cleanup():
 
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
-    for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
-        piece.status = "PASTDUE"
-        piece.save()
+# Removed deadline for pieces that need work, gives a reprieve
+    # for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
+    #     piece.status = "PASTDUE"
+    #     piece.save()
 
-        logger.info("Changed piece with id %d to PASTDUE", piece.id)
+    #     logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
     for piece in Piece.objects.filter(status='WAITING', datepublished__lt=now):
         piece.approve()

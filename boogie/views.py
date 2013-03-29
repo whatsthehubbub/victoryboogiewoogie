@@ -84,19 +84,24 @@ def colofon(request):
 def pre_launch(request):
     t = loader.get_template('boogie/pre_launch.html')
     
-    if request.method == 'POST':
-        form = PreLaunchEmailForm(request.POST)
+    game = Game.objects.get_latest_game()
 
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('pre_launch_thanks'))
+    if game.started:
+        return HttpResponseRedirect(reverse('index'))
     else:
-        form = PreLaunchEmailForm()
+        if request.method == 'POST':
+            form = PreLaunchEmailForm(request.POST)
 
-    c = RequestContext(request, {
-        'form': form
-    })
-    return HttpResponse(t.render(c))
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('pre_launch_thanks'))
+        else:
+            form = PreLaunchEmailForm()
+
+        c = RequestContext(request, {
+            'form': form
+        })
+        return HttpResponse(t.render(c))
 
 def summary(request):
     t = loader.get_template('boogie/summary.html')
@@ -398,6 +403,9 @@ def piece_validate(request, piece_id):
             # The piece needs more work
             piece.rejection_reason = request.POST.get('reason', '')
             piece.status = 'NEEDSWORK'
+
+            # Reset the deadline for the piece that needs work
+            piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
 
             Notification.objects.create_new_needswork_notification(piece.writer, piece)
         elif valid == 'no':

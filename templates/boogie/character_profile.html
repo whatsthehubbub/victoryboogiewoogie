@@ -13,7 +13,7 @@
 			<p>{{ character.biography }}</p>
 		</div>
 		<div class="span5 portrait">
-			<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+			{% if character.avatar %}<img src="{{ character.avatar.url }}" alt="{{ character.name }}">{% endif %}
 		</div>
 	</div>
 </div>

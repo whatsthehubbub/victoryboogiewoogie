@@ -75,7 +75,7 @@ urlpatterns = patterns('',
 
     url(r'^bijdragen/$', 'boogie.views.piece_list', name='pieces_list'),
     url(r'^bijdragen/week/(\d+)/$', 'boogie.views.pieces_per_week', name='pieces_per_week'),
-    url(r'^bijdragen/queue/', 'boogie.views.piece_queue', name='piece_queue'),
+    url(r'^bijdragen/beoordelen/', 'boogie.views.piece_queue', name='piece_queue'),
     
     url(r'^bijdragen/(\d+)/$', 'boogie.views.piece_detail', name='piece_detail'),
 

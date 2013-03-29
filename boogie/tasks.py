@@ -73,11 +73,12 @@ def piece_cleanup():
 
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
-    for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
-        piece.status = "PASTDUE"
-        piece.save()
+# Removed deadline for pieces that need work, gives a reprieve
+    # for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
+    #     piece.status = "PASTDUE"
+    #     piece.save()
 
-        logger.info("Changed piece with id %d to PASTDUE", piece.id)
+    #     logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
     for piece in Piece.objects.filter(status='WAITING', datepublished__lt=now):
         piece.approve()

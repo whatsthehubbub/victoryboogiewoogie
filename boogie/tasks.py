@@ -38,7 +38,10 @@ def check_topic_pool():
 def pieces_assign():
     from boogie.models import Player, Game
 
-    if not Game.objects.get_latest_game().over():
+    today = datetime.date.today()
+    game = Game.objects.get_latest_game()
+
+    if today >= game.start_date and not game.over():
         players_without = Player.objects.exclude(piece__status='ASSIGNED').exclude(piece__status='SUBMITTED').exclude(piece__status='NEEDSWORK')
 
         counter = 0

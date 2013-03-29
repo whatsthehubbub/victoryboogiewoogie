@@ -404,6 +404,9 @@ def piece_validate(request, piece_id):
             piece.rejection_reason = request.POST.get('reason', '')
             piece.status = 'NEEDSWORK'
 
+            # Reset the deadline for the piece that needs work
+            piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=7)
+
             Notification.objects.create_new_needswork_notification(piece.writer, piece)
         elif valid == 'no':
             piece.status = 'REJECTED'

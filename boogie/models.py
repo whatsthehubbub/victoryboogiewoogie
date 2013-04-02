@@ -515,9 +515,6 @@ class Game(models.Model):
 
         return 0
 
-    def end_date(self):
-        return self.start_date + datetime.timedelta(days=69)
-
     def over(self):
         if self.weeks_since_start() > 10:
             return True

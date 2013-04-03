@@ -26,7 +26,7 @@ All custom CSS that lies on top of the Bootstrap framework can be found in *cust
 - Colofon
 - Footer
 
-Currently none of the *responsive.less* files are being used, though, they are left in the folder for possible future use.
+Currently, the *responsive.less* file (and all associated @imports) are not being used. It is left in the folder for possible future use, though.
 
 ## Framework in use
 - [Bootstrap](http://twitter.github.com/bootstrap/ "Twitter Bootstrap")

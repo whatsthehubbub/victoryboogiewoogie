@@ -219,7 +219,7 @@ class PieceSubmitForm(ModelForm):
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('new_topic', css_class="input-block-level"),
             FormActions(
-                Submit('submit', 'Opslaan', css_class='btn')
+                Submit('submit', 'Verzenden', css_class='btn')
             )
         )
 
@@ -316,7 +316,7 @@ class WriterPieceSubmitForm(ModelForm):
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('image', css_class='input-block-level'),
             FormActions(
-                Submit('submit', 'Opslaan', css_class='btn')
+                Submit('submit', 'Verzenden', css_class='btn')
             )
         )
 
@@ -506,7 +506,7 @@ class PlayerProfileForm(ModelForm):
                 Field('send_emails', css_class='')
             ),
             FormActions(
-                Submit('submit', 'Opslaan', css_class='btn')
+                Submit('submit', 'Bewaren', css_class='btn')
             )
         )
 

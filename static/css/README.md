@@ -26,9 +26,12 @@ All custom CSS that lies on top of the Bootstrap framework can be found in *cust
 - Colofon
 - Footer
 
+Currently, the *responsive.less* file (and all associated @imports) are not being used. It is left in the folder for possible future use, though.
+
 ## Framework in use
 - [Bootstrap](http://twitter.github.com/bootstrap/ "Twitter Bootstrap")
 - [LESS](http://lesscss.org/ "LESS")
 
 ## Software that comes in handy
-*bootstrap.less* is automatically concatenated and minified with [CodeKit](http://incident57.com/codekit/ "CodeKit by Incident57")—and outputed as *bootstrap.css*.
+
+*bootstrap.less* (which @imports the bootstrap framework and the customised *custom.less*) is automatically concatenated and minified with [CodeKit](http://incident57.com/codekit/ "CodeKit by Incident57")—and outputed as *bootstrap.min.css*.

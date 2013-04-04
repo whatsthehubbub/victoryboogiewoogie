@@ -265,8 +265,8 @@ class Piece(models.Model):
 
     character = models.ForeignKey(Character, blank=True, null=True, verbose_name=u'Personage')
 
-    image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Illustratie')
-
+    image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Beeld')
+    
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(max_length=255, blank=True, verbose_name="Titel")
     text = models.TextField(blank=True, verbose_name="Tekst")
@@ -514,6 +514,9 @@ class Game(models.Model):
             return (delta.days / 7) + 1
 
         return 0
+
+    def end_date(self):
+        return self.start_date + datetime.timedelta(days=69)
 
     def over(self):
         if self.weeks_since_start() > 10:

@@ -218,17 +218,17 @@ class Topic(models.Model):
 
     title = models.CharField(max_length=255)
     slug = models.SlugField()
-    
+
     pool = models.CharField(max_length=255, choices=(('PLAYER', 'player'), ('WRITER', 'schrijver')), default='WRITER')
-    
+
     archived = models.BooleanField(default=False)
 
     # Counts of pieces written and pieces needed for a pool change
     piece_count = models.IntegerField(default=0)
-    
+
     def approved_pieces(self):
         return self.piece_set.filter(status='APPROVED')
-    
+
     def approved_pieces_since(self):
         # TODO the time since last is hard coded (so if we change it, change it here too)
         last_time = datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1)
@@ -247,7 +247,7 @@ class Topic(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('boogie.views.topic_detail', [self.id, self.slug])
-    
+
 
 PIECE_GENRE_CHOICES = (('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
 
@@ -258,7 +258,7 @@ class Piece(models.Model):
 
     datecreated = models.DateTimeField(auto_now_add=True)
     datechanged = models.DateTimeField(auto_now=True)
-    
+
     topic = models.ForeignKey(Topic, verbose_name=u'Onderwerp')
     deadline = models.DateTimeField()
     writer = models.ForeignKey(Player)
@@ -266,12 +266,12 @@ class Piece(models.Model):
     character = models.ForeignKey(Character, blank=True, null=True, verbose_name=u'Personage')
 
     image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Illustratie')
-    
+
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(max_length=255, blank=True, verbose_name="Titel")
     text = models.TextField(blank=True, verbose_name="Tekst")
     new_topic = models.CharField(max_length=255, blank=True, verbose_name="Nieuw onderwerp")
-    
+
     status = models.CharField(max_length=255, choices=(
                     ('ASSIGNED', 'toegekend'),
                     ('SUBMITTED', 'ingediend'),
@@ -282,15 +282,15 @@ class Piece(models.Model):
                     ('PASTDUE', 'deadline verstreken')), default='ASSIGNED')
 
     datepublished = models.DateTimeField(blank=True, null=True)
-    
+
     rejection_reason = models.TextField(blank=True)
-    
+
 
     # Visible on the frontpage or not?
     frontpage = models.BooleanField(default=False)
     # Highlighted on the front page or not?
     highlight = models.BooleanField(default=False)
-    
+
     def __unicode__(self):
         return '%s by %s' % (unicode(self.topic), unicode(self.writer))
 
@@ -322,7 +322,7 @@ class Piece(models.Model):
 
         if self.status == 'APPROVED':
             diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
-            hours = diff.days * 24 + diff.seconds / 3600
+            hours = abs(diff.days * 24 + diff.seconds / 3600)
             likes = PieceVote.objects.filter(piece=self).count()
 
             # Changed (likes - 1) so we won't get negative results
@@ -391,7 +391,7 @@ class Piece(models.Model):
         self.status = 'APPROVED'
 
         self.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
-            
+
         self.topic.piece_count += 1
         self.topic.save()
 

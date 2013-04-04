@@ -249,7 +249,7 @@ class Topic(models.Model):
         return ('boogie.views.topic_detail', [self.id, self.slug])
     
 
-PIECE_GENRE_CHOICES = (('Streamer', 'Streamer'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
+PIECE_GENRE_CHOICES = (('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
 
 class Piece(models.Model):
     class Meta:

@@ -249,7 +249,7 @@ class Topic(models.Model):
         return ('boogie.views.topic_detail', [self.id, self.slug])
     
 
-PIECE_GENRE_CHOICES = (('Headline', 'Headline'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
+PIECE_GENRE_CHOICES = (('Streamer', 'Streamer'), ('Proza', 'Proza'), ('Poezie', 'Poëzie'), ('Essay', 'Essay'), ('Illustratie', 'Illustratie'))
 
 class Piece(models.Model):
     class Meta:
@@ -265,7 +265,7 @@ class Piece(models.Model):
 
     character = models.ForeignKey(Character, blank=True, null=True, verbose_name=u'Personage')
 
-    image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Illustratie')
+    image = models.ImageField(blank=True, upload_to='piece_images', verbose_name='Beeld')
     
     genre = models.CharField(max_length=255, blank=True, choices=PIECE_GENRE_CHOICES)
     title = models.CharField(max_length=255, blank=True, verbose_name="Titel")

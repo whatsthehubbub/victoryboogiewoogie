@@ -257,8 +257,8 @@ class PieceSubmitForm(ModelForm):
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
-        if not text and (genre != 'Headline' and genre != 'Illustratie'):
-            raise ValidationError("Schrijf een tekst of kies headline als genre.")
+        if not text and (genre != 'Streamer' and genre != 'Illustratie'):
+            raise ValidationError("Schrijf een tekst of kies streamer als genre.")
 
         return cleaned_data
 
@@ -342,8 +342,8 @@ class WriterPieceSubmitForm(ModelForm):
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
-        if not text and (genre != 'Headline' and genre != 'Illustratie'):
-            raise ValidationError("Schrijf een tekst (voor niet headline / illustratie bijdragen).")
+        if not text and (genre != 'Streamer' and genre != 'Illustratie'):
+            raise ValidationError("Schrijf een tekst (voor niet streamer / illustratie bijdragen).")
 
         return cleaned_data
 

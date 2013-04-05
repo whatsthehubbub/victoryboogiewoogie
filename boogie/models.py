@@ -89,7 +89,7 @@ from registration.signals import user_activated
 
 def activate_player(sender, user, request, **kwarg):
     player = Player.objects.get(user=user)
-    player.get_new_assignment()
+    # player.get_new_assignment()
 user_activated.connect(activate_player)
 
 

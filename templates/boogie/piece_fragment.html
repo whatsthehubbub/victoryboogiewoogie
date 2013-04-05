@@ -34,7 +34,7 @@
 		
 		<div class="info">
 			<p class="author pull-left">
-				door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}<span class="fader"></span></a>
+				door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name|truncatechars:10 }}<span class="fader"></span></a>
 			</p>
 			<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
 		</div>

@@ -4,6 +4,25 @@
 
 {% block pagetitle %}{{ piece.title }}{% endblock pagetitle %}
 
+
+{% block extrahead %}
+	<!-- Facebook Open Graph Tags https://developers.facebook.com/docs/reference/plugins/like/ -->
+	<meta property="og:title" content="{{ piece.title }}" />
+    <meta property="og:type" content="game" />
+    <meta property="og:url" content="http://www.gidsgame.nl{{ piece.get_absolute_url }}" />
+
+    {% if piece.image %}
+	    <meta property="og:image" content="{{ piece.image.url }}" />
+	{% else %}
+		{% if piece.character.avatar %}
+			<meta property="og:image" content="{{ piece.character.avatar.url }}" />
+		{% endif %}
+	{% endif %}
+    <meta property="og:site_name" content="Victory Boogie Woogie" />
+    <meta property="fb:admins" content="1284304749" />
+{% endblock %}
+
+
 {% block content %}
 
 <div id="itemdetail">

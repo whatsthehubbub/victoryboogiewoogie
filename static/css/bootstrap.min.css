@@ -909,7 +909,7 @@ a:hover{text-decoration:none;}
 #masthead .logo img{width:12px;height:12px;margin:-2em 0.5em 0;opacity:0.2;}
 #masthead #welcome{color:#b8b8b8;text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);padding:0 0 0.5em;margin:-1em 0 -0.25em;font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;font-weight:900;font-size:0.9em;}
 #calendar{position:relative;margin:1em -1.25em 0;}#calendar .nav{position:relative;z-index:4;display:table;width:100%;}#calendar .nav li{display:table-cell;width:1%;float:none;text-align:center;}
-#calendar .nav a{color:#666666;text-align:center;text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+#calendar .nav a{color:#666666;text-align:center;text-shadow:0px 1px 0px rgba(255, 255, 255, 0.6);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:9px;}
 #calendar .nav a:hover{color:#333333;}
 #calendar .nav .active a{color:#333333;background-color:#fed500;box-shadow:none;}
 #calendar .nav .current a{color:#000000;background-color:#fbfbfb;}

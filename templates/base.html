@@ -123,7 +123,7 @@
 				{% if game.weeks_since_start > 10 %}
 					<li class="current"><a href="{% url 'post_game' %}" class="tooltipster" title="{{ game.end_date|date:"j F" }}">
 				{% else %}
-					<li class="disabled"><a href="#" class="tooltipster" title="{{ game.end_date|date:"j F o" }}">
+					<li class="disabled"><a href="#" class="tooltipster" title="{{ game.end_date|date:"j F" }}">
 				{% endif %}
 					…einde</a></li>
 			</ul>

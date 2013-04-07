@@ -197,7 +197,8 @@ def piece_detail(request, id):
         t = loader.get_template('boogie/piece_detail.html')
 
         c = RequestContext(request, {
-            'piece': piece
+            'piece': piece,
+            'fallback_image': Character.objects.all().order_by('?')[0].avatar.url
         })
         return HttpResponse(t.render(c))
     else:

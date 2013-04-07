@@ -16,6 +16,8 @@
 	{% else %}
 		{% if piece.character.avatar %}
 			<meta property="og:image" content="{{ piece.character.avatar.url }}" />
+		{% else %}
+			<meta property="og:image" content="{{ fallback_image }}" />
 		{% endif %}
 	{% endif %}
     <meta property="og:site_name" content="Victory Boogie Woogie" />

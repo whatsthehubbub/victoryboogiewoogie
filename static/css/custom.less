@@ -71,6 +71,11 @@ a:hover {
 	font-family: @sansFontFamily;
 	font-size: @fontSizeMini;
 	text-shadow: none;
+	padding: 0;
+	.tooltip-inner {
+		max-width: 400px;
+		padding: 4px 10px;
+	}
 }
 
 // !CHROMEFRAME
@@ -283,7 +288,7 @@ a:hover {
 		    text-align: center;
 		    text-shadow: 0px 1px 0px fade(@white, 60%);
 		    .border-radius(@baseBorderRadius);
-		    padding: 9px;
+		    padding: 8px;
 		}
 		a:hover {
 			color: @grayDark;

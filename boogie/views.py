@@ -465,6 +465,7 @@ def piece_queue(request):
             'pieces': Piece.objects.filter(status='SUBMITTED').order_by('-datecreated')
         })
         return HttpResponse(t.render(c))
+    return HttpResponseRedirect(reverse('index'))
 
 def player_profile(request, name):
     player = Player.objects.get(user__username=name)

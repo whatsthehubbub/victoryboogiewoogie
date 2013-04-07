@@ -67,6 +67,12 @@ a:hover {
 	background-color: @yellow;
 }
 
+.tooltip {
+	font-family: @sansFontFamily;
+	font-size: @fontSizeMini;
+	text-shadow: none;
+}
+
 // !CHROMEFRAME
 #chromeframe {
 	margin: 0;
@@ -271,10 +277,6 @@ a:hover {
 			width: 1%;
 			float: none;
 			text-align: center;			
-		}
-		li:first-child, li:last-child {
-			color: lighten(@grayLight, 18%);
-			text-shadow: 0px 1px 0px fade(@white, 60%);
 		}
 		a {
 		    color: @gray;

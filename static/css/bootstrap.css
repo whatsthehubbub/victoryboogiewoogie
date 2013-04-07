@@ -6037,23 +6037,11 @@ a:hover {
   margin: 0.5em 0 0 0;
   color: #b3b3b3;
 }
-#itemlist .info .author a {
-  position: relative;
-  padding-right: 15px;
-  display: inline-block;
-  max-width: 4.5em;
-  overflow: hidden;
+#itemlist .info .author {
+  float: left;
 }
-#itemlist .info .author a .fader {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 15px;
-  background-image: url(../img/overflow-fader.png);
-  background-size: 15px 50px;
-  background-position: right center;
-  background-repeat: repeat-y;
+#itemlist .info .timestamp {
+  float: right;
 }
 #itemlist .info a {
   color: #666666;

@@ -170,7 +170,7 @@ def pieces_per_week(request, week):
     t = loader.get_template('boogie/pieces_per_week.html')
 
     c = RequestContext(request, {
-        'pieces': Piece.objects.filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd).order_by(order_crit),
+        'pieces': Piece.objects.filter(status="APPROVED").filter(datepublished__gte=weekStart).filter(datepublished__lte=weekEnd).order_by(order_crit),
         'week': week,
         'order': order_crit
     })

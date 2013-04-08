@@ -109,7 +109,7 @@
 				{% else %}
 					<li class="disabled">
 				{% endif %}
-					<a href="#" class="tooltipster" data-placement="top" title="de game start {{ game.start_date|date:"j F" }}">start</a></li>
+					<a href="#" class="tooltipster" data-placement="top" title="De game start {{ game.start_date|date:"j F" }}.">start</a></li>
 				{% for _ in '1234567890'|make_list %}
 					<li class="{% if week == forloop.counter %}active {% endif %}{% if game.weeks_since_start < forloop.counter %}disabled{% endif %} {% if game.weeks_since_start == forloop.counter %}current{% endif %}">
 						{% if game.weeks_since_start >= forloop.counter %}
@@ -121,9 +121,9 @@
 				{% endfor %}
 
 				{% if game.weeks_since_start > 10 %}
-					<li class="current"><a href="{% url 'post_game' %}" class="tooltipster" data-placement="top" title="de game eindigt {{ game.end_date|date:"j F" }}">
+					<li class="current"><a href="{% url 'post_game' %}" class="tooltipster" data-placement="top" title="De game eindigt {{ game.end_date|date:"j F" }}.">
 				{% else %}
-					<li class="disabled"><a href="#" class="tooltipster" data-placement="top" title="de game eindigt {{ game.end_date|date:"j F" }}">
+					<li class="disabled"><a href="#" class="tooltipster" data-placement="top" title="De game eindigt {{ game.end_date|date:"j F" }}.">
 				{% endif %}
 					einde</a></li>
 			</ul>

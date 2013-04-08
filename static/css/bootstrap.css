@@ -6163,6 +6163,10 @@ a:hover {
 #itemdetail .headline h2 {
   font-size: 4em;
 }
+#itemdetail article p {
+  font-size: 1.4em;
+  line-height: 1.4em;
+}
 #itemdetail figure {
   text-align: center;
 }

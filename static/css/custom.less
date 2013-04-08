@@ -67,6 +67,17 @@ a:hover {
 	background-color: @yellow;
 }
 
+.tooltip {
+	font-family: @sansFontFamily;
+	font-size: @fontSizeMini;
+	text-shadow: none;
+	padding: 0;
+	.tooltip-inner {
+		max-width: 400px;
+		padding: 4px 10px;
+	}
+}
+
 // !CHROMEFRAME
 #chromeframe {
 	margin: 0;
@@ -272,15 +283,12 @@ a:hover {
 			float: none;
 			text-align: center;			
 		}
-		li:first-child, li:last-child {
-			color: lighten(@grayLight, 18%);
-			text-shadow: 0px 1px 0px fade(@white, 60%);
-		}
 		a {
 		    color: @gray;
 		    text-align: center;
 		    text-shadow: 0px 1px 0px fade(@white, 60%);
 		    .border-radius(@baseBorderRadius);
+		    padding: 8px;
 		}
 		a:hover {
 			color: @grayDark;
@@ -807,23 +815,11 @@ a:hover {
 	.info {
 		margin: 0.5em 0 0 0;
 		color: lighten(@grayLight, 10%);
-		.author a {
-			position: relative;
-			padding-right: 15px;
-			display: inline-block;
-			max-width: 4.5em;
-			overflow: hidden;
-			.fader {
-				position: absolute;
-				top: 0;
-				right: 0;
-				height: 100%;
-				width: 15px;
-				background-image: url(../img/overflow-fader.png);
-				background-size: 15px 50px;
-				background-position: right center;
-				background-repeat: repeat-y;
-			}
+		.author {
+			float: left;
+		}
+		.timestamp {
+			float: right;
 		}
 		a {
 			color: @gray;
@@ -963,6 +959,12 @@ a:hover {
 	.headline {
 		h2 {
 			font-size: 4em;
+		}
+	}
+	article {
+		p {
+			font-size: 1.4em;
+			line-height: 1.4em;
 		}
 	}
 	figure {

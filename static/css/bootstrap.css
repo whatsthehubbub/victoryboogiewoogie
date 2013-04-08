@@ -5318,6 +5318,16 @@ a:hover {
 .progress .bar {
   background-color: #fed500;
 }
+.tooltip {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  text-shadow: none;
+  padding: 0;
+}
+.tooltip .tooltip-inner {
+  max-width: 400px;
+  padding: 4px 10px;
+}
 #chromeframe {
   margin: 0;
   background: #999999;
@@ -5521,11 +5531,6 @@ a:hover {
   float: none;
   text-align: center;
 }
-#calendar .nav li:first-child,
-#calendar .nav li:last-child {
-  color: #c7c7c7;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-}
 #calendar .nav a {
   color: #666666;
   text-align: center;
@@ -5533,6 +5538,7 @@ a:hover {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  padding: 8px;
 }
 #calendar .nav a:hover {
   color: #333333;
@@ -6037,23 +6043,11 @@ a:hover {
   margin: 0.5em 0 0 0;
   color: #b3b3b3;
 }
-#itemlist .info .author a {
-  position: relative;
-  padding-right: 15px;
-  display: inline-block;
-  max-width: 4.5em;
-  overflow: hidden;
+#itemlist .info .author {
+  float: left;
 }
-#itemlist .info .author a .fader {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 15px;
-  background-image: url(../img/overflow-fader.png);
-  background-size: 15px 50px;
-  background-position: right center;
-  background-repeat: repeat-y;
+#itemlist .info .timestamp {
+  float: right;
 }
 #itemlist .info a {
   color: #666666;
@@ -6168,6 +6162,10 @@ a:hover {
 }
 #itemdetail .headline h2 {
   font-size: 4em;
+}
+#itemdetail article p {
+  font-size: 1.4em;
+  line-height: 1.4em;
 }
 #itemdetail figure {
   text-align: center;

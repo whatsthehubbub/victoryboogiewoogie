@@ -80,11 +80,13 @@
 						</ul>
 					</form>
 					{% else %}
-					<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
-						{% csrf_token %}
-						<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
-						<input type="submit" class="btn" value="Goed stuk!">
-					</form>
+						{% if current_player %}
+						<form method="POST" action="{% url 'piece_vote_up' piece.id %}">
+							{% csrf_token %}
+							<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
+							<input type="submit" class="btn" value="Goed stuk!">
+						</form>
+						{% endif %}
 					{% endif %}
 				</div>
 				

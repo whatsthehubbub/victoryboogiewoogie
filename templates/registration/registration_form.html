@@ -9,10 +9,14 @@
 	{% if not game.over %}
 		<div class="span6 offset3">
 			<h2 class="text-center">Aanmelden</h2>
-			<p class="lead">Meld je aan om mee te kunnen spelen.</p>
-			<hr>
-		{% crispy form %}
-		</div>
+			{% if current_player %}
+				<p class="lead">Je kunt je niet aanmelden als je al bent ingelogd.</p>
+			{% else %}
+				<p class="lead">Meld je aan om mee te kunnen spelen.</p>
+				<hr>
+				{% crispy form %}
+			{% endif %}
+			</div>
 	{% else %}
 		<div class="span8 offset2">
 			<h2 class="text-center">De game is voorbij</h2>

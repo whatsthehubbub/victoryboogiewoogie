@@ -7,7 +7,7 @@
 	{% if summary %}
 	<div id="summary" class="clearfix">
 		<a href="{{ summary.0.get_absolute_url }}">
-			<p class="lead"><em>Het verhaal tot nu toe:</em> {{ summary.0.content|striptags|truncatewords_html:38 }}</p>
+			<p class="lead"><em>Het verhaal tot nu toe:</em> {{ summary.0.content|striptags|truncatewords_html:36 }}</p>
 		</a>
 	</div>
 	{% endif %}

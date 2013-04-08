@@ -32,11 +32,11 @@
 			</div>
 		</a>
 		
-		<div class="info">
-			<p class="author pull-left">
-				door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name|truncatechars:10 }}<span class="fader"></span></a>
+		<div class="info clearfix">
+			<p class="author">
+				<a href="{{ piece.writer.get_absolute_url }}" title="{{ piece.writer.get_name }}">{{ piece.writer.get_name|truncatechars:14 }}</a>
 			</p>
-			<p class="timestamp pull-right">{{ piece.datepublished|timesince }} geleden</p>
+			<p class="timestamp">{{ piece.datepublished|timesince }} geleden</p>
 		</div>
 		
 	</article>

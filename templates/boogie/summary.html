@@ -11,7 +11,7 @@
 		{% for piece in summary %}
 		<article id="samenvatting-{{ piece.id }}" class="summaryitem">
 			<h3 class="text-center">{{ piece.datecreated }}</h3>
-			<p>{{ piece.content|safe }}</p>
+			{{ piece.content|safe }}
 		</article>
 		{% endfor %}
 		

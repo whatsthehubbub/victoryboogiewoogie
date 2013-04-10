@@ -51,7 +51,7 @@
 			<article class="{{ piece.genre|lower }} clearfix">
 								
 				<h2 class="text-center">{{ piece.title }}</h2>
-				<div class="author text-center"><em>{{ piece.genre|capfirst }} door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> {% ifequal piece.writer.role 'PLAYER' %}{% if piece.character %}– <span class="label">Gastbijdrage</span>{% endif %}{% endifequal %} – {% if piece.datepublished %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}</div>
+				<div class="author text-center"><em>{{ piece.genre|capfirst }} door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> {% ifequal piece.writer.role 'PLAYER' %}{% if piece.character %}– <span class="label">Gastbijdrage</span>{% endif %}{% endifequal %} – {% if piece.status == "APPROVED" %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}</div>
 				
 				{% if piece.image %}
 				<figure>

@@ -163,6 +163,11 @@ def pieces_per_week(request, week):
 
     # TODO not good to pass dates into a datetime compare, but it works
     weekStart = datestart + datetime.timedelta((week-1) * 7)
+    
+    if week == 1:
+        # For the first week shift the lower bound to include everything up until then
+        weekStart -= datetime.timedelta(days=500)
+
     weekEnd = datestart + datetime.timedelta((week) * 7)
 
     order_crit = request.GET.get('order', '-score_cache')

@@ -9,10 +9,10 @@
 		<h2 class="text-center">Het verhaal tot nu toe…</h2>
 		
 		{% for piece in summary %}
-		<div class="summaryitem">
-			<h3 id="samenvatting-{{ piece.id }}" class="text-center">{{ piece.datecreated }}</h3>
-			<div>{{ piece.content|safe }}</div>
-		</div>
+		<article id="samenvatting-{{ piece.id }}" class="summaryitem">
+			<h3 class="text-center">{{ piece.datecreated }}</h3>
+			{{ piece.content|safe }}
+		</article>
 		{% endfor %}
 		
 	</div>

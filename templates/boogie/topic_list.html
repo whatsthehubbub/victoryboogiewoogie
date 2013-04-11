@@ -21,7 +21,7 @@
 			{% for topic in writer_topics %}
 				<!-- NOTE: Writer topics don't have event thresholds, they switch back to player pool after one submission. -->
 				<tr>
-					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic.title|capfirst }}</a></td>
 				</tr>
 			{% empty %}
 				<tr>
@@ -39,7 +39,7 @@
 			{% for topic in player_topics %}
 				<tr>
 					<td>
-						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic }}</a> <span class="label pull-right">{{ topic.piece_count }}</span>
+						<a href="{% url 'topic_detail' topic.id topic.slug %}" class="pull-left">{{ topic.title|capfirst }}</a> <span class="label pull-right">{{ topic.piece_count }}</span>
 					</td>
 				</tr>
 			{% empty %}
@@ -57,7 +57,7 @@
 			<tbody>
 			{% for topic in archived_topics %}
 				<tr>
-					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></td>
+					<td><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic.title|capfirst }}</a></td>
 				</tr>
 			{% empty %}
 				<tr>

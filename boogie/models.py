@@ -70,7 +70,7 @@ class Player(models.Model):
             return self.user.email
 
     def __unicode__(self):
-        return self.user.username
+        return self.get_name()
 
     def update_unsubscribe_hash(self):
         import uuid

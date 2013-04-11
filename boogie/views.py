@@ -138,7 +138,7 @@ def topic_list(request):
 def topic_detail(request, topicid, slug):
     t = loader.get_template('boogie/topic_detail.html')
     
-    order = request.GET.get('order', '-score_cache')
+    order = request.GET.get('order', '-datepublished')
 
     topic = Topic.objects.get(id=topicid)
 
@@ -170,7 +170,7 @@ def pieces_per_week(request, week):
 
     weekEnd = datestart + datetime.timedelta((week) * 7)
 
-    order_crit = request.GET.get('order', '-score_cache')
+    order_crit = request.GET.get('order', '-datepublished')
 
     t = loader.get_template('boogie/pieces_per_week.html')
 

@@ -51,8 +51,10 @@
 				<div class="navbar-form">
 					<a href="{{ current_url }}" class="btn btn-warning">{{ current_status }}</a>
 				</div> 
-				{% else %}	
+				{% else %}
+				<div class="navbar-form">
 					<a class="btn disabled">{{ current_status }}</a>
+				</div> 
 				{% endif %}
 			</li>
 			<li>

@@ -57,7 +57,7 @@ $(document).ready(function() {
 				<p class="lead">Je kunt helaas niet meer meeschrijven. <a href="{% url 'post_game' %}">Lees hier de terugblik</a>.</p>
 			{% else %}
 				{% if form %}			
-					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} & {% endif %}{{ form.instance.topic.title }}</h2>
+					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} & {% endif %}{{ form.instance.topic.title|capfirst }}</h2>
 					
 					{% if form.instance.rejection_reason %}
 						<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
@@ -81,9 +81,9 @@ $(document).ready(function() {
 						<li class="pull-left">Onderwerp</li>
 						<li class="pull-right">
 							{% if form.instance.topic.get_latest_piece %}
-								Lees de laatste bijdrage over “{{ form.instance.topic.title }}” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|truncatechars:140 }}</a>
+								Lees de laatste bijdrage over “<a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|truncatechars:140 }}</a>
 								{% else %}
-								Er is nog niks geschreven over “{{ form.instance.topic.title }}”. <em>Carte blanche!</em>
+								Er is nog niks geschreven over “{{ form.instance.topic.title|capfirst }}”. <em>Carte blanche!</em>
 							{% endif %}
 						</li>
 					</ul>

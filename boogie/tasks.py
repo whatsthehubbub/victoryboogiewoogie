@@ -76,6 +76,9 @@ def piece_cleanup():
 
         logger.info("Changed piece with id %d to PASTDUE", piece.id)
 
+    for piece in Piece.objects.filter(status='APPROVED'):
+        piece.update_score_cache()
+
 # Removed deadline for pieces that need work, gives a reprieve
     # for piece in Piece.objects.filter(status='NEEDSWORK', deadline__lt=now):
     #     piece.status = "PASTDUE"

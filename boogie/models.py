@@ -322,13 +322,13 @@ class Piece(models.Model):
 
         if self.status == 'APPROVED':
             diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
-            hours = abs(diff.days * 24 + diff.seconds / 3600)
-            likes = PieceVote.objects.filter(piece=self).count()
-
-            # Changed (likes - 1) so we won't get negative results
-            return (likes + 1) / math.pow(hours+2, 1.5)
+            
+            return (self.get_like_count()) / math.pow(diff.days+2, 1.5)
         else:
             return 0
+
+    def get_like_count(self):
+        return PieceVote.objects.filter(piece=self).count()
 
     def update_score_cache(self):
         self.score_cache = self.score()

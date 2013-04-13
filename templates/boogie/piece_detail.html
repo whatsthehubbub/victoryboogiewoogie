@@ -65,7 +65,7 @@
 			{% if piece.datepublished %}
 			<div class="social clearfix">
 				
-				<div class="score pull-left">
+				<div class="score pull-left" title="Score op een schaal van 1 tot 10, op basis van alle stemmen tot nu toe.">
 					{{ piece.get_human_score|floatformat:"1" }}
 				</div>
 				
@@ -87,6 +87,8 @@
 							<input type="hidden" name="return_url" value="{{ request.get_full_path }}">
 							<input type="submit" class="btn" value="Goed stuk!">
 						</form>
+						{% else %}
+							<input type="submit" class="btn disabled" value="Goed stuk!" title="Je moet ingelogd zijn om te kunnen stemmen.">
 						{% endif %}
 					{% endif %}
 				</div>

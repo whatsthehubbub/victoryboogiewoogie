@@ -69,7 +69,7 @@ $(document).ready(function() {
 						<!--TODO: Hook the link below up to the latest piece about this character.-->
 						<li class="pull-right">
 							{% if form.instance.character.get_latest_piece %}
-								Lees de laatste bijdrage over {{ form.instance.character }} getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a>
+								Lees de laatste bijdrage over <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a> getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a>
 							{% else %}
 								Er is nog niks geschreven over {{ form.instance.character }}. <em>Carte blanche!</em>
 							{% endif %}

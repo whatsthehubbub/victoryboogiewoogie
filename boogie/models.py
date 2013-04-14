@@ -323,7 +323,7 @@ class Piece(models.Model):
         if self.status == 'APPROVED':
             diff = datetime.datetime.utcnow().replace(tzinfo=utc) - self.datepublished
             
-            return (self.get_like_count()) / math.pow(diff.days+2, 1.5)
+            return (max(0, self.get_like_count()-1)) / math.pow((diff.days/7)+2, 1.5)
         else:
             return 0
 

@@ -32,7 +32,7 @@
 <div id="itemdetail">
 	
 	<div class="meta clearfix">
-		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 		{% if piece.character %}
 			{% if piece.character.avatar %}
 			<a href="{% url 'character_profile' piece.character.id %}" class="pull-right">
@@ -113,7 +113,7 @@
 	    	<ul class="unstyled text-left">
 	    		{% if piece.character and piece.get_previous_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_previous_piece_by_character.get_absolute_url }}">{{ piece.get_previous_piece_by_character.title|truncatechars:50 }}</a></li>{% endif %}
    		
-	    		{% if piece.get_previous_piece_by_topic %}<li>{{ piece.topic }}: <a href="{{ piece.get_previous_piece_by_topic.get_absolute_url }}">{{ piece.get_previous_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}  		
+	    		{% if piece.get_previous_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_previous_piece_by_topic.get_absolute_url }}">{{ piece.get_previous_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}  		
 
 	    		{% if piece.get_previous_piece %}<li>Alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title|truncatechars:50 }}</a></li>{% endif %}
 	    	</ul>	
@@ -126,7 +126,7 @@
 	    	<ul class="unstyled text-right">
 	    		{% if piece.character and piece.get_next_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_next_piece_by_character.get_absolute_url }}">{{ piece.get_next_piece_by_character.title|truncatechars:50 }}</a></li>{% endif %}
 
-	    		{% if piece.get_next_piece_by_topic %}<li>{{ piece.topic }}: <a href="{{ piece.get_next_piece_by_topic.get_absolute_url }}">{{ piece.get_next_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}
+	    		{% if piece.get_next_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_next_piece_by_topic.get_absolute_url }}">{{ piece.get_next_piece_by_topic.title|truncatechars:50 }}</a></li>{% endif %}
 	
 	    		{% if piece.get_next_piece %}<li>Alles: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title|truncatechars:50 }}</a></li>{% endif %}	
 	    	</ul>

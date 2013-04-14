@@ -7,7 +7,7 @@
 				{% if topic != piece.topic or character != piece.character %}
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
-						<p class="genre pull-left">{{ piece.topic }}</p>
+						<p class="genre pull-left">{{ piece.topic|capfirst }}</p>
 					{% endifnotequal %}
 					{% ifnotequal character piece.character %}
 						{% if piece.character.avatar %}

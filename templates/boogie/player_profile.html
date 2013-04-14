@@ -29,7 +29,7 @@
 				<tr>
 					<td>
 						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
-						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 					</td>
 				</tr>
 			{% endfor %}
@@ -45,7 +45,7 @@
 				<tr>
 					<td>
 						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
-						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 						<div class="alert">Suggesties van de redactie: {{ piece.rejection_reason }}<a href="{% url 'piece_submit' %}">Bewerken</a></div>
 					</td>
 				</tr>
@@ -62,7 +62,7 @@
 				<tr>
 					<td>
 						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
-						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a> – {{ piece.datepublished|timesince }} geleden</p>
+						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a> – {{ piece.datepublished|timesince }} geleden</p>
 					</td>
 				</tr>
 			{% endfor %}
@@ -78,7 +78,7 @@
 				<tr>
 					<td>
 						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|truncatechars:140 }}</a></h5>
-						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic }}</a></p>
+						<p>{{piece.genre}} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 					</td>
 				</tr>
 			{% endfor %}

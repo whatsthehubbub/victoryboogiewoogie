@@ -22,7 +22,7 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('topic', 'datechanged', 'get_like_count', 'score_cache', 'writer', 'genre', 'title', 'datepublished', 'status', 'character')
+    list_display = ('topic', 'datechanged', 'get_like_count', 'score_cache', 'get_human_score', 'writer', 'genre', 'title', 'datepublished', 'status', 'character')
 
     date_hierarchy = 'datechanged'
     list_filter = ('genre', 'frontpage', 'topic', 'status', 'character')

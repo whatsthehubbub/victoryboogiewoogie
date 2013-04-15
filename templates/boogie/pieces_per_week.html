@@ -13,9 +13,9 @@
 		<div class="filter pull-right">
 			<div class="btn-group"> 
 				{% ifequal order '-datepublished' %}
-					<a href="?order=-score_cache" class="btn">Beste</a>
+					<a href="?order=-score_cache" class="btn">Populairste</a>
 				{% else %}
-					<a href="?order=-score_cache" class="btn active">Beste</a>
+					<a href="?order=-score_cache" class="btn active">Populairste</a>
 				{% endifequal %}
 				
 				{% ifequal order '-score_cache' %}

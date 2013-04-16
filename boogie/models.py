@@ -227,7 +227,7 @@ class Topic(models.Model):
     piece_count = models.IntegerField(default=0)
 
     def approved_pieces(self):
-        return self.piece_set.filter(status='APPROVED')
+        return self.piece_set.filter(status='APPROVED').order_by('-datepublished')
 
     def approved_pieces_since(self):
         # TODO the time since last is hard coded (so if we change it, change it here too)

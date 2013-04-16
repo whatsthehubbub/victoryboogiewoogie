@@ -3,6 +3,25 @@
 
 {% block pagetitle %}Beoordelen{% endblock pagetitle %}
 
+{% block extrahead %}	
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('.again').submit(function() {
+			var text = $(".span5", this).val();
+
+			if (text) {
+				return true;
+			} else {
+				alert("Vul alstjeblieft een motivatie in.")
+				return false;
+			}
+		});
+	});
+
+	</script>
+{% endblock extrahead %}
+
 {% block content %}
 <div id="entryqueue" class="row">
 	<div class="span12">
@@ -38,7 +57,7 @@
 			</form>
 		</div>
 		<div class="span6">
-			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline">
+			<form method="POST" action="{% url 'piece_validate' piece.id %}" class="form-inline again">
 				{% csrf_token %}
 				<input type="hidden" name="ok" value="retry">
 				<div class="input-append">

@@ -26,17 +26,16 @@
 			<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ character.name }}</h2>
 			{% if character.pieces.count > 1 %}
 			<div class="filter pull-right">
-				<div class="btn-group"> 
-					{% ifequal order '-datepublished' %}
-						<a href="?order=-score_cache#itemlistinfo" class="btn">Beste</a>
-					{% else %}
-						<a href="?order=-score_cache#itemlistinfo" class="btn active">Beste</a>
-					{% endifequal %}
-				
+				<div class="btn-group">
 					{% ifequal order '-score_cache' %}
 						<a href="?order=-datepublished#itemlistinfo" class="btn">Nieuwste</a>
 					{% else %}
 						<a href="?order=-datepublished#itemlistinfo" class="btn active">Nieuwste</a>
+					{% endifequal %}
+					{% ifequal order '-datepublished' %}
+						<a href="?order=-score_cache#itemlistinfo" class="btn">Populairste</a>
+					{% else %}
+						<a href="?order=-score_cache#itemlistinfo" class="btn active">Populairste</a>
 					{% endifequal %}
 				</div>
 			</div>

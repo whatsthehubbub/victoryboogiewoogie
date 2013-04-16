@@ -58,11 +58,11 @@
 					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title }}">
 				</figure>
 				{% endif %}
-				{% if piece.text %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
+				{% if piece.text and piece.genre != "Headline" %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
 				
 			</article>
 			
-			{% if piece.datepublished %}
+			{% if piece.status == "APPROVED" %}
 			<div class="social clearfix">
 				
 				<div class="score pull-left" title="Score op een schaal van 1 tot 10, op basis van alle stemmen tot nu toe.">

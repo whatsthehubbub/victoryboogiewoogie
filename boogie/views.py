@@ -464,7 +464,7 @@ def piece_vote_up_undo(request, piece_id):
 def piece_queue(request):
     player = Player.objects.get(user=request.user)
 
-    if player.role == 'WRITER':    
+    if player.role == 'WRITER':
         t = loader.get_template('boogie/piece_queue.html')
 
         c = RequestContext(request, {

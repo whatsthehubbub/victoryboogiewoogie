@@ -4,6 +4,6 @@
   },
   "custom steps" : {
       "setup_environment" : "export DJANGO_SETTINGS_MODULE='victory.wercker_settings'",
-      "test" : "python manage.py test boogie"
+      "test" : false
   }
 }

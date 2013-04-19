@@ -6288,11 +6288,10 @@ a:hover {
 #colofon table {
   border-bottom: 1px solid #ddd;
 }
-#colofon table.makers,
 #colofon table.sponsors {
+  margin-top: 6em;
   border: 0;
 }
-#colofon table.makers td,
 #colofon table.sponsors td {
   border: 0;
   text-align: center;

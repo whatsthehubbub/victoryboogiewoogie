@@ -3,7 +3,7 @@
     "postgresql" : true
   },
   "custom steps" : {
-      "setup_environment" : "export DJANGO_SETTINGS_MODULE='victory.wercker_settings'",
-      "test" : false
-  }
+      "setup_environment" : "export DJANGO_SETTINGS_MODULE='victory.wercker_settings'"
+  },
+  "unit test": false
 }

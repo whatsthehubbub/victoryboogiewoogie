@@ -189,7 +189,7 @@ def piece_detail(request, id):
 
     if piece.status == 'APPROVED':
         show = True
-    elif request.user.is_authenticated:
+    elif request.user.is_authenticated():
         if request.user.is_superuser:
             show = True
         else:

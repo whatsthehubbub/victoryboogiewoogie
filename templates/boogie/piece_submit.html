@@ -68,7 +68,7 @@ $(document).ready(function() {
 						<li class="pull-left">Personage</li>
 						<li class="pull-right">
 							{% if form.instance.character.get_latest_piece %}
-								Lees de laatste bijdrage over <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a> getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|truncatechars:140 }}</a>
+								Lees de laatste bijdrage over <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a> getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>
 							{% else %}
 								Er is nog niks geschreven over {{ form.instance.character }}. <em>Carte blanche!</em>
 							{% endif %}
@@ -80,7 +80,7 @@ $(document).ready(function() {
 						<li class="pull-left">Onderwerp</li>
 						<li class="pull-right">
 							{% if form.instance.topic.get_latest_piece %}
-								Lees de laatste bijdrage over “<a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|truncatechars:140 }}</a>
+								Lees de laatste bijdrage over “<a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>
 								{% else %}
 								Er is nog niks geschreven over “{{ form.instance.topic.title|capfirst }}”. <em>Carte blanche!</em>
 							{% endif %}

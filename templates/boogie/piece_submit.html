@@ -48,58 +48,47 @@ $(document).ready(function() {
 {% block content %}
 <div id="createitem" class="row">
 	<div class="span8 offset2">
-		
-		<!-- TODO: Include character count. -->
-		
+				
 		{% ifequal current_player.role 'PLAYER' %}
 			{% if game.over %}
 				<h2 class="text-center">De game is voorbij</h2>
 				<p class="lead">Je kunt helaas niet meer meeschrijven. <a href="{% url 'post_game' %}">Lees hier de terugblik</a>.</p>
 			{% else %}
 				{% if form %}			
-					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} & {% endif %}{{ form.instance.topic.title|capfirst }}</h2>
+					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} &amp; {% endif %}{{ form.instance.topic.title|capfirst }}</h2>
 					
 					{% if form.instance.rejection_reason %}
 						<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
 					{% endif %}
-						
-					{% if form.instance.character %}
-					<ul class="info clearfix">
-						<li class="pull-left">Personage</li>
-						<li class="pull-right">
-							{% if form.instance.character.get_latest_piece %}
-								Lees de laatste bijdrage over <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a> getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>
-							{% else %}
-								Er is nog niks geschreven over {{ form.instance.character }}. <em>Carte blanche!</em>
-							{% endif %}
-						</li>
-					</ul>
-					{% endif %}
 
 					<ul class="info clearfix">
-						<li class="pull-left">Onderwerp</li>
+						<li class="pull-left">Opdracht</li>
 						<li class="pull-right">
 							{% if form.instance.topic.get_latest_piece %}
-								Lees de laatste bijdrage over “<a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>” getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>
+								{% if form.instance.character.get_latest_piece %}
+								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>. Verwerk daarin ook de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>.
 								{% else %}
-								Er is nog niks geschreven over “{{ form.instance.topic.title|capfirst }}”. <em>Carte blanche!</em>
+								Schrijf iets geïnspireerd op de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>.
+								{% endif %}
+							{% else %}
+								{% if form.instance.character.get_latest_piece %}
+								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>. Verwerk daarin ook het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, waar nog niks over is geschreven.
+								{% else %}
+								Schrijf een bijdrage over <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>. Er is nog niks geschreven over dit onderwerp, dus je hebt <em>carte blanche</em>.
+								{% endif %}
 							{% endif %}
 						</li>
 					</ul>
-
+						
 					<ul class="info clearfix">
 						<li class="pull-left">Deadline</li>
 						<li class="pull-right">{% if form.instance.deadline|timeuntil == '0 minuten' %}Verstreken! Binnenkort krijg je een nieuwe opdracht.{% else %}{{ form.instance.deadline|timeuntil }}{% endif %}</li>
 					</ul>
-					<ul class="info clearfix">
-						<li class="pull-left">Aantal bijdragen deze ronde</li>
-						<li class="pull-right"><span class="label">{{ form.instance.topic.piece_count }}</span></li>
-					</ul>
 					
 					{% crispy form %}
 					
-					<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen.</div>
-					
+					<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen. De redactie behoudt zich het recht voor bijdragen te redigeren.</div>
+
 				{% else %}
 					<h2 class="text-center">Je mag op dit moment niks schrijven.</h2>
 				{% endif %}

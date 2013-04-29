@@ -108,6 +108,8 @@ class Character(models.Model):
 
     avatar = models.ImageField(blank=True, upload_to='characters', help_text="Avatars moeten in 400x400px worden ingesteld")
 
+    order = models.IntegerField(default=1, help_text="De volgorde wordt oplopend bepaald en bij gelijke getallen wordt vergeleken op naam.")
+
     def __unicode__(self):
         return self.name
 

@@ -7,7 +7,7 @@ class PlayerAdmin(admin.ModelAdmin):
 admin.site.register(Player, PlayerAdmin)
 
 class CharacterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'onelinebio')
+    list_display = ('name', 'onelinebio', 'order')
 admin.site.register(Character, CharacterAdmin)
 
 

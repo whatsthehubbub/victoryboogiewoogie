@@ -46,7 +46,7 @@ def index(request):
     c = RequestContext(request, {
             'piece_and_ads': piece_and_ads,
             'summary': Summary.objects.all().order_by('-datecreated'),
-            'characters': Character.objects.all().order_by('?')
+            'characters': Character.objects.all().order_by('order', 'name')
     })
 
     return HttpResponse(t.render(c))

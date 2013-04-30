@@ -8,6 +8,8 @@
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
 						<p class="genre pull-left">{{ piece.topic|capfirst }}</p>
+					{% else %}
+						<p class="genre pull-left">&nbsp;</p>
 					{% endifnotequal %}
 					{% ifnotequal character piece.character %}
 						{% if piece.character.avatar %}

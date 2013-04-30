@@ -7,6 +7,8 @@ from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 
+from django.shortcuts import render_to_response
+
 from boogie.models import *
 
 from boogie import tasks
@@ -226,7 +228,7 @@ class PieceSubmitForm(ModelForm):
             Field('new_topic', css_class="input-block-level"),
             HTML('<span class="help-block">Dit onderwerp wordt toegevoegd aan de spelerslijst nadat je bijdrage is goedgekeurd. Gebruik het om het verhaal te be&iuml;nvloeden. Hint: kies een element uit je bijdrage als nieuw onderwerp.</span>'),
             FormActions(
-                Submit('submit', 'Verzenden', css_class='btn')
+                Submit('submit', 'Voorbeeld bekijken', css_class='btn'),
             )
         )
 
@@ -270,33 +272,54 @@ class PieceSubmitForm(ModelForm):
         return cleaned_data
 
 @login_required
-def piece_submit(request):
-    t = loader.get_template('boogie/piece_submit.html')
+def piece_submit_preview(request):
+    if player.role == 'PLAYER':
+        assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
     
+        if assignments:
+            piece = assignments[0]
+
+            if request.method == "POST":
+                form = PieceSubmitForm(request.POST, instance=piece)
+                form.instance.status = 'SUBMITTED'
+                form.save()
+
+@login_required
+def piece_submit(request):
     player = Player.objects.get(user=request.user)
     form = None
 
     if player.role == 'PLAYER':
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
+
         if assignments:
             # If we have more than one assignment, we just get the first
             piece = assignments[0]
 
             if request.method == 'POST':
+                # We get data submitted
+                save = request.POST.get('save', '') == 'save'
+                edit = request.POST.get('save', '') == 'edit'
+
                 form = PieceSubmitForm(request.POST, instance=piece)
-                if form.is_valid():
-                    # The piece has been submitted into the bowels of the system
+
+                if not form.is_valid() or edit:
+                    pass # Go back to the edit page
+                elif form.is_valid() and save:
                     form.instance.status = 'SUBMITTED'
                     form.save()
 
                     return HttpResponseRedirect(reverse('piece_submit_thanks'))
+                elif form.is_valid():
+                    return render_to_response('boogie/piece_submit_preview.html', {
+                        'form': form
+                    }, RequestContext(request))
             else:
                 form = PieceSubmitForm(instance=piece)
     
-    c = RequestContext(request, {
+    return render_to_response('boogie/piece_submit.html', {
             'form': form
-    })
-    return HttpResponse(t.render(c))
+    }, RequestContext(request))
 
 
 class WriterPieceSubmitForm(ModelForm):

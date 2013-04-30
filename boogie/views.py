@@ -107,7 +107,7 @@ def summary(request):
     t = loader.get_template('boogie/summary.html')
 
     c = RequestContext(request, {
-        'summary': Summary.objects.all().order_by('-datecreated')
+        'summary': Summary.objects.all().order_by('datecreated')
     })
 
     return HttpResponse(t.render(c))

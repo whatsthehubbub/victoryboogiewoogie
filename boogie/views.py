@@ -284,19 +284,6 @@ class PieceSubmitForm(ModelForm):
         return cleaned_data
 
 @login_required
-def piece_submit_preview(request):
-    if player.role == 'PLAYER':
-        assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
-    
-        if assignments:
-            piece = assignments[0]
-
-            if request.method == "POST":
-                form = PieceSubmitForm(request.POST, instance=piece)
-                form.instance.status = 'SUBMITTED'
-                form.save()
-
-@login_required
 def piece_submit(request):
     player = Player.objects.get(user=request.user)
     form = None

@@ -25,14 +25,13 @@
 	
 	<h2>Voorbeeldweergave van je inzending</h2>
 
-	<table>
-		{% for field in form %}
-			<tr>
-				<th>{{ field.label }}:</th>
-				<td>{{ field.data }}</td>
-			</tr>
-		{% endfor %}
-	</table>
+	<p>Genre: {{ form.data.genre }}</p>
+
+	<p>Titel: {{ form.data.title }}</p>
+
+	<p>Tekst: {{ form.data.text }}</p>
+
+	<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>
 
 	<form action="{% url 'piece_submit' %}" id="submitform" method="post">{% csrf_token %}
 		{% for field in form %}

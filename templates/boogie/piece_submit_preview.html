@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 {% load url from future %}
 
-
-{% block extrahead %}
-	
+{% block extrahead %}	
 	<script type="text/javascript">
 
 	$(document).ready(function() {
-
 		$('#editbutton').click(function() {
 
 			$('#toggleinput').val('edit');
 
 			$('#submitform').submit();
 		});
-
 	});
 
 	</script>
@@ -22,7 +18,7 @@
 
 
 {% block content %}
-	
+
 	<h2>Voorbeeldweergave van je inzending</h2>
 
 	<p>Onderwerp: {{ form.instance.topic }}</p>
@@ -41,7 +37,7 @@
 		<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>
 	{% endif %}
 
-	<form action="{% url 'piece_submit' %}" id="submitform" method="post">{% csrf_token %}
+	<form action="" id="submitform" method="post">{% csrf_token %}
 		{% for field in form %}
 			{{ field.as_hidden }}
 		{% endfor %}

@@ -378,17 +378,23 @@ class WriterPieceSubmitForm(ModelForm):
 
 @login_required
 def writer_piece_submit(request):
-    t = loader.get_template('boogie/writer_piece_submit.html')
-
     player = Player.objects.get(user=request.user)
+
+    form = None
 
     if player.role == 'WRITER':
         if request.method == 'POST':
+
+            save = request.POST.get('save', '') == 'save'
+            edit = request.POST.get('save', '') == 'edit'
+
             form = WriterPieceSubmitForm(request.POST, request.FILES)
             
             # TODO check for compulsory fields
 
-            if form.is_valid():
+            if not form.is_valid() or edit:
+                pass
+            elif form.is_valid() and save:
                 piece = form.save(commit=False)
 
                 piece.status = 'APPROVED'
@@ -403,15 +409,16 @@ def writer_piece_submit(request):
                 topic.save()
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
-
+            elif form.is_valid():
+                return render_to_response('boogie/piece_submit_preview.html', {
+                    'form': form
+                }, RequestContext(request))
         else:
             form = WriterPieceSubmitForm()
 
-        c = RequestContext(request, {
+        return render_to_response('boogie/writer_piece_submit.html', {
             'form': form
-        })
-
-        return HttpResponse(t.render(c))
+        }, RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('piece_submit'))
 

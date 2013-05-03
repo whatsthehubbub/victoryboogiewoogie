@@ -26,12 +26,10 @@ def check_topic_pool():
 
         for topic in player_topics:
             topic.pool = 'WRITER'
+            topic.piece_count = 0
             topic.save()
 
-            logger.info("Promoted topic %s", unicode(topic))
-
-        logger.info("Reset piece_count on all Topics to 0")
-        Topic.objects.update(piece_count=0)
+            logger.info("Promoted topic %s and reset piece_count", unicode(topic))
 
 
 @task()

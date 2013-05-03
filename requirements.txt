@@ -19,3 +19,4 @@ boto==2.8.0
 django-crispy-forms==1.2.3
 gunicorn==0.17.2
 django-registration-email==0.5
+django-typogrify==1.3

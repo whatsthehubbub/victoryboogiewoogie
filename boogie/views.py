@@ -114,15 +114,22 @@ def summary(request):
 
     return HttpResponse(t.render(c))
 
+@login_required
 def notifications(request):
-    player = Player.objects.get(user=request.user)
-
-    tasks.update_user_last_login.apply_async(args=[request.user], countdown=10)
-
     t = loader.get_template('boogie/notifications.html')
 
+    try:
+        player = Player.objects.get(user=request.user)
+
+        tasks.update_user_last_login.apply_async(args=[request.user], countdown=10)
+
+        notifications = Notification.objects.filter(for_player=player).order_by('-datecreated')
+    except Player.DoesNotExist:
+        notifications = []
+
+
     c = RequestContext(request, {
-        'notifications': Notification.objects.filter(for_player=player).order_by('-datecreated')
+        'notifications': notifications
     })
 
     return HttpResponse(t.render(c))

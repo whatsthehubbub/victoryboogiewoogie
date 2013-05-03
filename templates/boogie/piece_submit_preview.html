@@ -25,13 +25,21 @@
 	
 	<h2>Voorbeeldweergave van je inzending</h2>
 
+	<p>Onderwerp: {{ form.instance.topic }}</p>
+
+	{% if form.instance.character %}
+		<p>Personage: {{ form.instance.character }}</p>
+	{% endif %}
+
 	<p>Genre: {{ form.data.genre }}</p>
 
 	<p>Titel: {{ form.data.title }}</p>
 
 	<p>Tekst: {{ form.data.text }}</p>
 
-	<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>
+	{% if form.data.new_topic %}
+		<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>
+	{% endif %}
 
 	<form action="{% url 'piece_submit' %}" id="submitform" method="post">{% csrf_token %}
 		{% for field in form %}

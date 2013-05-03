@@ -17,6 +17,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Div, Field, HTML
 from crispy_forms.bootstrap import FormActions
 
+import bleach
+
 
 def index(request):
     t = loader.get_template('boogie/index.html')
@@ -258,6 +260,14 @@ class PieceSubmitForm(ModelForm):
 
         return title
 
+    def clean_text(self):
+        text = self.cleaned_data.get('text')
+
+        text = bleach.clean(text, tags=[], strip=True)
+
+        return text
+
+
     def clean_new_topic(self):
         new_topic = self.cleaned_data.get('new_topic')
 
@@ -364,6 +374,13 @@ class WriterPieceSubmitForm(ModelForm):
             raise ValidationError("Je hebt geen titel ingevuld.")
 
         return title
+
+    def clean_text(self):
+        text = self.cleaned_data.get('text')
+
+        text = bleach.clean(text, tags=['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'q', 'strike', 'strong'], attributes={'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}, strip=True)
+
+        return text
 
     def clean(self):
         cleaned_data = super(WriterPieceSubmitForm, self).clean()

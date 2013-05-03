@@ -31,7 +31,7 @@
 
 	<p>Titel: {{ form.data.title }}</p>
 
-	<p>Tekst: {{ form.data.text }}</p>
+	<p>Tekst: {{ form.data.text|safe }}</p>
 
 	{% if form.data.new_topic %}
 		<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>

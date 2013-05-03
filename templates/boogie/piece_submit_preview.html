@@ -18,34 +18,43 @@
 
 
 {% block content %}
+<div id="previewitem" class="row">
+	<div class="span8 offset2">
 
-	<h2>Voorbeeldweergave van je inzending</h2>
-
-	<p>Onderwerp: {{ form.instance.topic }}</p>
-
-	{% if form.instance.character %}
-		<p>Personage: {{ form.instance.character }}</p>
-	{% endif %}
-
-	<p>Genre: {{ form.data.genre }}</p>
-
-	<p>Titel: {{ form.data.title }}</p>
-
-	<p>Tekst: {{ form.data.text|safe }}</p>
-
-	{% if form.data.new_topic %}
-		<p>Nieuw onderwerp: {{ form.data.new_topic }}</p>
-	{% endif %}
-
-	<form action="" id="submitform" method="post">{% csrf_token %}
-		{% for field in form %}
-			{{ field.as_hidden }}
-		{% endfor %}
-
-		<input type="hidden" id="toggleinput" name="save" value="save">
-
-		<input type="submit" value="Indienen" />
-		<input type="button" id="editbutton" value="Opnieuw bewerken">
-	</form>
+		<h2 class="text-center">Voorbeeldweergave van je inzending</h2>
+		<ul class="info clearfix">
+			<li class="pull-left">Onderwerp</li>
+			<li class="pull-right">{{ form.instance.topic }}</li>
+			{% if form.instance.character %}
+			<li class="pull-left">Personage</li>
+			<li class="pull-right">{{ form.instance.character }}</li>
+			{% endif %}
+			<li class="pull-left">Onderwerp</li>
+			<li class="pull-right">{{ form.instance.topic }}</li>
+			{% if form.data.new_topic %}
+			<li class="pull-left">Nieuw onderwerp</li>
+			<li class="pull-right">{{ form.data.new_topic }}</li>
+			{% endif %}
+			<li class="pull-left">Genre</li>
+			<li class="pull-right">{{ form.data.genre }}</li>
+			<li class="pull-left">Titel</li>
+			<li class="pull-right">{{ form.data.title }}</li>
+		</ul>
 	
+		<p class="lead">{{ form.data.text|safe }}</p>
+
+		<form action="" id="submitform" method="post" class="form">
+			<div class="form-actions">
+				{% csrf_token %}
+				{% for field in form %}
+					{{ field.as_hidden }}
+				{% endfor %}
+				<input type="hidden" id="toggleinput" name="save" value="save">
+				<input type="button" id="editbutton" value="Opnieuw bewerken" class="btn">
+				<input type="submit" value="Indienen" class="btn btn-primary pull-right">
+			</div>
+		</form>
+
+	</div>
+</div>
 {% endblock content %}

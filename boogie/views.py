@@ -210,9 +210,14 @@ def piece_detail(request, id):
     if show:
         t = loader.get_template('boogie/piece_detail.html')
 
+        try:
+            fallback = Character.objects.all()[0].avatar.url
+        except:
+            fallback = ''
+
         c = RequestContext(request, {
             'piece': piece,
-            'fallback_image': Character.objects.all().order_by('?')[0].avatar.url
+            'fallback_image': fallback
         })
         return HttpResponse(t.render(c))
     else:

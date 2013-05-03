@@ -15,14 +15,14 @@ def get_new_assignment(player):
 def check_topic_pool():
     from boogie.models import Topic, Player
 
-    writer_topics = Topic.objects.filter(pool='WRITER').count()
+    writer_topics = Topic.objects.filter(pool='WRITER').exclude(archived=True).count()
     writers = Player.objects.filter(role="WRITER").count()
 
     difference = writers - writer_topics
 
     if difference > 0:
         # Promote topics to the writers pool
-        player_topics = Topic.objects.filter(pool='PLAYER').order_by('-piece_count')[:difference]
+        player_topics = Topic.objects.filter(pool='PLAYER').exclude(archived=True).order_by('-piece_count')[:difference]
 
         for topic in player_topics:
             topic.pool = 'WRITER'

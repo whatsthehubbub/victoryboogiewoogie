@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load piece_extras %}
 {% load url from future %}
+{% load typogrify_tags %}
 
 {% block pagetitle %}{{ piece.title|capfirst }}{% endblock pagetitle %}
 
@@ -59,7 +60,7 @@
 					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title|capfirst }}">
 				</figure>
 				{% endif %}
-				{% if piece.text and piece.genre != "Headline" %}<p>{{ piece.text|safe|linebreaks }}</p>{% endif %}
+				{% if piece.text and piece.genre != "Headline" %}<p>{{ piece.text|typogrify|linebreaks|safe }}</p>{% endif %}
 				
 			</article>
 			

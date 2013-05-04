@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load typogrify_tags %}
 
 {% block extrahead %}	
 	<script type="text/javascript">
@@ -41,7 +42,7 @@
 			<li class="pull-right">{{ form.data.title }}</li>
 		</ul>
 	
-		<p class="lead">{{ form.data.text|safe }}</p>
+		<p class="lead">{{ form.data.text|typogrify|linebreaks|safe }}</p>
 
 		<form action="" id="submitform" method="post" class="form">
 			<div class="form-actions">

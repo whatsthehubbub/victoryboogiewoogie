@@ -21,6 +21,63 @@
 
 
 {% block content %}
+<div id="itemdetail">
+	
+	<div class="meta clearfix">
+
+		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic|capfirst }}</a></p>
+
+		{% if form.instance.character %}
+			{% if form.instance.character.avatar %}
+			<a href="{% url 'character_profile' form.instance.character.id %}" class="pull-right">
+				<img src="{{ form.instance.character.avatar.url }}" class="character img-circle" alt="{{ form.instance.character.name }}">
+			</a>
+			{% endif %}
+			<p class="pull-right">
+				Personage: <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character.name }}</a>
+			</p>
+		{% endif %}
+
+	</div>
+	
+	<div class="row">
+		<div class="span8 offset2">
+			
+			<article class="{{ form.data.genre|lower }} clearfix">
+								
+				<h2 class="text-center">{{ form.data.title|capfirst }}</h2>
+
+				<div class="author text-center"><em>{{ form.data.get_genre_display|capfirst }} door <a href="{{ form.instance.writer.get_absolute_url }}">{{ form.instance.writer.get_name }}</a></em> – <span class="label label-inverse">nog niet gepubliceerd</span></div>
+				
+				{% if form.data.image %}
+				<figure>
+					<img src="{{ form.data.image.url }}" width="{{ form.data.image.width }}" height="{{ form.data.image.height }}" alt="{{ form.data.title|capfirst }}">
+				</figure>
+				{% endif %}
+
+				{% if form.data.text and form.data.genre != "Headline" and form.data.genre != "Illustratie" %}
+				<p>{{ form.data.text|safe|linebreaks|typogrify }}</p>
+				{% endif %}
+				
+			</article>
+
+		<form action="" id="submitform" method="post" class="form">
+			<div class="form-actions">
+				{% csrf_token %}
+				{% for field in form %}
+					{{ field.as_hidden }}
+				{% endfor %}
+				<input type="hidden" id="toggleinput" name="save" value="save">
+				<input type="button" id="editbutton" value="Bewerken" class="btn">
+				<input type="submit" value="Verzenden" class="btn btn-primary pull-right">
+			</div>
+		</form>
+
+		</div>
+	</div>
+</div>
+
+<!--
 <div id="previewitem" class="row">
 	<div class="span8 offset2">
 
@@ -60,4 +117,5 @@
 
 	</div>
 </div>
+-->
 {% endblock content %}

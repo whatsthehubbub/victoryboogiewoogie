@@ -242,7 +242,7 @@ class PieceSubmitForm(ModelForm):
             Field('new_topic', css_class="input-block-level"),
             HTML('<span class="help-block">Dit onderwerp wordt toegevoegd aan de spelerslijst nadat je bijdrage is goedgekeurd. Gebruik het om het verhaal te be&iuml;nvloeden. Hint: kies een element uit je bijdrage als nieuw onderwerp.</span>'),
             FormActions(
-                Submit('submit', 'Voorbeeld bekijken', css_class='btn'),
+                Submit('submit', 'Voorbeeld', css_class='btn'),
             )
         )
 
@@ -355,7 +355,7 @@ class WriterPieceSubmitForm(ModelForm):
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('image', css_class='input-block-level'),
             FormActions(
-                Submit('submit', 'Verzenden', css_class='btn')
+                Submit('submit', 'Voorbeeld', css_class='btn')
             )
         )
 

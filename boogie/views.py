@@ -242,7 +242,7 @@ class PieceSubmitForm(ModelForm):
             Field('new_topic', css_class="input-block-level"),
             HTML('<span class="help-block">Dit onderwerp wordt toegevoegd aan de spelerslijst nadat je bijdrage is goedgekeurd. Gebruik het om het verhaal te be&iuml;nvloeden. Hint: kies een element uit je bijdrage als nieuw onderwerp.</span>'),
             FormActions(
-                Submit('submit', 'Voorbeeld', css_class='btn'),
+                Submit('submit', 'Voorbeeld tonen', css_class='btn'),
             )
         )
 
@@ -348,14 +348,17 @@ class WriterPieceSubmitForm(ModelForm):
 
         self.helper.layout = Layout(
             Field('topic', css_class='input-block-level'),
+            HTML('<span class="help-block">Hint: lees de laatste speler-bijdrage over dit onderwerp en verwerk het in je bijdrage.</span>'),
             Field('character', css_class='input-block-level'),
             Field('genre', css_class="input-block-level"),
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
+            HTML('<span class="help-block">HTML is beperkt toegestaan.</span>'),
+            # HTML('<span class="help-block">De volgende HTML is toegestaan: <a href="" title=""> <abbr title=""> <acronym title=""> <b> <blockquote cite=""> <cite> <code> <del datetime=""> <em> <i> <q cite=""> <strike> <strong></span>'),
             Field('image', css_class='input-block-level'),
             FormActions(
-                Submit('submit', 'Voorbeeld', css_class='btn')
+                Submit('submit', 'Voorbeeld tonen', css_class='btn')
             )
         )
 

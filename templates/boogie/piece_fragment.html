@@ -1,4 +1,6 @@
 {% load url from future %}
+{% load typogrify_tags %}
+
 	<article class="{% if piece_and_ads and piece.highlight %}span8{% else %}span4{% endif %} {{ piece.genre|lower }} clearfix">
 		<a href="{{ piece.get_absolute_url }}" title="{{ piece.title|capfirst }}">
 			<div class="box">
@@ -28,7 +30,7 @@
 				{% else %}
 					<div class="content">
 						<h3 class="sans">{{ piece.title|capfirst }}</h3>
-						{% if piece.genre != "Headline" %}<p>{{ piece.text|linebreaks }}</p>{% endif %}
+						{% if piece.genre != "Headline" %}<p>{{ piece.text|linebreaks|typogrify|linebreaks|safe }}</p>{% endif %}
 					</div>
 				{% endifequal %}
 			</div>

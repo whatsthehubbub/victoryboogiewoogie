@@ -12,7 +12,7 @@
 		{% for piece in summary %}
 		<article id="samenvatting-{{ piece.id }}" class="summaryitem">
 			<h3 class="text-center">{{ piece.datecreated }}</h3>
-			{{ piece.content|typogrify|linebreaks|safe }}
+			{{ piece.content|safe|linebreaks|typogrify }}
 		</article>
 		{% endfor %}
 		

@@ -42,7 +42,7 @@
 			<li class="pull-right">{{ form.data.title }}</li>
 		</ul>
 	
-		<p class="lead">{{ form.data.text|typogrify|linebreaks|safe }}</p>
+		<p class="lead">{{ form.data.text|safe|linebreaks|typogrify }}</p>
 
 		<form action="" id="submitform" method="post" class="form">
 			<div class="form-actions">
@@ -51,7 +51,7 @@
 					{{ field.as_hidden }}
 				{% endfor %}
 				<input type="hidden" id="toggleinput" name="save" value="save">
-				<input type="button" id="editbutton" value="Opnieuw bewerken" class="btn">
+				<input type="button" id="editbutton" value="Bewerken" class="btn">
 				<input type="submit" value="Verzenden" class="btn btn-primary pull-right">
 			</div>
 		</form>

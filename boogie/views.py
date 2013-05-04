@@ -381,7 +381,7 @@ class WriterPieceSubmitForm(ModelForm):
     def clean_text(self):
         text = self.cleaned_data.get('text')
 
-        text = bleach.clean(text, tags=['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'q', 'strike', 'strong'], attributes={'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}, strip=True)
+        text = bleach.clean(text, tags=['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'iframe', 'q', 'strike', 'strong'], attributes={'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}, strip=True)
 
         return text
 

@@ -60,7 +60,7 @@
 					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title|capfirst }}">
 				</figure>
 				{% endif %}
-				{% if piece.text and piece.genre != "Headline" %}<p>{{ piece.text|safe|linebreaks|typogrify }}</p>{% endif %}
+				{% if piece.text and piece.genre != "Headline" and piece.genre != "Illustratie" %}<p>{{ piece.text|safe|linebreaks|typogrify }}</p>{% endif %}
 				
 			</article>
 			

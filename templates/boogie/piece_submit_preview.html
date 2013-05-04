@@ -2,7 +2,7 @@
 {% load url from future %}
 {% load typogrify_tags %}
 
-{% block pagetitle %}Voorbeeldweergave{% endblock pagetitle %}
+{% block pagetitle %}Voorbeeldweergave van {{ form.data.title|capfirst }}{% endblock pagetitle %}
 
 {% block extrahead %}	
 	<script type="text/javascript">
@@ -45,7 +45,7 @@
 			
 			<article class="{{ form.data.genre|lower }} clearfix">
 								
-				<h2 class="text-center">{{ form.data.title|capfirst }}</h2>
+				<h2 class="text-center"><span class="sub-top">Voorbeeldweergave van</span> {{ form.data.title|capfirst }}</h2>
 
 				<div class="author text-center"><em>{{ form.data.get_genre_display|capfirst }} door <a href="{{ form.instance.writer.get_absolute_url }}">{{ form.instance.writer.get_name }}</a></em> – <span class="label label-inverse">nog niet gepubliceerd</span></div>
 				

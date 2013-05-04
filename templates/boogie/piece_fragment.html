@@ -30,7 +30,7 @@
 				{% else %}
 					<div class="content">
 						<h3 class="sans">{{ piece.title|capfirst }}</h3>
-						{% if piece.genre != "Headline" %}<p>{{ piece.text|safe|linebreaks|typogrify }}</p>{% endif %}
+						{% if piece.genre != "Headline" %}<p>{{ piece.text|striptags|linebreaks|typogrify }}</p>{% endif %}
 					</div>
 				{% endifequal %}
 			</div>

@@ -17,7 +17,10 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Div, Field, HTML
 from crispy_forms.bootstrap import FormActions
 
+
 import bleach
+BLEACH_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'iframe', 'q', 'strike', 'strong']
+BLEACH_ATTRIBUTES = {'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}
 
 
 def index(request):
@@ -382,7 +385,7 @@ class WriterPieceSubmitForm(ModelForm):
     def clean_text(self):
         text = self.cleaned_data.get('text')
 
-        text = bleach.clean(text, tags=['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'iframe', 'q', 'strike', 'strong'], attributes={'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}, strip=True)
+        text = bleach.clean(text, tags=BLEACH_TAGS, attributes=BLEACH_ATTRIBUTES, strip=True)
 
         return text
 
@@ -392,8 +395,15 @@ class WriterPieceSubmitForm(ModelForm):
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
+        # image = cleaned_data.get('image')
+
+        # print cleaned_data
+
         if not text and (genre != 'Headline' and genre != 'Illustratie'):
             raise ValidationError("Schrijf een tekst (voor niet headline / illustratie bijdragen).")
+
+        # if not image and genre == 'Illustratie':
+            # raise ValidationError("Voeg een beeld toe voor illustratie bijdragen.")
 
         return cleaned_data
 

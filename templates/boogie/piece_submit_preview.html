@@ -29,15 +29,14 @@
 
 		{% if form.instance.character %}
 			{% if form.instance.character.avatar %}
-			<a href="{% url 'character_profile' form.instance.character.id %}" class="pull-right">
-				<img src="{{ form.instance.character.avatar.url }}" class="character img-circle" alt="{{ form.instance.character.name }}">
-			</a>
+				<a href="{% url 'character_profile' form.instance.character.id %}" class="pull-right">
+					<img src="{{ form.instance.character.avatar.url }}" class="character img-circle" alt="{{ form.instance.character.name }}">
+				</a>
 			{% endif %}
 			<p class="pull-right">
 				Personage: <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character.name }}</a>
 			</p>
 		{% endif %}
-
 	</div>
 	
 	<div class="row">
@@ -47,16 +46,20 @@
 								
 				<h2 class="text-center"><span class="sub-top">Voorbeeldweergave van</span> {{ form.data.title|capfirst }}</h2>
 
-				<div class="author text-center"><em>{{ form.data.get_genre_display|capfirst }} door <a href="{{ form.instance.writer.get_absolute_url }}">{{ form.instance.writer.get_name }}</a></em> – <span class="label label-inverse">nog niet gepubliceerd</span></div>
+				<div class="author text-center">
+					<em>{{ form.instance.get_genre_display }}
+					door <a href="{{ writer.get_absolute_url }}">{{ writer.get_name }}</a></em> – 
+					<span class="label label-inverse">nog niet gepubliceerd</span>
+				</div>
 				
 				{% if form.data.image %}
-				<figure>
-					<img src="{{ form.data.image.url }}" width="{{ form.data.image.width }}" height="{{ form.data.image.height }}" alt="{{ form.data.title|capfirst }}">
-				</figure>
+					<figure>
+						<img src="{{ form.data.image.url }}" width="{{ form.data.image.width }}" height="{{ form.data.image.height }}" alt="{{ form.data.title|capfirst }}">
+					</figure>
 				{% endif %}
 
 				{% if form.data.text and form.data.genre != "Headline" and form.data.genre != "Illustratie" %}
-				<p>{{ form.data.text|safe|linebreaks|typogrify }}</p>
+					<p>{{ form.data.text|safe|linebreaks|typogrify }}</p>
 				{% endif %}
 				
 			</article>

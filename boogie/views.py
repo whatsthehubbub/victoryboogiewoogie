@@ -321,7 +321,8 @@ def piece_submit(request):
                     return HttpResponseRedirect(reverse('piece_submit_thanks'))
                 elif form.is_valid():
                     return render_to_response('boogie/piece_submit_preview.html', {
-                        'form': form
+                        'form': form,
+                        'writer': player
                     }, RequestContext(request))
             else:
                 form = PieceSubmitForm(instance=piece)
@@ -409,8 +410,6 @@ def writer_piece_submit(request):
             edit = request.POST.get('save', '') == 'edit'
 
             form = WriterPieceSubmitForm(request.POST, request.FILES)
-            
-            # TODO check for compulsory fields
 
             if not form.is_valid() or edit:
                 pass
@@ -431,7 +430,8 @@ def writer_piece_submit(request):
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
             elif form.is_valid():
                 return render_to_response('boogie/piece_submit_preview.html', {
-                    'form': form
+                    'form': form,
+                    'writer': player
                 }, RequestContext(request))
         else:
             form = WriterPieceSubmitForm()

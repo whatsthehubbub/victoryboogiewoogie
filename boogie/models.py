@@ -16,6 +16,9 @@ logger = logging.getLogger('sake')
 import datetime
 import math
 
+import bleach
+from boogie.views import BLEACH_TAGS, BLEACH_ATTRIBUTES
+
 class Player(models.Model):
     class Meta:
         verbose_name = u'Speler'
@@ -465,6 +468,8 @@ class Summary(models.Model):
         if self.pk is None:
             # PK is only None on a new object before save
             createNotification = True
+
+        self.content = bleach.clean(self.content, tags=BLEACH_TAGS, attributes=BLEACH_ATTRIBUTES, strip=True)
 
         super(Summary, self).save(*args, **kwargs)
 

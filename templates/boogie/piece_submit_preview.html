@@ -52,9 +52,9 @@
 					<span class="label label-inverse">nog niet gepubliceerd</span>
 				</div>
 				
-				{% if form.data.image %}
+				{% if form.instance.image %}
 					<figure>
-						<img src="{{ form.data.image.url }}" width="{{ form.data.image.width }}" height="{{ form.data.image.height }}" alt="{{ form.data.title|capfirst }}">
+						<img src="{{ form.instance.image.url }}" width="{{ form.instance.image.width }}" height="{{ form.instance.image.height }}" alt="{{ form.data.title|capfirst }}">
 					</figure>
 				{% endif %}
 

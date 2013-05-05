@@ -429,6 +429,15 @@ def writer_piece_submit(request):
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
             elif form.is_valid():
+                piece = form.save(commit=False)
+
+                piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
+                piece.status = 'PASTDUE'
+                piece.writer = player
+                piece.save()
+
+                print piece.image
+
                 return render_to_response('boogie/piece_submit_preview.html', {
                     'form': form,
                     'writer': player

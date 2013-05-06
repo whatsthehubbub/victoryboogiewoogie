@@ -11,9 +11,11 @@ function checkSlide() {
     if (($('#id_genre').val() === 'Headline')||(($('#id_genre').val() === 'Illustratie'))) {
     	$('#div_id_text').slideUp();
     	$('#charactercount').hide();
+        $('.help-block').hide();
     } else {
     	$('#div_id_text').slideDown();
     	$('#charactercount').show();
+        $('.help-block').show();
     }
 }
 

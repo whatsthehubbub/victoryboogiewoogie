@@ -359,7 +359,8 @@ class WriterPieceSubmitForm(ModelForm):
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
-            HTML('<span class="help-block">De volgende HTML is toegestaan: &lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt;</span>'),
+            HTML('<span class="help-block">De volgende HTML is toegestaan: <br>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt;</span>'),
+            HTML('<hr>'),
             Field('image', css_class='input-block-level'),
             FormActions(
                 Submit('submit', 'Voorbeeld tonen', css_class='btn')

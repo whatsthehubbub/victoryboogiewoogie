@@ -19,8 +19,7 @@ from crispy_forms.bootstrap import FormActions
 
 
 import bleach
-BLEACH_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'iframe', 'q', 'strike', 'strong']
-BLEACH_ATTRIBUTES = {'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}
+from boogie.bleach_common import BLEACH_TAGS, BLEACH_ATTRIBUTES
 
 
 def index(request):
@@ -299,14 +298,15 @@ class PieceSubmitForm(ModelForm):
 @login_required
 def piece_submit(request):
     player = Player.objects.get(user=request.user)
-    form = None
 
     if player.role == 'PLAYER':
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
 
         if assignments:
-            # If we have more than one assignment, we just get the first
+            # If we have more than one assignment (which should not happen), we just get the first
             piece = assignments[0]
+
+            form = PieceSubmitForm(instance=piece)
 
             if request.method == 'POST':
                 # We get data submitted
@@ -315,24 +315,25 @@ def piece_submit(request):
 
                 form = PieceSubmitForm(request.POST, instance=piece)
 
-                if not form.is_valid() or edit:
+                if not (edit or save) and not form.is_valid():
                     pass # Go back to the edit page
-                elif form.is_valid() and save:
-                    form.instance.status = 'SUBMITTED'
-                    form.save()
+                elif edit:
+                    form = PieceSubmitForm(instance=piece)
+                elif save:
+                    piece.status = 'SUBMITTED'
+                    piece.save()
 
                     return HttpResponseRedirect(reverse('piece_submit_thanks'))
                 elif form.is_valid():
+                    piece = form.save()
+
                     return render_to_response('boogie/piece_submit_preview.html', {
-                        'form': form,
-                        'writer': player
+                        'piece': piece
                     }, RequestContext(request))
-            else:
-                form = PieceSubmitForm(instance=piece)
     
-    return render_to_response('boogie/piece_submit.html', {
-            'form': form
-    }, RequestContext(request))
+            return render_to_response('boogie/piece_submit.html', {
+                    'form': form
+            }, RequestContext(request))
 
 
 class WriterPieceSubmitForm(ModelForm):
@@ -395,15 +396,13 @@ class WriterPieceSubmitForm(ModelForm):
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
-        # image = cleaned_data.get('image')
-
-        # print cleaned_data
+        image = cleaned_data.get('image')
 
         if not text and (genre != 'Headline' and genre != 'Illustratie'):
             raise ValidationError("Schrijf een tekst (voor niet headline / illustratie bijdragen).")
 
-        # if not image and genre == 'Illustratie':
-            # raise ValidationError("Voeg een beeld toe voor illustratie bijdragen.")
+        if not image and genre == 'Illustratie':
+            raise ValidationError("Voeg een beeld toe voor illustratie bijdragen.")
 
         return cleaned_data
 
@@ -411,20 +410,24 @@ class WriterPieceSubmitForm(ModelForm):
 def writer_piece_submit(request):
     player = Player.objects.get(user=request.user)
 
-    form = None
-
     if player.role == 'WRITER':
         if request.method == 'POST':
-
             save = request.POST.get('save', '') == 'save'
             edit = request.POST.get('save', '') == 'edit'
+            pieceid = request.POST.get('pieceid', '')
 
             form = WriterPieceSubmitForm(request.POST, request.FILES)
 
-            if not form.is_valid() or edit:
+            if not (edit or save) and not form.is_valid():
                 pass
-            elif form.is_valid() and save:
-                piece = form.save(commit=False)
+            elif edit:
+                # We're coming here from preview
+                piece = Piece.objects.get(id=pieceid)
+
+                form = WriterPieceSubmitForm(instance=piece)
+            elif save:
+                # We're coming here from preview
+                piece = Piece.objects.get(id=pieceid)
 
                 piece.status = 'APPROVED'
                 piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -439,6 +442,9 @@ def writer_piece_submit(request):
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
             elif form.is_valid():
+                # Save a preliminary version of the piece, not to be published yet
+                # And show a preview using that piece
+
                 piece = form.save(commit=False)
 
                 piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -446,11 +452,8 @@ def writer_piece_submit(request):
                 piece.writer = player
                 piece.save()
 
-                print piece.image
-
                 return render_to_response('boogie/piece_submit_preview.html', {
-                    'form': form,
-                    'writer': player
+                    'piece': piece
                 }, RequestContext(request))
         else:
             form = WriterPieceSubmitForm()

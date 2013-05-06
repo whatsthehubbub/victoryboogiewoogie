@@ -1,0 +1,3 @@
+BLEACH_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code', 'del', 'em', 'i', 'iframe', 'q', 'strike', 'strong']
+
+BLEACH_ATTRIBUTES = {'a': ['href', 'title'], 'abbr': ['title'], 'acronym': ['title'], 'blockquote': ['cite'], 'del': ['datetime'], 'q': ['cite'], 'iframe': ['width', 'height', 'scrolling', 'frameborder', 'src', 'webkitAllowFullScreen', 'mozallowfullscreen', 'allowFullScreen']}

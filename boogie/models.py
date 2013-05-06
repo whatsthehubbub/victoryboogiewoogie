@@ -17,7 +17,7 @@ import datetime
 import math
 
 import bleach
-from boogie.views import BLEACH_TAGS, BLEACH_ATTRIBUTES
+from boogie.bleach_common import BLEACH_TAGS, BLEACH_ATTRIBUTES
 
 class Player(models.Model):
     class Meta:

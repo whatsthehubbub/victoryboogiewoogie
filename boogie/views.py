@@ -358,6 +358,7 @@ class WriterPieceSubmitForm(ModelForm):
             Field('genre', css_class="input-block-level"),
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
+            HTML('<input type="hidden" name="pieceid" value="{{ form.instance.pk|default_if_none:"" }}">'),
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             HTML('<span class="help-block">De volgende HTML is toegestaan: &lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt;</span>'),
             Field('image', css_class='input-block-level'),
@@ -413,19 +414,36 @@ def writer_piece_submit(request):
         if request.method == 'POST':
             save = request.POST.get('save', '') == 'save'
             edit = request.POST.get('save', '') == 'edit'
+            
             pieceid = request.POST.get('pieceid', '')
 
-            form = WriterPieceSubmitForm(request.POST, request.FILES)
+            if not (edit or save):
+                if pieceid:
+                    piece = Piece.objects.get(id=pieceid)
+                    form = WriterPieceSubmitForm(request.POST, request.FILES, instance=piece)
+                else:
+                    form = WriterPieceSubmitForm(request.POST, request.FILES)
 
-            if not (edit or save) and not form.is_valid():
-                pass
-            elif edit:
-                # We're coming here from preview
+                if form.is_valid():
+                    piece = form.save(commit=False)
+
+                    piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
+                    piece.status = 'PASTDUE'
+                    piece.writer = player
+                    piece.save()
+
+                    return render_to_response('boogie/piece_submit_preview.html', {
+                        'piece': piece
+                    }, RequestContext(request))
+                else:
+                    pass # Fall through
+            elif edit and pieceid:
+                # Reentry of existing piece to edit
                 piece = Piece.objects.get(id=pieceid)
 
                 form = WriterPieceSubmitForm(instance=piece)
-            elif save:
-                # We're coming here from preview
+            elif save and pieceid:
+                # Save of existing piece to edit
                 piece = Piece.objects.get(id=pieceid)
 
                 piece.status = 'APPROVED'
@@ -440,20 +458,6 @@ def writer_piece_submit(request):
                 topic.save()
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
-            elif form.is_valid():
-                # Save a preliminary version of the piece, not to be published yet
-                # And show a preview using that piece
-
-                piece = form.save(commit=False)
-
-                piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
-                piece.status = 'PASTDUE'
-                piece.writer = player
-                piece.save()
-
-                return render_to_response('boogie/piece_submit_preview.html', {
-                    'piece': piece
-                }, RequestContext(request))
         else:
             form = WriterPieceSubmitForm()
 

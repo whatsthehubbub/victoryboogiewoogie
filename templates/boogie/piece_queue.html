@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load typogrify_tags %}
 
 {% block pagetitle %}Beoordelen{% endblock pagetitle %}
 
@@ -34,8 +35,8 @@
 			<tbody>
 				<tr>
 					<td class="span10" colspan="3">
-						<a href="{% url 'piece_detail' piece.id %}" title="{{ piece.title|capfirst }}">
-							<h4>{{ piece.title|capfirst|truncatechars:140 }}</h4>
+						<a href="{% url 'piece_detail' piece.id %}" title="{{ piece.title|striptags|capfirst|typogrify }}">
+							<h4>{{ piece.title|striptags|capfirst|typogrify|truncatechars:140 }}</h4>
 						</a>
 					</td>
 				</tr>

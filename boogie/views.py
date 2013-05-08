@@ -7,6 +7,8 @@ from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 
+from django.shortcuts import render_to_response
+
 from boogie.models import *
 
 from boogie import tasks
@@ -14,6 +16,10 @@ from boogie import tasks
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Div, Field, HTML
 from crispy_forms.bootstrap import FormActions
+
+
+import bleach
+from boogie.bleach_common import BLEACH_TAGS, BLEACH_ATTRIBUTES
 
 
 def index(request):
@@ -46,7 +52,7 @@ def index(request):
     c = RequestContext(request, {
             'piece_and_ads': piece_and_ads,
             'summary': Summary.objects.all().order_by('-datecreated'),
-            'characters': Character.objects.all().order_by('?')
+            'characters': Character.objects.all().order_by('order', 'name')
     })
 
     return HttpResponse(t.render(c))
@@ -107,20 +113,27 @@ def summary(request):
     t = loader.get_template('boogie/summary.html')
 
     c = RequestContext(request, {
-        'summary': Summary.objects.all().order_by('-datecreated')
+        'summary': Summary.objects.all().order_by('datecreated')
     })
 
     return HttpResponse(t.render(c))
 
+@login_required
 def notifications(request):
-    player = Player.objects.get(user=request.user)
-
-    tasks.update_user_last_login.apply_async(args=[request.user], countdown=10)
-
     t = loader.get_template('boogie/notifications.html')
 
+    try:
+        player = Player.objects.get(user=request.user)
+
+        tasks.update_user_last_login.apply_async(args=[request.user], countdown=10)
+
+        notifications = Notification.objects.filter(for_player=player).order_by('-datecreated')
+    except Player.DoesNotExist:
+        notifications = []
+
+
     c = RequestContext(request, {
-        'notifications': Notification.objects.filter(for_player=player).order_by('-datecreated')
+        'notifications': notifications
     })
 
     return HttpResponse(t.render(c))
@@ -201,9 +214,14 @@ def piece_detail(request, id):
     if show:
         t = loader.get_template('boogie/piece_detail.html')
 
+        try:
+            fallback = Character.objects.all()[0].avatar.url
+        except:
+            fallback = ''
+
         c = RequestContext(request, {
             'piece': piece,
-            'fallback_image': Character.objects.all().order_by('?')[0].avatar.url
+            'fallback_image': fallback
         })
         return HttpResponse(t.render(c))
     else:
@@ -224,9 +242,9 @@ class PieceSubmitForm(ModelForm):
             Field('text', css_class='input-block-level'),
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
             Field('new_topic', css_class="input-block-level"),
-            HTML('<span class="help-block">Dit onderwerp wordt toegevoegd aan de spelerslijst nadat je bijdrage is goedgekeurd. Gebruiken het om het verhaal te be&iuml;nvloeden. Hint: kies een element uit je bijdrage als nieuw onderwerp.</span>'),
+            HTML('<span class="help-block">Dit onderwerp wordt toegevoegd aan de spelerslijst nadat je bijdrage is goedgekeurd. Gebruik het om het verhaal te be&iuml;nvloeden. Hint: kies een element uit je bijdrage als nieuw onderwerp.</span>'),
             FormActions(
-                Submit('submit', 'Verzenden', css_class='btn')
+                Submit('submit', 'Voorbeeld tonen', css_class='btn'),
             )
         )
 
@@ -243,6 +261,14 @@ class PieceSubmitForm(ModelForm):
             raise ValidationError("Je hebt geen titel ingevuld.")
 
         return title
+
+    def clean_text(self):
+        text = self.cleaned_data.get('text')
+
+        text = bleach.clean(text, tags=[], strip=True)
+
+        return text
+
 
     def clean_new_topic(self):
         new_topic = self.cleaned_data.get('new_topic')
@@ -271,32 +297,43 @@ class PieceSubmitForm(ModelForm):
 
 @login_required
 def piece_submit(request):
-    t = loader.get_template('boogie/piece_submit.html')
-    
     player = Player.objects.get(user=request.user)
-    form = None
 
     if player.role == 'PLAYER':
         assignments = Piece.objects.filter(Q(status='ASSIGNED') | Q(status='NEEDSWORK')).filter(writer__user=request.user)
+
         if assignments:
-            # If we have more than one assignment, we just get the first
+            # If we have more than one assignment (which should not happen), we just get the first
             piece = assignments[0]
 
+            form = PieceSubmitForm(instance=piece)
+
             if request.method == 'POST':
+                # We get data submitted
+                save = request.POST.get('save', '') == 'save'
+                edit = request.POST.get('save', '') == 'edit'
+
                 form = PieceSubmitForm(request.POST, instance=piece)
-                if form.is_valid():
-                    # The piece has been submitted into the bowels of the system
-                    form.instance.status = 'SUBMITTED'
-                    form.save()
+
+                if not (edit or save) and not form.is_valid():
+                    pass # Go back to the edit page
+                elif edit:
+                    form = PieceSubmitForm(instance=piece)
+                elif save:
+                    piece.status = 'SUBMITTED'
+                    piece.save()
 
                     return HttpResponseRedirect(reverse('piece_submit_thanks'))
-            else:
-                form = PieceSubmitForm(instance=piece)
+                elif form.is_valid():
+                    piece = form.save()
+
+                    return render_to_response('boogie/piece_submit_preview.html', {
+                        'piece': piece
+                    }, RequestContext(request))
     
-    c = RequestContext(request, {
-            'form': form
-    })
-    return HttpResponse(t.render(c))
+            return render_to_response('boogie/piece_submit.html', {
+                    'form': form
+            }, RequestContext(request))
 
 
 class WriterPieceSubmitForm(ModelForm):
@@ -316,14 +353,18 @@ class WriterPieceSubmitForm(ModelForm):
 
         self.helper.layout = Layout(
             Field('topic', css_class='input-block-level'),
+            HTML('<span class="help-block">Hint: lees de laatste speler-bijdrage over dit onderwerp en verwerk het in je bijdrage.</span>'),
             Field('character', css_class='input-block-level'),
             Field('genre', css_class="input-block-level"),
             Field('title', css_class="input-block-level"),
             Field('text', css_class="input-block-level"),
+            HTML('<input type="hidden" name="pieceid" value="{{ form.instance.pk|default_if_none:"" }}">'),
             HTML('<p id="charactercount" class="pull-right label">5000</p>'),
+            HTML('<span class="help-block">De volgende HTML is toegestaan: <br>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt;</span>'),
+            HTML('<hr>'),
             Field('image', css_class='input-block-level'),
             FormActions(
-                Submit('submit', 'Verzenden', css_class='btn')
+                Submit('submit', 'Voorbeeld tonen', css_class='btn')
             )
         )
 
@@ -343,31 +384,68 @@ class WriterPieceSubmitForm(ModelForm):
 
         return title
 
+    def clean_text(self):
+        text = self.cleaned_data.get('text')
+
+        text = bleach.clean(text, tags=BLEACH_TAGS, attributes=BLEACH_ATTRIBUTES, strip=True)
+
+        return text
+
     def clean(self):
         cleaned_data = super(WriterPieceSubmitForm, self).clean()
 
         text = cleaned_data.get('text')
         genre = cleaned_data.get('genre')
 
+        image = cleaned_data.get('image')
+
         if not text and (genre != 'Headline' and genre != 'Illustratie'):
             raise ValidationError("Schrijf een tekst (voor niet headline / illustratie bijdragen).")
+
+        if not image and genre == 'Illustratie':
+            raise ValidationError("Voeg een beeld toe voor illustratie bijdragen.")
 
         return cleaned_data
 
 @login_required
 def writer_piece_submit(request):
-    t = loader.get_template('boogie/writer_piece_submit.html')
-
     player = Player.objects.get(user=request.user)
 
     if player.role == 'WRITER':
         if request.method == 'POST':
-            form = WriterPieceSubmitForm(request.POST, request.FILES)
+            save = request.POST.get('save', '') == 'save'
+            edit = request.POST.get('save', '') == 'edit'
             
-            # TODO check for compulsory fields
+            pieceid = request.POST.get('pieceid', '')
 
-            if form.is_valid():
-                piece = form.save(commit=False)
+            if not (edit or save):
+                if pieceid:
+                    piece = Piece.objects.get(id=pieceid)
+                    form = WriterPieceSubmitForm(request.POST, request.FILES, instance=piece)
+                else:
+                    form = WriterPieceSubmitForm(request.POST, request.FILES)
+
+                if form.is_valid():
+                    piece = form.save(commit=False)
+
+                    piece.deadline = datetime.datetime.utcnow().replace(tzinfo=utc)
+                    piece.status = 'PASTDUE'
+                    piece.writer = player
+                    piece.save()
+
+                    return render_to_response('boogie/piece_submit_preview.html', {
+                        'piece': piece
+                    }, RequestContext(request))
+                else:
+                    pass # Fall through
+            elif edit and pieceid:
+                # Reentry of existing piece to edit
+                piece = Piece.objects.get(id=pieceid)
+
+                form = WriterPieceSubmitForm(instance=piece)
+            elif save and pieceid:
+                # Save of existing piece to edit
+                piece = Piece.objects.get(id=pieceid)
 
                 piece.status = 'APPROVED'
                 piece.datepublished = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -381,15 +459,12 @@ def writer_piece_submit(request):
                 topic.save()
 
                 return HttpResponseRedirect(reverse('piece_detail', args=[piece.id]))
-
         else:
             form = WriterPieceSubmitForm()
 
-        c = RequestContext(request, {
+        return render_to_response('boogie/writer_piece_submit.html', {
             'form': form
-        })
-
-        return HttpResponse(t.render(c))
+        }, RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('piece_submit'))
 

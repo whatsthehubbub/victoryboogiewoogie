@@ -16,6 +16,9 @@ logger = logging.getLogger('sake')
 import datetime
 import math
 
+import bleach
+from boogie.bleach_common import BLEACH_TAGS, BLEACH_ATTRIBUTES
+
 class Player(models.Model):
     class Meta:
         verbose_name = u'Speler'
@@ -107,6 +110,8 @@ class Character(models.Model):
     biography = models.TextField(blank=True)
 
     avatar = models.ImageField(blank=True, upload_to='characters', help_text="Avatars moeten in 400x400px worden ingesteld")
+
+    order = models.IntegerField(default=1, help_text="De volgorde wordt oplopend bepaald en bij gelijke getallen wordt vergeleken op naam.")
 
     def __unicode__(self):
         return self.name
@@ -463,6 +468,8 @@ class Summary(models.Model):
         if self.pk is None:
             # PK is only None on a new object before save
             createNotification = True
+
+        self.content = bleach.clean(self.content, tags=BLEACH_TAGS, attributes=BLEACH_ATTRIBUTES, strip=True)
 
         super(Summary, self).save(*args, **kwargs)
 

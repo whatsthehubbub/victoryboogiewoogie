@@ -80,7 +80,9 @@ urlpatterns = patterns('',
     url(r'^bijdragen/(\d+)/$', 'boogie.views.piece_detail', name='piece_detail'),
 
     url(r'^bijdragen/schrijven/schrijver/$', 'boogie.views.writer_piece_submit', name='writer_piece_submit'),
+    
     url(r'^bijdragen/schrijven/$', 'boogie.views.piece_submit', name='piece_submit'),
+
     url(r'^bijdragen/schrijven/bedankt/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/piece_submit_thanks.html'}, name='piece_submit_thanks'),
     
     url(r'^bijdragen/toekennen/$', 'boogie.views.pieces_assign', name='pieces_assign'),

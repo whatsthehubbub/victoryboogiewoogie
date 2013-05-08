@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load typogrify_tags %}
+
+{% block pagetitle %}Voorbeeldweergave van {{ piece.title|striptags|typogrify|capfirst }}{% endblock pagetitle %}
+
+{% block extrahead %}	
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#editbutton').click(function() {
+
+			$('#toggleinput').val('edit');
+
+			$('#submitform').submit();
+		});
+	});
+
+	</script>
+{% endblock extrahead %}
+
+
+{% block content %}
+<div id="itemdetail">
+	
+	<div class="meta clearfix">
+
+		<p class="genre pull-left">Onderwerp: <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|striptags|typogrify|capfirst }}</a></p>
+
+		{% if piece.character %}
+			{% if piece.character.avatar %}
+				<a href="{% url 'character_profile' piece.character.id %}" class="pull-right">
+					<img src="{{ piece.character.avatar.url }}" class="character img-circle" alt="{{ piece.character.name }}">
+				</a>
+			{% endif %}
+			<p class="pull-right">
+				Personage: <a href="{% url 'character_profile' piece.character.id %}">{{ piece.character.name }}</a>
+			</p>
+		{% endif %}
+	</div>
+	
+	<div class="row">
+		<div class="span8 offset2">
+			
+			<article class="{{ piece.genre|lower }} clearfix">
+								
+				<h2 class="text-center"><span class="sub-top">Voorbeeldweergave van</span> {{ piece.title|striptags|typogrify|capfirst }}</h2>
+
+				<div class="author text-center">
+					<em>{{ piece.get_genre_display }}
+					door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> – 
+					<span class="label label-inverse">nog niet gepubliceerd</span>
+				</div>
+				
+				{% if piece.image %}
+					<figure>
+						<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title|striptags|typogrify|capfirst }}">
+					</figure>
+				{% endif %}
+
+				{% if piece.text and piece.genre != "Headline" and piece.genre != "Illustratie" %}
+					<p>{{ piece.text|safe|linebreaks|typogrify }}</p>
+				{% endif %}
+			</article>
+
+		<form action="" id="submitform" method="post" class="form">
+			<div class="form-actions">
+				{% csrf_token %}
+
+				<input type="hidden" name="pieceid" value="{{ piece.id }}">
+				<input type="hidden" id="toggleinput" name="save" value="save">
+
+				<input type="button" id="editbutton" value="Bewerken" class="btn">
+				<input type="submit" value="Verzenden" class="btn btn-primary pull-right">
+			</div>
+		</form>
+
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

@@ -7,4 +7,7 @@ $(document).ready(function(){
 	// trigger bootstrap tooltip
 	$('.tooltipster').tooltip();
 
+	// fitvid videos
+	$("article").fitVids();
+	
 });

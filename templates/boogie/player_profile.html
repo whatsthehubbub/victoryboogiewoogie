@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load url from future %}
-{% load typogrify_tags %}
 
 {% block pagetitle %}{{ player.get_name }}&rsquo;s profiel{% endblock pagetitle %}
 
@@ -29,8 +28,8 @@
 			{% for piece in submitted_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|striptags|typogrify|capfirst|truncatechars:140 }}</a></h5>
-						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|striptags|typogrify|capfirst }}</a></p>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|capfirst|truncatechars:140 }}</a></h5>
+						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 					</td>
 				</tr>
 			{% endfor %}
@@ -45,8 +44,8 @@
 			{% for piece in needswork_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|striptags|typogrify|capfirst|truncatechars:140 }}</a></h5>
-						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|striptags|typogrify|capfirst }}</a></p>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|capfirst|truncatechars:140 }}</a></h5>
+						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 						<div class="alert">Suggesties van de redactie: {{ piece.rejection_reason }}<a href="{% url 'piece_submit' %}">Bewerken</a></div>
 					</td>
 				</tr>
@@ -62,8 +61,8 @@
 			{% for piece in approved_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|striptags|typogrify|capfirst|truncatechars:140 }}</a></h5>
-						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|striptags|typogrify|capfirst }}</a> – {{ piece.datepublished|timesince }} geleden</p>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|capfirst|truncatechars:140 }}</a></h5>
+						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a> – {{ piece.datepublished|timesince }} geleden</p>
 					</td>
 				</tr>
 			{% endfor %}
@@ -78,8 +77,8 @@
 			{% for piece in rejected_pieces %}
 				<tr>
 					<td>
-						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|striptags|typogrify|capfirst|truncatechars:140 }}</a></h5>
-						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|striptags|typogrify|capfirst }}</a></p>
+						<h5 class="sans"><a href="{% url 'piece_detail' piece.id %}">{{ piece.title|capfirst|truncatechars:140 }}</a></h5>
+						<p>{{ piece.get_genre_display }} over <a href="{% url 'topic_detail' piece.topic.id piece.topic.slug %}">{{ piece.topic|capfirst }}</a></p>
 					</td>
 				</tr>
 			{% endfor %}

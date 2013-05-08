@@ -3,12 +3,12 @@
 {% load url from future %}
 {% load typogrify_tags %}
 
-{% block pagetitle %}{{ piece.title|capfirst }}{% endblock pagetitle %}
+{% block pagetitle %}{{ piece.title|striptags|capfirst|typogrify }}{% endblock pagetitle %}
 
 
 {% block extrahead %}
 	<!-- Facebook Open Graph Tags https://developers.facebook.com/docs/reference/plugins/like/ -->
-	<meta property="og:title" content="{{ piece.title|capfirst }}" />
+	<meta property="og:title" content="{{ piece.title|striptags|capfirst|typogrify }}" />
     <meta property="og:type" content="game" />
     <meta property="og:url" content="http://www.gidsgame.nl{{ piece.get_absolute_url }}" />
 
@@ -51,13 +51,13 @@
 			
 			<article class="{{ piece.genre|lower }} clearfix">
 								
-				<h2 class="text-center">{{ piece.title|capfirst }}</h2>
+				<h2 class="text-center">{{ piece.title|striptags|capfirst|typogrify }}</h2>
 
 				<div class="author text-center"><em>{{ piece.get_genre_display|capfirst }} door <a href="{{ piece.writer.get_absolute_url }}">{{ piece.writer.get_name }}</a></em> {% ifequal piece.writer.role 'PLAYER' %}{% if piece.character %}– <span class="label">Gastbijdrage</span>{% endif %}{% endifequal %} – {% if piece.status == "APPROVED" %}{{ piece.datepublished|timesince }} geleden{% else %}<span class="label label-inverse">nog niet gepubliceerd</span>{% endif %}</div>
 				
 				{% if piece.image %}
 				<figure>
-					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title|capfirst }}">
+					<img src="{{ piece.image.url }}" width="{{ piece.image.width }}" height="{{ piece.image.height }}" alt="{{ piece.title|striptags|capfirst|typogrify }}">
 				</figure>
 				{% endif %}
 				{% if piece.text and piece.genre != "Headline" and piece.genre != "Illustratie" %}<p>{{ piece.text|safe|linebreaks|typogrify }}</p>{% endif %}
@@ -101,7 +101,7 @@
 				</div>
 				<div class="twitter pull-right">
 					<!-- Tweet button https://dev.twitter.com/docs/tweet-button -->
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title|capfirst }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.gidsgame.nl{{ piece.get_absolute_url }}" data-text="{{ piece.title|striptags|capfirst|typogrify }}" data-via="GidsGame">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 				</div>
 			</div>
 			{% endif %}
@@ -113,11 +113,11 @@
 	    <div class="prev pull-left">
 	    	<h4 class="text-left">Vorige bijdrage over…</h4>					
 	    	<ul class="unstyled text-left">
-	    		{% if piece.character and piece.get_previous_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_previous_piece_by_character.get_absolute_url }}">{{ piece.get_previous_piece_by_character.title|capfirst|truncatechars:50 }}</a></li>{% endif %}
+	    		{% if piece.character and piece.get_previous_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_previous_piece_by_character.get_absolute_url }}">{{ piece.get_previous_piece_by_character.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}
    		
-	    		{% if piece.get_previous_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_previous_piece_by_topic.get_absolute_url }}">{{ piece.get_previous_piece_by_topic.title|capfirst|truncatechars:50 }}</a></li>{% endif %}  		
+	    		{% if piece.get_previous_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_previous_piece_by_topic.get_absolute_url }}">{{ piece.get_previous_piece_by_topic.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}  		
 
-	    		{% if piece.get_previous_piece %}<li>Alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title|capfirst|truncatechars:50 }}</a></li>{% endif %}
+	    		{% if piece.get_previous_piece %}<li>Alles: <a href="{{ piece.get_previous_piece.get_absolute_url }}">{{ piece.get_previous_piece.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}
 	    	</ul>	
 	    </div>
 	    {% endif %}
@@ -126,11 +126,11 @@
 	    <div class="next pull-right">
 	    	<h4 class="text-right">Volgende bijdrage over…</h4>
 	    	<ul class="unstyled text-right">
-	    		{% if piece.character and piece.get_next_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_next_piece_by_character.get_absolute_url }}">{{ piece.get_next_piece_by_character.title|capfirst|truncatechars:50 }}</a></li>{% endif %}
+	    		{% if piece.character and piece.get_next_piece_by_character %}<li>{{ piece.character }}: <a href="{{ piece.get_next_piece_by_character.get_absolute_url }}">{{ piece.get_next_piece_by_character.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}
 
-	    		{% if piece.get_next_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_next_piece_by_topic.get_absolute_url }}">{{ piece.get_next_piece_by_topic.title|capfirst|truncatechars:50 }}</a></li>{% endif %}
+	    		{% if piece.get_next_piece_by_topic %}<li>{{ piece.topic|capfirst }}: <a href="{{ piece.get_next_piece_by_topic.get_absolute_url }}">{{ piece.get_next_piece_by_topic.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}
 	
-	    		{% if piece.get_next_piece %}<li>Alles: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title|capfirst|truncatechars:50 }}</a></li>{% endif %}	
+	    		{% if piece.get_next_piece %}<li>Alles: <a href="{{ piece.get_next_piece.get_absolute_url }}">{{ piece.get_next_piece.title|striptags|capfirst|typogrify|truncatechars:50 }}</a></li>{% endif %}	
 	    	</ul>
 	    </div>
 	    {% endif %}

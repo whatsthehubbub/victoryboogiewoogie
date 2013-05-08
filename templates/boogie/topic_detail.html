@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load typogrify_tags %}
 
-{% block pagetitle %}Bijdragen over {{ topic.title|capfirst }}{% endblock pagetitle %}
+{% block pagetitle %}Bijdragen over {{ topic.title|striptags|typogrify|capfirst }}{% endblock pagetitle %}
 
 {% block content %}
 <div id="itemlist" class="row clearfix">
 	
 	<div class="span12 clearfix">
-		<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ topic.title|capfirst }}</h2>
+		<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ topic.title|striptags|typogrify|capfirst }}</h2>
 		
 		<p class="lead text-center">
 		{% if topic.archived %}

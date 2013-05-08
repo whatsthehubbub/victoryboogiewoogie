@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% load crispy_forms_tags %}
+{% load typogrify_tags %}
 
 {% block pagetitle %}Schrijven{% endblock pagetitle %}
 
@@ -55,7 +56,7 @@ $(document).ready(function() {
 				<p class="lead">Je kunt helaas niet meer meeschrijven. <a href="{% url 'post_game' %}">Lees hier de terugblik</a>.</p>
 			{% else %}
 				{% if form %}			
-					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} &amp; {% endif %}{{ form.instance.topic.title|capfirst }}</h2>
+					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} &amp; {% endif %}{{ form.instance.topic.title|striptags|capfirst|typogrify }}</h2>
 					
 					{% if form.instance.rejection_reason %}
 						<div class="alert">Feedback van de redactie: {{ form.instance.rejection_reason }}</div>
@@ -66,15 +67,15 @@ $(document).ready(function() {
 						<li class="pull-right">
 							{% if form.instance.topic.get_latest_piece %}
 								{% if form.instance.character.get_latest_piece %}
-								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>. Verwerk daarin ook de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>.
+								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|striptags|capfirst|typogrify|truncatechars:140 }}</a>. Verwerk daarin ook de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|striptags|capfirst|typogrify }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|striptags|capfirst|typogrify|truncatechars:140 }}</a>.
 								{% else %}
-								Schrijf iets geïnspireerd op de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|capfirst|truncatechars:140 }}</a>.
+								Schrijf iets geïnspireerd op de laatste bijdrage over het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|striptags|capfirst|typogrify }}</a>, getiteld <a href="{% url 'piece_detail' form.instance.topic.get_latest_piece.id %}">{{ form.instance.topic.get_latest_piece.title|striptags|capfirst|typogrify|truncatechars:140 }}</a>.
 								{% endif %}
 							{% else %}
 								{% if form.instance.character.get_latest_piece %}
-								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|capfirst|truncatechars:140 }}</a>. Verwerk daarin ook het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>, waar nog niks over is geschreven.
+								Schrijf iets geïnspireerd op de laatste bijdrage over het personage <a href="{% url 'character_profile' form.instance.character.id %}">{{ form.instance.character }}</a>, getiteld <a href="{{ form.instance.character.get_latest_piece.get_absolute_url }}">{{ form.instance.character.get_latest_piece.title|striptags|capfirst|typogrify|truncatechars:140 }}</a>. Verwerk daarin ook het onderwerp <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|striptags|capfirst|typogrify }}</a>, waar nog niks over is geschreven.
 								{% else %}
-								Schrijf een bijdrage over <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|capfirst }}</a>. Er is nog niks geschreven over dit onderwerp, dus je hebt <em>carte blanche</em>.
+								Schrijf een bijdrage over <a href="{% url 'topic_detail' form.instance.topic.id form.instance.topic.slug %}">{{ form.instance.topic.title|striptags|capfirst|typogrify }}</a>. Er is nog niks geschreven over dit onderwerp, dus je hebt <em>carte blanche</em>.
 								{% endif %}
 							{% endif %}
 						</li>

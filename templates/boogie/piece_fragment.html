@@ -2,14 +2,14 @@
 {% load typogrify_tags %}
 
 	<article class="{% if piece_and_ads and piece.highlight %}span8{% else %}span4{% endif %} {{ piece.genre|lower }} clearfix">
-		<a href="{{ piece.get_absolute_url }}" title="{{ piece.title|capfirst }}">
+		<a href="{{ piece.get_absolute_url }}" title="{{ piece.title|striptags|capfirst|typogrify }}">
 			<div class="box">
 				<div class="overlay"></div>
 				
 				{% if topic != piece.topic or character != piece.character %}
 				<div class="meta clearfix">
 					{% ifnotequal topic piece.topic %}
-						<p class="genre pull-left">{{ piece.topic|capfirst }}</p>
+						<p class="genre pull-left">{{ piece.topic|striptags|capfirst|typogrify }}</p>
 					{% else %}
 						<p class="genre pull-left">&nbsp;</p>
 					{% endifnotequal %}
@@ -29,7 +29,7 @@
 					{% endif %}
 				{% else %}
 					<div class="content">
-						<h3 class="sans">{{ piece.title|capfirst }}</h3>
+						<h3 class="sans">{{ piece.title|striptags|capfirst|typogrify }}</h3>
 						{% if piece.genre != "Headline" %}<p>{{ piece.text|striptags|linebreaks|typogrify }}</p>{% endif %}
 					</div>
 				{% endifequal %}

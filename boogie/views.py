@@ -330,10 +330,12 @@ def piece_submit(request):
                     return render_to_response('boogie/piece_submit_preview.html', {
                         'piece': piece
                     }, RequestContext(request))
-    
-            return render_to_response('boogie/piece_submit.html', {
-                    'form': form
-            }, RequestContext(request))
+        else:
+            form = None
+
+        return render_to_response('boogie/piece_submit.html', {
+                'form': form
+        }, RequestContext(request))
 
 
 class WriterPieceSubmitForm(ModelForm):

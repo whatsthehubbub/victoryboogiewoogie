@@ -16,8 +16,76 @@
 
 {% block content %}
 <div id="home-latest">
-	<div id="itemlist" class="row">
+	<h2 class="text-center">Bijdragen over personages</h2>
+	<div id="itemlist" class="row">		
+		{% for piece in character_pieces %}
+			{% include "boogie/piece_fragment.html" %}
+		{% endfor %}
+	</div>
+</div>
+
+<div id="home-characters">
+	<h2 class="text-center">De personages</h2>
+	<div id="characterlist" class="row">
+		{% for character in characters %}
+		<div class="span3">
+			<a href="{% url 'character_profile' character.id %}">
+				{% if character.avatar %}
+					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
+				{% endif %}
+				<h4 class="text-center">{{ character.name }}</h4>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div id="home-latest">
+	<h2 class="text-center">Bijdragen over onderwerpen</h2>
+	<div id="itemlist" class="row">		
+		{% for piece in topic_pieces %}
+			{% include "boogie/piece_fragment.html" %}
+		{% endfor %}
+	</div>
+</div>
+
+<p>
+	Onderwerpen:
+	{% for topic in topics %}
+	<a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a>,
+	{% endfor %}
+	…
+</p>
+
+<h2>Met bijdragen van</h2>
+<p>
+	{% for player in writers_published %}
+	<a href="{{ player.get_absolute_url }}">{{ player }}</a>
+	{% endfor %}
+
+{% for player in players_published %}
+	<a href="{{ player.get_absolute_url }}">{{ player }}</a>
+{% endfor %}
+</p>
+
+<h2>Advertenties</h2>
+{% for ad in ads %}
+<article class="span4 advertentie clearfix">
+	<a href="{{ ad.url }}">
+		<div class="box">
+			<div class="meta clearfix">
+				<p class="genre pull-left">Advertentie</p>
+			</div>
+			<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
+		</div>
+	</a>
+	<div class="info">
+		<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
+	</div>
+</article>
 		
+<!--<div id="home-latest">
+	<div id="itemlist" class="row">		
 		{% for piece_or_ad in piece_and_ads %}
 			
 			{% ifequal piece_or_ad.0 'piece' %} 
@@ -44,58 +112,6 @@
 
 		{% endfor %}
 	</div>
-</div>
-
-<div id="home-characters">
-	<h2 class="text-center">De personages</h2>
-	<div id="characterlist" class="row">
-		{% for character in characters %}
-		<div class="span3">
-			<a href="{% url 'character_profile' character.id %}">
-				{% if character.avatar %}
-					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
-				{% endif %}
-				<h4 class="text-center">{{ character.name }}</h4>
-			</a>
-		</div>
-		{% endfor %}
-	</div>
-</div>
-
-<p>Ads ordered by priority:</p>
-
-{% for ad in ads %}
-	<p>{{ ad.rank }} {{ ad.url }} {{ ad.image.url }} {{ ad.sender }}</p>
+</div>-->
 {% endfor %}
-
-<p>Pieces for characters:</p>
-
-{% for piece in character_pieces %}
-	<p>{{ piece }}</p>
-{% endfor %}
-
-<p>Pieces for topics:</p>
-
-{% for piece in topic_pieces %}
-	<p>{{ piece }}</p>
-{% endfor %}
-
-<p>Topics for non-character pieces (max 10)</p>
-
-{% for topic in topics %}
-	{{ topic }}
-{% endfor %}
-
-<p>Players with a piece published</p>
-
-{% for player in players_published %}
-	{{ player }}
-{% endfor %}
-
-<p>Writers with a piece published</p>
-
-{% for player in writers_published %}
-	{{ player }}
-{% endfor %}
-
 {% endblock %}

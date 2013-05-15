@@ -479,6 +479,12 @@ class Summary(models.Model):
     def get_absolute_url(self):
         return reverse('summary') + ('#samenvatting-%d' % self.id)
 
+    def get_next_character_piece(self):
+        try:
+            return Piece.objects.filter(status='APPROVED').exclude(character=None).filter(datepublished__gte=self.datecreated).order_by('datepublished')[0]
+        except:
+            pass
+
 
 class GameManager(models.Manager):
     def get_latest_game(self):

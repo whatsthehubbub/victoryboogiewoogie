@@ -79,12 +79,24 @@ $(document).ready(function() {
 							{% endif %}
 						</li>
 					</ul>
-						
+
+					<ul class="info clearfix">
+						<li class="pull-left">Suggesties</li>
+						<li class="pull-right">
+							Je kunt met je schrijfopdracht verschillende kanten op: 
+							<ul>
+								<li>kruip in de huid van <a href="http://www.gidsgame.nl/personages/1/">Lianne</a>, help haar wijs te worden uit het geheel aan bonte karakters en de 3e Victory Boogie Woogie te bemachtigen;</li>
+								<li>of geef jouw interpretatie op de Victory Boogie Woogie van Mondriaan (zie bijvoorbeeld: <a href="http://www.gidsgame.nl/bijdragen/236/">Liefde &amp; Inspiratie</a>);</li>
+								<li>of stuur een losse bijdrage in die qua thematiek is gerelateerd aan de Victory Boogie Woogie (zie bijvoorbeeld: <a href="http://www.gidsgame.nl/bijdragen/265/">VBW eerste schets</a>)</li>
+							</ul>
+						</li>
+					</ul>
+
 					<ul class="info clearfix">
 						<li class="pull-left">Deadline</li>
 						<li class="pull-right">{% if form.instance.deadline|timeuntil == '0 minuten' %}Verstreken! Binnenkort krijg je een nieuwe opdracht.{% else %}{{ form.instance.deadline|timeuntil }}{% endif %}</li>
 					</ul>
-					
+
 					{% crispy form %}
 					
 					<div class="well">Na inzending buigt de redactie zich over je bijdrage. Ze kijkt naar de kwaliteit, en of je rekening hebt gehouden met wat er al is geschreven. Je krijgt een e-mail zodra je bijdrage is goedgekeurd of als ze wil dat je het aanpast, of als de redactie heeft besloten hem af te wijzen. De redactie behoudt zich het recht voor bijdragen te redigeren.</div>

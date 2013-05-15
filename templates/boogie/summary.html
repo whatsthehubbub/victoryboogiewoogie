@@ -9,11 +9,19 @@
 		
 		<h2 class="text-center">Het verhaal tot nu toe…</h2>
 		
-		{% for piece in summary %}
-		<article id="samenvatting-{{ piece.id }}" class="summaryitem">
-			<h3 class="text-center">{{ piece.datecreated }}</h3>
-			{{ piece.content|safe|linebreaks|typogrify }}
-		</article>
+		{% for s in summary %}
+			<article id="samenvatting-{{ s.id }}" class="summaryitem">
+				<h3 class="text-center">{{ s.datecreated }}</h3>
+
+				{{ s.content|safe|linebreaks|typogrify }}
+
+				{% with s.get_next_character_piece as piece %}
+					{% if piece %}
+						<p>Hierna komt <a href="">een stuk over {{ piece.character }}</a>.</p>
+					{% endif %}
+				{% endwith %}
+				
+			</article>
 		{% endfor %}
 		
 	</div>

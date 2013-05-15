@@ -49,10 +49,54 @@ def index(request):
 
     piece_and_ads = [el for el in piece_and_ads if el]
 
+    character_pieces = []
+    def characterInPieceList(character, l):
+        for piece in l:
+            if piece.character == character:
+                return True
+        return False
+
+    for piece in Piece.objects.filter(status='APPROVED').exclude(character=None).order_by('-datepublished'):
+        if not characterInPieceList(piece.character, character_pieces):
+            character_pieces.append(piece)
+
+        if len(character_pieces) == 3:
+            break
+
+    topic_pieces = []
+    def topicInPieceList(topic, l):
+        for piece in l:
+            if piece.topic == topic:
+                return True
+        return False
+
+    topics = []
+
+    for piece in Piece.objects.filter(status='APPROVED').filter(character=None).order_by('-datepublished'):
+        if not topicInPieceList(piece.topic, topic_pieces) and len(topic_pieces) < 3:
+            topic_pieces.append(piece)
+
+        # This is potentially the longer list
+        if not piece.topic in topics:
+            topics.append(piece.topic)
+
+            if len(topics) == 10:
+                break
+
+
     c = RequestContext(request, {
             'piece_and_ads': piece_and_ads,
             'summary': Summary.objects.all().order_by('-datecreated'),
-            'characters': Character.objects.all().order_by('order', 'name')
+            'characters': Character.objects.all().order_by('order', 'name'),
+
+            # New fields
+            'ads': ads,
+            'character_pieces': character_pieces,
+            'topic_pieces': topic_pieces,
+            'topics': topics,
+            'players_published': Player.objects.filter(role='PLAYER').filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
+            'wirters_published': Player.objects.filter(role='WRITER').filter(piece__status='APPROVED').order_by('pseudonym').distinct()
+
     })
 
     return HttpResponse(t.render(c))

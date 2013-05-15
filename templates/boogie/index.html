@@ -61,4 +61,41 @@
 		{% endfor %}
 	</div>
 </div>
+
+<p>Ads ordered by priority:</p>
+
+{% for ad in ads %}
+	<p>{{ ad.rank }} {{ ad.url }} {{ ad.image.url }} {{ ad.sender }}</p>
+{% endfor %}
+
+<p>Pieces for characters:</p>
+
+{% for piece in character_pieces %}
+	<p>{{ piece }}</p>
+{% endfor %}
+
+<p>Pieces for topics:</p>
+
+{% for piece in topic_pieces %}
+	<p>{{ piece }}</p>
+{% endfor %}
+
+<p>Topics for non-character pieces (max 10)</p>
+
+{% for topic in topics %}
+	{{ topic }}
+{% endfor %}
+
+<p>Players with a piece published</p>
+
+{% for player in players_published %}
+	{{ player }}
+{% endfor %}
+
+<p>Writers with a piece published</p>
+
+{% for player in writers_published %}
+	{{ player }}
+{% endfor %}
+
 {% endblock %}

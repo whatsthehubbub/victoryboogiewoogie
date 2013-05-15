@@ -162,7 +162,11 @@
 <script src="{{ STATIC_URL }}js/plugins.min.js"></script>
 <script src="{{ STATIC_URL }}js/main.min.js"></script>
 
-{% include "boogie/analytics.html" %}
+
+{% if debug or user.is_staff or current_player and current_player.role == 'WRITER' %}
+{% else %}
+	{% include "boogie/analytics.html" %}
+{% endif %}
 
 </body>
 </html>

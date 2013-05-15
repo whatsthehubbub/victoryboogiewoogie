@@ -17,7 +17,7 @@
 
 				{% with s.get_next_character_piece as piece %}
 					{% if piece %}
-						<p>Hierna komt <a href="">een stuk over {{ piece.character }}</a>.</p>
+						<p>Verder lezen? De eerstvolgende bijdrage over een personage na deze samenvatting is ‘<a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a>’ over {{ piece.character }}.</p>
 					{% endif %}
 				{% endwith %}
 				

@@ -1051,6 +1051,8 @@ a:hover{text-decoration:none;}
 #createitem .info{padding:0.5em 0;margin:0;border-bottom:1px solid #eeeeee;}#createitem .info li{list-style:none;}
 #createitem .info li.pull-left{color:#999999;float:left;width:28%;}
 #createitem .info li.pull-right{float:right;width:70%;}
+#createitem .info ul.choices{margin:0.5em 0 0;padding:0;}#createitem .info ul.choices li{margin:0 0 0.25em 0;padding:0;text-indent:-5px;}
+#createitem .info ul.choices li:before{content:"-";position:relative;left:-0.5em;}
 #createitem form{margin:1em 0;padding:1em 0 0;}
 #createitem #id_text{font-size:1.5em;line-height:1.4em;}
 #createitem #charactercount{background-color:#f5a400;}

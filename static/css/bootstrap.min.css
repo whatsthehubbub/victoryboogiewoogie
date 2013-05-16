@@ -1045,7 +1045,8 @@ a:hover{text-decoration:none;}
 #itemdetail .social .like{margin:0.75em 0 0 1em;}#itemdetail .social .like input{margin-top:-0.15em;}
 #itemdetail .social .twitter{display:block;overflow:hidden;margin:1em 0 0;}
 #itemdetail .social .facebook{display:block;overflow:hidden;margin:0.95em 1em 0 0;}
-#itemdetail .navigator{margin:0 -1.25em -6em;padding:2em 4em 2em;border-top:1px solid #eeeeee;}#itemdetail .navigator h4{font-size:1.5em;margin-bottom:0.75em;}
+#itemdetail .navigator{margin:0 -1.25em -6em;padding:2em 4em 2em;border-top:1px solid #eeeeee;}#itemdetail .navigator .prev,#itemdetail .navigator .next{width:50%;overflow:hidden;}
+#itemdetail .navigator h4{font-size:1.5em;margin-bottom:0.75em;}
 #itemdetail .navigator li{padding:0.2em 0;font-size:1.1em;}
 #createitem .info{padding:0.5em 0;margin:0;border-bottom:1px solid #eeeeee;}#createitem .info li{list-style:none;}
 #createitem .info li.pull-left{color:#999999;float:left;width:28%;}

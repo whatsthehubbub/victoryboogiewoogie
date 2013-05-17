@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 {% load typogrify_tags %}
 
 {% block pagetitle %}Het verhaal tot nu toe&hellip;{% endblock pagetitle %}
@@ -17,7 +18,7 @@
 
 				{% with s.get_next_character_piece as piece %}
 					{% if piece %}
-						<p>Verder lezen? De eerstvolgende bijdrage over een personage na deze samenvatting is ‘<a href="{% url 'piece_detail' piece.id %}">{{ piece.title }}</a>’ over {{ piece.character }}.</p>
+						<p>Verder lezen? De eerstvolgende bijdrage over een personage na deze samenvatting is ‘<a href="{% url 'piece_detail' piece.pk %}">{{ piece.title }}</a>’ over {{ piece.character }}.</p>
 					{% endif %}
 				{% endwith %}
 				

@@ -682,18 +682,21 @@ a:hover {
 	padding-top: 1.25em;
 	padding-bottom: 2em;
 	ul {
-		display: block;
+		display: table;
 		list-style: none;
 		width: 100%;
+		margin: 0;
+		padding: 0;
 		li {
-			float: left;
+			display: table-cell !important;
+			float: none;
 			display: block;
-			width: 10%;
-			margin: 1%;
+			width: 1%;
 			a {
 				display: block;
-				width: 100%;
+				width: 80%;
 				height: 100%;
+				margin: 0 10%;
 			}
 		}
 	}
@@ -718,6 +721,20 @@ a:hover {
 	border-top: 1px solid @grayLighter;
 	padding-top: 1.25em;
 	padding-bottom: 2em;
+	ul {
+		list-style: none;
+		li {
+			display: inline;
+		}
+		li:after {
+			content: ", ";
+			margin-left: 1px;
+			margin-right: 2px;
+		}
+		li:last-child:after {
+			content: "";
+		}
+	}
 }
 
 // !SUMMARY LIST

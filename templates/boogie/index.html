@@ -15,7 +15,7 @@
 {% endblock sidebar %}
 
 {% block content %}
-<div id="home-latest">
+<div id="home-latest-character" class="clearfix">
 	<h2 class="text-center">Bijdragen over personages</h2>
 	<div id="itemlist" class="row">		
 		{% for piece in character_pieces %}
@@ -24,23 +24,22 @@
 	</div>
 </div>
 
-<div id="home-characters">
+<div id="home-characters" class="clearfix">
 	<h2 class="text-center">De personages</h2>
-	<div id="characterlist" class="row">
+	<ul>
 		{% for character in characters %}
-		<div class="span3">
-			<a href="{% url 'character_profile' character.id %}">
+		<li>
+			<a href="{% url 'character_profile' character.id %}" class="tooltipster" data-original-title="{{ character.name }}">
 				{% if character.avatar %}
 					<img src="{{ character.avatar.url }}" alt="{{ character.name }}">
 				{% endif %}
-				<h4 class="text-center">{{ character.name }}</h4>
 			</a>
-		</div>
+		</li>
 		{% endfor %}
-	</div>
+	</ul>
 </div>
 
-<div id="home-latest">
+<div id="home-latest-topic" class="clearfix">
 	<h2 class="text-center">Bijdragen over onderwerpen</h2>
 	<div id="itemlist" class="row">		
 		{% for piece in topic_pieces %}
@@ -49,69 +48,43 @@
 	</div>
 </div>
 
-<p>
-	Onderwerpen:
-	{% for topic in topics %}
-	<a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a>,
-	{% endfor %}
-	…
-</p>
-
-<h2>Met bijdragen van</h2>
-<p>
-	{% for player in writers_published %}
-	<a href="{{ player.get_absolute_url }}">{{ player }}</a>
-	{% endfor %}
-
-{% for player in players_published %}
-	<a href="{{ player.get_absolute_url }}">{{ player }}</a>
-{% endfor %}
-</p>
-
-<h2>Advertenties</h2>
-{% for ad in ads %}
-<article class="span4 advertentie clearfix">
-	<a href="{{ ad.url }}">
-		<div class="box">
-			<div class="meta clearfix">
-				<p class="genre pull-left">Advertentie</p>
-			</div>
-			<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
-		</div>
-	</a>
-	<div class="info">
-		<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
-	</div>
-</article>
-		
-<!--<div id="home-latest">
-	<div id="itemlist" class="row">		
-		{% for piece_or_ad in piece_and_ads %}
-			
-			{% ifequal piece_or_ad.0 'piece' %} 
-				{% with piece_or_ad.1 as piece %}
-				    {% include "boogie/piece_fragment.html" %}
-				{% endwith %}
-			{% else %}
-				{% with piece_or_ad.1 as ad %}
-		    		<article class="span4 advertentie clearfix">
-						<a href="{{ ad.url }}">
-							<div class="box">
-								<div class="meta clearfix">
-									<p class="genre pull-left">Advertentie</p>
-								</div>
-								<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
-							</div>
-						</a>
-						<div class="info">
-							<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
-						</div>
-					</article>
-				{% endwith %}
-			{% endifequal %}
-
+<div id="home-topics" class="clearfix">
+	<h2 class="text-center">Onderwerpen</h2>
+	<ul>
+		{% for topic in topics %}
+		<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
 		{% endfor %}
-	</div>
-</div>-->
-{% endfor %}
+	</ul>
+</div>
+
+<div id="home-participants" class="clearfix">
+	<h2 class="text-center">Met bijdragen van</h2>
+	<ul>
+		{% for player in writers_published %}
+		<li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+		{% endfor %}
+		{% for player in players_published %}
+		<li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+
+<div id="home-participants" class="clearfix">
+	<h2 class="text-center">Advertenties</h2>
+	{% for ad in ads %}
+	<article class="span4 advertentie clearfix">
+		<a href="{{ ad.url }}">
+			<div class="box">
+				<div class="meta clearfix">
+					<p class="genre pull-left">Advertentie</p>
+				</div>
+				<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
+			</div>
+		</a>
+		<div class="info">
+			<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
+		</div>
+	</article>
+	{% endfor %}
+</div>
 {% endblock %}

@@ -672,18 +672,52 @@ a:hover {
 }
 
 // !HOME LATEST
-#home-latest {
-	border-bottom: 1px solid @grayLighter;
-	margin-left: -1.25em;
-	padding-left: 1.25em;
-	margin-right: -1.25em;
-	padding-right: 1.25em;
-	padding-bottom: 3em;
+#home-latest-character {
+	padding-bottom: 2em;
 }
 
 // !HOME CHARACTERS
 #home-characters {
-	margin-top: 3em;
+	border-top: 1px solid @grayLighter;
+	padding-top: 1.25em;
+	padding-bottom: 2em;
+	ul {
+		display: block;
+		list-style: none;
+		width: 100%;
+		li {
+			float: left;
+			display: block;
+			width: 10%;
+			margin: 1%;
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+// !HOME LATEST, TOPIC
+#home-latest-topic {
+	border-top: 1px solid @grayLighter;
+	padding-top: 1.25em;
+	padding-bottom: 2em;
+}
+
+// !HOME TOPICS
+#home-topics {
+	border-top: 1px solid @grayLighter;
+	padding-top: 1.25em;
+	padding-bottom: 2em;
+}
+
+// !HOME PARTICIPANTS
+#home-participants {
+	border-top: 1px solid @grayLighter;
+	padding-top: 1.25em;
+	padding-bottom: 2em;
 }
 
 // !SUMMARY LIST

@@ -49,11 +49,13 @@
 </div>
 
 <div id="home-topics" class="clearfix">
-	<h2 class="text-center">Onderwerpen</h2>
 	<ul>
 		{% for topic in topics %}
 		<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
 		{% endfor %}
+		<li><a href="#">onderwerp</a></li>
+		<li><a href="#">onderwerp</a></li>
+		<li><a href="#">onderwerp</a></li>
 	</ul>
 </div>
 

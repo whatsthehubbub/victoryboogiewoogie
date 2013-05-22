@@ -718,17 +718,20 @@ a:hover {
 // !HOME LATEST, TOPIC
 #home-latest-topic {
 	padding-top: 2em;
-	padding-bottom: 3em;
+	padding-bottom: 1em;
 }
 
 // !HOME TOPICS
 #home-topics {
 	font-family: @headFontFamily;
 	text-transform: uppercase;
-	//padding-top: 1.25em;
-	padding-bottom: 3em;
+	padding-top: 0.5em;
+	padding-bottom: 4em;
+	h3 {
+		margin-top: 0;
+		margin-bottom: 0.25em;
+	}
 	ul {
-		padding-top: 2em;
 		list-style: none;
 		margin: 0 auto;
 		width: 80%;
@@ -748,7 +751,7 @@ a:hover {
 				margin-left: 1px;
 				margin-right: 2px;
 			}
-			&last-child:after {
+			&:last-child:after {
 				content: "";
 			}
 		}

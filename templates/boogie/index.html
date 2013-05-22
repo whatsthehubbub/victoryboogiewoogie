@@ -50,6 +50,7 @@
 
 <div id="home-topics" class="clearfix">
 	<ul>
+	<h3 class="text-center">Onderwerpen</h3>
 	{% for topic in topics %}
 		<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
 	{% endfor %}

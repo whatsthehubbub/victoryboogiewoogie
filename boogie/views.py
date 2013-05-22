@@ -85,6 +85,18 @@ def index(request):
             if len(topics) == 10:
                 break
 
+    pieces_about_characters = Piece.objects.filter(status='APPROVED').exclude(character=None).order_by('-datepublished')
+    if pieces_about_characters:
+        last_character = pieces_about_characters[0].character
+    else:
+        last_character = None
+
+    pieces_about_topics = Piece.objects.filter(status='APPROVED').order_by('-datepublished')
+    if pieces_about_topics:
+        last_topic = pieces_about_topics[0].topic
+    else:
+        last_topic = None
+
     c = RequestContext(request, {
             'piece_and_ads': piece_and_ads,
             'summary': Summary.objects.all().order_by('-datecreated'),
@@ -96,8 +108,9 @@ def index(request):
             'topic_pieces': topic_pieces,
             'topics': topics,
             'players_published': Player.objects.filter(role='PLAYER').filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
-            'writers_published': Player.objects.filter(role='WRITER').filter(piece__status='APPROVED').order_by('pseudonym').distinct()
-
+            'writers_published': Player.objects.filter(role='WRITER').filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
+            'last_character': last_character,
+            'last_topic': last_topic
     })
 
     return HttpResponse(t.render(c))

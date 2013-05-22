@@ -63,6 +63,7 @@ def index(request):
         if len(character_pieces) == 3:
             break
 
+    # We want the last pieces with unique topics
     topic_pieces = []
     def topicInPieceList(topic, l):
         for piece in l:
@@ -73,6 +74,7 @@ def index(request):
     topics = []
 
     for piece in Piece.objects.filter(status='APPROVED').filter(character=None).order_by('-datepublished'):
+        # Check if the pieces are unique by topic
         if not topicInPieceList(piece.topic, topic_pieces) and len(topic_pieces) < 3:
             topic_pieces.append(piece)
 
@@ -82,7 +84,6 @@ def index(request):
 
             if len(topics) == 10:
                 break
-
 
     c = RequestContext(request, {
             'piece_and_ads': piece_and_ads,

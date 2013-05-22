@@ -16,7 +16,7 @@
 
 {% block content %}
 <div id="home-latest-character" class="clearfix">
-	<h2 class="text-center">Bijdragen over personages</h2>
+	<h2 class="text-center"><span class="sub-top">Het nieuwste over</span>{{ last_character }} en anderen</h2>
 	<div class="itemlist row">
 		{% for piece in character_pieces %}
 			{% include "boogie/piece_fragment.html" %}
@@ -25,7 +25,7 @@
 </div>
 
 <div id="home-characters" class="clearfix">
-	<h3 class="text-center">De personages</h3>
+	<h2 class="text-center">De personages</h2>
 	<ul>
 		{% for character in characters %}
 		<li>
@@ -40,7 +40,7 @@
 </div>
 
 <div id="home-latest-topic" class="clearfix">
-	<h2 class="text-center">Bijdragen over onderwerpen</h2>
+	<h2 class="text-center"><span class="sub-top">Het nieuwste over</span>{{ last_topic }} enzovoorts</h2>
 	<div class="itemlist row">		
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}
@@ -50,10 +50,10 @@
 
 <div id="home-topics" class="clearfix">
 	<ul>
-	<h3 class="text-center">Onderwerpen</h3>
-	{% for topic in topics %}
-		<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
-	{% endfor %}
+		<li>Onderwerpen:</li>
+		{% for topic in topics %}
+			<li><a href="{% url 'topic_detail' topic.id topic.slug %}">{{ topic }}</a></li>
+		{% endfor %}
 	</ul>
 </div>
 
@@ -86,8 +86,5 @@
 		{% endfor %}
 	</div>
 </div>
-
-<p>Last topic to be written about: {{ last_topic }}</p>
-<p>Last character to be written about: {{ last_character }}</p>
 
 {% endblock %}

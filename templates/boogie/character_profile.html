@@ -5,49 +5,45 @@
 
 {% block content %}
 
-<div id="characterinfo">
-	<div class="row">
-		<h2 class="span12 text-center">{{ character.name }}</h2>
-		<div class="span6 offset1 biography">
-			<p class="lead">{{ character.onelinebio }}</p>
-			<p>{{ character.biography }}</p>
-		</div>
-		<div class="span5 portrait">
-			{% if character.avatar %}<img src="{{ character.avatar.url }}" alt="{{ character.name }}">{% endif %}
-		</div>
+<div id="characterinfo" class="row clearfix">
+	<h2 class="span12 text-center">{{ character.name }}</h2>
+	<div class="span6 offset1 biography">
+		<p class="lead">{{ character.onelinebio }}</p>
+		<p>{{ character.biography }}</p>
+	</div>
+	<div class="span5 portrait">
+		{% if character.avatar %}<img src="{{ character.avatar.url }}" alt="{{ character.name }}">{% endif %}
 	</div>
 </div>
 
 <hr>
 
-<div id="itemlist" class="clearfix">
-	<div class="row">
-		<div class="span12">
-			<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ character.name }}</h2>
-			{% if character.pieces.count > 1 %}
-			<div class="filter pull-right">
-				<div class="btn-group">
-					{% ifequal order '-score_cache' %}
-						<a href="?order=-datepublished#itemlistinfo" class="btn">Nieuwste</a>
-					{% else %}
-						<a href="?order=-datepublished#itemlistinfo" class="btn active">Nieuwste</a>
-					{% endifequal %}
-					{% ifequal order '-datepublished' %}
-						<a href="?order=-score_cache#itemlistinfo" class="btn">Populairste</a>
-					{% else %}
-						<a href="?order=-score_cache#itemlistinfo" class="btn active">Populairste</a>
-					{% endifequal %}
-				</div>
+<div class="itemlist row clearfix">
+	<div class="span12">
+		<h2 class="text-center"><span class="sub-top">Bijdragen over</span> {{ character.name }}</h2>
+		{% if character.pieces.count > 1 %}
+		<div class="filter pull-right">
+			<div class="btn-group">
+				{% ifequal order '-score_cache' %}
+					<a href="?order=-datepublished#itemlistinfo" class="btn">Nieuwste</a>
+				{% else %}
+					<a href="?order=-datepublished#itemlistinfo" class="btn active">Nieuwste</a>
+				{% endifequal %}
+				{% ifequal order '-datepublished' %}
+					<a href="?order=-score_cache#itemlistinfo" class="btn">Populairste</a>
+				{% else %}
+					<a href="?order=-score_cache#itemlistinfo" class="btn active">Populairste</a>
+				{% endifequal %}
 			</div>
-			{% endif %}
 		</div>
-		
-		{% for piece in pieces %}
-			{% include "boogie/piece_fragment.html" %}
-		{% empty %}
-			<p class="lead text-center">Er is nog niks gepubliceerd over dit personage.</p>
-		{% endfor %}
+		{% endif %}
 	</div>
+	
+	{% for piece in pieces %}
+		{% include "boogie/piece_fragment.html" %}
+	{% empty %}
+		<p class="lead text-center">Er is nog niks gepubliceerd over dit personage.</p>
+	{% endfor %}
 </div>
 
 {% endblock %}

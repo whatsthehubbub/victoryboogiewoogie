@@ -17,7 +17,7 @@
 {% block content %}
 <div id="home-latest-character" class="clearfix">
 	<h2 class="text-center">Bijdragen over personages</h2>
-	<div id="itemlist" class="row">		
+	<div class="itemlist row">
 		{% for piece in character_pieces %}
 			{% include "boogie/piece_fragment.html" %}
 		{% endfor %}
@@ -41,7 +41,7 @@
 
 <div id="home-latest-topic" class="clearfix">
 	<h2 class="text-center">Bijdragen over onderwerpen</h2>
-	<div id="itemlist" class="row">		
+	<div class="itemlist row">		
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}
 		{% endfor %}
@@ -68,22 +68,24 @@
 	</ul>
 </div>
 
-<div id="home-participants" class="clearfix">
+<div id="home-ads" class="clearfix">
 	<h2 class="text-center">Advertenties</h2>
-	{% for ad in ads %}
-	<article class="span4 advertentie clearfix">
-		<a href="{{ ad.url }}">
-			<div class="box">
-				<div class="meta clearfix">
-					<p class="genre pull-left">Advertentie</p>
+	<div class="itemlist row">
+		{% for ad in ads %}
+		<article class="span4 clearfix">
+			<a href="{{ ad.url }}">
+				<div class="box">
+					<div class="meta clearfix">
+						<p class="genre pull-left">Advertentie</p>
+					</div>
+					<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
 				</div>
-				<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
+			</a>
+			<div class="info">
+				<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
 			</div>
-		</a>
-		<div class="info">
-			<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
-		</div>
-	</article>
-	{% endfor %}
+		</article>
+		{% endfor %}
+	</div>
 </div>
 {% endblock %}

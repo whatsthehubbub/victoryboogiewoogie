@@ -5909,16 +5909,34 @@ a:hover {
 #content .box-small {
   padding: 1em 0 0.5em 0;
 }
-#home-latest {
-  border-bottom: 1px solid #eeeeee;
-  margin-left: -1.25em;
-  padding-left: 1.25em;
-  margin-right: -1.25em;
-  padding-right: 1.25em;
-  padding-bottom: 3em;
-}
 #home-characters {
-  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid #eeeeee;
+}
+#home-characters ul {
+  display: block;
+}
+#home-characters ul li {
+  float: left;
+  display: block;
+  width: 10%;
+  margin: 1%;
+}
+#home-characters img {
+  opacity: 0.7;
+}
+#home-characters a {
+  text-decoration: none;
+}
+#home-characters a h4 {
+  color: #666666;
+  padding-bottom: 1em;
+}
+#home-characters a:hover h4 {
+  color: #000000;
+}
+#home-characters a:hover img {
+  opacity: 1;
 }
 #summarylist .summaryitem {
   border-bottom: 1px solid #eeeeee;
@@ -6078,22 +6096,6 @@ a:hover {
   z-index: 1;
   margin-top: -5em;
 }
-#characterlist img {
-  opacity: 0.7;
-}
-#characterlist a {
-  text-decoration: none;
-}
-#characterlist a h4 {
-  color: #666666;
-  padding-bottom: 1em;
-}
-#characterlist a:hover h4 {
-  color: #000000;
-}
-#characterlist a:hover img {
-  opacity: 1;
-}
 #playerdetail .meta {
   position: relative;
 }
@@ -6221,6 +6223,11 @@ a:hover {
   padding: 2em 4em 2em;
   border-top: 1px solid #eeeeee;
 }
+#itemdetail .navigator .prev,
+#itemdetail .navigator .next {
+  width: 50%;
+  overflow: hidden;
+}
 #itemdetail .navigator h4 {
   font-size: 1.5em;
   margin-bottom: 0.75em;
@@ -6245,6 +6252,20 @@ a:hover {
 #createitem .info li.pull-right {
   float: right;
   width: 70%;
+}
+#createitem .info ul.choices {
+  margin: 0.5em 0 0;
+  padding: 0;
+}
+#createitem .info ul.choices li {
+  margin: 0 0 0.25em 0;
+  padding: 0;
+  text-indent: -5px;
+}
+#createitem .info ul.choices li:before {
+  content: "-";
+  position: relative;
+  left: -0.5em;
 }
 #createitem form {
   margin: 1em 0;

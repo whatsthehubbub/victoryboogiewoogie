@@ -1072,6 +1072,7 @@ a:hover{text-decoration:none;}
 #createitem #charactercount{background-color:#f5a400;}
 #createitem #charactercount.limit{background-color:#e32112;}
 #createitem #div_id_new_topic,#createitem #div_id_image{clear:both;}
+#createitem .help-block{margin-top:-0.75em;padding-bottom:0.5em;}
 #previewitem .info{padding:0.5em 0;margin:0;}#previewitem .info li{list-style:none;border-bottom:1px solid #eeeeee;padding:0.5em 0 0.4em;}
 #previewitem .info li.pull-left{color:#999999;float:left;width:30%;}
 #previewitem .info li.pull-right{float:right;width:70%;}

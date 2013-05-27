@@ -786,14 +786,33 @@ a:hover {
 }
 
 // !HOME PARTICIPANTS
-#home-ads {
-	border-top: 1px solid @grayLighter;
+#home-ad-1, #home-ad-2 {
+	background-color: lighten(@grayLighter, 3%);
 	padding-top: 1.25em;
-	padding-bottom: 0;
+	padding-bottom: 1.25em;
 	margin-left: -1.25em;
 	margin-right: -1.25em;
 	padding-left: 1.25em;
 	padding-right: 1.25em;
+	text-align: center;
+	a {
+		display: block;
+		width: 728px;
+		height: 90px;
+		margin: 0 auto;
+		img {
+			width: 728px;
+			height: 90px;
+		}
+	}
+}
+
+#home-ad-1 {
+	border-bottom: 1px solid @grayLighter;
+}
+
+#home-ad-2 {
+	border-top: 1px solid @grayLighter;
 }
 
 // !SUMMARY LIST

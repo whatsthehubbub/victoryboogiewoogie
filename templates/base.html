@@ -78,7 +78,7 @@
 			{% if current_player %}
 				<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">uitloggen</a>
 			{% else %}
-				<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
+				<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="btn btn-warning register button">Aanmelden</a>
 			{% endif %}
 		</p>
 	</div>

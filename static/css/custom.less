@@ -755,10 +755,10 @@ a:hover {
 		li {
 			display: inline;
 			a {
-				//text-decoration: none;
+				text-decoration: none;
 				color: @gray;
 				&:hover {
-					//text-decoration: underline;
+					text-decoration: underline;
 					color: @black;
 				}
 			}
@@ -781,7 +781,7 @@ a:hover {
 #home-participants {
 	border-top: 1px solid @grayLighter;
 	padding-top: 4em;
-	padding-bottom: 1em;
+	padding-bottom: 0;
 	margin-left: -1.25em;
 	margin-right: -1.25em;
 	padding-left: 1.25em;
@@ -801,7 +801,7 @@ a:hover {
 		li {
 			display: inline;
 			a {
-				//text-decoration: none;
+				text-decoration: none;
 				color: @gray;
 				&:hover {
 					//text-decoration: underline;
@@ -812,12 +812,6 @@ a:hover {
 				content: ", ";
 				margin-left: 1px;
 				margin-right: 2px;
-			}
-			&:last-child:after, &:first-child:after {
-				content: "";
-			}
-			&:first-child {
-				color: @black;
 			}
 		}
 	}

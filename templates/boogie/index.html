@@ -39,9 +39,11 @@
 	</ul>
 </div>
 
-<div id="home-ad-1" class="clearfix">
-	<a href="#"><img src="{{ STATIC_URL }}img/banner-placeholder.jpg"></a>
-</div>
+{% if ad_one %}
+	<div id="home-ad-1" class="clearfix">
+		<a href="{{ ad_one.url }}"><img src="{{ ad_one.image.url }}"></a>
+	</div>
+{% endif %}
 
 <div id="home-latest-topic" class="clearfix">
 	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics|slice:":3" %}{{ topic.title }}{% if forloop.counter0|counterzerocomma:topics %}, {% endif %}{% if forloop.counter0|counterzeroand:topics %} en {% endif %}{% endfor %}</h2>
@@ -61,9 +63,11 @@
 	</ul>
 </div>
 
-<div id="home-ad-2" class="clearfix">
-	<a href="#"><img src="{{ STATIC_URL }}img/banner-placeholder.jpg"></a>
-</div>
+{% if ad_two %}
+	<div id="home-ad-2" class="clearfix">
+		<a href="{{ ad_two.url }}"><img src="{{ ad_two.image.url }}"></a>
+	</div>
+{% endif %}
 
 <div id="home-participants" class="clearfix">
 	<h2 class="text-center">Met bijdragen van</h2>

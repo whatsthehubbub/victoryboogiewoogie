@@ -6045,6 +6045,9 @@ a:hover {
   margin-left: 1px;
   margin-right: 2px;
 }
+#home-participants ul li:last-child:after {
+  content: "";
+}
 #home-ad-1,
 #home-ad-2 {
   background-color: #f6f6f6;

@@ -27,7 +27,7 @@ def counterzerocomma(counter0, list):
 
 @register.filter
 def counterzeroand(counter0, list):
-    if counter0 == len(list)-1:
+    if counter0 == len(list)-2:
         return True
     else:
         return False

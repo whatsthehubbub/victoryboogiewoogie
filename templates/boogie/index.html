@@ -44,11 +44,7 @@
 </div>
 
 <div id="home-latest-topic" class="clearfix">
-<<<<<<< HEAD
-	<h2 class="text-center">Het nieuwste over {% for topic in topics %}{{ topic.title }}{%  if not forloop.last %}, {% endif %}{% endfor %}</h2>
-=======
-	<h2 class="text-center"><span>Het nieuwste over</span> {{ last_topic }}, lorem ipsum dolor en este laudadurum</h2>
->>>>>>> develop
+	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics %}{{ topic.title }}{% if forloop.counter0|counterzerocomma:topics %}, {% endif %}{% if forloop.counter0|counterzeroand:topics %} en {% endif %}{% endfor %}</h2>
 	<div class="itemlist row">		
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}

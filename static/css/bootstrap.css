@@ -6038,6 +6038,7 @@ a:hover {
   color: #666666;
 }
 #home-participants ul li a:hover {
+  text-decoration: underline;
   color: #000000;
 }
 #home-participants ul li:after {

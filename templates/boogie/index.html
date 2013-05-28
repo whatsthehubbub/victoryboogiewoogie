@@ -17,7 +17,7 @@
 
 {% block content %}
 <div id="home-latest-character" class="clearfix">
-	<h2 class="text-center"><span>Het nieuwste over</span> {% for cp in character_pieces %}{{ cp.character }}{% if forloop.counter0|counterzerocomma:character_pieces %}, {% endif %}{% if forloop.counter0|counterzeroand:character_pieces %} en {% endif %}{% endfor %}</h2>
+	<h2 class="text-center"><span>Het nieuwste over</span> {% for cp in character_pieces %}{{ cp.character|typogrify }}{% if forloop.counter0|counterzerocomma:character_pieces %}, {% endif %}{% if forloop.counter0|counterzeroand:character_pieces %} en {% endif %}{% endfor %}</h2>
 	<div class="itemlist row">
 		{% for piece in character_pieces %}
 			{% include "boogie/piece_fragment.html" %}
@@ -46,7 +46,7 @@
 {% endif %}
 
 <div id="home-latest-topic" class="clearfix">
-	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics|slice:":3" %}{{ topic.title }}{% if forloop.counter0 == 0 %}, {% endif %}{% if forloop.counter0 == 1 %} en {% endif %}{% endfor %}</h2>
+	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics|slice:":3" %}{{ topic.title|typogrify }}{% if forloop.counter0 == 0 %}, {% endif %}{% if forloop.counter0 == 1 %} en {% endif %}{% endfor %}</h2>
 	<div class="itemlist row">
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}

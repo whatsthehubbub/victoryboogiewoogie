@@ -44,7 +44,7 @@
 </div>
 
 <div id="home-latest-topic" class="clearfix">
-	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics %}{{ topic.title }}{% if forloop.counter0|counterzerocomma:topics %}, {% endif %}{% if forloop.counter0|counterzeroand:topics %} en {% endif %}{% endfor %}</h2>
+	<h2 class="text-center"><span>Het nieuwste over</span> {% for topic in topics|slice:":3" %}{{ topic.title }}{% if forloop.counter0|counterzerocomma:topics %}, {% endif %}{% if forloop.counter0|counterzeroand:topics %} en {% endif %}{% endfor %}</h2>
 	<div class="itemlist row">		
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}

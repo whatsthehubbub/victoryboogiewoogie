@@ -5379,6 +5379,10 @@ a:hover {
 #header .badge-empty {
   background-color: #999999;
 }
+#header .register {
+  margin-top: -0.25em;
+  margin-left: 0.4em;
+}
 #header .stripes {
   height: 5px;
   background-image: url(../img/bg-header-stripes.png);
@@ -5909,34 +5913,170 @@ a:hover {
 #content .box-small {
   padding: 1em 0 0.5em 0;
 }
+#home-latest-character {
+  padding-bottom: 2em;
+}
+#home-latest-character h2 {
+  font-size: 1.75em;
+  margin-top: 0.5em;
+  margin-bottom: 1.25em;
+}
+#home-latest-character h2 span {
+  display: block;
+  font-size: 0.65em;
+  margin-bottom: -0.25em;
+}
 #home-characters {
-  padding-top: 2em;
   border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  background-color: #eeeeee;
+  background-image: url(../img/bg-explosion.png);
+  background-size: 980px 200px;
+  background-position: center center;
+  margin-left: -1.25em;
+  margin-right: -1.25em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
 }
 #home-characters ul {
-  display: block;
+  display: table;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 #home-characters ul li {
-  float: left;
+  display: table-cell !important;
+  float: none;
   display: block;
-  width: 10%;
-  margin: 1%;
+  width: 1%;
 }
-#home-characters img {
-  opacity: 0.7;
+#home-characters ul li a {
+  display: block;
+  width: 80%;
+  height: 100%;
+  margin: 0 10%;
 }
-#home-characters a {
-  text-decoration: none;
+#home-latest-topic {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
-#home-characters a h4 {
+#home-latest-topic h2 {
+  font-size: 1.75em;
+  margin-top: 0.1em;
+  margin-bottom: 1.25em;
+}
+#home-latest-topic h2 span {
+  display: block;
+  font-size: 0.65em;
+  margin-bottom: -0.25em;
+}
+#home-topics {
+  font-family: "brandon-grotesque", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  padding-top: 0.5em;
+  padding-bottom: 3em;
+}
+#home-topics ul {
+  list-style: none;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+}
+#home-topics ul li {
+  display: inline;
+}
+#home-topics ul li a {
   color: #666666;
-  padding-bottom: 1em;
 }
-#home-characters a:hover h4 {
+#home-topics ul li a:hover {
   color: #000000;
 }
-#home-characters a:hover img {
-  opacity: 1;
+#home-topics ul li:after {
+  content: ", ";
+  margin-left: 1px;
+  margin-right: 2px;
+}
+#home-topics ul li:last-child:after,
+#home-topics ul li:first-child:after {
+  content: "";
+}
+#home-topics ul li:first-child {
+  color: #000000;
+}
+#home-participants {
+  border-top: 1px solid #eeeeee;
+  padding-top: 4em;
+  padding-bottom: 1em;
+  margin-left: -1.25em;
+  margin-right: -1.25em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+}
+#home-participants h2 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+#home-participants ul {
+  font-family: "brandon-grotesque", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  list-style: none;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+}
+#home-participants ul li {
+  display: inline;
+}
+#home-participants ul li a {
+  color: #666666;
+}
+#home-participants ul li a:hover {
+  color: #000000;
+}
+#home-participants ul li:after {
+  content: ", ";
+  margin-left: 1px;
+  margin-right: 2px;
+}
+#home-participants ul li:last-child:after,
+#home-participants ul li:first-child:after {
+  content: "";
+}
+#home-participants ul li:first-child {
+  color: #000000;
+}
+#home-ad-1,
+#home-ad-2 {
+  background-color: #f6f6f6;
+  padding-top: 1.25em;
+  padding-bottom: 1.25em;
+  margin-left: -1.25em;
+  margin-right: -1.25em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  text-align: center;
+}
+#home-ad-1 a,
+#home-ad-2 a {
+  display: block;
+  width: 728px;
+  height: 90px;
+  margin: 0 auto;
+}
+#home-ad-1 a img,
+#home-ad-2 a img {
+  width: 728px;
+  height: 90px;
+}
+#home-ad-1 {
+  border-bottom: 1px solid #eeeeee;
+}
+#home-ad-2 {
+  border-top: 1px solid #eeeeee;
 }
 #summarylist .summaryitem {
   border-bottom: 1px solid #eeeeee;
@@ -5951,65 +6091,66 @@ a:hover {
   font-size: 1.4em;
   line-height: 1.4em;
 }
-#itemlist {
+.itemlist {
   position: relative;
 }
-#itemlist .filter {
+.itemlist .filter {
   position: absolute;
   top: 1.55em;
   right: 0;
 }
-#itemlist a {
+.itemlist a {
   text-decoration: none;
 }
-#itemlist a .content h3 {
+.itemlist a .content h3 {
   color: #666666;
 }
-#itemlist a .content p {
+.itemlist a .content p {
   color: #999999;
 }
-#itemlist a:hover .content h3 {
+.itemlist a:hover .content h3 {
   color: #333333;
 }
-#itemlist a:hover .content p {
+.itemlist a:hover .content p {
   color: #222222;
 }
-#itemlist article {
+.itemlist article {
   margin-bottom: 1em;
 }
-#itemlist article.span8 .content {
+.itemlist article.span8 .content {
   margin: 1em 4em;
 }
-#itemlist article.span8.headline h3 {
+.itemlist article.span8.headline h3 {
   font-size: 3.5em;
 }
-#itemlist article a:hover {
+.itemlist article a:hover {
   text-decoration: none;
 }
-#itemlist article a:hover .meta {
+.itemlist article a:hover .meta {
   background-color: #fbfbfb;
 }
-#itemlist article.headline h3 {
+.itemlist article.headline h3 {
   font-size: 1.8em;
   line-height: 1.2em;
   margin-top: 0.5em;
   text-align: center;
 }
-#itemlist article.proza h3,
-#itemlist article.poezie h3,
-#itemlist article.essay h3 {
+.itemlist article.proza h3,
+.itemlist article.poezie h3,
+.itemlist article.essay h3 {
   font-size: 1.4em;
   line-height: 1.2em;
   margin-top: 1em;
   text-align: center;
 }
-#itemlist .box {
+.itemlist .box {
   position: relative;
   overflow: hidden;
-  padding: 0;
+  padding: 0 !important;
+  margin: 0;
   height: 16em;
 }
-#itemlist .overlay {
+.itemlist .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -6020,39 +6161,39 @@ a:hover {
   width: 100%;
   height: 40px;
 }
-#itemlist .illustratie .image {
+.itemlist .illustratie .image {
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center center;
 }
-#itemlist .illustratie .overlay {
+.itemlist .illustratie .overlay {
   visibility: hidden;
 }
-#itemlist .meta {
+.itemlist .meta {
   color: #999999;
   border-bottom: 1px solid #eeeeee;
   padding: 0.15em 0;
 }
-#itemlist .meta .genre {
+.itemlist .meta .genre {
   margin: 0.75em 0 0.75em 0.5em;
   font-style: italic;
 }
-#itemlist .meta .character {
+.itemlist .meta .character {
   width: 40px;
   height: 40px;
   margin: 0.2em 0.5em;
 }
-#itemlist .content {
+.itemlist .content {
   margin: 1em;
 }
-#itemlist .score {
+.itemlist .score {
   position: absolute;
   left: 0.5em;
   bottom: 0.5em;
   margin: 0;
 }
-#itemlist .score .label {
+.itemlist .score .label {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   color: #333333;
@@ -6062,20 +6203,20 @@ a:hover {
   -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2);
 }
-#itemlist .info {
+.itemlist .info {
   margin: 0.5em 0 0 0;
   color: #b3b3b3;
 }
-#itemlist .info .author {
+.itemlist .info .author {
   float: left;
 }
-#itemlist .info .timestamp {
+.itemlist .info .timestamp {
   float: right;
 }
-#itemlist .info a {
+.itemlist .info a {
   color: #666666;
 }
-#itemlist .info a:hover {
+.itemlist .info a:hover {
   color: #333333;
   text-decoration: underline;
 }
@@ -6095,6 +6236,22 @@ a:hover {
   position: relative;
   z-index: 1;
   margin-top: -5em;
+}
+#characterlist img {
+  opacity: 0.7;
+}
+#characterlist a {
+  text-decoration: none;
+}
+#characterlist a h4 {
+  color: #666666;
+  padding-bottom: 1em;
+}
+#characterlist a:hover h4 {
+  color: #000000;
+}
+#characterlist a:hover img {
+  opacity: 1;
 }
 #playerdetail .meta {
   position: relative;
@@ -6284,6 +6441,10 @@ a:hover {
 #createitem #div_id_new_topic,
 #createitem #div_id_image {
   clear: both;
+}
+#createitem .help-block {
+  margin-top: -0.75em;
+  padding-bottom: 0.5em;
 }
 #previewitem .info {
   padding: 0.5em 0;

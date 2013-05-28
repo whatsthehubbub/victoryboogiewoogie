@@ -17,7 +17,7 @@
 
 {% block content %}
 <div id="home-latest-character" class="clearfix">
-	<h2 class="text-center"><span>Het nieuwste over</span> {% for cp in character_pieces %}{{ cp.character %}{% if forloop.counter0|counterzerocomma:character_pieces %}, {% endif %}{% if forloop.counter0|counterzerocomma:character_pieces %} en {% endif %}{% endfor %}</h2>
+	<h2 class="text-center"><span>Het nieuwste over</span> {% for cp in character_pieces %}{{ cp.character }}{% if forloop.counter0|counterzerocomma:character_pieces %}, {% endif %}{% if forloop.counter0|counterzerocomma:character_pieces %} en {% endif %}{% endfor %}</h2>
 	<div class="itemlist row">
 		{% for piece in character_pieces %}
 			{% include "boogie/piece_fragment.html" %}

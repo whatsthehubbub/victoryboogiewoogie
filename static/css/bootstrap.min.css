@@ -989,10 +989,10 @@ a:hover{text-decoration:none;}
 #content{padding-top:1.25em;}#content a:hover .box{border:1px solid #eeeeee;}
 #content .box{padding:3em 0 4em 0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid #eeeeee;}
 #content .box-small{padding:1em 0 0.5em 0;}
-#home-latest-character{padding-bottom:2em;}#home-latest-character h2{font-size:2em;margin-top:0.5em;margin-bottom:1.25em;}
+#home-latest-character{padding-bottom:2em;}#home-latest-character h2{font-size:1.75em;margin-top:0.5em;margin-bottom:1.25em;}#home-latest-character h2 span{display:block;font-size:0.65em;margin-bottom:-0.25em;}
 #home-characters{border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;padding-top:3em;padding-bottom:3em;background-color:#eeeeee;background-image:url(../img/bg-explosion.png);background-size:980px 200px;background-position:center center;margin-left:-1.25em;margin-right:-1.25em;padding-left:1.25em;padding-right:1.25em;}#home-characters ul{display:table;list-style:none;width:100%;margin:0;padding:0;}#home-characters ul li{display:table-cell !important;float:none;display:block;width:1%;}#home-characters ul li a{display:block;width:80%;height:100%;margin:0 10%;}
-#home-latest-topic{padding-top:2em;padding-bottom:2em;}#home-latest-topic h2{font-size:2em;margin-top:0.5em;margin-bottom:1.25em;}
-#home-topics{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;padding-top:0.5em;padding-bottom:4em;}#home-topics ul{list-style:none;margin:0 auto;width:80%;text-align:center;}#home-topics ul li{display:inline;}#home-topics ul li a{color:#666666;}#home-topics ul li a:hover{color:#000000;}
+#home-latest-topic{padding-top:2em;padding-bottom:2em;}#home-latest-topic h2{font-size:1.75em;margin-top:0.1em;margin-bottom:1.25em;}#home-latest-topic h2 span{display:block;font-size:0.65em;margin-bottom:-0.25em;}
+#home-topics{font-family:"brandon-grotesque",Helvetica,Arial,sans-serif;text-transform:uppercase;padding-top:0.5em;padding-bottom:3em;}#home-topics ul{list-style:none;margin:0 auto;width:80%;text-align:center;}#home-topics ul li{display:inline;}#home-topics ul li a{color:#666666;}#home-topics ul li a:hover{color:#000000;}
 #home-topics ul li:after{content:", ";margin-left:1px;margin-right:2px;}
 #home-topics ul li:last-child:after,#home-topics ul li:first-child:after{content:"";}
 #home-topics ul li:first-child{color:#000000;}

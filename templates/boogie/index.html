@@ -16,7 +16,7 @@
 
 {% block content %}
 <div id="home-latest-character" class="clearfix">
-	<h2 class="text-center"><span class="sub-top">Het nieuwste over</span>{{ last_character }} en anderen</h2>
+	<h2 class="text-center">Het nieuwste over {{ last_character }}, Marcel van Moelk en Michel Wanders</h2>
 	<div class="itemlist row">
 		{% for piece in character_pieces %}
 			{% include "boogie/piece_fragment.html" %}
@@ -38,8 +38,12 @@
 	</ul>
 </div>
 
+<div id="home-ad-1" class="clearfix">
+	<a href="#"><img src="{{ STATIC_URL }}img/banner-placeholder.jpg"></a>
+</div>
+
 <div id="home-latest-topic" class="clearfix">
-	<h2 class="text-center"><span class="sub-top">Het nieuwste over</span>{{ last_topic }} enzovoorts</h2>
+	<h2 class="text-center">Het nieuwste over {{ last_topic }}, lorem ipsum dolor en este laudadurum</h2>
 	<div class="itemlist row">		
 		{% for piece in topic_pieces %}
 			{% include "boogie/piece_fragment.html" %}
@@ -56,6 +60,10 @@
 	</ul>
 </div>
 
+<div id="home-ad-2" class="clearfix">
+	<a href="#"><img src="{{ STATIC_URL }}img/banner-placeholder.jpg"></a>
+</div>
+
 <div id="home-participants" class="clearfix">
 	<h2 class="text-center">Met bijdragen van</h2>
 	<ul>
@@ -66,24 +74,6 @@
 		<li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
 		{% endfor %}
 	</ul>
-</div>
-
-<div id="home-ads" class="clearfix">
-	<h2 class="text-center">Advertenties</h2>
-	<div class="itemlist row">
-		{% for ad in ads %}
-		<article class="span4 clearfix">
-			<a href="{{ ad.url }}">
-				<div class="box">
-					<img src="{{ ad.image.url }}" alt="{{ ad.sender }}">
-				</div>
-			</a>
-			<div class="info">
-				<p class="pull-right">van <a href="{{ ad.url }}">{{ ad.sender }}</a></p>
-			</div>
-		</article>
-		{% endfor %}
-	</div>
 </div>
 
 {% endblock %}

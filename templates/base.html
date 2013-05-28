@@ -78,7 +78,7 @@
 			{% if current_player %}
 				<a href="{{ current_player.get_absolute_url }}">{{ current_player.get_name }}</a> | <a href="{% url 'logout' %}" class="logout">uitloggen</a>
 			{% else %}
-				<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="register button">Aanmelden</a>
+				<a href="{% url 'login' %}" class="login button">Inloggen</a> of <a href="{% url 'registration_register' %}" class="btn btn-warning register button">Aanmelden</a>
 			{% endif %}
 		</p>
 	</div>
@@ -124,11 +124,11 @@
 				{% endfor %}
 
 				{% if game.weeks_since_start > 10 %}
-					<li class="current"><a href="{% url 'post_game' %}" class="tooltipster" data-placement="top" title="De game eindigt {{ game.end_date|date:"j F" }}.">
+					<li class="current">
 				{% else %}
-					<li class="disabled"><a href="#" class="tooltipster" data-placement="top" title="De game eindigt {{ game.end_date|date:"j F" }}.">
+					<li class="disabled">
 				{% endif %}
-					einde</a></li>
+				<a href="#" class="tooltipster" data-placement="top" title="De game eindigt {{ game.end_date|date:"j F" }}.">einde</a></li>
 			</ul>
 		</div>
 		<div id="papertop"></div>

@@ -5989,9 +5989,11 @@ a:hover {
   display: inline;
 }
 #home-topics ul li a {
+  text-decoration: none;
   color: #666666;
 }
 #home-topics ul li a:hover {
+  text-decoration: underline;
   color: #000000;
 }
 #home-topics ul li:after {
@@ -6009,7 +6011,7 @@ a:hover {
 #home-participants {
   border-top: 1px solid #eeeeee;
   padding-top: 4em;
-  padding-bottom: 1em;
+  padding-bottom: 0;
   margin-left: -1.25em;
   margin-right: -1.25em;
   padding-left: 1.25em;
@@ -6032,6 +6034,7 @@ a:hover {
   display: inline;
 }
 #home-participants ul li a {
+  text-decoration: none;
   color: #666666;
 }
 #home-participants ul li a:hover {
@@ -6041,13 +6044,6 @@ a:hover {
   content: ", ";
   margin-left: 1px;
   margin-right: 2px;
-}
-#home-participants ul li:last-child:after,
-#home-participants ul li:first-child:after {
-  content: "";
-}
-#home-participants ul li:first-child {
-  color: #000000;
 }
 #home-ad-1,
 #home-ad-2 {

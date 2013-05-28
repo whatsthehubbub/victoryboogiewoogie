@@ -72,9 +72,6 @@
 <div id="home-participants" class="clearfix">
 	<h2 class="text-center">Met bijdragen van</h2>
 	<ul>
-		{% for player in writers_published %}
-		<li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
-		{% endfor %}
 		{% for player in players_published %}
 		<li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
 		{% endfor %}

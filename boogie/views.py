@@ -95,8 +95,7 @@ def index(request):
             'character_pieces': character_pieces,
             'topic_pieces': topic_pieces,
             'topics': topics,
-            'players_published': Player.objects.filter(role='PLAYER').filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
-            'writers_published': Player.objects.filter(role='WRITER').filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
+            'players_published': Player.objects.filter(piece__status='APPROVED').order_by('pseudonym').distinct(),
             'last_character': last_character,
             'last_topic': last_topic
     })

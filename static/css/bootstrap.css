@@ -5959,6 +5959,10 @@ a:hover {
   height: 100%;
   margin: 0 10%;
 }
+#home-characters ul li a img {
+  width: 93px;
+  height: 93px;
+}
 #home-latest-topic {
   padding-top: 2em;
   padding-bottom: 2em;
@@ -6336,7 +6340,6 @@ a:hover {
 }
 #itemdetail .social {
   display: block;
-  overflow: hidden;
   border: 1px solid #eeeeee;
   margin: 2em 0 6em;
   -webkit-border-radius: 4px;
@@ -6367,12 +6370,10 @@ a:hover {
 }
 #itemdetail .social .twitter {
   display: block;
-  overflow: hidden;
   margin: 1em 0 0;
 }
 #itemdetail .social .facebook {
   display: block;
-  overflow: hidden;
   margin: 0.95em 1em 0 0;
 }
 #itemdetail .navigator {

@@ -52,7 +52,7 @@ $(document).ready(function() {
 		{% ifequal current_player.role 'PLAYER' %}
 			{% if game.over %}
 				<h2 class="text-center">De game is voorbij</h2>
-				<p class="lead">Je kunt helaas niet meer meeschrijven. <a href="{% url 'post_game' %}">Lees hier de terugblik</a>.</p>
+				<p class="lead">Je kunt helaas niet meer meeschrijven. Het spel is voorbij.</p>
 			{% else %}
 				{% if form %}			
 					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} &amp; {% endif %}{{ form.instance.topic.title|capfirst }}</h2>

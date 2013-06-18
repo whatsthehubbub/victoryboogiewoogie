@@ -53,8 +53,6 @@ urlpatterns = patterns('',
     url(r'^colofon/$', 'boogie.views.colofon', name='colofon'),
     url(r'^help/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/help.html'}, name='help'),
 
-    url(r'^terugblik/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/post_game.html'}, name='post_game'),
-
     url(r'^pre/launch/$', 'boogie.views.pre_launch', name='pre_launch'),
     url(r'^pre/launch/thanks/$', 'django.views.generic.simple.direct_to_template', {'template': 'boogie/pre_launch_thanks.html'}, name='pre_launch_thanks'),
     

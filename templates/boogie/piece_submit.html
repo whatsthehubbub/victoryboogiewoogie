@@ -50,11 +50,11 @@ $(document).ready(function() {
 	<div class="span8 offset2">
 		
 		{% ifequal current_player.role 'PLAYER' %}
-			{% if game.over %}
+			{% if not current_player.user.username == 'kars' and game.over %}
 				<h2 class="text-center">De game is voorbij</h2>
 				<p class="lead">Je kunt helaas niet meer meeschrijven. Het spel is voorbij.</p>
 			{% else %}
-				{% if form %}			
+				{% if form %}
 					<h2 class="text-center"><span class="sub-top">Schrijf een bijdrage over</span>{% if form.instance.character %}{{ form.instance.character }} &amp; {% endif %}{{ form.instance.topic.title|capfirst }}</h2>
 					
 					{% if form.instance.rejection_reason %}

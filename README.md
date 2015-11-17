@@ -1,3 +1,9 @@
+# Your Daily Victory Boogie Woogie
+
+The collaborative writing game we made for [De Gids](http://www.de-gids.nl/home).
+
+(c) 2012-2013 All rights reserved.
+
 # How to set up a fresh project (on OS X)
 
 1. Install homebrew, by getting the commandline tools: https://developer.apple.com/downloads and then do the install homebrew here: http://mxcl.github.com/homebrew/
